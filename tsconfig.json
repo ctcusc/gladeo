@@ -16,5 +16,14 @@
       "babel.config.js",
       "metro.config.js",
       "jest.config.js"
+    ],
+    "include": [
+      "src/**/*/*.tsx",
+      "test/**/*.tsx",
+      "typings/**/*.tsx",
+      // etc
+  
+      // if you have a mixed JS/TS codebase, don't forget to include your JS files
+      "src/**/*.js"
     ]
   }
