@@ -12,12 +12,20 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest --watchAll",
-    "lint": "tslint src/** --fix",
-    "precommit": "lint-staged && yarn lint"
+    "test": "jest --watch --coverage=false --changedSince=origin/master",
+    "testDebug": "jest -o --watch --coverage=false",
+    "testFinal": "jest",
+    "updateSnapshots": "jest -u --coverage=false",
+    "lint": "eslint src/**/*.tsx",
+    "lint-fix": "eslint --fix src/**/*.tsx",
+    "precommit": "lint-staged && yarn lint",
+    "eslint-check": "eslint --print-config src/**/*/*.ts | eslint-config-prettier-check"
   },
   "jest": {
-    "preset": "jest-expo"
+    "preset": "jest-expo",
+    "transformIgnorePatterns": [
+      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|sentry-expo|native-base)"
+    ]
   },
   "dependencies": {
     "@expo/samples": "~3.0.3",
@@ -50,9 +58,11 @@
     "@typescript-eslint/parser": "^2.5.0",
     "babel-preset-expo": "^7.0.0",
     "eslint": "^6.5.1",
+    "eslint-config-prettier": "^6.4.0",
     "eslint-plugin-react": "^7.16.0",
     "eslint-plugin-react-hooks": "^2.1.2",
-    "jest-expo": "^35.0.0"
+    "jest-expo": "^35.0.0",
+    "react-test-renderer": "16.8.3"
   },
   "private": true
 }

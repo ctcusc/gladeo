@@ -29,6 +29,67 @@ This is the web interface for Expo which is a packaging service that will allow 
 
 8. All future runs only require `yarn start` unless the `yarn.lock` file has been updated in which you should run `yarn install` before starting.
 
+## IDE / Development Env.
+I recommend using VS Code and I recommend installing a few essential plugins that I will list below.
+
+
+**ESLint**: In VS Code, go to extensions and install both because they are both, then edit the User Settings file with these settings
+
+        "editor.formatOnSave": true,
+        "eslint.autoFixOnSave": true,
+        "[javascript]": {
+            "editor.tabSize": 2
+        },
+        "files.trimTrailingWhitespace": true,
+        "files.insertFinalNewline": true,
+
+Other recommended extensions/plugins:
+- Auto Close Tag
+- Color Highlighting
+
+## Testing
+- We will be using `Jest` which is an open-source JS testing framework maintained by Facebook.
+- Run `yarn test` to run all Jest tests
+- Our tests will be named `FileWeAreTesting.test.tsx` will be structured relative to the rest of our codebase like this:
+```js
+__tests__/
+├─ components/
+│  └─ button.test.tsx
+├─ navigation/
+│  └─ mainstack.test.tsx
+└─ screens/
+   └─ home.test.tsx
+src/
+├─ components/
+│  └─ button.tsx
+├─ navigation/
+│  └─ mainstack.tsx
+└─ screens/
+   └─ home.tsx
+```
+- Checkout  HomeScreen.test.jsx for some examples
+
+## Pushing Code + Pull Requests
+- Before starting a ticket, pull master, checkout a branch w/ format `FirstInitialLastInitial-Feature` (eg: AP-LoginPage). 
+
+- Push to that branch and when you are done, make a pull request (easy to do thru the web UI) and then tag 2 reviewers. Start off by tagging `@apetranik` and one other person. 
+
+- Title your PR's with [Sprint-#] Description.
+this will help us keep track of what sprints are what. Provide a brief summary of what you did, and if it was a front-end ticket, add a picture or GIF. 
+
+## Essential Commands
+`yarn install` - Installs dependencies (do after every pull)  
+
+`yarn start`
+
+`yarn test` - runs Jest tests in \__tests\__/
+
+`yarn lint` - runs linter and tells you all errors/warnings
+
+`yarn lint --fix` - autofixes eligable errors
+
+
+
 ## About our Stack
 #### Front-End
 - React Native (iOS and Android) with Expo
@@ -42,31 +103,3 @@ This is the web interface for Expo which is a packaging service that will allow 
 
  - Node.js + Express.js
     - We will be using Node and with it, Express as our middleware to work with our db. 
-
-## IDE / Development Env.
-I recommend using VS Code and I recommend installing a few essential plugins that I will list below.
-
-
-**ESLint/TSLint**: In VS Code, go to extensions and install both because they are both, then edit the User Settings file with these settings
-
-        "editor.formatOnSave": true,
-        "tslint.autoFixOnSave": true,
-        "[javascript]": {
-            "editor.tabSize": 2
-        },
-        "files.trimTrailingWhitespace": true,
-        "files.insertFinalNewline": true,
-
-Other recommended extensions/plugins:
-- Auto Close Tag
-- Color Highlighting
-
-
-## Pushing Code + Pull Requests
-- Before starting a ticket, pull master, checkout a branch w/ format `FirstInitialLastInitial-Feature` (eg: AP-LoginPage). 
-
-- Push to that branch and when you are done, make a pull request (easy to do thru the web UI) and then tag 2 reviewers. Start off by tagging `@apetranik` and one other person. 
-
-- Title your PR's with [Sprint-#] Description.
-this will help us keep track of what sprints are what. Provide a brief summary of what you did, and if it was a front-end ticket, add a picture or GIF. 
-

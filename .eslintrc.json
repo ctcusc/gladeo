@@ -7,13 +7,15 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/eslint-recommended",
         "plugin:@typescript-eslint/recommended",
-        "plugin:@typescript-eslint/recommended-requiring-type-checking"
+        "plugin:@typescript-eslint/recommended-requiring-type-checking",
+        "prettier",
+        "prettier/@typescript-eslint"
     ],
     "globals": {
         "Atomics": "readonly",
         "SharedArrayBuffer": "readonly"
     },
-    "parser": "@typescript-eslint/parser",
+    "parser": "@typescript-eslint/parser", // typescript flavor
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -28,8 +30,12 @@
         "@typescript-eslint"
     ],
     "rules": {
-        "@typescript-eslint/rule-name": "error",
+        "@typescript-eslint/camelcase": "warn", // consistency in code
+        "@typescript-eslint/class-name-casing": "warn", // same as above
+        "@typescript-eslint/indent": "warn", // clean code
+        "@typescript-eslint/brace-style": "warn", // same as above
         "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
         "react-hooks/exhaustive-deps": "warn" // Checks effect dependencie
+
     }
 }
