@@ -13,10 +13,6 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 40,
   },
-  logo: {
-    width: 200,
-    resizeMode: 'contain',
-  }
 })
 
 export default styles

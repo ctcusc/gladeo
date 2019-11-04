@@ -94,12 +94,18 @@ this will help us keep track of what sprints are what. Provide a brief summary o
 #### Front-End
 - React Native (iOS and Android) with Expo
     - TLDR; When we run our app `yarn start`, React Native's packager (Metro) takes our code, bundles it and basically turns all of our JSX code into one JS file. Expo then grabs that and runs it inside it's own app. This allows us to use the iOS Simulator or view the app through the Expo Client app super easily without needing to open XCode or have any native code in our project. 
+    - We'll be using React Navigation for navigation in our app [https://reactnavigation.org/docs/en/navigation-prop.html]
 - TypeScript
     - TypeScript (.ts/.tsx) is all the rage right now. It is essentially JS w/ a few variations that make it safer and faster. We will be using it instead of vanilla React because Typescript offers a lot of nice features like static typing, which essential means you can catch errors during development instead of during runtime. It is also strongly typed, which means you have to explicitly give a type when you declare variables. (eg: `let name: string = "Susan"`). This will make development easier to debug and our code safer.
 
 #### Backend
 - Database: Airtables
     - After considering some of the needs of the client, we are looking into using Airtables instead of MongoDB. It is a very simple and is cross between a spreadsheet and a databse. We can use Node and Express to query it but it also has a web interface that our client can use to easy update the app. They want to be able to add new users and add new career questions to the library and this is the simpliest way. One of the other CTC teams, RiverLA, is also using it so we can support each other! 
+    - Checkout the Airtable API docs here 
+    [https://airtable.com/app3oku6zezqMZDpI/api/docs#javascript/ratelimits]
 
  - Node.js + Express.js
     - We will be using Node and with it, Express as our middleware to work with our db. 
+ 
+    
+

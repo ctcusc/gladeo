@@ -5,10 +5,10 @@ import {
 } from 'react-native'
 import styles from './styles'
 
-export default function ProfileScreen() {
+export default function RegisterScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>ProfileScreen</Text>
+      <Text style={styles.title}>Register</Text>
     </View>
   )
 }

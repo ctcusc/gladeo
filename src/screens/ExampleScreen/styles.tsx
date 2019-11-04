@@ -5,18 +5,22 @@ const styles = StyleSheet.create({
     flex: 1,
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
+    justifyContent: 'space-between',
     alignItems: 'center',
     backgroundColor: '#fff',
     color: '#000',
+    padding: '5%',
+    
   },
   title: {
     fontSize: 40,
+    paddingBottom: 10,
   },
-  logo: {
-    width: 200,
-    resizeMode: 'contain',
-  }
+  info: {
+    fontSize: 16,
+    textAlign: 'center',
+    paddingVertical: 5,
+  },
 })
 
 export default styles
