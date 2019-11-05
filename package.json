@@ -1,7 +1,7 @@
 {
   "main": "node_modules/expo/AppEntry.js",
   "lint-staged": {
-    "*.{js}": [
+    "*.{tsx}": [
       "yarn lint",
       "git add"
     ]
@@ -16,8 +16,8 @@
     "testDebug": "jest -o --watch --coverage=false",
     "testFinal": "jest",
     "updateSnapshots": "jest -u --coverage=false",
-    "lint": "eslint src/**/*.tsx",
-    "lint-fix": "eslint --fix src/**/*.tsx",
+    "lint": "eslint src/**/**/*.tsx",
+    "lint-fix": "eslint --fix src/**/**/*.tsx",
     "precommit": "lint-staged && yarn lint",
     "eslint-check": "eslint --print-config src/**/*/*.ts | eslint-config-prettier-check",
     "server": "node server/server.js --exec nodemon",

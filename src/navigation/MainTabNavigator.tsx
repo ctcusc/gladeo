@@ -4,9 +4,9 @@ import { Platform } from 'react-native'
 import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
 
 import TabBarIcon from '../shared_components/TabBarIcon'
-import HomeScreen from '../screens/HomeScreen/HomeScreen'
-import CreateScreen from '../screens/CreateScreen/CreateScreen'
-import ProfileScreen from '../screens/ProfileScreen/ProfileScreen'
+import HomeScreen from '../screens/Home/HomeScreen/HomeScreen'
+import CreateScreen from '../screens/Home/CreateScreen/CreateScreen'
+import ProfileScreen from '../screens/Home/ProfileScreen/ProfileScreen'
 
 
 const HomeStack = createStackNavigator(

@@ -11,7 +11,7 @@ export default function HomeScreen() {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>Welcome to Gladeo!</Text>
-      <Image style={styles.logo} source={require('../../../assets/images/gladeo_logo.png')} />
+      <Image style={styles.logo} source={require('../../../../assets/images/gladeo_logo.png')} />
     </View>
   )
 }

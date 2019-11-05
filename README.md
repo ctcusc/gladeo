@@ -80,14 +80,17 @@ this will help us keep track of what sprints are what. Provide a brief summary o
 ## Essential Commands
 `yarn install` - Installs dependencies (do after every pull)  
 
-`yarn start`
+`yarn dev` - runs client and server (RECOMMEND for most use)
+
+`yarn start` - runs just client in expo
+
+`yarn server` - runs just server
 
 `yarn test` - runs Jest tests in \__tests\__/
 
 `yarn lint` - runs linter and tells you all errors/warnings
 
 `yarn lint --fix` - autofixes eligable errors
-
 
 
 ## About our Stack
@@ -102,7 +105,8 @@ this will help us keep track of what sprints are what. Provide a brief summary o
 - Database: Airtables
     - After considering some of the needs of the client, we are looking into using Airtables instead of MongoDB. It is a very simple and is cross between a spreadsheet and a databse. We can use Node and Express to query it but it also has a web interface that our client can use to easy update the app. They want to be able to add new users and add new career questions to the library and this is the simpliest way. One of the other CTC teams, RiverLA, is also using it so we can support each other! 
     - Checkout the Airtable API docs here 
-    [https://airtable.com/app3oku6zezqMZDpI/api/docs#javascript/ratelimits]
+    [https://airtable.com/app3oku6zezqMZDpI/api/docs#javascript/]
+    - Find the API Key here and our app ID. Go to your .env file and replace the comments w/ the actual values.
 
  - Node.js + Express.js
     - We will be using Node and with it, Express as our middleware to work with our db. 
