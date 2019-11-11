@@ -14,7 +14,7 @@ import PinkButton from '../../../shared_components/PinkButton/PinkButton';
 export default function LoginScreen() {
   return (
     <View style={styles.container}>
-      <View style={styles.mainContent}>
+      <View style={styles.main}>
         <BlackHeading title="Welcome Back" />
         <Image style={styles.image} resizeMode='contain' source={require('../../../../assets/images/gladeo_logo.png')} />
         <GreyTextInput placeholder="Email Address" inputType='emailAddress'/>

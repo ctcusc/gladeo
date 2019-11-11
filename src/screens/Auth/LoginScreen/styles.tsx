@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 
-  mainContent: {
+  main: {
     flex: 3,
     display: 'flex',
     flexDirection: 'column',
