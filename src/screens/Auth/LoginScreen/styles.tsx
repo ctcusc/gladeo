@@ -3,12 +3,22 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+
+  mainContent: {
+    flex: 3,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
     color: '#000',
+  },
+
+  footer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'center',
   },
 
   textButton: {

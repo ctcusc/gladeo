@@ -13,8 +13,8 @@ import PinkButton from '../../../shared_components/PinkButton/PinkButton';
 
 export default function LoginScreen() {
   return (
-    <View>
-      <View style={styles.container}>
+    <View style={styles.container}>
+      <View style={styles.mainContent}>
         <BlackHeading title="Welcome Back" />
         <Image style={styles.image} resizeMode='contain' source={require('../../../../assets/images/gladeo_logo.png')} />
         <GreyTextInput placeholder="Email Address" inputType='emailAddress'/>
@@ -28,7 +28,7 @@ export default function LoginScreen() {
         <PinkButton title="LOG IN" onPress={() => Alert.alert('pressed')} />
       </View>
 
-      <View>
+      <View style={styles.footer}>
         <Text style={styles.text}>Don't have an accout?</Text>
         <Button 
           title='Sign up'
