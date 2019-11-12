@@ -1,10 +1,11 @@
-const { Base } = require('./index');
-
-async function getQuestions() {
+//const { base } = require('./index');
+var Airtable = require('airtable');
+var base = new Airtable({ apiKey: 'keyQKE0pcZQARg9V5' }).base('app3oku6zezqMZDpI');
+function getQuestions() {
   var questions = [];
-  Base('Questions').select({
+  base('Questions').select({
     // Selecting the first 3 records in Grid view:
-    maxRecords: 3,
+    maxRecords: 10,
     view: 'Grid view'
   }).eachPage(function page(records, fetchNextPage) {
     // This function (`page`) will get called for each page of records.
