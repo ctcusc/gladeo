@@ -4,6 +4,7 @@ const route = Router();
 
 module.exports = app => {
   app.get('/api/questions', (req, res) => {
-    return res.send({ questions: getQuestions() }).status(200);
+    const questions = getQuestions();
+    return res.send({ questions }).status(200);
   });
 };
