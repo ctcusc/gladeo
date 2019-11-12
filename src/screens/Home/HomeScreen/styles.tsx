@@ -7,8 +7,8 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
-    color: '#000',
+    backgroundColor: '#D94077',
+    color: '#fff',
   },
   title: {
     fontSize: 40,
@@ -16,7 +16,15 @@ const styles = StyleSheet.create({
   logo: {
     width: 200,
     resizeMode: 'contain',
-  }
+  },
+  step: {
+    color: '#DEA3BB',
+  
+  },
+  question: {
+    color: '#F5F5F5',
+  }, 
+
 })
 
 export default styles
