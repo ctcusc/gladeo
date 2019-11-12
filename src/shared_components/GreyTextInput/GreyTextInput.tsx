@@ -18,6 +18,7 @@ export default function GreyTextInput (props){
         style={styles.input}
         selectTextOnFocus={true}
         textContentType={props.inputType}
+        secureTextEntry={props.inputType === 'password'}
       />
     </View>
   )

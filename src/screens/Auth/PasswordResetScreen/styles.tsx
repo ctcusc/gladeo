@@ -47,6 +47,7 @@ const styles = StyleSheet.create({
     resendButtonLine: {
         flexDirection: 'row',
         justifyContent: 'center',
+        alignItems: 'center',
         marginTop: 19
     },
 

@@ -4,14 +4,17 @@ import {
   View,
   Button,
   Alert,
-  Image
+  Image,
 } from 'react-native'
 import styles from './styles'
 import BlackHeading from '../../../shared_components/BlackHeading/BlackHeading';
 import GreyTextInput from '../../../shared_components/GreyTextInput/GreyTextInput';
 import PinkButton from '../../../shared_components/PinkButton/PinkButton';
+import PropTypes from 'prop-types'
 
-export default function LoginScreen() {
+export default function LoginScreen(props) {
+  const {navigate} = props.navigation;
+
   return (
     <View style={styles.container}>
       <View style={styles.main}>
@@ -21,7 +24,7 @@ export default function LoginScreen() {
         <GreyTextInput placeholder="Password" inputType='password'/>
         <Button
           title='Forgot Password?'
-          onPress={() => Alert.alert('pressed')}
+          onPress={() => navigate('PasswordReset')}
           color='#777777'
           style={styles.textButton}
         />
@@ -39,4 +42,10 @@ export default function LoginScreen() {
       </View>
     </View>
   )
+}
+
+LoginScreen.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 }

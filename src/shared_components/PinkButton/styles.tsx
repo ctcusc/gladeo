@@ -8,7 +8,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#E5186E',
     borderRadius: 64,
     justifyContent: 'center',
-    marginTop: 13
+    marginTop: 12,
   },
 
   buttonText: {
