@@ -7,7 +7,8 @@ import TabBarIcon from '../shared_components/TabBarIcon'
 import HomeScreen from '../screens/Home/HomeScreen/HomeScreen'
 import CreateScreen from '../screens/Home/CreateScreen/CreateScreen'
 import ProfileScreen from '../screens/Home/ProfileScreen/ProfileScreen'
-
+//remove below later
+import OnboardingScreen from '../screens/Home/OnboardingScreen/OnboardingScreen'
 
 const HomeStack = createStackNavigator(
   {
@@ -31,7 +32,8 @@ HomeStack.navigationOptions = {
 
 const CreateStack = createStackNavigator(
   {
-    Links: CreateScreen,
+    //Links: CreateScreen,
+    Links: OnboardingScreen,
   },
 )
 
