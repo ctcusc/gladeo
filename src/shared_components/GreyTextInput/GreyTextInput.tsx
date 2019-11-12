@@ -9,13 +9,17 @@ import PropTypes from 'prop-types'
 export default function GreyTextInput (props){
   const [text, setText] = useState('')
 
+  const [inFocus, setInFocus] = useState(false)
+
   return (
     <View>
       <TextInput 
         placeholder={props.placeholder}
         onChangeText={(input) => setText(input)}
         value={text}
-        style={styles.input}
+        style={inFocus ? styles.inFocus : styles.input}
+        onFocus={() => setInFocus(true)}
+        onBlur={() => setInFocus(false)}
         selectTextOnFocus={true}
         textContentType={props.inputType}
         secureTextEntry={props.inputType === 'password'}

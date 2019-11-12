@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
 
     boldText: {
         fontSize: 16,
-        fontWeight: 'bold',
+        fontFamily: 'roboto-bold',
         fontStyle: 'normal',
         lineHeight: 19,
         textAlign: 'center',
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
 
     normalText: {
         fontStyle: 'normal',
-        fontWeight: 'normal',
+        fontFamily: 'roboto-regular',
         fontSize: 16,
         lineHeight: 19,
         color: '#777777',
@@ -39,9 +39,10 @@ const styles = StyleSheet.create({
 
     pinkTextButton: {
         fontStyle: 'normal',
-        fontWeight: 'normal',
         fontSize: 16,
         lineHeight: 19,
+        fontFamily: 'roboto-regular',
+        color: '#E5186E',
     },
 
     resendButtonLine: {

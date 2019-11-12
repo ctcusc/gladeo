@@ -2,9 +2,9 @@ import React from 'react'
 import {
   Text,
   View,
-  Button,
   Alert,
   Image,
+  TouchableOpacity
 } from 'react-native'
 import styles from './styles'
 import BlackHeading from '../../../shared_components/BlackHeading/BlackHeading';
@@ -22,23 +22,23 @@ export default function LoginScreen(props) {
         <Image style={styles.image} resizeMode='contain' source={require('../../../../assets/images/gladeo_logo.png')} />
         <GreyTextInput placeholder="Email Address" inputType='emailAddress'/>
         <GreyTextInput placeholder="Password" inputType='password'/>
-        <Button
-          title='Forgot Password?'
+        <TouchableOpacity
           onPress={() => navigate('PasswordReset')}
-          color='#777777'
-          style={styles.textButton}
-        />
+        >
+          <Text  style={styles.textButton}>Forgot Password?</Text>
+        </TouchableOpacity>
         <PinkButton title="LOG IN" onPress={() => Alert.alert('pressed')} />
       </View>
 
       <View style={styles.footer}>
-        <Text style={styles.text}>Don't have an accout?</Text>
-        <Button 
-          title='Sign up'
-          onPress={() => Alert.alert('pressed')}
-          color='#E5186E'
-          style={styles.pinkTextButton}
-        />
+        <View style={styles.subFooter}>
+          <Text style={styles.text}>Don't have an accout?</Text>
+          <TouchableOpacity
+            onPress={() => Alert.alert('pressed')}
+          >
+            <Text style={styles.pinkTextButton}> Sign Up</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   )

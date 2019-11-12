@@ -3,7 +3,7 @@ import {
   Text,
   View,
   Alert,
-  Button,
+  TouchableOpacity,
 } from 'react-native'
 import styles from '../../Auth/PasswordResetScreen/styles';
 import BlackHeading from '../../../shared_components/BlackHeading/BlackHeading';
@@ -20,12 +20,11 @@ export default function LoginScreen() {
             <PinkButton title="SEND" onPress={() => Alert.alert('pressed')} />
             <View style={styles.resendButtonLine}> 
                 <Text style={styles.normalText}>No dice?</Text>
-                <Button 
-                    title='Resend validation link'
+                <TouchableOpacity
                     onPress={() => Alert.alert('pressed')}
-                    color='#E5186E'
-                    style={styles.pinkTextButton}
-                />
+                >
+                    <Text style={styles.pinkTextButton}> Resend validation link.</Text>
+                </TouchableOpacity>
             </View>
         </View>
 

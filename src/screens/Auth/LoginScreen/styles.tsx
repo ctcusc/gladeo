@@ -3,12 +3,13 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 117,
+    marginTop: '5%',
+    marginBottom: '4%',
     alignContent: 'space-between'
   },
 
   main: {
-    flex: 1,
+    flex: 3,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -21,6 +22,12 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
+    alignItems: 'flex-end',
+  },
+
+  subFooter: {
+    flexDirection: 'row',
+    justifyContent: 'center',
     alignItems: 'center',
   },
 
@@ -28,8 +35,11 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontWeight: 'normal',
     fontSize: 16,
-    lineHeight: 19,
-    marginTop: 4,
+    color: '#777777',
+    marginTop: '1%',
+    marginBottom: '3%',
+    fontFamily: 'roboto-regular',
+    letterSpacing: 0.05,
   },
 
   image: {
@@ -41,11 +51,13 @@ const styles = StyleSheet.create({
     fontWeight: 'normal',
     fontSize: 16,
     lineHeight: 19,
+    fontFamily: 'roboto-regular',
+    color: '#E5186E',
   },
 
   text: {
     fontStyle: 'normal',
-    fontWeight: 'normal',
+    fontFamily: 'roboto-regular',
     fontSize: 16,
     lineHeight: 19,
     color: '#000000',
