@@ -17,6 +17,20 @@ const styles = StyleSheet.create({
     width: 200,
     resizeMode: 'contain',
   },
+  step: {
+    color: '#DEA3BB',
+    fontFamily: 'Arial', //Montserrat
+    fontWeight: 'bold',
+    fontSize: 30,
+  
+  },
+  question: {
+    fontFamily: 'Arial', //Montserrat;
+    fontWeight: 'bold',
+    fontSize: 30,
+    color: '#F5F5F5',
+  }, 
+
 
 })
 
