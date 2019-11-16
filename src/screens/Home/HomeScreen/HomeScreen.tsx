@@ -1,80 +1,107 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import Constants from 'expo-constants';
+import Constants from 'expo-constants'
+import logo from '../../../../assets/images/gladeo_logo.png'
+import background from '../../../../assets/images/dotsbackground.png'
 import {
   Text,
   View,
   Image,
   Button,
   Alert,
-  /* SafeAreaView, 
-  FlatList*/
+  SafeAreaView, 
+  FlatList,
+  TouchableOpacity,
+  ImageBackground
 } from 'react-native'
 import styles from './styles'
 
-
-/*
+// questions
 const DATA = [
   {
-    id: 'bd7acbea-c1b1-46c2-aed5-3ad53abb28ba',
-    title: 'First Item',
+    id: '1',
+    title: 'Who/what influenced or inspired you to do what you do?',
   },
   {
-    id: '3ac68afc-c605-48d3-a4f8-fbd91aa97f63',
-    title: 'Second Item',
+    id: '2',
+    title: 'What is a typical day for you?',
   },
   {
-    id: '58694a0f-3da1-471f-bd96-145571e29d72',
-    title: 'Third Item',
+    id: '3',
+    title: 'What do you love most about your job?',
+  },
+  {
+    id: '4',
+    title: 'hi',
+  },
+  {
+    id: '5',
+    title: 'hi',
   },
 ];
 
-function Item({ title }) {
-  return (
-    <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  );
-}
+/* AKA: Q&A screen */
+export default function HomeScreen() {
+  const [selected, setSelected] = React.useState(new Map());
 
-export default function App() {
+  const onSelect = React.useCallback( // marks item as selected
+    id => {
+      const newSelected = new Map(selected);
+      newSelected.set(id, !selected.get(id));
+
+      setSelected(newSelected);
+    },
+    [selected],
+  );
+
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
-        data={DATA}
-        renderItem={({ item }) => <Item title={item.title} />}
-        keyExtractor={item => item.id}
-      />
+      <ImageBackground source={background} style={{width: '100%', height: '100%'}}>
+        <View style={styles.banner}>
+          <Text style={styles.bannertext}>QUESTIONS</Text>
+          <Image source={logo} style={styles.bannerlogo} />
+        </View>
+        <FlatList
+          data={DATA}
+          renderItem={({ item }) => (
+            <Item
+              id={item.id}
+              title={item.title}
+              selected={!!selected.get(item.id)}
+              onSelect={onSelect}
+            />
+          )}
+          keyExtractor={item => item.id}
+          extraData={selected}
+        />
+        {/* replace with PinkButton from sharedcomponents later */}
+        <TouchableOpacity onPress={() => Alert.alert("button")} style={styles.continueButton}>
+          <Text style={styles.buttonText}>CONTINUE</Text>
+        </TouchableOpacity>
+      </ImageBackground>
     </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    marginTop: Constants.statusBarHeight,
-  },
-  item: {
-    backgroundColor: '#f9c2ff',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
-  },
-  title: {
-    fontSize: 32,
-  },
-});
-
-
-*/
-
-
-/* AKA: Q&A screen */
-export default function HomeScreen() {
+function Item({ id, title, selected, onSelect }) {
   return (
-    <View style={styles.container}>
-      {/* <Text style={styles.title}>Welcome to Gladeo!</Text>
-      <Image style={styles.logo} source={require('../../../../assets/images/gladeo_logo.png')} /> */}
-    </View>
-  )
+    <TouchableOpacity
+      onPress={() => onSelect(id)}
+      style={[
+        styles.item,
+        { backgroundColor: selected ? '#E5186E' : '#FFFFFF' },
+        
+      ]}
+    >
+    <Text 
+      style={[
+        styles.title,
+        { color: selected ? '#FFFFFF' : '#E5186E' },
+      ]}
+      >{title}</Text>
+    </TouchableOpacity>
+  );
 }
+
+
+

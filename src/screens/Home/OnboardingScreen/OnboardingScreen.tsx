@@ -1,5 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import HomeScreen from '../HomeScreen/HomeScreen'
 import {
   Text,
   View,
@@ -11,20 +12,23 @@ import {
 import styles from './styles'
 
 /* AKA: Q&A screen */
-export default function HomeScreen() {
+export default function OnboardingScreen(props) {
+  const {navigate} = props.navigation;
   return (
     <View style={styles.container}>
       <Text style={styles.step}>Step 1</Text>
       <Text style={styles.question}>EXPLAIN WHAT YOU DO IN ONE MINUTE OR LESS</Text>
-      <TouchableOpacity onPress={() => Alert.alert("hello")} style={styles.button}><Text style={styles.buttonText}>LET'S GO!</Text></TouchableOpacity>
-
-
+      <TouchableOpacity onPress={() => navigate('Home')} style={styles.button}>
+        <Text style={styles.buttonText}>LET'S GO!</Text>
+      </TouchableOpacity>
     </View>
   )
+ 
 }
 
-HomeScreen.propTypes = {
-  step: PropTypes.number,
-  question: PropTypes.string
+OnboardingScreen.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
 }
 

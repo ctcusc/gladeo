@@ -5,14 +5,14 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 
 import TabBarIcon from '../shared_components/TabBarIcon'
 import HomeScreen from '../screens/Home/HomeScreen/HomeScreen'
+import OnboardingScreen from '../screens/Home/OnboardingScreen/OnboardingScreen'
 import CreateScreen from '../screens/Home/CreateScreen/CreateScreen'
 import ProfileScreen from '../screens/Home/ProfileScreen/ProfileScreen'
-//remove below later
-import OnboardingScreen from '../screens/Home/OnboardingScreen/OnboardingScreen'
 
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
+    Onboarding: OnboardingScreen,
   },
 )
 

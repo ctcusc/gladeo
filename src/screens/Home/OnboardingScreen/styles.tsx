@@ -38,8 +38,8 @@ const styles = StyleSheet.create({
   button: {
     width: 179,
     height: 50,
-    backgroundColor: '#E5186E',
-    borderRadius: 64,
+    backgroundColor: 'rgba(196, 196, 196, 0.2)',
+    borderRadius: 8,
     justifyContent: 'center',
     marginTop: 12,
     borderColor: 'white',
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#E5E5E5',
+    color: '#fff',
     textAlign: 'center',
   }
 
