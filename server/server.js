@@ -10,7 +10,7 @@ async function startServer() {
   await require('./api/routes')({ app });
 
   // load airtable base
-  await require('./data_access_layer').createBase();
+  await require('./data_access_layer');
 
   app.listen(port);
   console.log('App is listening on port ' + port);
