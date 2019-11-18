@@ -23,10 +23,10 @@ const styles = StyleSheet.create({
         lineHeight: 19,
         textAlign: 'center',
         color: '#777777',
-        marginLeft: 66,
-        marginRight: 65,
-        marginTop: 28,
-        marginBottom: 110
+        marginLeft: '17.6%',
+        marginRight: '17.3%',
+        marginTop: '7.46%',
+        marginBottom: '26.6%'
     },
 
     normalText: {
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'center',
         alignItems: 'center',
-        marginTop: 19
+        marginTop: '2.3%'
     },
 
     footer: {
