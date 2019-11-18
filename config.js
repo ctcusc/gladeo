@@ -3,9 +3,6 @@ const dotenv = require('dotenv');
 dotenv.config();
 
 module.exports = {
-  api: {
-    prefix: 'api'
-  },
   apiKey: process.env.AIRTABLE_API_KEY,
   airtableID: process.env.AIRTABLE_APP_ID,
   port: process.env.PORT,
