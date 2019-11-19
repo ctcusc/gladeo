@@ -5,9 +5,11 @@ async function getQuestions() {
   const questionTable = base('Questions').select({
     view: 'Grid view'
   });
+
   const questions = extractContentFromRecords(
     await getAllFromTable(questionTable)
   );
+
   return questions;
 }
 
