@@ -43,6 +43,11 @@
             "error",
             "single"
         ]
+    },
+    "settings": {
+        "react": {
+            "version": "detect"
+        }
     }
     
 }
