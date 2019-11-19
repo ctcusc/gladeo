@@ -19,14 +19,14 @@ const styles = StyleSheet.create({
   },
   step: {
     color: '#DEA3BB',
-    fontFamily: 'Arial', //Montserrat
+    fontFamily: 'montserrat-regular', 
     fontWeight: 'bold',
     fontSize: 30,
     marginBottom: '10%',
   
   },
   question: {
-    fontFamily: 'Arial', //Montserrat;
+    fontFamily: 'montserrat-regular', 
     fontWeight: 'bold',
     fontSize: 30,
     color: '#F5F5F5',

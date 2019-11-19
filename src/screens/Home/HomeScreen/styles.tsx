@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
   bannertext: {
-    fontFamily: 'Arial', // change to font Robotp
+    fontFamily: 'roboto-regular', 
     fontStyle: 'normal',
     fontWeight: 'bold',  
     fontSize: 18,
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontFamily: 'Arial', //Roboto
+    fontFamily: 'roboto-regular', 
     color: '#E5186E',
     fontWeight: '500',
   },
@@ -59,7 +59,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontStyle: 'normal',
     fontSize: 26,
-    fontFamily: 'Arial', //Roboto
+    fontFamily: 'roboto-regular', 
     fontWeight: 'bold',
     color: '#fff',
     textAlign: 'center',
