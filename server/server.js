@@ -1,7 +1,5 @@
 const express = require('express');
 const { port, apiKey, airtableID } = require('../config');
-const Airtable = require('airtable');
-var base = new Airtable({ apiKey: apiKey }).base(airtableID);
 
 async function startServer() {
   const app = express();
