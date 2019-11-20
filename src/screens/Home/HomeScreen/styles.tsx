@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native'
-import Constants from 'expo-constants'
 
 const styles = StyleSheet.create({
   container: {
@@ -30,7 +29,17 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginRight: 20,
   },
-  item: {
+  question: {
+    backgroundColor: '#FFFFFF',
+    padding: 20,
+    marginVertical: 8,
+    marginHorizontal: 16,
+    borderRadius: 8,
+    borderColor: '#E5186E',
+    borderWidth: 2,
+    borderStyle: 'solid',
+  },
+  questionSelected: {
     backgroundColor: '#E5186E',
     padding: 20,
     marginVertical: 8,
@@ -44,6 +53,12 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontFamily: 'roboto-regular', 
     color: '#E5186E',
+    fontWeight: '500',
+  },
+  titleSelected: {
+    fontSize: 18,
+    fontFamily: 'roboto-regular', 
+    color: '#FFFFFF',
     fontWeight: '500',
   },
   continueButton: {
@@ -64,6 +79,6 @@ const styles = StyleSheet.create({
     color: '#fff',
     textAlign: 'center',
   },
-});
+})
 
 export default styles

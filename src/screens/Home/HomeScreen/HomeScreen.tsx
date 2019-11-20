@@ -1,6 +1,4 @@
 import React, {useState} from 'react'
-import PropTypes from 'prop-types'
-import Constants from 'expo-constants'
 import logo from '../../../../assets/images/gladeo_logo.png'
 import background from '../../../../assets/images/dotsbackground.png'
 import {
@@ -11,7 +9,7 @@ import {
   SafeAreaView, 
   FlatList,
   TouchableOpacity,
-  ImageBackground
+  ImageBackground,
 } from 'react-native'
 import styles from './styles'
 
@@ -37,21 +35,11 @@ const DATA = [
     id: '5',
     title: 'hi',
   },
-];
+]
 
 /* AKA: Q&A screen */
 export default function HomeScreen() {
-  const [selected, setSelected] = React.useState(new Map());
-
-  const onSelect = React.useCallback( // marks item as selected
-    id => {
-      const newSelected = new Map(selected);
-      newSelected.set(id, !selected.get(id));
-
-      setSelected(newSelected);
-    },
-    [selected],
-  );
+  const [selected, setSelected] = useState()
 
   return (
     <SafeAreaView style={styles.container}>
@@ -66,40 +54,40 @@ export default function HomeScreen() {
             <Item
               id={item.id}
               title={item.title}
-              selected={!!selected.get(item.id)}
-              onSelect={onSelect}
+              selected={selected === item.id}
+              onSelect={() => setSelected(item.id)}
             />
           )}
           keyExtractor={item => item.id}
           extraData={selected}
         />
         {/* replace with PinkButton from sharedcomponents later */}
-        <TouchableOpacity onPress={() => Alert.alert("button")} style={styles.continueButton}>
+        <TouchableOpacity onPress={() => Alert.alert('button')} style={styles.continueButton}>
           <Text style={styles.buttonText}>CONTINUE</Text>
         </TouchableOpacity>
       </ImageBackground>
     </SafeAreaView>
-  );
+  )
 }
 
-function Item({ id, title, selected, onSelect }) {
+function Item(props: ItemProps) {
   return (
     <TouchableOpacity
-      onPress={() => onSelect(id)}
-      style={[
-        styles.item,
-        { backgroundColor: selected ? '#E5186E' : '#FFFFFF' },
-        
-      ]}
+      onPress={() => props.onSelect(props.id)}
+      style = {props.selected ? styles.questionSelected : styles.question}
     >
-    <Text 
-      style={[
-        styles.title,
-        { color: selected ? '#FFFFFF' : '#E5186E' },
-      ]}
-      >{title}</Text>
+      <Text 
+        style = {props.selected ? styles.titleSelected : styles.title}
+      >{props.title}</Text>
     </TouchableOpacity>
-  );
+  )
+}
+
+interface ItemProps {
+  id: string,
+  title: string,
+  selected: boolean,
+  onSelect: any,
 }
 
 
