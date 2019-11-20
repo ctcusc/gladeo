@@ -32,7 +32,8 @@ HomeStack.navigationOptions = {
 
 const CreateStack = createStackNavigator(
   {
-    Links: CreateScreen,
+    //Links: CreateScreen,
+    Links: OnboardingScreen,
   },
 )
 
