@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import PropTypes from 'prop-types'
 import Constants from 'expo-constants'
 import logo from '../../../../assets/images/gladeo_logo.png'
@@ -6,7 +6,11 @@ import background from '../../../../assets/images/dotsbackground.png'
 import {
   Text,
   View,
+<<<<<<< HEAD
   Button,
+=======
+  Image,
+>>>>>>> :
   Alert,
   SafeAreaView, 
   FlatList,
@@ -37,21 +41,21 @@ const DATA = [
     id: '5',
     title: 'hi',
   },
-];
+]
 
 /* AKA: Q&A screen */
 export default function HomeScreen() {
-  const [selected, setSelected] = React.useState(new Map());
+  const [selected, setSelected] = useState(new Map())
 
   const onSelect = React.useCallback( // marks item as selected
     id => {
-      const newSelected = new Map(selected);
-      newSelected.set(id, !selected.get(id));
+      const newSelected = new Map(selected)
+      newSelected.set(id, !selected.get(id))
 
-      setSelected(newSelected);
+      setSelected(newSelected)
     },
     [selected],
-  );
+  )
 
   return (
     <SafeAreaView style={styles.container}>
@@ -74,12 +78,12 @@ export default function HomeScreen() {
           extraData={selected}
         />
         {/* replace with PinkButton from sharedcomponents later */}
-        <TouchableOpacity onPress={() => Alert.alert("button")} style={styles.continueButton}>
+        <TouchableOpacity onPress={() => Alert.alert('button')} style={styles.continueButton}>
           <Text style={styles.buttonText}>CONTINUE</Text>
         </TouchableOpacity>
       </ImageBackground>
     </SafeAreaView>
-  );
+  )
 }
 
 function Item({ id, title, selected, onSelect }) {
@@ -92,14 +96,14 @@ function Item({ id, title, selected, onSelect }) {
         
       ]}
     >
-    <Text 
-      style={[
-        styles.title,
-        { color: selected ? '#FFFFFF' : '#E5186E' },
-      ]}
+      <Text 
+        style={[
+          styles.title,
+          { color: selected ? '#FFFFFF' : '#E5186E' },
+        ]}
       >{title}</Text>
     </TouchableOpacity>
-  );
+  )
 }
 
 

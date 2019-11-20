@@ -4,16 +4,13 @@ import HomeScreen from '../HomeScreen/HomeScreen'
 import {
   Text,
   View,
-  Image,
-  Button,
   TouchableOpacity,
-  Alert
 } from 'react-native'
 import styles from './styles'
 
 /* AKA: Q&A screen */
 export default function OnboardingScreen(props) {
-  const {navigate} = props.navigation;
+  const {navigate} = props.navigation
   return (
     <View style={styles.container}>
       <Text style={styles.step}>Step 1</Text>
