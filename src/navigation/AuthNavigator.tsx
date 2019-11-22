@@ -13,7 +13,7 @@ const AuthStack = createStackNavigator(
     Example: ExampleScreen
   },
   {
-    initialRouteName: 'Login', // Determines which screen is shown first from AuthStack
+    initialRouteName: 'Example', // Determines which screen is shown first from AuthStack
   }
 )
 

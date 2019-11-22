@@ -7,5 +7,5 @@ module.exports = {
     airtableID: process.env.AIRTABLE_APP_ID,
     port: process.env.PORT,
     basePath: process.env.BASE_PATH,
-    assets: {"./assets/fonts/"}
+    assets: "./assets/fonts/"
 };

@@ -8,8 +8,7 @@ const styles = StyleSheet.create({
     lineHeight: 37,
     textAlign: 'center',
     color: '#000',
-  },
-
+  }
 })
 
 export default styles

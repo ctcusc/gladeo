@@ -4,9 +4,12 @@ import {
   View,
 } from 'react-native'
 import styles from './styles'
-import PropTypes from 'prop-types'
 
-export default function BlackHeading(props){
+interface Props {
+  title: string;
+}
+
+export default function BlackHeading(props: Props){
   return(
     <View>
       <Text style={styles.title}>
@@ -15,8 +18,3 @@ export default function BlackHeading(props){
     </View>
   )
 }
-
-BlackHeading.propTypes = {
-  title: PropTypes.string
-}
-

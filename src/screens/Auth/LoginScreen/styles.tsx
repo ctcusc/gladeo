@@ -48,7 +48,6 @@ const styles = StyleSheet.create({
 
   pinkTextButton: {
     fontStyle: 'normal',
-    fontWeight: 'normal',
     fontSize: 16,
     lineHeight: 19,
     fontFamily: 'roboto-regular',

@@ -10,9 +10,13 @@ import styles from './styles'
 import BlackHeading from '../../../shared_components/BlackHeading/BlackHeading';
 import GreyTextInput from '../../../shared_components/GreyTextInput/GreyTextInput';
 import PinkButton from '../../../shared_components/PinkButton/PinkButton';
-import PropTypes from 'prop-types'
+import { NavigationScreenProp, NavigationState } from 'react-navigation';
 
-export default function LoginScreen(props) {
+interface Props {
+  navigation: NavigationScreenProp<NavigationState>;
+}
+
+export default function LoginScreen(props: Props) {
   const {navigate} = props.navigation;
 
   return (
@@ -32,7 +36,7 @@ export default function LoginScreen(props) {
 
       <View style={styles.footer}>
         <View style={styles.subFooter}>
-          <Text style={styles.text}>Don't have an accout?</Text>
+          <Text style={styles.text}>Don't have an account?</Text>
           <TouchableOpacity
             onPress={() => Alert.alert('pressed')}
           >
@@ -42,10 +46,4 @@ export default function LoginScreen(props) {
       </View>
     </View>
   )
-}
-
-LoginScreen.propTypes = {
-  navigation: PropTypes.shape({
-    navigate: PropTypes.func.isRequired,
-  }).isRequired,
 }

@@ -4,9 +4,13 @@ import {
   TextInput,
 } from 'react-native'
 import styles from './styles'
-import PropTypes from 'prop-types'
 
-export default function GreyTextInput (props){
+interface Props {
+  placeholder: string;
+  inputType: string;
+}
+
+export default function GreyTextInput (props: Props){
   const [text, setText] = useState('')
 
   const [inFocus, setInFocus] = useState(false)
@@ -21,14 +25,8 @@ export default function GreyTextInput (props){
         onFocus={() => setInFocus(true)}
         onBlur={() => setInFocus(false)}
         selectTextOnFocus={true}
-        textContentType={props.inputType}
         secureTextEntry={props.inputType === 'password'}
       />
     </View>
   )
-}
-
-GreyTextInput.propTypes = {
-  placeholder: PropTypes.string,
-  inputType: PropTypes.string
 }

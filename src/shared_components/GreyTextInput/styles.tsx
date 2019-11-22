@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-
   input: {
     width: 320,
     fontFamily: 'roboto-bold',
@@ -33,7 +32,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
   }
-
 })
 
 export default styles

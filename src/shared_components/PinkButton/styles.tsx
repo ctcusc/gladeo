@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
-
   pinkButton: {
     width: 320,
     height: 48,
@@ -18,7 +17,6 @@ const styles = StyleSheet.create({
     color: '#E5E5E5',
     textAlign: 'center',
   }
-
 })
 
 export default styles

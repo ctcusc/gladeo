@@ -5,14 +5,17 @@ import {
   TouchableOpacity
 } from 'react-native'
 import styles from './styles'
-import PropTypes from 'prop-types'
 
-export default function PinkButton (props) {
+interface Props {
+  title: string;
+  onPress(): void;
+}
+
+export default function PinkButton (props: Props) {
   return (
     <View>
-
       <TouchableOpacity
-        onPress={props.onPress}
+        onPress={() => props.onPress()}
         style={styles.pinkButton}
       >
         <Text
@@ -21,9 +24,4 @@ export default function PinkButton (props) {
       </TouchableOpacity>
     </View>
   )
-}
-
-PinkButton.propTypes = {
-  title: PropTypes.string,
-  onPress: PropTypes.func
 }
