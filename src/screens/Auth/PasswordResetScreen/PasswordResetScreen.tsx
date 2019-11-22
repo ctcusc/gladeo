@@ -10,7 +10,7 @@ import BlackHeading from '../../../shared_components/BlackHeading/BlackHeading';
 import GreyTextInput from '../../../shared_components/GreyTextInput/GreyTextInput';
 import PinkButton from '../../../shared_components/PinkButton/PinkButton';
 
-export default function LoginScreen() {
+export default function PasswordResetScreen() {
   return (
     <View style={styles.container}>
         <View style={styles.main}>
