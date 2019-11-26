@@ -1,10 +1,8 @@
 import React, { useState, useEffect } from 'react'
-import logo from '../../../../assets/images/gladeo_logo.png'
 import background from '../../../../assets/images/dotsbackground.png'
 import {
   Text,
   View,
-  Image,
   Alert,
   SafeAreaView, 
   FlatList,
@@ -42,11 +40,11 @@ export default function HomeScreen() {
         <View style={styles.banner}>
           <Text style={styles.bannertext}>QUESTIONS</Text>
           <View style = {styles.counter}>
-              <View style = {styles.numberCounter}>
-                <Text style={styles.number}>0</Text>
-              </View>
-              <Text style={styles.answered}>answered</Text>
+            <View style = {styles.numberCounter}>
+              <Text style={styles.number}>0</Text>
             </View>
+            <Text style={styles.answered}>answered</Text>
+          </View>
         </View>
         <FlatList<IQuestion>
           data={questions}
@@ -68,6 +66,27 @@ export default function HomeScreen() {
       </ImageBackground>
     </SafeAreaView>
   )
+}
+
+HomeScreen.navigationOptions = {
+  title: 'QUESTIONS',
+  headerTitleStyle: {
+    fontFamily: 'roboto-bold', 
+    fontStyle: 'normal',
+    fontSize: 18,
+    color: '#D94077',
+  },
+  headerStyle: {
+    paddingBottom: '2%',
+    marginRight: '5%'
+  },
+  headerRight: 
+      <View style = {styles.counter}>
+        <View style = {styles.numberCounter}>
+          <Text style = {styles.number}>0</Text>
+        </View>
+        <Text style={styles.answered}>answered</Text>
+      </View>
 }
 
 function Item(props: ItemProps) {
