@@ -1,9 +1,9 @@
 const express = require('express');
 const { port, apiKey, airtableID } = require('../config');
 
-async function startServer() {
-  const app = express();
+const app = express();
 
+async function startServer() {
   // load routes config
   await require('./api/routes')({ app });
 
@@ -15,3 +15,4 @@ async function startServer() {
 }
 
 startServer();
+module.exports = app;
