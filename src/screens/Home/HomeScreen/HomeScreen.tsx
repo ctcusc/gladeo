@@ -13,6 +13,8 @@ import {
 } from 'react-native'
 import styles from './styles'
 
+import { questions } from '../../../../server/api/routes/question'
+
 // questions
 const DATA = [
   {
@@ -40,6 +42,12 @@ const DATA = [
 /* AKA: Q&A screen */
 export default function HomeScreen() {
   const [selected, setSelected] = useState()
+  const data = useEffect() //////////
+  ////////
+  //
+  //
+  //
+  
 
   return (
     <SafeAreaView style={styles.container}>
