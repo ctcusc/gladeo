@@ -2,7 +2,10 @@
 contain multiple fields, corresponding to multiple columns
 */
 function extractContentFromRecords(records) {
-  return records.map(record => record.fields);
+  return records.map(record => ({
+    id: record.id, 
+    text: record.fields.text
+  }))
 }
 
 /* Get all the records/rows from the table. An airtable record includes
