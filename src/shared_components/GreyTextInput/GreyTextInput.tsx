@@ -21,8 +21,10 @@ export default function GreyTextInput (props: Props){
       <TextInput 
         placeholder={props.placeholder}
         onChangeText={
-          (input) => {setText(input),
-          props.changeTextContent(input)}
+          (input) => {
+            setText(input),
+            props.changeTextContent(input)
+          }
         }
         value={text}
         style={inFocus ? styles.inFocus : styles.input}
