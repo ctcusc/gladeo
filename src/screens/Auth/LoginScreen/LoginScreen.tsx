@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Text,
   View,
@@ -19,13 +19,24 @@ interface Props {
 export default function LoginScreen(props: Props) {
   const {navigate} = props.navigation;
 
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+
+  function changeEmail(email: string){
+      setEmail(email)
+  }
+
+  function changePassword(pass: string){
+      setPassword(pass)
+  }
+
   return (
     <View style={styles.container}>
       <View style={styles.main}>
         <BlackHeading title="Welcome Back" />
         <Image style={styles.image} resizeMode='contain' source={require('../../../../assets/images/gladeo_logo.png')} />
-        <GreyTextInput placeholder="Email Address" inputType='emailAddress'/>
-        <GreyTextInput placeholder="Password" inputType='password'/>
+        <GreyTextInput changeTextContent={changeEmail} placeholder="Email Address" inputType='emailAddress'/>
+        <GreyTextInput changeTextContent={changePassword} placeholder="Password" inputType='password'/>
         <TouchableOpacity
           onPress={() => navigate('PasswordReset')}
         >
