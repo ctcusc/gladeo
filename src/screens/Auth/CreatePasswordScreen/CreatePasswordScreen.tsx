@@ -4,6 +4,7 @@ import {
   View,
   Alert,
   TouchableOpacity,
+  Image
 } from 'react-native'
 import styles from '../../Auth/CreatePasswordScreen/styles';
 import BlackHeading from '../../../shared_components/BlackHeading/BlackHeading';
@@ -26,22 +27,31 @@ export default function CreatePasswordScreen() {
     <View style={styles.container}>
         <View style={styles.main}>
             <BlackHeading title="Create a Password" />
-            <Text style={styles.boldText}>Keep this secure!</Text>
+            <Text style={styles.regularText}>Keep this secure!</Text>
             <GreyTextInput changeTextContent={changePassword1} placeholder="Password (8+ characters)" inputType='password'/>
             <GreyTextInput changeTextContent={changePassword2} placeholder="Confirm Password" inputType='password'/>
-            <PinkButton title="CONTINUE" onPress={() => Alert.alert('pressed')} />
-            <View style={styles.resendButtonLine}> 
-                <Text style={styles.normalText}>Already have an account?</Text>
-                <TouchableOpacity
-                    onPress={() => Alert.alert('pressed')}
-                >
-                    <Text style={styles.pinkTextButton}> Sign In.</Text>
-                </TouchableOpacity>
-            </View>
+            <PinkButton title="CONTINUE" onPress={() => 
+                        {
+                            if (password1 != password2)
+                            {
+                                Alert.alert('Passwords do not match.')
+                            }
+                            else{
+                                Alert.alert('Passwords match!')
+                            }
+                        }
+                    }
+             />
         </View>
 
         <View style={styles.footer}>
-        
+            <View style={styles.resendButtonLine}> 
+                <Text style={styles.normalText}>Already have an account?</Text>
+                <TouchableOpacity onPress={() => Alert.alert('pressed')}>
+                    <Text style={styles.pinkTextButton}> Sign In</Text>
+                </TouchableOpacity>
+            </View>
+            <Image style={styles.image} resizeMode='contain' source={require('../../../../assets/images/gladeo_logo.png')} />
         </View>
     </View>
   )

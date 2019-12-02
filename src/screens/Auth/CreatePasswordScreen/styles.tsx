@@ -16,17 +16,17 @@ const styles = StyleSheet.create({
         color: '#000',
     },
 
-    boldText: {
+    regularText: {
         fontSize: 16,
-        fontFamily: 'roboto-bold',
+        fontFamily: 'roboto-regular',
         fontStyle: 'normal',
         lineHeight: 19,
         textAlign: 'center',
         color: '#777777',
         marginLeft: '17.6%',
         marginRight: '17.3%',
-        marginTop: '7.46%',
-        marginBottom: '26.6%'
+        marginTop: '7%',
+        marginBottom: '7.7%'
     },
 
     normalText: {
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
         fontFamily: 'roboto-regular',
         fontSize: 16,
         lineHeight: 19,
-        color: '#777777',
+        color: '#000000',
     },
 
     pinkTextButton: {
@@ -50,6 +50,10 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center',
         marginTop: '2.3%'
+    },
+
+    image: {
+        height: 95,
     },
 
     footer: {
