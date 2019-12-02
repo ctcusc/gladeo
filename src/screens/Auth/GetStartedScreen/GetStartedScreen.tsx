@@ -27,7 +27,7 @@ export default function GetStartedScreen() {
     <View style={styles.container}>
       <View style={styles.main}>
         <BlackHeading title="Let's get Started!" />
-        <Text style={styles.title}></Text>
+        <Text style={styles.margin}></Text>
         <GreyTextInput changeTextContent={changeTitle} placeholder="Current Title" inputType='text'/>
         <GreyTextInput changeTextContent={changeCode} placeholder="Company Code" inputType='text'/>
         <PinkButton title="START CREATING" onPress={() =>  Alert.alert('pressed')} />
@@ -40,7 +40,9 @@ export default function GetStartedScreen() {
             <Text style={styles.pinkTextButton}> Sign In</Text>
           </TouchableOpacity>
         </View>
-        <Image style={styles.image} resizeMode='contain' source={require('../../../../assets/images/gladeo_logo.png')} />
+        <View style={styles.imageLine}>
+          <Image style={styles.image} resizeMode='contain' source={require('../../../../assets/images/gladeo_logo.png')} />
+        </View>
       </View>
     </View>
   )

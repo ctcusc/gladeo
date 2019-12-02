@@ -10,10 +10,16 @@ import styles from '../../Auth/CreatePasswordScreen/styles'
 import BlackHeading from '../../../shared_components/BlackHeading/BlackHeading'
 import GreyTextInput from '../../../shared_components/GreyTextInput/GreyTextInput'
 import PinkButton from '../../../shared_components/PinkButton/PinkButton'
+import { NavigationScreenProp, NavigationState } from 'react-navigation'
 
-export default function CreatePasswordScreen() {
+interface Props {
+  navigation: NavigationScreenProp<NavigationState>;
+}
+
+export default function CreatePasswordScreen(props: Props) {
   const [password1, setPassword1] = useState('')
   const [password2, setPassword2] = useState('')
+  const {navigate} = props.navigation 
 
   function changePassword1(pass1: string){
     setPassword1(pass1)
@@ -34,7 +40,7 @@ export default function CreatePasswordScreen() {
           if (password1 != password2) {
             Alert.alert('Passwords do not match.')
           } else{
-            Alert.alert('Passwords match!')
+            navigate('GetStarted')
           }
         }
         }
@@ -48,7 +54,9 @@ export default function CreatePasswordScreen() {
             <Text style={styles.pinkTextButton}> Sign In</Text>
           </TouchableOpacity>
         </View>
-        <Image style={styles.image} resizeMode='contain' source={require('../../../../assets/images/gladeo_logo.png')} />
+        <View style={styles.imageLine}>
+          <Image style={styles.image} resizeMode='contain' source={require('../../../../assets/images/gladeo_logo.png')} />
+        </View>
       </View>
     </View>
   )

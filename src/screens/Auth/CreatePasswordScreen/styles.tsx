@@ -46,18 +46,26 @@ const styles = StyleSheet.create({
   },
 
   resendButtonLine: {
+    marginBottom: '4%',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '2.3%'
+    marginTop: '4%'
+  },
+
+  imageLine: {
+    marginTop: '2%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 
   image: {
-    height: 95,
+    height: 92,
   },
 
   footer: {
-    flex: 1
+    flex: 1,
   }
 })
 

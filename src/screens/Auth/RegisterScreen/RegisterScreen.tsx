@@ -12,15 +12,15 @@ import GreyTextInput from '../../../shared_components/GreyTextInput/GreyTextInpu
 import PinkButton from '../../../shared_components/PinkButton/PinkButton'
 
 export default function RegisterScreen() {
-  const [password1, setPassword1] = useState('')
-  const [password2, setPassword2] = useState('')
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
 
-  function changePassword1(pass1: string){
-    setPassword1(pass1)
+  function changeName(name: string){
+    setName(name)
   }
 
-  function changePassword2(pass2: string){
-    setPassword2(pass2)
+  function changeEmail(email: string){
+    setEmail(email)
   }
 
   return (
@@ -28,8 +28,8 @@ export default function RegisterScreen() {
       <View style={styles.main}>
         <BlackHeading title="What's your Email?" />
         <Text style={styles.boldText}>Let's get started. Start sharing your experience!</Text>
-        <GreyTextInput changeTextContent={changePassword1} placeholder="Name" inputType='text'/>
-        <GreyTextInput changeTextContent={changePassword2} placeholder="Email Address" inputType='emailAddress'/>
+        <GreyTextInput changeTextContent={changeName} placeholder="Name" inputType='text'/>
+        <GreyTextInput changeTextContent={changeEmail} placeholder="Email Address" inputType='emailAddress'/>
         <PinkButton title="CONTINUE" onPress={() => Alert.alert('pressed')}/>
       </View>
 
@@ -40,7 +40,9 @@ export default function RegisterScreen() {
             <Text style={styles.pinkTextButton}> Sign In</Text>
           </TouchableOpacity>
         </View>
-        <Image style={styles.image} resizeMode='contain' source={require('../../../../assets/images/gladeo_logo.png')} />
+        <View style={styles.imageLine}>
+          <Image style={styles.image} resizeMode='contain' source={require('../../../../assets/images/gladeo_logo.png')} />
+        </View>
       </View>
     </View>
   )

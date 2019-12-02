@@ -16,6 +16,10 @@ const styles = StyleSheet.create({
     color: '#000',
   },
 
+  margin: {
+    marginBottom: '13%',
+  },
+
   regularText: {
     fontSize: 24,
     fontFamily: 'roboto-regular',
@@ -25,8 +29,8 @@ const styles = StyleSheet.create({
     color: '#777777',
     marginLeft: '17.6%',
     marginRight: '17.3%',
-    marginTop: '7%',
-    marginBottom: '7.7%'
+    marginTop: '5%',
+    marginBottom: '3%'
   },
 
   blackTextButton: {
