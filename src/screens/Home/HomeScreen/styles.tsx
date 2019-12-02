@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     borderStyle: 'solid',
   },
   questionSelected: {
-    backgroundColor: '#E5186E',
+    backgroundColor: '#E8E8E8',
     padding: 20,
     marginVertical: 8,
     marginHorizontal: 16,
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   titleSelected: {
     fontSize: 18,
     fontFamily: 'roboto-regular', 
-    color: '#FFFFFF',
+    color: '#E5186E',
     fontWeight: '500',
   },
   continueButton: {
