@@ -7,17 +7,17 @@ import {
   TouchableOpacity
 } from 'react-native'
 import styles from './styles'
-import BlackHeading from '../../../shared_components/BlackHeading/BlackHeading';
-import GreyTextInput from '../../../shared_components/GreyTextInput/GreyTextInput';
-import PinkButton from '../../../shared_components/PinkButton/PinkButton';
-import { NavigationScreenProp, NavigationState } from 'react-navigation';
+import BlackHeading from '../../../shared_components/BlackHeading/BlackHeading'
+import GreyTextInput from '../../../shared_components/GreyTextInput/GreyTextInput'
+import PinkButton from '../../../shared_components/PinkButton/PinkButton'
+import { NavigationScreenProp, NavigationState } from 'react-navigation'
 
 interface Props {
   navigation: NavigationScreenProp<NavigationState>;
 }
 
 export default function LoginScreen(props: Props) {
-  const {navigate} = props.navigation;
+  const {navigate} = props.navigation
 
   return (
     <View style={styles.container}>

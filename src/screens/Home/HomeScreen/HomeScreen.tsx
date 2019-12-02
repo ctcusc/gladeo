@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, { useState, useEffect } from 'react'
 import logo from '../../../../assets/images/gladeo_logo.png'
 import background from '../../../../assets/images/dotsbackground.png'
 import {
@@ -12,42 +12,29 @@ import {
   ImageBackground,
 } from 'react-native'
 import styles from './styles'
-
-import { questions } from '../../../../server/api/routes/question'
-
-// questions
-const DATA = [
-  {
-    id: '1',
-    title: 'Who/what influenced or inspired you to do what you do?',
-  },
-  {
-    id: '2',
-    title: 'What is a typical day for you?',
-  },
-  {
-    id: '3',
-    title: 'What do you love most about your job?',
-  },
-  {
-    id: '4',
-    title: 'hi',
-  },
-  {
-    id: '5',
-    title: 'hi',
-  },
-]
+import { BASE_PATH } from 'react-native-dotenv'
+ 
+interface IQuestion {
+  id: string;
+  text: string;
+}
 
 /* AKA: Q&A screen */
-export default function HomeScreen() {
-  const [selected, setSelected] = useState()
-  const data = useEffect() //////////
-  ////////
-  //
-  //
-  //
-  
+export default function HomeScreen() { 
+  const [selected, setSelected] = useState<string | null>(null)
+  const [questions, setQuestions] = useState<Array<IQuestion>>([])
+
+  useEffect(() => {
+    fetch(`${BASE_PATH}/api/questions`)
+      .then(res => res.json())
+      .then(data => {
+        setQuestions( data )
+        console.log(data)
+      })
+      .catch(error => {
+        console.log('Error' + error)
+      })
+  }, [])
 
   return (
     <SafeAreaView style={styles.container}>
@@ -56,12 +43,12 @@ export default function HomeScreen() {
           <Text style={styles.bannertext}>QUESTIONS</Text>
           <Image source={logo} style={styles.bannerlogo} />
         </View>
-        <FlatList
-          data={DATA}
+        <FlatList<IQuestion>
+          data={questions}
           renderItem={({ item }) => (
             <Item
               id={item.id}
-              title={item.title}
+              title={item.text}
               selected={selected === item.id}
               onSelect={() => setSelected(item.id)}
             />
