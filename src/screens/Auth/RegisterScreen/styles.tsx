@@ -1,5 +1,4 @@
 import { StyleSheet } from 'react-native'
-import { normalize } from 'path'
 
 const styles = StyleSheet.create({
   container: {

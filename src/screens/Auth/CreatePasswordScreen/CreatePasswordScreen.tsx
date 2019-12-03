@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import {
   Text,
   View,
-  Alert,
   TouchableOpacity,
   Image
 } from 'react-native'
@@ -37,20 +36,17 @@ export default function CreatePasswordScreen(props: Props) {
         <GreyTextInput changeTextContent={changePassword1} placeholder="Password (8+ characters)" inputType='password'/>
         <GreyTextInput changeTextContent={changePassword2} placeholder="Confirm Password" inputType='password'/>
         <PinkButton title="CONTINUE" onPress={() => {
-          if (password1 != password2) {
-            Alert.alert('Passwords do not match.')
-          } else{
-            navigate('GetStarted')
-          }
+          navigate('GetStarted')
         }
         }
+        disabled={password1 == '' || password2 == '' && password1 != password2 ? true : false}
         />
       </View>
 
       <View style={styles.footer}>
         <View style={styles.resendButtonLine}> 
           <Text style={styles.normalText}>Already have an account?</Text>
-          <TouchableOpacity onPress={() => Alert.alert('pressed')}>
+          <TouchableOpacity onPress={() => navigate('Login')}>
             <Text style={styles.pinkTextButton}> Sign In</Text>
           </TouchableOpacity>
         </View>

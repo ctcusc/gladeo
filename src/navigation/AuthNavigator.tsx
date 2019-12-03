@@ -19,7 +19,7 @@ const AuthStack = createStackNavigator(
     GetStarted: GetStartedScreen,
   },
   {
-    initialRouteName: 'CreatePassword', // Determines which screen is shown first from AuthStack
+    initialRouteName: 'Welcome', // Determines which screen is shown first from AuthStack
   }
 )
 

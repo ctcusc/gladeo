@@ -2,7 +2,6 @@ import React, { useState } from 'react'
 import {
   Text,
   View,
-  Alert,
   TouchableOpacity,
   Image
 } from 'react-native'
@@ -10,10 +9,16 @@ import styles from '../../Auth/RegisterScreen/styles'
 import BlackHeading from '../../../shared_components/BlackHeading/BlackHeading'
 import GreyTextInput from '../../../shared_components/GreyTextInput/GreyTextInput'
 import PinkButton from '../../../shared_components/PinkButton/PinkButton'
+import { NavigationScreenProp, NavigationState } from 'react-navigation'
 
-export default function RegisterScreen() {
+interface Props {
+  navigation: NavigationScreenProp<NavigationState>;
+}
+
+export default function RegisterScreen(props: Props) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
+  const {navigate} = props.navigation 
 
   function changeName(name: string){
     setName(name)
@@ -30,13 +35,19 @@ export default function RegisterScreen() {
         <Text style={styles.boldText}>Let's get started. Start sharing your experience!</Text>
         <GreyTextInput changeTextContent={changeName} placeholder="Name" inputType='text'/>
         <GreyTextInput changeTextContent={changeEmail} placeholder="Email Address" inputType='emailAddress'/>
-        <PinkButton title="CONTINUE" onPress={() => Alert.alert('pressed')}/>
+        <PinkButton title="CONTINUE" 
+          onPress={
+            () => navigate('CreatePassword')
+          }
+          disabled={name == '' || email == '' ? true : false
+          }
+        />
       </View>
 
       <View style={styles.footer}>
         <View style={styles.resendButtonLine}> 
           <Text style={styles.normalText}>Already have an account?</Text>
-          <TouchableOpacity onPress={() => Alert.alert('pressed')}>
+          <TouchableOpacity onPress={() => navigate('Login')}>
             <Text style={styles.pinkTextButton}> Sign In</Text>
           </TouchableOpacity>
         </View>

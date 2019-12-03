@@ -42,7 +42,7 @@ export default function LoginScreen(props: Props) {
         >
           <Text  style={styles.textButton}>Forgot Password?</Text>
         </TouchableOpacity>
-        <PinkButton title="LOG IN" onPress={() => Alert.alert('pressed')} />
+        <PinkButton title="LOG IN" onPress={() => Alert.alert('pressed')} disabled={false}/>
       </View>
 
       <View style={styles.footer}>
