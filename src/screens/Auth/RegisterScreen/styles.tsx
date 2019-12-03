@@ -15,19 +15,6 @@ const styles = StyleSheet.create({
     color: '#000',
   },
 
-  boldText: {
-    fontSize: 16,
-    fontFamily: 'roboto-bold',
-    fontStyle: 'normal',
-    lineHeight: 19,
-    textAlign: 'center',
-    color: '#777777',
-    marginLeft: '25.6%',
-    marginRight: '25.3%',
-    marginTop: '7%',
-    marginBottom: '7.7%'
-  },
-
   regularText: {
     fontSize: 16,
     fontFamily: 'roboto-regular',

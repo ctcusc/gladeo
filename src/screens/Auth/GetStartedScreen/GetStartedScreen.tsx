@@ -40,8 +40,7 @@ export default function GetStartedScreen(props: Props) {
           onPress={
             () =>  Alert.alert('pressed')
           } 
-          disabled={title == '' || code == '' ? true : false
-          }
+          disabled={title == '' || code == ''}
         />
       </View>
 

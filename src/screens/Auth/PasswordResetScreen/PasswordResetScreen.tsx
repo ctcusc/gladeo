@@ -23,9 +23,9 @@ export default function PasswordResetScreen() {
     <View style={styles.container}>
       <View style={styles.main}>
         <BlackHeading title="Reset your Password" />
-        <Text style={styles.boldText}>We'll send a reset link to the email linked to your account</Text>
+        <Text style={styles.regularText}>We&apos;ll send a reset link to the email linked to your account</Text>
         <GreyTextInput changeTextContent={changeEmail} placeholder="Email Address" inputType='emailAddress'/>
-        <PinkButton title="SEND" onPress={() => Alert.alert('pressed')} />
+        <PinkButton title="SEND" onPress={() => Alert.alert('pressed')} disabled={email == ''}/>
         <View style={styles.resendButtonLine}> 
           <Text style={styles.normalText}>No dice?</Text>
           <TouchableOpacity
