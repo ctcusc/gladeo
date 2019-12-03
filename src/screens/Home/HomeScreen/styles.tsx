@@ -9,24 +9,20 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'row',
     height: 50,
-    justifyContent: 'space-between',
     backgroundColor: '#fff',
   },
   bannertext: {
-    fontFamily: 'roboto-regular', 
+    fontFamily: 'roboto-bold', 
     fontStyle: 'normal',
-    fontWeight: 'bold',  
     fontSize: 18,
     justifyContent: 'center',
     alignSelf: 'center',
     color: '#D94077',
-    marginLeft: 20,
+    marginLeft: 130,
   },
   bannerlogo: {
     width: 40,
     height: 40,
-    justifyContent: 'center',
-    alignSelf: 'center',
     marginRight: 20,
   },
   question: {
@@ -74,11 +70,42 @@ const styles = StyleSheet.create({
   buttonText: {
     fontStyle: 'normal',
     fontSize: 26,
-    fontFamily: 'roboto-regular', 
-    fontWeight: 'bold',
+    fontFamily: 'roboto-bold', 
     color: '#fff',
     textAlign: 'center',
   },
+  counter: {
+    display: 'flex',
+    flexDirection: 'column',
+    height: 50,
+    justifyContent: 'flex-end',
+    alignSelf: 'flex-end',
+    marginLeft: 80,
+  },
+  answered: {
+    fontFamily: 'roboto-regular',
+    fontStyle: 'normal',
+    fontWeight: 'normal',
+    fontSize: 10,
+    height: 12,
+    alignSelf: 'center',
+    color: '#9F9F9F',
+  },
+  numberCounter: {
+    borderRadius: 8,
+    backgroundColor: '#F0F0F0',
+    width: 42,
+    height: 28,
+  },
+  number: {
+    fontFamily: 'roboto-bold', 
+    fontStyle: 'normal',
+    fontSize: 18,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginTop: 4,
+    color: '#D94077',
+  }
 })
 
 export default styles
