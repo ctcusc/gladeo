@@ -39,7 +39,7 @@ export default function CreatePasswordScreen(props: Props) {
           navigate('GetStarted')
         }
         }
-        disabled={password1 == '' || password2 == '' && password1 != password2 ? true : false}
+        disabled={password1 == '' || password2 == '' || password1 != password2 ? true : false}
         />
       </View>
 
