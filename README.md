@@ -113,3 +113,8 @@ this will help us keep track of what sprints are what. Provide a brief summary o
  
     
 
+## Troubleshooting
+Can't connect to network while using Expo Client on device (not simulator) 
+
+- In your .env file, you must replace `<localhost>` in the `BASE_PATH` variable with the private IP address of your computer. This tells your phone where to make calls to the server since it doesn't know what 'localhost' is. Find your private IP by typing `ifconfig` in terminal and look for an address that starts w/ 192.
+
