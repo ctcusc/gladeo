@@ -5,54 +5,58 @@ const styles = StyleSheet.create({
     flex: 1
   },
 
+  imageTop: {
+    width: 251,
+    height: 59
+  },
+
   main: {
-    flex: 3,
+    flex: 1,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
     color: '#000',
+    marginTop: '10%'
+  },
+
+  margin: {
+    marginBottom: '45%',
   },
 
   regularText: {
-    fontSize: 16,
+    fontSize: 24,
     fontFamily: 'roboto-regular',
     fontStyle: 'normal',
-    lineHeight: 19,
+    lineHeight: 28,
     textAlign: 'center',
-    color: '#777777',
+    color: '#000',
     marginLeft: '17.6%',
     marginRight: '17.3%',
-    marginTop: '7.46%',
-    marginBottom: '26.6%'
+    marginTop: '5%',
+    marginBottom: '3%'
   },
 
-  normalText: {
+  blackTextButton: {
     fontStyle: 'normal',
-    fontFamily: 'roboto-regular',
-    fontSize: 16,
-    lineHeight: 19,
-    color: '#777777',
+    fontSize: 18,
+    lineHeight: 22,
+    fontFamily: 'montserrat-semibold',
+    color: '#000000',
+    marginTop: '5%'
   },
 
-  pinkTextButton: {
-    fontStyle: 'normal',
-    fontSize: 16,
-    lineHeight: 19,
-    fontFamily: 'roboto-regular',
-    color: '#E5186E',
-  },
-
-  resendButtonLine: {
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: '2.3%'
+  imageMiddle: {
+    height: 228,
+    width: 158
   },
 
   footer: {
-    flex: 1
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   }
 })
 

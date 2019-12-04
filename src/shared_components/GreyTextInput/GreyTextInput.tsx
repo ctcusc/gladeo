@@ -6,8 +6,9 @@ import {
 import styles from './styles'
 
 interface Props {
-  placeholder: string;
-  inputType: string;
+  placeholder: string
+  inputType: string
+  changeTextContent(input: string): void
 }
 
 export default function GreyTextInput (props: Props){
@@ -19,7 +20,10 @@ export default function GreyTextInput (props: Props){
     <View>
       <TextInput 
         placeholder={props.placeholder}
-        onChangeText={(input) => setText(input)}
+        onChangeText={
+          (input) => {setText(input),
+          props.changeTextContent(input)}
+        }
         value={text}
         style={inFocus ? styles.inFocus : styles.input}
         onFocus={() => setInFocus(true)}

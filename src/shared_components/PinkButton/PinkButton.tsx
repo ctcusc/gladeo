@@ -7,8 +7,9 @@ import {
 import styles from './styles'
 
 interface Props {
-  title: string;
-  onPress(): void;
+  title: string
+  onPress(): void
+  disabled: boolean
 }
 
 export default function PinkButton (props: Props) {
@@ -16,7 +17,8 @@ export default function PinkButton (props: Props) {
     <View>
       <TouchableOpacity
         onPress={() => props.onPress()}
-        style={styles.pinkButton}
+        style={props.disabled ? styles.pinkButtonDisabled : styles.pinkButton}
+        disabled={props.disabled}
       >
         <Text
           style={styles.buttonText}

@@ -15,17 +15,8 @@ const styles = StyleSheet.create({
     color: '#000',
   },
 
-  regularText: {
-    fontSize: 16,
-    fontFamily: 'roboto-regular',
-    fontStyle: 'normal',
-    lineHeight: 19,
-    textAlign: 'center',
-    color: '#777777',
-    marginLeft: '17.6%',
-    marginRight: '17.3%',
-    marginTop: '7.46%',
-    marginBottom: '26.6%'
+  margin: {
+    marginBottom: '16%',
   },
 
   normalText: {
@@ -33,7 +24,7 @@ const styles = StyleSheet.create({
     fontFamily: 'roboto-regular',
     fontSize: 16,
     lineHeight: 19,
-    color: '#777777',
+    color: '#000000',
   },
 
   pinkTextButton: {
@@ -45,14 +36,26 @@ const styles = StyleSheet.create({
   },
 
   resendButtonLine: {
+    marginBottom: '4%',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '2.3%'
+    marginTop: '4%'
+  },
+
+  imageLine: {
+    marginTop: '2%',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  image: {
+    height: 92,
   },
 
   footer: {
-    flex: 1
+    flex: 1,
   }
 })
 
