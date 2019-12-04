@@ -6,7 +6,7 @@ import {
 import styles from './styles'
 
 interface Props {
-  title: string;
+  title: string
 }
 
 export default function BlackHeading(props: Props){

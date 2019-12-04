@@ -7,9 +7,9 @@ import {
 import styles from './styles'
 
 interface Props {
-  title: string;
-  onPress(): void;
-  disabled: boolean;
+  title: string
+  onPress(): void
+  disabled: boolean
 }
 
 export default function PinkButton (props: Props) {
