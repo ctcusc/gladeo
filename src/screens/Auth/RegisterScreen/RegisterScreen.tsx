@@ -3,7 +3,6 @@ import {
   Text,
   View,
   TouchableOpacity,
-  Image
 } from 'react-native'
 import styles from '../../Auth/RegisterScreen/styles'
 import BlackHeading from '../../../shared_components/BlackHeading/BlackHeading'
@@ -12,7 +11,7 @@ import PinkButton from '../../../shared_components/PinkButton/PinkButton'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
 
 interface Props {
-  navigation: NavigationScreenProp<NavigationState>;
+  navigation: NavigationScreenProp<NavigationState>
 }
 
 export default function RegisterScreen(props: Props) {
@@ -39,19 +38,15 @@ export default function RegisterScreen(props: Props) {
           onPress={
             () => navigate('CreatePassword')
           }
-          disabled={name == '' || email == ''}
+          disabled={!name || !email}
         />
       </View>
-
       <View style={styles.footer}>
         <View style={styles.resendButtonLine}> 
           <Text style={styles.normalText}>Already have an account?</Text>
           <TouchableOpacity onPress={() => navigate('Login')}>
             <Text style={styles.pinkTextButton}> Sign In</Text>
           </TouchableOpacity>
-        </View>
-        <View style={styles.imageLine}>
-          <Image style={styles.image} resizeMode='contain' source={require('../../../../assets/images/gladeo_logo.png')} />
         </View>
       </View>
     </View>

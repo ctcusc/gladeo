@@ -5,18 +5,24 @@ const styles = StyleSheet.create({
     flex: 1
   },
 
+  imageTop: {
+    width: 251,
+    height: 59
+  },
+
   main: {
-    flex: 3,
+    flex: 1,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: '#fff',
     color: '#000',
+    marginTop: '10%'
   },
 
   margin: {
-    marginBottom: '13%',
+    marginBottom: '45%',
   },
 
   regularText: {
@@ -25,7 +31,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     lineHeight: 28,
     textAlign: 'center',
-    color: '#777777',
+    color: '#000',
     marginLeft: '17.6%',
     marginRight: '17.3%',
     marginTop: '5%',
@@ -46,13 +52,9 @@ const styles = StyleSheet.create({
     width: 158
   },
 
-  imageBotton: {
-    height: 92,
-  },
-
   footer: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
   }

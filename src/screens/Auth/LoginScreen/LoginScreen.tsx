@@ -13,7 +13,7 @@ import PinkButton from '../../../shared_components/PinkButton/PinkButton'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
 
 interface Props {
-  navigation: NavigationScreenProp<NavigationState>;
+  navigation: NavigationScreenProp<NavigationState>
 }
 
 export default function LoginScreen(props: Props) {
@@ -42,14 +42,14 @@ export default function LoginScreen(props: Props) {
         >
           <Text  style={styles.textButton}>Forgot Password?</Text>
         </TouchableOpacity>
-        <PinkButton title="LOG IN" onPress={() => Alert.alert('pressed')} disabled={email == '' || password == ''}/>
+        <PinkButton title="LOG IN" onPress={() => Alert.alert('pressed')} disabled={!email || !password}/>
       </View>
 
       <View style={styles.footer}>
         <View style={styles.subFooter}>
           <Text style={styles.text}>Don&apos;t have an account?</Text>
           <TouchableOpacity
-            onPress={() => Alert.alert('pressed')}
+            onPress={() => navigate('Welcome')}
           >
             <Text style={styles.pinkTextButton}> Sign Up</Text>
           </TouchableOpacity>

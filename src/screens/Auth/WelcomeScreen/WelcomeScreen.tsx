@@ -6,12 +6,11 @@ import {
   Image
 } from 'react-native'
 import styles from '../../Auth/WelcomeScreen/styles'
-import BlackHeading from '../../../shared_components/BlackHeading/BlackHeading'
 import PinkButton from '../../../shared_components/PinkButton/PinkButton'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
 
 interface Props {
-  navigation: NavigationScreenProp<NavigationState>;
+  navigation: NavigationScreenProp<NavigationState>
 }
 
 export default function WelcomeScreen(props: Props) {
@@ -21,17 +20,15 @@ export default function WelcomeScreen(props: Props) {
     <View style={styles.container}>
       <View style={styles.main}>
         <Text style={styles.margin}></Text>
-        <BlackHeading title="Share your Story" />
-        <Text style={styles.regularText}>Empore students and guide their path</Text>
+        <Image style={styles.imageTop} resizeMode='contain' source={require('../../../../assets/images/Glade-Favicon-Logo-Large.png')} />
+        <Text style={styles.regularText}>Share your story to empower students and guide their path</Text>
         <Image style={styles.imageMiddle} resizeMode='contain' source={require('../../../../assets/images/gladeo_logo.png')} />
+      </View>
+      <View style={styles.footer}>
         <PinkButton title="Get Started" onPress={() => navigate('Register')} disabled={false}/>
         <TouchableOpacity onPress={() => navigate('Login')}>
           <Text style={styles.blackTextButton}>Log In</Text>
-        </TouchableOpacity>
-      </View>
-
-      <View style={styles.footer}>
-        <Image style={styles.imageBotton} resizeMode='contain' source={require('../../../../assets/images/gladeo_logo.png')} />
+        </TouchableOpacity>        
       </View>
     </View>
   )

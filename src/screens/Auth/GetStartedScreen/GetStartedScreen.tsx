@@ -4,7 +4,6 @@ import {
   View,
   Alert,
   TouchableOpacity,
-  Image
 } from 'react-native'
 import styles from '../../Auth/GetStartedScreen/styles'
 import BlackHeading from '../../../shared_components/BlackHeading/BlackHeading'
@@ -13,7 +12,7 @@ import PinkButton from '../../../shared_components/PinkButton/PinkButton'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
 
 interface Props {
-  navigation: NavigationScreenProp<NavigationState>;
+  navigation: NavigationScreenProp<NavigationState>
 }
 
 export default function GetStartedScreen(props: Props) {
@@ -40,7 +39,7 @@ export default function GetStartedScreen(props: Props) {
           onPress={
             () =>  Alert.alert('pressed')
           } 
-          disabled={title == '' || code == ''}
+          disabled={!title || !code}
         />
       </View>
 
@@ -50,9 +49,6 @@ export default function GetStartedScreen(props: Props) {
           <TouchableOpacity onPress={() => navigate('Login')}>
             <Text style={styles.pinkTextButton}> Sign In</Text>
           </TouchableOpacity>
-        </View>
-        <View style={styles.imageLine}>
-          <Image style={styles.image} resizeMode='contain' source={require('../../../../assets/images/gladeo_logo.png')} />
         </View>
       </View>
     </View>
