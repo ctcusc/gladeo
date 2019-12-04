@@ -19,21 +19,13 @@ export default function RegisterScreen(props: Props) {
   const [email, setEmail] = useState('')
   const {navigate} = props.navigation 
 
-  function changeName(name: string){
-    setName(name)
-  }
-
-  function changeEmail(email: string){
-    setEmail(email)
-  }
-
   return (
     <View style={styles.container}>
       <View style={styles.main}>
         <BlackHeading title="What's your Email?" />
         <Text style={styles.regularText}>Make sure to use your work email so we can match you to your employer</Text>
-        <GreyTextInput changeTextContent={changeName} placeholder="Name" inputType='text'/>
-        <GreyTextInput changeTextContent={changeEmail} placeholder="Email Address" inputType='emailAddress'/>
+        <GreyTextInput changeTextContent={(name) => setName(name)} placeholder="Name" inputType='text'/>
+        <GreyTextInput changeTextContent={(email) => setEmail(email)} placeholder="Email Address" inputType='emailAddress'/>
         <PinkButton title="CONTINUE" 
           onPress={
             () => navigate('CreatePassword')

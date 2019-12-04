@@ -20,21 +20,13 @@ export default function GetStartedScreen(props: Props) {
   const [code, setCode] = useState('')
   const {navigate} = props.navigation 
 
-  function changeTitle(title: string){
-    setTitle(title)
-  }
-
-  function changeCode(code: string){
-    setCode(code)
-  }
-
   return (
     <View style={styles.container}>
       <View style={styles.main}>
         <BlackHeading title="Let's get Started!" />
         <Text style={styles.margin}></Text>
-        <GreyTextInput changeTextContent={changeTitle} placeholder="Current Title" inputType='text'/>
-        <GreyTextInput changeTextContent={changeCode} placeholder="Company Code" inputType='text'/>
+        <GreyTextInput changeTextContent={(title) => setTitle(title)} placeholder="Current Title" inputType='text'/>
+        <GreyTextInput changeTextContent={(code) => setCode(code)} placeholder="Company Code" inputType='text'/>
         <PinkButton title="START CREATING" 
           onPress={
             () =>  Alert.alert('pressed')

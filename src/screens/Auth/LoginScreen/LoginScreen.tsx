@@ -18,25 +18,16 @@ interface Props {
 
 export default function LoginScreen(props: Props) {
   const {navigate} = props.navigation
-
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-
-  function changeEmail(email: string){
-    setEmail(email)
-  }
-
-  function changePassword(pass: string){
-    setPassword(pass)
-  }
 
   return (
     <View style={styles.container}>
       <View style={styles.main}>
         <BlackHeading title="Welcome Back" />
         <Image style={styles.image} resizeMode='contain' source={require('../../../../assets/images/gladeo_logo.png')} />
-        <GreyTextInput changeTextContent={changeEmail} placeholder="Email Address" inputType='emailAddress'/>
-        <GreyTextInput changeTextContent={changePassword} placeholder="Password" inputType='password'/>
+        <GreyTextInput changeTextContent={(email) => setEmail(email)} placeholder="Email Address" inputType='emailAddress'/>
+        <GreyTextInput changeTextContent={(pass) => setPassword(pass)} placeholder="Password" inputType='password'/>
         <TouchableOpacity
           onPress={() => navigate('PasswordReset')}
         >
@@ -44,7 +35,6 @@ export default function LoginScreen(props: Props) {
         </TouchableOpacity>
         <PinkButton title="LOG IN" onPress={() => Alert.alert('pressed')} disabled={!email || !password}/>
       </View>
-
       <View style={styles.footer}>
         <View style={styles.subFooter}>
           <Text style={styles.text}>Don&apos;t have an account?</Text>

@@ -19,21 +19,17 @@ export default function CreatePasswordScreen(props: Props) {
   const [confirmPassword, setConfirmPassword] = useState('')
   const {navigate} = props.navigation 
 
-  function changePassword(password: string){
-    setPassword(password)
-  }
-
-  function changeConfirmPassword(confirmPassword: string){
-    setConfirmPassword(confirmPassword)
-  }
-
   return (
     <View style={styles.container}>
       <View style={styles.main}>
         <BlackHeading title="Create a Password" />
         <Text style={styles.regularText}>Keep this secure!</Text>
-        <GreyTextInput changeTextContent={changePassword} placeholder="Password (8+ characters)" inputType='password'/>
-        <GreyTextInput changeTextContent={changeConfirmPassword} placeholder="Confirm Password" inputType='password'/>
+        <GreyTextInput changeTextContent={(password) => {
+          setPassword(password)
+        }} placeholder="Password (8+ characters)" inputType='password'/>
+        <GreyTextInput changeTextContent={(confirmPassword) => {
+          setConfirmPassword(confirmPassword)
+        }} placeholder="Confirm Password" inputType='password'/>
         <PinkButton title="CONTINUE" onPress={() => {
           navigate('GetStarted')
         }
