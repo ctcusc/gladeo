@@ -3,57 +3,52 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#D94077',
+  },
+
+  main: {
+    flex: 2,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#D94077',
-    color: '#fff',
   },
-  title: {
-    fontSize: 40,
+
+  footer: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
-  logo: {
-    width: 200,
-    resizeMode: 'contain',
+
+  image: {
+    marginBottom: 37,
   },
-  step: {
-    color: '#DEA3BB',
+
+  text: {
     fontFamily: 'montserrat-regular', 
     fontWeight: 'bold',
-    fontSize: 30,
-    marginBottom: '10%',
-  
-  },
-  question: {
-    fontFamily: 'montserrat-regular', 
-    fontWeight: 'bold',
-    fontSize: 30,
+    fontSize: 22,
     color: '#F5F5F5',
-    marginBottom: '20%',
     textAlign: 'center',
-    width: 307,
-    height: 111,
+    width: 283,
   }, 
+
   button: {
     width: 179,
     height: 50,
-    backgroundColor: 'rgba(196, 196, 196, 0.2)',
+    backgroundColor: '#FFFFFF',
     borderRadius: 8,
     justifyContent: 'center',
-    marginTop: 12,
-    borderColor: 'white',
-    borderWidth: 1,
   },
+
   buttonText: {
     fontStyle: 'normal',
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#fff',
+    color: '#E5186E',
     textAlign: 'center',
   }
-
-
 })
 
 export default styles
