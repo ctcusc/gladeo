@@ -23,7 +23,7 @@ export default function OnboardingScreen(props: Props) {
       </View>
 
       <View style={styles.footer}>
-        <TouchableOpacity onPress={() => navigate('Home')} style={styles.button}>
+        <TouchableOpacity onPress={() => navigate('Steps')} style={styles.button}>
           <Text style={styles.buttonText}>HOW IT WORKS</Text>
         </TouchableOpacity>
       </View>

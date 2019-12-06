@@ -29,6 +29,7 @@ const styles = StyleSheet.create({
     fontFamily: 'montserrat-regular', 
     fontWeight: 'bold',
     fontSize: 22,
+    lineHeight: 27,
     color: '#F5F5F5',
     textAlign: 'center',
     width: 283,
