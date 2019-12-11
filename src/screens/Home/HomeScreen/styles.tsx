@@ -18,12 +18,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     color: '#D94077',
-    marginLeft: 130,
+    marginLeft: '35%',
   },
   bannerlogo: {
     width: 40,
     height: 40,
-    marginRight: 20,
+    marginRight: '5%',
   },
   question: {
     backgroundColor: '#FFFFFF',
