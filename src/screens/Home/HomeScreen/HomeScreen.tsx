@@ -11,8 +11,8 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from 'react-native'
-import styles from './styles'
 import { BASE_PATH } from 'react-native-dotenv'
+import styles from './styles'
  
 interface IQuestion {
   id: string;
@@ -61,10 +61,6 @@ export default function HomeScreen() {
           keyExtractor={item => item.id}
           extraData={selected}
         />
-        {/* replace with PinkButton from sharedcomponents later */}
-        <TouchableOpacity onPress={() => Alert.alert('button')} style={styles.continueButton}>
-          <Text style={styles.buttonText}>CONTINUE</Text>
-        </TouchableOpacity>
       </ImageBackground>
     </SafeAreaView>
   )
