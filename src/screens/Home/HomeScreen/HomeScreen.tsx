@@ -65,13 +65,17 @@ HomeScreen.navigationOptions = {
     fontSize: 18,
     color: '#D94077',
   },
+  headerStyle: {
+    paddingBottom: '2%',
+    marginRight: '5%'
+  },
   headerRight: 
       <View style = {styles.counter}>
         <View style = {styles.numberCounter}>
           <Text style = {styles.number}>0</Text>
         </View>
         <Text style={styles.answered}>answered</Text>
-        </View>
+      </View>
 }
 
 function Item(props: ItemProps) {
