@@ -72,17 +72,24 @@ HomeScreen.navigationOptions = {
     fontSize: 18,
     color: '#D94077',
   },
+<<<<<<< HEAD
   headerStyle: {
     paddingBottom: '2%',
     marginRight: '5%'
   },
+=======
+>>>>>>> made edits
   headerRight: 
       <View style = {styles.counter}>
         <View style = {styles.numberCounter}>
           <Text style = {styles.number}>0</Text>
         </View>
         <Text style={styles.answered}>answered</Text>
+<<<<<<< HEAD
       </View>
+=======
+        </View>
+>>>>>>> made edits
 }
 
 function Item(props: ItemProps) {
