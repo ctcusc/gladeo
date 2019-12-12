@@ -57,16 +57,6 @@ const styles = StyleSheet.create({
     color: '#E5186E',
     fontWeight: '500',
   },
-  continueButton: {
-    width: 324,
-    height: 64,
-    backgroundColor: '#E5186E',
-    borderRadius: 32,
-    justifyContent: 'center',
-    alignSelf: 'center',
-    marginTop: 12,
-    marginBottom: 20,
-  }, 
   buttonText: {
     fontStyle: 'normal',
     fontSize: 26,
@@ -77,10 +67,9 @@ const styles = StyleSheet.create({
   counter: {
     display: 'flex',
     flexDirection: 'column',
-    height: 50,
-    justifyContent: 'flex-end',
+    height: 40,
+    justifyContent: 'space-around',
     alignSelf: 'flex-end',
-    marginLeft: 80,
   },
   answered: {
     fontFamily: 'roboto-regular',
