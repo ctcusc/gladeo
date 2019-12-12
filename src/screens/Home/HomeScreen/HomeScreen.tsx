@@ -4,21 +4,21 @@ import {
   Text,
   View,
   Alert,
-  SafeAreaView, 
+  SafeAreaView,
   FlatList,
   TouchableOpacity,
   ImageBackground,
 } from 'react-native'
 import { BASE_PATH } from 'react-native-dotenv'
 import styles from './styles'
- 
+
 interface IQuestion {
   id: string;
   text: string;
 }
 
 /* AKA: Q&A screen */
-export default function HomeScreen() { 
+export default function HomeScreen() {
   const [selected, setSelected] = useState<string | null>(null)
   const [questions, setQuestions] = useState<Array<IQuestion>>([])
 
@@ -26,7 +26,7 @@ export default function HomeScreen() {
     fetch(`${BASE_PATH}/api/questions`)
       .then(res => res.json())
       .then(data => {
-        setQuestions( data )
+        setQuestions(data)
         console.log(data)
       })
       .catch(error => {
@@ -36,11 +36,11 @@ export default function HomeScreen() {
 
   return (
     <SafeAreaView style={styles.container}>
-      <ImageBackground source={background} style={{width: '100%', height: '100%'}}>
+      <ImageBackground source={background} style={{ width: '100%', height: '100%' }}>
         <View style={styles.banner}>
           <Text style={styles.bannertext}>QUESTIONS</Text>
-          <View style = {styles.counter}>
-            <View style = {styles.numberCounter}>
+          <View style={styles.counter}>
+            <View style={styles.numberCounter}>
               <Text style={styles.number}>0</Text>
             </View>
             <Text style={styles.answered}>answered</Text>
@@ -67,39 +67,35 @@ export default function HomeScreen() {
 HomeScreen.navigationOptions = {
   title: 'QUESTIONS',
   headerTitleStyle: {
-    fontFamily: 'roboto-bold', 
+    fontFamily: 'roboto-bold',
     fontStyle: 'normal',
     fontSize: 18,
     color: '#D94077',
   },
-<<<<<<< HEAD
+
   headerStyle: {
     paddingBottom: '2%',
     marginRight: '5%'
   },
-=======
->>>>>>> made edits
-  headerRight: 
-      <View style = {styles.counter}>
-        <View style = {styles.numberCounter}>
-          <Text style = {styles.number}>0</Text>
-        </View>
-        <Text style={styles.answered}>answered</Text>
-<<<<<<< HEAD
+
+  headerRight:
+    <View style={styles.counter}>
+      <View style={styles.numberCounter}>
+        <Text style={styles.number}>0</Text>
       </View>
-=======
-        </View>
->>>>>>> made edits
+      <Text style={styles.answered}>answered</Text>
+
+    </View>
 }
 
 function Item(props: ItemProps) {
   return (
     <TouchableOpacity
       onPress={() => props.onSelect(props.id)}
-      style = {props.selected ? styles.questionSelected : styles.question}
+      style={props.selected ? styles.questionSelected : styles.question}
     >
-      <Text 
-        style = {props.selected ? styles.titleSelected : styles.title}
+      <Text
+        style={props.selected ? styles.titleSelected : styles.title}
       >{props.title}</Text>
     </TouchableOpacity>
   )
