@@ -1,11 +1,22 @@
-/* Extract the actual content of each record. One row could
+/* Extract the actual content (`fields: `) of each record. One row could
 contain multiple fields, corresponding to multiple columns
 */
 function extractContentFromRecords(records) {
   return records.map(record => ({
-    id: record.id, 
-    text: record.fields.text
-  }))
+    id: record.id,
+    ...record.fields
+  }));
+}
+
+/* Extract the specified keys from the object. For example: `obj = {a:1, b:2, c:3}`. Calling
+`getFieldsFromObject(obj, b, c)` will return `{b:2, c:3}`.
+*/
+function getFieldsFromObject(obj, ...keys) {
+  let filteredObj = {};
+  keys.forEach(key => {
+    filteredObj[key] = key in obj ? obj[key] : null;
+  });
+  return filteredObj;
 }
 
 /* Get all the records/rows from the table. An airtable record includes
@@ -23,5 +34,6 @@ async function getAllFromTable(table) {
 
 module.exports = {
   extractContentFromRecords,
-  getAllFromTable
+  getAllFromTable,
+  getFieldsFromObject
 };
