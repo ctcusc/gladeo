@@ -8,11 +8,13 @@ import HomeScreen from '../screens/Home/HomeScreen/HomeScreen'
 import OnboardingScreen from '../screens/Home/OnboardingScreen/OnboardingScreen'
 import CreateScreen from '../screens/Home/CreateScreen/CreateScreen'
 import ProfileScreen from '../screens/Home/ProfileScreen/ProfileScreen'
+import StepScreens from '../screens/Home/OnboardingScreen/StepScreens'
 
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
     Onboarding: OnboardingScreen,
+    Steps: StepScreens,
   },
 )
 
