@@ -1,5 +1,6 @@
 const express = require('express')
 const questions = require('./routes/question')
+const user = require('./routes/user')
 const auth = require('./routes/auth')
 
 const app = express()
@@ -17,6 +18,7 @@ app.head('/status', (req, res) => {
 
 // Tell app where our routes are
 app.use('/api/questions', questions)
+app.use('/api/user', user)
 app.use('/api/auth', auth)
 
 // enable Cross Origin Resource Sharing and other options

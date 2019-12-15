@@ -1,5 +1,5 @@
 const { base } = require('./index')
-const { getAllFromTable } = require('./helpers')
+const { extractContentFromRecords, getAllFromTable, getFieldsFromObject } = require('./helpers')
 
 async function getQuestions() {
   const questionTable = base('Questions').select({
@@ -10,19 +10,25 @@ async function getQuestions() {
     await getAllFromTable(questionTable)
   )
 
+  questions.forEach((question, index, questions) => {
+    questions[index] = getFieldsFromObject(question, 'id', 'text')
+  })
   return questions
 }
 
-/* Extract the actual content of each record. One row could
-contain multiple fields, corresponding to multiple columns
-*/
-function extractContentFromRecords(records) {
-  return records.map(record => ({
-    'id': record.fields.ID, 
-    'text': record.fields.text
-  }))
+async function getAnsweredQuestionIds(userId) {
+  const userRecords = base('Users').select({
+    filterByFormula: `{ID}=${userId}`,
+    view: 'Grid view'
+  })
+
+  // assume there is always one user per userID
+  const user = extractContentFromRecords(await getAllFromTable(userRecords))[0]
+
+  return user.Answered
 }
 
 module.exports = {
-  getQuestions
+  getQuestions,
+  getAnsweredQuestionIds
 }
