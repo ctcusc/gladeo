@@ -10,7 +10,7 @@ async function getUser(userId) {
     filterByFormula: `{${IDFieldName}}=${userId}`,
     view: 'Grid view'
   });
-  // assume there is always one user per userID
+  // assume there is only one user per userID
   const users = extractContentFromRecords(await getAllFromTable(userRecords));
   return users.length == 0 ? null : users[0];
 }
