@@ -1,3 +1,5 @@
+const { base } = require('./index')
+
 /* Extract the actual content (`fields: `) of each record. One row could
 contain multiple fields, corresponding to multiple columns
 */
@@ -8,7 +10,7 @@ function extractContentFromRecords(records) {
 }
 
 /* Extract the specified keys from the object. For example: `obj = {a:1, b:2, c:3}`. Calling
-`getFieldsFromObject(obj, b, c)` will return `{b:2, c:3}`.
+`getFieldsFromObject(obj, 'b', 'c')` will return `{b:2, c:3}`.
 */
 function getFieldsFromObject(obj, ...keys) {
   let filteredObj = {}
@@ -31,8 +33,28 @@ async function getAllFromTable(table) {
   return records
 }
 
+/* Clear particular cells of one single record the database*/
+async function clearFieldsInSingleRecord(baseName, recordId, ...fieldNames) {
+  let fields = {}
+  fieldNames.forEach(fieldName => {
+    fields[fieldName] = '' 
+  })
+  try {
+    await base(baseName).update([
+      {
+        id: recordId,
+        fields
+      }
+    ])
+  } catch (err) {
+    console.log(`Error while clearing fields of record ${recordId}: ${err}`)
+    return
+  }
+}
+
 module.exports = {
   extractContentFromRecords,
   getAllFromTable,
-  getFieldsFromObject
+  getFieldsFromObject,
+  clearFieldsInSingleRecord
 }
