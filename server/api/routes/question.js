@@ -4,7 +4,7 @@ module.exports = app => {
   app.get('/api/questions', async (req, res) => {
     try {
       const questions = await getQuestions();
-      return res.send(questions).status(200);
+      return res.status(200).send(questions);
     } catch (err) {
       // when `statusCode` is not included, it is a server error 500
       if (err.statusCode === undefined) {
@@ -14,7 +14,7 @@ module.exports = app => {
           stack: err.stack
         });
       }
-      return res.send(err);
+      return res.status(err.statusCode).send(err);
     }
   });
 };

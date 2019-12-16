@@ -16,19 +16,6 @@ async function getQuestions() {
   return questions;
 }
 
-async function getAnsweredQuestionIds(userId) {
-  const userRecords = base('Users').select({
-    filterByFormula: `{ID}=${userId}`,
-    view: 'Grid view'
-  });
-
-  // assume there is always one user per userID
-  const user = extractContentFromRecords(await getAllFromTable(userRecords))[0];
-
-  return user.Answered;
-}
-
 module.exports = {
-  getQuestions,
-  getAnsweredQuestionIds
+  getQuestions
 };
