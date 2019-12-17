@@ -37,15 +37,6 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={background} style={{ width: '100%', height: '100%' }}>
-        <View style={styles.banner}>
-          <Text style={styles.bannertext}>QUESTIONS</Text>
-          <View style={styles.counter}>
-            <View style={styles.numberCounter}>
-              <Text style={styles.number}>0</Text>
-            </View>
-            <Text style={styles.answered}>answered</Text>
-          </View>
-        </View>
         <FlatList<IQuestion>
           data={questions}
           renderItem={({ item }) => (
