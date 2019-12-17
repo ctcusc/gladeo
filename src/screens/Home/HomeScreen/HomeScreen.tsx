@@ -1,59 +1,48 @@
-import React, {useState} from 'react'
-import logo from '../../../../assets/images/gladeo_logo.png'
+import React, { useState, useEffect } from 'react'
 import background from '../../../../assets/images/dotsbackground.png'
 import {
   Text,
   View,
-  Image,
   Alert,
-  SafeAreaView, 
+  SafeAreaView,
   FlatList,
   TouchableOpacity,
   ImageBackground,
 } from 'react-native'
+import { BASE_PATH } from 'react-native-dotenv'
 import styles from './styles'
 
-// questions
-const DATA = [
-  {
-    id: '1',
-    title: 'Who/what influenced or inspired you to do what you do?',
-  },
-  {
-    id: '2',
-    title: 'What is a typical day for you?',
-  },
-  {
-    id: '3',
-    title: 'What do you love most about your job?',
-  },
-  {
-    id: '4',
-    title: 'hi',
-  },
-  {
-    id: '5',
-    title: 'hi',
-  },
-]
+interface IQuestion {
+  id: string;
+  text: string;
+}
 
 /* AKA: Q&A screen */
 export default function HomeScreen() {
-  const [selected, setSelected] = useState()
+  const [selected, setSelected] = useState<string | null>(null)
+  const [questions, setQuestions] = useState<Array<IQuestion>>([])
+
+  useEffect(() => {
+    fetch(`${BASE_PATH}/api/questions`)
+      .then(res => res.json())
+      .then(data => {
+        setQuestions(data)
+        console.log(data)
+      })
+      .catch(error => {
+        console.log('Error' + error)
+      })
+  }, [])
 
   return (
     <SafeAreaView style={styles.container}>
-      <ImageBackground source={background} style={{width: '100%', height: '100%'}}>
-        <View style={styles.banner}>
-          <Text style={styles.bannertext}>QUESTIONS</Text>
-          <Image source={logo} style={styles.bannerlogo} />
-        </View>
-        <FlatList
-          data={DATA}
+      <ImageBackground source={background} style={{ width: '100%', height: '100%' }}>
+        <FlatList<IQuestion>
+          data={questions}
           renderItem={({ item }) => (
             <Item
               id={item.id}
-              title={item.title}
+              title={item.text}
               selected={selected === item.id}
               onSelect={() => setSelected(item.id)}
             />
@@ -61,23 +50,41 @@ export default function HomeScreen() {
           keyExtractor={item => item.id}
           extraData={selected}
         />
-        {/* replace with PinkButton from sharedcomponents later */}
-        <TouchableOpacity onPress={() => Alert.alert('button')} style={styles.continueButton}>
-          <Text style={styles.buttonText}>CONTINUE</Text>
-        </TouchableOpacity>
       </ImageBackground>
     </SafeAreaView>
   )
+}
+
+HomeScreen.navigationOptions = {
+  title: 'QUESTIONS',
+  headerTitleStyle: {
+    fontFamily: 'roboto-bold',
+    fontStyle: 'normal',
+    fontSize: 18,
+    color: '#D94077',
+  },
+  headerStyle: {
+    paddingBottom: '2%',
+    marginRight: '5%'
+  },
+  headerRight:
+    <View style={styles.counter}>
+      <View style={styles.numberCounter}>
+        <Text style={styles.number}>0</Text>
+      </View>
+      <Text style={styles.answered}>answered</Text>
+
+    </View>
 }
 
 function Item(props: ItemProps) {
   return (
     <TouchableOpacity
       onPress={() => props.onSelect(props.id)}
-      style = {props.selected ? styles.questionSelected : styles.question}
+      style={props.selected ? styles.questionSelected : styles.question}
     >
-      <Text 
-        style = {props.selected ? styles.titleSelected : styles.title}
+      <Text
+        style={props.selected ? styles.titleSelected : styles.title}
       >{props.title}</Text>
     </TouchableOpacity>
   )
