@@ -63,12 +63,10 @@ HomeScreen.navigationOptions = {
     fontSize: 18,
     color: '#D94077',
   },
-
   headerStyle: {
     paddingBottom: '2%',
     marginRight: '5%'
   },
-
   headerRight:
     <View style={styles.counter}>
       <View style={styles.numberCounter}>
