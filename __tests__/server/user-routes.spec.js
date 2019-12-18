@@ -18,7 +18,7 @@ describe('Checks user answered routes', () => {
     expect(questionsRes.status).toBe(200);
     questionIds = questionsRes.body.map(question => question.id);
   });
-  // the following test might modify `answered` field of user2
+  // before each test, clear the `answered` field of user2 because the following test might modify them
   beforeEach(async () => {
     clearFieldsInSingleRecord(userBaseName, user2Id, answeredFieldName);
   });
@@ -26,7 +26,7 @@ describe('Checks user answered routes', () => {
     const res = await request.get(`/api/user/${-1}/answered`);
     expect(res.status).toBe(404);
   });
-  // assume user1 always have at least one answered questions
+  // assume user1 always has at least one answered questions
   it('should return the nonempty ids of the answered questions of user1', async () => {
     const res = await request.get(`/api/user/${user1ID}/answered`);
     expect(res.status).toBe(200);
@@ -40,35 +40,34 @@ describe('Checks user answered routes', () => {
     expect(res.status).toBe(200);
     expect(res.body.length).toBe(0);
   });
-  it('should return updated ids of the answered questions when one question is added', async () => {
+  it('should return the updated ids of the answered questions when one question is added', async () => {
     let res;
-    res = await request.get(`/api/user/${user2ID}/answered`);
-    expect(res.status).toBe(200);
+    // make the post update
     res = await request.post(`/api/user/${user2ID}/answer`).send({ questionId: questionIds[0] });
     expect(res.status).toBe(200);
+    // check if the update is made correctly
     setTimeout(async () => {
       res = await request.get(`/api/user/${user2ID}/answered`);
       expect(res.status).toBe(200);
       expect(res.body.length).toBe(1);
       expect(res.body[0]).toBe(questionIds[0]);
-    }, (3)); // needs a little time for the change go through the DB
+    }, (3)); // needs a little time for the change to go through the DB
   });
-  it('should return updated ids of the answered questions when multiple questions are added sequentially', async () => {
+  it('should return the updated ids of the answered questions when multiple questions are added sequentially', async () => {
     let res;
-    res = await request.get(`/api/user/${user2ID}/answered`);
-    expect(res.status).toBe(200);
-    expect(res.body.length).toBe(0);
+    // make the post update
     let numOfQuestionsAdded = Math.min(5, questionIds.length);
     for (let i = 0; i < numOfQuestionsAdded; ++i) {
       res = await request.post(`/api/user/${user2ID}/answer`).send({ questionId: questionIds[i] });
       expect(res.status).toBe(200);
     }
+    // check if the update is made correctly
     setTimeout(async () => {
       res = await request.get(`/api/user/${user2ID}/answered`);
       expect(res.status).toBe(200);
       expect(res.body.length).toBe(numOfQuestionsAdded);
       answeredQuestionIds.forEach((questionId, index) => { expect(questionId == questionIds[index]) });
-    }, (3)); // needs a little time for the change go through the DB
+    }, (3)); // needs a little time for the change to go through the DB
   });
   afterAll(async () => {
     clearFieldsInSingleRecord(userBaseName, user2Id, answeredFieldName);

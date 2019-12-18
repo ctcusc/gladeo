@@ -32,7 +32,8 @@ module.exports = app => {
     try {
       const { id: userId } = req.params;
       const { questionId } = req.body;
-      let answeredQuestionIds = await getUser(userId).Answered;
+      const user  = await getUser(userId);
+      let answeredQuestionIds = user.Answered;
       if (answeredQuestionIds === undefined) {
         answeredQuestionIds = [];
       }
