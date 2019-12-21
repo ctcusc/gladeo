@@ -6,7 +6,7 @@ import { createStackNavigator, createBottomTabNavigator } from 'react-navigation
 import TabBarIcon from '../shared_components/TabBarIcon'
 import HomeScreen from '../screens/Home/HomeScreen/HomeScreen'
 import OnboardingScreen from '../screens/Home/OnboardingScreen/OnboardingScreen'
-import CreateScreen from '../screens/Home/RenderingVideoScreen/RenderingVideoScreen'
+import RenderingVideoScreen from '../screens/Home/RenderingVideoScreen/RenderingVideoScreen'
 import ProfileScreen from '../screens/Home/ProfileScreen/ProfileScreen'
 
 const HomeStack = createStackNavigator(
@@ -32,7 +32,7 @@ HomeStack.navigationOptions = {
 
 const CreateStack = createStackNavigator(
   {
-    Create: CreateScreen,
+    Create: RenderingVideoScreen,
     Onboarding: OnboardingScreen,
   },
 )
