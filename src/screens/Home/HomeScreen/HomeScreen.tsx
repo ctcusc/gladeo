@@ -3,7 +3,6 @@ import background from '../../../../assets/images/dotsbackground.png'
 import {
   Text,
   View,
-  Alert,
   SafeAreaView,
   FlatList,
   TouchableOpacity,
@@ -11,7 +10,6 @@ import {
 } from 'react-native'
 import { BASE_PATH } from 'react-native-dotenv'
 import styles from './styles'
-
 interface IQuestion {
   id: string;
   text: string;
