@@ -2,6 +2,7 @@ const express = require('express')
 const questions = require('./routes/question')
 const user = require('./routes/user')
 const auth = require('./routes/auth')
+const company = require('./routes/company')
 
 const app = express()
 
@@ -38,6 +39,7 @@ app.use(bodyParser.json())
 // Tell app where our routes are
 app.use('/api/questions', questions)
 app.use('/api/user', user)
+app.use('/api/company', company)
 app.use('/api/auth', auth)
 
 // session config

@@ -42,20 +42,6 @@ describe('Checks user answered routes', () => {
     expect(res.status).toBe(200)
     expect(res.body.length).toBe(0)
   })
-  it('should return updated user w/ new question in answered field', async () => {
-    let res
-    res = await request.get(`/api/user/${user2ID}/answered`)
-    expect(res.status).toBe(200)
-    res = await request.post(`/api/user/${user2ID}/answer`).send({ questionId: questionIDs[7]})
-    expect(res.status).toBe(200)
-    setTimeout(async () => {
-      res = await request.get(`/api/user/${user2ID}/answered`)
-      expect(res.status).toBe(200)
-      expect(res.body.length).toBe(1)
-      let answered = res.body.Answered
-      expect(answered.includes(questions[7]))
-    }, (3)) // needs a little time for the change go through the DB
-  })
   it('should return updated ids of the answered questions when multiple questions are added sequentially', async () => {
     let res
     res = await request.get(`/api/user/${user2ID}/answered`)
@@ -76,10 +62,33 @@ describe('Checks user answered routes', () => {
       })
     }, (3)) // needs a little time for the change go through the DB
   })
+  it('should return updated user w/ new question in answered field', async () => {
+    let res
+    res = await request.get(`/api/user/${user2ID}/answered`)
+    expect(res.status).toBe(200)
+    res = await request.post(`/api/user/${user2ID}/answer`).send({ questionId: questionIDs[7]})
+    expect(res.status).toBe(200)
+    setTimeout(async () => {
+      res = await request.get(`/api/user/${user2ID}/answered`)
+      expect(res.status).toBe(200)
+      expect(res.body.length).toBe(1)
+      let answered = res.body.Answered
+      expect(answered.includes(questions[7]))
+    }, (3)) // needs a little time for the change go through the DB
+  })
   afterAll(async () => {
     clearFieldsInSingleRecord(userBaseName, user2Id, answeredFieldName)
-    afterEach((done) => {
-      return app && app.close(done)
-    })
+    
+  })
+})
+
+describe('Checks to see if user route returns the first user data successfully', () => {
+  it('should print the first user data if successful', async () => {
+    const res = await request.get('/api/user/1')
+
+    expect(res.body['Full Name']).toMatch('Aliya Petranik')
+    expect(res.body['Email']).toMatch('petranik@usc.edu')
+    expect(res.body['Current Title']).toMatch('Tech Lead')
+    expect(res.status).toBe(200)
   })
 })
