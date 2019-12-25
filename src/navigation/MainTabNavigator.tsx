@@ -32,7 +32,7 @@ HomeStack.navigationOptions = {
 
 const CreateStack = createStackNavigator(
   {
-    Create: RenderingVideoScreen,
+    RenderingVideo: RenderingVideoScreen,
     Onboarding: OnboardingScreen,
   },
 )
