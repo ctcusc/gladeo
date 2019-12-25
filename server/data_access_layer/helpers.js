@@ -3,8 +3,8 @@ contain multiple fields, corresponding to multiple columns
 */
 function extractContentFromRecords(records) {
   return records.map(record => ({
-    id: record.id, 
-    text: record.fields.text
+    'id': record.fields.ID, 
+    'text': record.fields.text
   }))
 }
 

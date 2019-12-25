@@ -12,7 +12,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest --watch --coverage=false --changedSince=origin/master",
+    "test": "jest --detectOpenHandles",
     "testDebug": "jest -o --watch --coverage=false",
     "testFinal": "jest",
     "updateSnapshots": "jest -u --coverage=false",
@@ -57,7 +57,6 @@
     "react-native-video": "^5.0.2",
     "react-native-web": "^0.11.7",
     "react-navigation": "3",
-    "supertest": "^4.0.2",
     "typescript": "^3.6.4"
   },
   "devDependencies": {
