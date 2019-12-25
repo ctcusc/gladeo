@@ -10,14 +10,15 @@ import {
 } from 'react-native'
 import { BASE_PATH } from 'react-native-dotenv'
 import styles from './styles'
+
 interface IQuestion {
-  id: string;
+  id: number;
   text: string;
 }
 
 /* AKA: Q&A screen */
 export default function HomeScreen() {
-  const [selected, setSelected] = useState<string | null>(null)
+  const [selected, setSelected] = useState<number | null>(null)
   const [questions, setQuestions] = useState<Array<IQuestion>>([])
 
   useEffect(() => {
@@ -45,7 +46,7 @@ export default function HomeScreen() {
               onSelect={() => setSelected(item.id)}
             />
           )}
-          keyExtractor={item => item.id}
+          keyExtractor={item => item.text}
           extraData={selected}
         />
       </ImageBackground>
@@ -89,7 +90,7 @@ function Item(props: ItemProps) {
 }
 
 interface ItemProps {
-  id: string,
+  id: number,
   title: string,
   selected: boolean,
   onSelect: any,
