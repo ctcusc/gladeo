@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     backgroundColor: '#D94077',
   },
     
-  main: {
+  header: {
     flex: 2,
     display: 'flex',
     flexDirection: 'column',
@@ -21,7 +21,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  header: {
+  title: {
     color: '#DEA3BB',
     fontFamily: 'montserrat-regular', 
     fontWeight: 'bold',

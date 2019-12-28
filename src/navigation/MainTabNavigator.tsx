@@ -16,6 +16,9 @@ const HomeStack = createStackNavigator(
     Onboarding: OnboardingScreen,
     Steps: StepScreens,
   },
+  {
+    initialRouteName: 'Onboarding',
+  }
 )
 
 HomeStack.navigationOptions = {
