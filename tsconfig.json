@@ -6,7 +6,7 @@
       "isolatedModules": true,
       "jsx": "react",
       "lib": ["es6"],
-      "moduleResolution": "node",
+      // "moduleResolution": "node",
       "noEmit": true,
       "strict": true,
       "target": "esnext"
@@ -18,6 +18,9 @@
       "jest.config.js"
     ],
     "include": [
+      "server/server.js",
+      "server/**/*.js",
+      "server/**/**/*.js",
       "src/**/**/*.tsx",
       "src/**/**/**/*.tsx",
       "__tests__/**/**/*.tsx",

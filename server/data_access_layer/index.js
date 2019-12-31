@@ -1,5 +1,5 @@
-const airtable = require('airtable');
-const { apiKey, airtableID } = require('../../config');
+const airtable = require('airtable')
+const { apiKey, airtableID } = require('../../config')
 
 /* Data Access Layer handles the database interactions. It is
 separated from the service logic.
@@ -7,8 +7,8 @@ separated from the service logic.
 The `index.js` creates the Airtable base when it is undefined.
 It will only be shared in the DAL*/
 
-let base = new airtable({ apiKey: apiKey }).base(airtableID);
+let base = new airtable({ apiKey: apiKey }).base(airtableID)
 
 module.exports = {
   base
-};
+}

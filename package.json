@@ -20,7 +20,7 @@
     "lint-fix": "eslint --fix src/**/**/**/*.tsx",
     "precommit": "lint-staged && yarn lint",
     "eslint-check": "eslint --print-config src/**/*/*.ts | eslint-config-prettier-check",
-    "server": "node server/server.js --exec nodemon",
+    "server": "nodemon server/server.js",
     "dev": "run-p server start"
   },
   "jest": {
@@ -48,6 +48,7 @@
     "expo-constants": "^8.0.0",
     "expo-font": "^8.0.0",
     "expo-web-browser": "^8.0.0",
+    "express-session": "^1.17.0",
     "mem": "^6.0.1",
     "react": "^16.12.0",
     "react-dom": "16.12.0",

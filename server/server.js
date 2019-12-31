@@ -1,18 +1,8 @@
-const express = require('express');
-const { port, apiKey, airtableID } = require('../config');
+const { port } = require('../config')
+const app = require('./api/app')
 
-const app = express();
+app.set('port', port || 3001)
 
-async function startServer() {
-  // load routes config
-  await require('./api/routes')({ app });
-
-  // load airtable base
-  await require('./data_access_layer');
-
-  app.listen(port);
-  console.log('App is listening on port ' + port);
-}
-
-startServer();
-module.exports = app;
+const server = app.listen(app.get('port'), () => {
+  console.log(`App is listening on port ${server.address().port}`)
+})
