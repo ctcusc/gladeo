@@ -1,5 +1,5 @@
 const { base } = require('./index')
-const { extractContentFromRecords, getAllFromTable, getFieldsFromObject } = require('./helpers')
+const { extractContentFromRecords, getAllFromTable } = require('./helpers')
 
 // Returns ID and Text of all Questions in table 
 async function getAllQuestions() {
