@@ -23,7 +23,9 @@
       "server/**/**/*.js",
       "src/**/**/*.tsx",
       "src/**/**/**/*.tsx",
-      "__tests__/**/**/*.tsx",
+      "__tests__/**/*.spec.js",
+      "__tests__/*.spec.js",
+
       "**.js",
       // etc
   

@@ -12,7 +12,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest --detectOpenHandles",
+    "test": "jest __tests__/server/ --detectOpenHandles",
     "testDebug": "jest -o --watch --coverage=false",
     "testFinal": "jest",
     "updateSnapshots": "jest -u --coverage=false",

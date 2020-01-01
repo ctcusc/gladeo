@@ -1,5 +1,6 @@
 const express = require('express')
 const questions = require('./routes/question')
+const user = require('./routes/user')
 const auth = require('./routes/auth')
 
 const app = express()
@@ -15,9 +16,6 @@ app.head('/status', (req, res) => {
   res.status(200).end()
 })
 
-// Tell app where our routes are
-app.use('/api/questions', questions)
-app.use('/api/auth', auth)
 
 // enable Cross Origin Resource Sharing and other options
 app.use((req, res, next) => {
@@ -36,6 +34,11 @@ app.use((req, res, next) => {
 
 // transforms the raw string of req.body into json
 app.use(bodyParser.json())
+
+// Tell app where our routes are
+app.use('/api/questions', questions)
+app.use('/api/user', user)
+app.use('/api/auth', auth)
 
 // session config
 app.use(
@@ -62,5 +65,6 @@ app.use((err, req, res, next) => {
     }
   })
 })
+
 
 module.exports = app
