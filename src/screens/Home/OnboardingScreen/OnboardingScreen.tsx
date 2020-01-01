@@ -11,7 +11,6 @@ import {
 } from 'react-native'
 import styles from './styles'
 
-/* AKA: Q&A screen */
 export default function OnboardingScreen(props: Props) {
   const {navigate} = props.navigation
 

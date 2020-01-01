@@ -9,12 +9,14 @@ import OnboardingScreen from '../screens/Home/OnboardingScreen/OnboardingScreen'
 import CreateScreen from '../screens/Home/CreateScreen/CreateScreen'
 import ProfileScreen from '../screens/Home/ProfileScreen/ProfileScreen'
 import StepScreens from '../screens/Home/OnboardingScreen/StepScreens'
+import FinalStepScreen from '../screens/Home/OnboardingScreen/FinalStepScreen'
 
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
     Onboarding: OnboardingScreen,
     Steps: StepScreens,
+    FinalStep: FinalStepScreen
   },
   {
     initialRouteName: 'Onboarding',

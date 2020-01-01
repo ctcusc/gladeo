@@ -11,8 +11,7 @@ import {
 } from 'react-native'
 import styles from './stepStyles'
 
-/* AKA: Q&A screen */
-export default function OnboardingScreen(props: Props) {
+export default function StepScreens(props: Props) {
   const {navigate} = props.navigation
   const [step, setStep] = useState(2)
   const [text, setText] = useState('Select questions to answer')
@@ -52,7 +51,7 @@ export default function OnboardingScreen(props: Props) {
               setButtonContent('GET STARTED')
             }
             if(step == 5){
-              navigate('Home')
+              navigate('FinalStep')
             } 
           } }
           style={styles.button}>
