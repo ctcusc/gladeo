@@ -10,7 +10,6 @@ const styles = StyleSheet.create({
     flex: 2,
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
   },
 
@@ -27,9 +26,10 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 30,
     marginBottom: '10%',
+    marginTop: '15%'
   },
 
-  stepOne: {
+  textOne: {
     fontFamily: 'montserrat-regular', 
     fontStyle: 'normal',
     fontWeight: 'bold',
@@ -37,12 +37,12 @@ const styles = StyleSheet.create({
     lineHeight: 37,
     textAlign: 'center',
     color: '#F5F5F5',
-    marginBottom: '20%',
+    marginBottom: '17%',
     height: 74,
     width: 256,
   }, 
 
-  stepTwo: {
+  textTwo: {
     fontFamily: 'montserrat-regular', 
     fontStyle: 'normal',
     fontWeight: 'bold',
@@ -50,12 +50,12 @@ const styles = StyleSheet.create({
     lineHeight: 37,
     textAlign: 'center',
     color: '#F5F5F5',
-    marginBottom: '11%',
+    marginBottom: '13%',
     height: 111,
     width: 256,
   }, 
 
-  stepThree: {
+  textThree: {
     fontFamily: 'montserrat-regular', 
     fontStyle: 'normal',
     fontWeight: 'bold',
@@ -63,12 +63,12 @@ const styles = StyleSheet.create({
     lineHeight: 37,
     textAlign: 'center',
     color: '#F5F5F5',
-    marginBottom: '11%',
+    marginBottom: '12%',
     height: 111,
     width: 270,
   }, 
 
-  stepFour: {
+  textFour: {
     fontFamily: 'montserrat-regular', 
     fontStyle: 'normal',
     fontWeight: 'bold',
@@ -76,14 +76,10 @@ const styles = StyleSheet.create({
     lineHeight: 37,
     textAlign: 'center',
     color: '#F5F5F5',
-    marginBottom: '11%',
+    marginBottom: '10%',
     height: 111,
     width: 307,
   }, 
-
-  image: {
-    marginBottom: '3%',
-  },
 
   button: {
     width: 179,
