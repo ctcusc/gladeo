@@ -1,11 +1,12 @@
 const express = require('express')
 const router = express.Router()
-const { getQuestions } = require('../../data_access_layer/question')
+const { getAllQuestions, getQuestion } = require('../../data_access_layer/question')
 
+// Returns all questions from table - /api/questions/
 router.get('/', async (req, res) => {
   try {
-    const questions = await getQuestions()
-    return res.send(questions).status(200)
+    const questions = await getAllQuestions()
+    return res.status(200).send(questions)
   } catch (err) {
     // when `statusCode` is not included, it is a server error 500
     if (err.statusCode === undefined) {
@@ -15,7 +16,32 @@ router.get('/', async (req, res) => {
         stack: err.stack
       })
     }
-    return res.send(err)
+    return res.status(err.statusCode).send(err)
+  }
+})
+
+// Returns question given ID (eg: 1,2,3)
+router.get('/:id', async (req, res) => {
+  try {
+    const { id } = req.params
+
+    const questions = await getQuestion(id)
+    if (questions == null) {
+      throw {
+        statusCode: 404,
+        message: `Question with ID: ${id} not found.`
+      }
+    }    
+    return res.status(200).send(questions)
+  } catch (err) {
+    // when `statusCode` is not included, it is a server error 500
+    if (err.statusCode === undefined) {
+      return res.status(500).json({
+        message: err.message,
+        stack: err.stack
+      })
+    }
+    return res.status(err.statusCode).send(err)
   }
 })
 

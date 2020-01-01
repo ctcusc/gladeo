@@ -1,28 +1,36 @@
 const { base } = require('./index')
-const { getAllFromTable } = require('./helpers')
+const { extractContentFromRecords, getAllFromTable } = require('./helpers')
 
-async function getQuestions() {
+// Returns ID and Text of all Questions in table 
+async function getAllQuestions() {
   const questionTable = base('Questions').select({
     view: 'Grid view'
   })
-
+  // get all questions {'ID', 'text', 'Users'}
   const questions = extractContentFromRecords(
     await getAllFromTable(questionTable)
   )
-
   return questions
 }
 
-/* Extract the actual content of each record. One row could
-contain multiple fields, corresponding to multiple columns
+/*
+  Returns question object given EITHER:
+  _record (eg: recoRzAZZnYYdEn9K) OR ID (eg: 1,2,3)
 */
-function extractContentFromRecords(records) {
-  return records.map(record => ({
-    'id': record.fields.ID, 
-    'text': record.fields.text
-  }))
+async function getQuestion(ID) {
+  const questionTable = base('Questions').select({
+    filterByFormula: `OR(ID='${ID}', RECORD_ID()='${ID}')`,
+    view: 'Grid view'
+  })
+  
+  const questions = extractContentFromRecords(
+    await getAllFromTable(questionTable)
+  )
+  // All reference IDs are unique - only one will ever be returned if it exists
+  return questions[0]
 }
 
 module.exports = {
-  getQuestions
+  getQuestion,
+  getAllQuestions
 }
