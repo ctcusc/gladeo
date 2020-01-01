@@ -5,6 +5,7 @@ contain multiple fields, corresponding to multiple columns
 */
 function extractContentFromRecords(records) {
   return records.map(record => ({
+    '_record': record.id, 
     ...record.fields
   }))
 }

@@ -1,9 +1,8 @@
 const { base } = require('./index')
-const { extractContentFromRecords, getAllFromTable, getFieldsFromObject } = require('./helpers')
+const { extractContentFromRecords, getAllFromTable } = require('./helpers')
 
 const userBaseName = 'Users'
 const IDFieldName = 'ID'
-const answeredFieldName = 'Answered'
 
 async function getUser(userId) {
   const userRecords = base(userBaseName).select({
@@ -15,17 +14,17 @@ async function getUser(userId) {
   return users.length == 0 ? null : users[0]
 }
 
-async function updateAnsweredQuestions(userId, answeredQuestions) {
-  let fields = {}
-  fields[answeredFieldName] = JSON.stringify(answeredQuestions)
-  const user = await getUser(userId)
-  const obj = [{
-    id: user.id,
-    fields
+async function updateAnsweredQuestions(user, answeredQuestions) {
+  user.Answered = answeredQuestions
+  
+  const updatedUser = [{
+    id: user._record,
+    fields: {
+      'Answered': user.Answered
+    },
   }]
-  await base(userBaseName).update([{
-    fields
-  }])
+  await base('Users').update(updatedUser)
+  return user
 }
 
 module.exports = {
