@@ -10,8 +10,7 @@ router.get('/', async (req, res) => {
   } catch (err) {
     // when `statusCode` is not included, it is a server error 500
     if (err.statusCode === undefined) {
-      return res.send({
-        statusCode: 500,
+      return res.status(500).send({
         message: err.message,
         stack: err.stack
       })
@@ -36,7 +35,7 @@ router.get('/:id', async (req, res) => {
   } catch (err) {
     // when `statusCode` is not included, it is a server error 500
     if (err.statusCode === undefined) {
-      return res.status(500).json({
+      return res.status(500).send({
         message: err.message,
         stack: err.stack
       })
