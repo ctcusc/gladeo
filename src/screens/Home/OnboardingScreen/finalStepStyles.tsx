@@ -3,14 +3,13 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#D94077',
+    backgroundColor: '#FFFFFF',
   },
-
-  main: {
+    
+  header: {
     flex: 2,
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
   },
 
@@ -21,33 +20,42 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  image: {
-    marginBottom: 37,
-  },
-
-  text: {
+  title: {
+    color: '#777777',
     fontFamily: 'montserrat-regular', 
     fontWeight: 'bold',
     fontSize: 22,
     lineHeight: 27,
-    color: '#F5F5F5',
+    width: 301,
+    height: 71,
     textAlign: 'center',
-    width: 283,
+    marginTop: '30%'
+  },
+
+  content: {
+    fontFamily: 'montserrat-regular', 
+    fontWeight: 'bold',
+    fontSize: 30,
+    lineHeight: 37,
+    textAlign: 'center',
+    color: '#E5186E',
+    height: 111,
+    width: 281,
   }, 
 
   button: {
     width: 179,
     height: 50,
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#E5186E',
     borderRadius: 8,
     justifyContent: 'center',
   },
-
+    
   buttonText: {
     fontStyle: 'normal',
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#E5186E',
+    color: '#FFFFFF',
     textAlign: 'center',
   }
 })

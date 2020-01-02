@@ -5,12 +5,11 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#D94077',
   },
-
-  main: {
+    
+  header: {
     flex: 2,
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'center',
     alignItems: 'center',
   },
 
@@ -21,18 +20,47 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  image: {
-    marginBottom: 37,
+  title: {
+    color: '#DEA3BB',
+    fontFamily: 'montserrat-regular', 
+    fontWeight: 'bold',
+    fontSize: 30,
+    marginBottom: '10%',
+    marginTop: '15%'
   },
 
   text: {
     fontFamily: 'montserrat-regular', 
+    fontStyle: 'normal',
     fontWeight: 'bold',
-    fontSize: 22,
-    lineHeight: 27,
-    color: '#F5F5F5',
+    fontSize: 30,
+    lineHeight: 37,
     textAlign: 'center',
-    width: 283,
+    color: '#F5F5F5',
+  },
+
+  textOne: {
+    marginBottom: '17%',
+    height: 74,
+    width: 256,
+  }, 
+
+  textTwo: {
+    marginBottom: '13%',
+    height: 111,
+    width: 256,
+  }, 
+
+  textThree: {
+    marginBottom: '12%',
+    height: 111,
+    width: 270,
+  }, 
+
+  textFour: {
+    marginBottom: '10%',
+    height: 111,
+    width: 307,
   }, 
 
   button: {
@@ -42,7 +70,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     justifyContent: 'center',
   },
-
+    
   buttonText: {
     fontStyle: 'normal',
     fontSize: 16,

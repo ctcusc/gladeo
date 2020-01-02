@@ -10,7 +10,7 @@ export default createAppContainer(
     Auth: AuthNavigator,
   },
   {
-    initialRouteName: 'Auth', // Determines which nav stack is shown first
+    initialRouteName: 'Main', // Determines which nav stack is shown first
   }
   )
 )
