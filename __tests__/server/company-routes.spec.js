@@ -33,7 +33,7 @@ describe('Checks to see if invalid url is handled', () => {
 
 describe('Checks to see if invalid company code is handled', () => {
   it('should return a 404 error', async () => {
-    const res = await request.get('/api/companycode/1')
+    const res = await request.get('/api/company/1')
     expect(res.status).toBe(404)
   })
 })

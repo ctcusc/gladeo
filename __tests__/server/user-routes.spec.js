@@ -92,3 +92,32 @@ describe('Checks to see if user route returns the first user data successfully',
     expect(res.status).toBe(200)
   })
 })
+
+describe('Checks to see if Full Name/Email/Current Title/Answered members exist for returned value', () => {
+  it('should print user data if successful', async () => {
+    const res = await request.get('/api/user/1')
+    var keys = Object.keys(res.body)
+    expect(keys[0]).toMatch('_record')
+    expect(keys[1]).toMatch('Current Title')
+    expect(keys[3]).toMatch('Full Name')
+    expect(keys[4]).toMatch('Company')
+    expect(keys[5]).toMatch('Email')
+    expect(keys[6]).toMatch('ID')
+    expect(keys[7]).toMatch('Answered')
+    expect(res.status).toBe(200)
+  })
+})
+
+describe('Checks to see if invalid url is handled', () => {
+  it('should return a 404 error', async () => {
+    const res = await request.get('/api/users/1')
+    expect(res.status).toBe(404)
+  })
+})
+
+describe('Checks to see if invalid user code is handled', () => {
+  it('should return a 404 error', async () => {
+    const res = await request.get('/api/user/999')
+    expect(res.status).toBe(404)
+  })
+})

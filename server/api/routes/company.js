@@ -6,15 +6,21 @@ router.get('/:code', async (req, res) => {
   try {
     const { code } = req.params
     const company = await getCompany(code)
-    return res.send(company).status(200)
+    if (company == null) {
+      throw {
+        statusCode: 404,
+        message: `Company with ID: ${code} not found.`
+      }
+    } 
+    return res.status(200).send(company)
   } catch (err) {
     if (err.statusCode === undefined) {
-      return res.send({
+      return res.status(404).send({
         statusCode: 404,
         message: 'Company code does not exist'
       })
     }
-    return res.send(err)
+    return res.status(404).send(err)
   }
 })
 

@@ -7,6 +7,12 @@ router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params
     const user = await getUser(id)
+    if (user === null) {
+      throw {
+        statusCode: 404,
+        message: `user with ID ${id} not found.`
+      }
+    }
     return res.status(200).send(user)
   } catch (err) {
     if (err.statusCode === undefined) {
