@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     marginTop: '15%'
   },
 
-  textOne: {
+  text: {
     fontFamily: 'montserrat-regular', 
     fontStyle: 'normal',
     fontWeight: 'bold',
@@ -37,45 +37,27 @@ const styles = StyleSheet.create({
     lineHeight: 37,
     textAlign: 'center',
     color: '#F5F5F5',
+  },
+
+  textOne: {
     marginBottom: '17%',
     height: 74,
     width: 256,
   }, 
 
   textTwo: {
-    fontFamily: 'montserrat-regular', 
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: 30,
-    lineHeight: 37,
-    textAlign: 'center',
-    color: '#F5F5F5',
     marginBottom: '13%',
     height: 111,
     width: 256,
   }, 
 
   textThree: {
-    fontFamily: 'montserrat-regular', 
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: 30,
-    lineHeight: 37,
-    textAlign: 'center',
-    color: '#F5F5F5',
     marginBottom: '12%',
     height: 111,
     width: 270,
   }, 
 
   textFour: {
-    fontFamily: 'montserrat-regular', 
-    fontStyle: 'normal',
-    fontWeight: 'bold',
-    fontSize: 30,
-    lineHeight: 37,
-    textAlign: 'center',
-    color: '#F5F5F5',
     marginBottom: '10%',
     height: 111,
     width: 307,

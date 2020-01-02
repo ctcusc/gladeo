@@ -24,7 +24,7 @@ export default function StepScreens(props: Props) {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.title}>{title}</Text>
-        <Text style={textStyle}>{text}</Text>
+        <Text style={[styles.text, textStyle]}>{text}</Text>
         <Image resizeMode='contain' source={imageSource} />
       </View>
       <View style={styles.footer}>
