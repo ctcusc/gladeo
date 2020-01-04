@@ -16,9 +16,10 @@ router.get('/:id', async (req, res) => {
     return res.status(200).send(user)
   } catch (err) {
     if (err.statusCode === undefined) {
-      return res.status(404).send({
-        statusCode: 404,
-        message: 'User does not exist'
+      return res.status(500).send({
+        statusCode: 500,
+        message: 'User does not exist',
+        stack: err.stack
       })
     }
     return res.status(404).send(err)
@@ -53,7 +54,7 @@ router.get('/:id/answered', async (req, res) => {
   } catch (err) {
     // when `statusCode` is not included, it is a server error 500
     if (err.statusCode === undefined) {
-      return res.send({
+      return res.status(500).send({
         statusCode: 500,
         message: err.message,
         stack: err.stack
@@ -95,7 +96,7 @@ router.post('/:id/answer', async (req, res) => {
   } catch (err) {
     // when `statusCode` is not included, it is a server error 500
     if (err.statusCode === undefined) {
-      return res.status(500).json({
+      return res.status(500).send({
         status: 500,
         message: err.message,
         stack: err.stack
