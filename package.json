@@ -34,7 +34,7 @@
     "@expo/vector-icons": "^10.0.3",
     "@react-navigation/core": "^3.0.0-alpha.13",
     "@react-navigation/web": "^1.0.0-alpha.9",
-    "@types/jest": "^24.0.19",
+    "@types/jest": "^24.0.25",
     "@types/node": "^13.1.0",
     "@types/react": "^16.9.9",
     "@types/react-native": "^0.60.27",
