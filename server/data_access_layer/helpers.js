@@ -14,7 +14,7 @@ function extractContentFromRecords(records) {
 `getFieldsFromObject(obj, 'b', 'c')` will return `{b:2, c:3}`.
 */
 function getFieldsFromObject(obj, ...keys) {
-  let filteredObj = {}
+  const filteredObj = {}
   keys.forEach(key => {
     filteredObj[key] = key in obj ? obj[key] : null
   })
@@ -36,7 +36,7 @@ async function getAllFromTable(table) {
 
 /* Clear particular cells of one single record the database*/
 async function clearFieldsInSingleRecord(baseName, recordId, ...fieldNames) {
-  let fields = {}
+  const fields = {}
   fieldNames.forEach(fieldName => {
     fields[fieldName] = '' 
   })

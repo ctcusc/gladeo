@@ -35,5 +35,5 @@ export default function FinalStepScreen(props: Props) {
 }
 
 interface Props {
-  navigation: NavigationScreenProp<NavigationState>;
+  navigation: NavigationScreenProp<NavigationState>,
 }

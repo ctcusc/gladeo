@@ -6,9 +6,9 @@ import {
 import styles from './styles'
 
 interface Props {
-  placeholder: string
-  inputType: string
-  changeTextContent(input: string): void
+  placeholder: string,
+  inputType: string,
+  changeTextContent(input: string): void,
 }
 
 export default function GreyTextInput (props: Props){

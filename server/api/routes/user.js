@@ -40,11 +40,11 @@ router.get('/:id/answered', async (req, res) => {
       User table has foreign key in 'Answered' column that holds reference ID to question table, not primary key
       Use getQuestion() to extract ID and text from Question table given reference ID
     */
-    let answeredQuestions = user.Answered
+    const answeredQuestions = user.Answered
     if (answeredQuestions === undefined) {
       return res.status(200).send([])
     }
-    let extractQuestions = async => {
+    const extractQuestions = () => {
       return Promise.all(answeredQuestions.map(question => getQuestion(question)))
     }
     extractQuestions().then(data => {
@@ -75,7 +75,7 @@ router.post('/:id/answer', async (req, res) => {
     const { questionId } = req.body
 
     const user = await getUser(userId)
-    let answeredQuestions = [] // ensures array is at least defined if it is empty
+    const answeredQuestions = [] // ensures array is at least defined if it is empty
     if (user.Answered !== undefined) {
       answeredQuestions.concat(user.Answered) // already answered by user
     }

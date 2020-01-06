@@ -4,8 +4,8 @@ import { Ionicons } from '@expo/vector-icons'
 import Colors from '../constants/Colors'
 
 interface Props {
-  focused: Boolean,
-  name: String,
+  focused: boolean,
+  name: string,
 }
 export default function TabBarIcon(props: Props) {
   return (

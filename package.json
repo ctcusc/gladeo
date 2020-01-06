@@ -1,33 +1,35 @@
 {
   "main": "node_modules/expo/AppEntry.js",
-  "lint-staged": {
-    "*.{tsx}": [
-      "yarn lint",
-      "git add"
-    ]
-  },
   "scripts": {
     "start": "expo start && echo \"\n\nWelcome to Gladeo! \n\nStarting Mobile app....\"",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest __tests__/server/ --detectOpenHandles",
-    "testDebug": "jest -o --watch --coverage=false",
+    "test": "jest __tests__/server/ --collect-coverage ",
+    "testDebug": "jest -o --watch --coverage",
     "testFinal": "jest",
     "updateSnapshots": "jest -u --coverage=false",
-    "lint": "eslint src/**/**/**/*.tsx",
-    "lint-fix": "eslint --fix src/**/**/**/*.tsx",
-    "precommit": "lint-staged && yarn lint",
-    "eslint-check": "eslint --print-config src/**/*/*.ts | eslint-config-prettier-check",
+    "lint": "eslint --ext js,tsx {src,server}/*",
     "server": "nodemon server/server.js",
-    "dev": "run-p server start"
+    "dev": "run-p server start",
+    "clean": "rm -rf node_modules .yarnclean && yarn"
   },
   "jest": {
     "preset": "jest-expo",
     "transformIgnorePatterns": [
       "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|sentry-expo|native-base)"
     ]
+  },
+  "lint-staged": {
+    "*.{js,tsx}": [
+      "eslint --fix"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "dependencies": {
     "@expo/samples": "~3.0.3",
@@ -64,18 +66,27 @@
   "devDependencies": {
     "@babel/core": "^7.6.4",
     "@typescript-eslint/eslint-plugin": "^2.14.0",
-    "@typescript-eslint/parser": "^2.5.0",
+    "@typescript-eslint/parser": "^2.14.0",
     "babel-preset-expo": "^8.0.0",
     "babel-preset-react-native": "^4.0.1",
     "body-parser": "^1.19.0",
-    "eslint": "^6.5.1",
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb": "^18.0.1",
     "eslint-config-prettier": "^6.9.0",
-    "eslint-plugin-react": "^7.16.0",
+    "eslint-import-resolver-typescript": "^2.0.0",
+    "eslint-plugin-import": "^2.19.1",
+    "eslint-plugin-json": "^2.0.1",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-react": "^7.17.0",
     "eslint-plugin-react-hooks": "^2.1.2",
     "express": "^4.17.1",
+    "husky": "^3.1.0",
     "jest-expo": "^36.0.1",
+    "lint-staged": "^10.0.0-beta.14",
     "nodemon": "^2.0.2",
     "npm-run-all": "^4.1.5",
+    "prettier": "^1.19.1",
     "react-native-dotenv": "^0.2.0",
     "react-test-renderer": "16.12.0",
     "supertest": "^4.0.2"

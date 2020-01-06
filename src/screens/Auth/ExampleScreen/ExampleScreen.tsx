@@ -10,7 +10,7 @@ interface State {
       code: number,
       company: string,
     }
-  ]
+  ],
 }
 // Full Class Component 
 export default class ExampleScreen extends React.Component {

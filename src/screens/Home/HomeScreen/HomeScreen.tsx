@@ -11,15 +11,14 @@ import {
 import { BASE_PATH } from 'react-native-dotenv'
 import styles from './styles'
 
-interface IQuestion {
-  id: number;
-  text: string;
+interface Question {
+  id: number,
+  text: string,
 }
-
 /* AKA: Q&A screen */
 export default function HomeScreen() {
   const [selected, setSelected] = useState<number | null>(null)
-  const [questions, setQuestions] = useState<Array<IQuestion>>([])
+  const [questions, setQuestions] = useState<Array<Question>>([])
 
   useEffect(() => {
     fetch(`${BASE_PATH}/api/questions`)
@@ -36,7 +35,7 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <ImageBackground source={background} style={{ width: '100%', height: '100%' }}>
-        <FlatList<IQuestion>
+        <FlatList<Question>
           data={questions}
           renderItem={({ item }) => (
             <Item
@@ -93,7 +92,7 @@ interface ItemProps {
   id: number,
   title: string,
   selected: boolean,
-  onSelect: any,
+  onSelect: Function,
 }
 
 

@@ -59,7 +59,7 @@ app.use((req, res, next) => {
 })
 
 // general 500 error handler
-app.use((err, req, res, next) => {
+app.use((err, req, res) => {
   res.status(err.status || 500)
   res.json({
     errors: {

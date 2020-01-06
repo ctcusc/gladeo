@@ -31,5 +31,5 @@ export default function OnboardingScreen(props: Props) {
 }
 
 interface Props {
-  navigation: NavigationScreenProp<NavigationState>;
+  navigation: NavigationScreenProp<NavigationState>,
 }

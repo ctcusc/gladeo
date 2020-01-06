@@ -12,7 +12,7 @@ import PinkButton from '../../../shared_components/PinkButton/PinkButton'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
 
 interface Props {
-  navigation: NavigationScreenProp<NavigationState>
+  navigation: NavigationScreenProp<NavigationState>,
 }
 
 export default function GetStartedScreen(props: Props) {

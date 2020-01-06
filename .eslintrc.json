@@ -6,18 +6,7 @@
         "node": true,
         "jest": true
     },
-    "extends": [
-        "eslint:recommended",
-        "plugin:react/recommended",
-        "plugin:@typescript-eslint/eslint-recommended",
-        // "plugin:@typescript-eslint/recommended-requiring-type-checking",
-        "prettier/@typescript-eslint"
-    ],
-    "globals": {
-        // "Atomics": "readonly",
-        // "SharedArrayBuffer": "readonly"
-    },
-    // "parser": "@typescript-eslint/parser", // typescript flavor
+    "parser": "@typescript-eslint/parser", // typescript flavor
     "parserOptions": {
         "ecmaFeatures": {
             "jsx": true
@@ -26,31 +15,37 @@
         "sourceType": "module",
         "project": "./tsconfig.json"
     },
+    "extends": ["plugin:@typescript-eslint/recommended", "plugin:react/recommended"],
     "plugins": [
-        "react",
-        "react-hooks",
-        "@typescript-eslint"
+        "@typescript-eslint", "prettier"
     ],
     "rules": {
         "@typescript-eslint/camelcase": "warn", // consistency in code
         "@typescript-eslint/class-name-casing": "warn", // same as above
         "@typescript-eslint/brace-style": "warn", // same as above
-        "react-hooks/rules-of-hooks": "error", // Checks rules of Hooks
-        "react-hooks/exhaustive-deps": "warn", // Checks effect dependencie
-        "indent": "off",
         "@typescript-eslint/indent": ["error", 2],
         "semi": ["error", "never"],
-        "react/prefer-stateless-function": [1, { "ignorePureComponents": true }],
-        "no-unused-vars": ["error", { "vars": "local", "args": "none" }],
+        "no-extra-semi": "error",
         "quotes": [
             "error",
             "single"
-        ]
+        ],
+        "@typescript-eslint/member-delimiter-style": ["error", {
+            "multiline": {
+              "delimiter": "comma",
+              "requireLast": true
+            },
+            "singleline": {
+              "delimiter": "comma",
+              "requireLast": false
+            }
+          }],
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/no-var-requires": "off"
     },
     "settings": {
         "react": {
             "version": "detect"
         }
     }
-    
 }

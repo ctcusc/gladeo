@@ -65,5 +65,5 @@ export default function StepScreens(props: Props) {
 }
 
 interface Props {
-  navigation: NavigationScreenProp<NavigationState>;
+  navigation: NavigationScreenProp<NavigationState>,
 }
