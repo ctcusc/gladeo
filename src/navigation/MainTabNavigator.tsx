@@ -1,8 +1,8 @@
 /* eslint-disable react/display-name */
 import React from 'react'
 import { Platform } from 'react-native'
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
-
+import { createStackNavigator } from 'react-navigation-stack'
+import { createBottomTabNavigator } from 'react-navigation-tabs'
 import TabBarIcon from '../shared_components/TabBarIcon'
 import HomeScreen from '../screens/Home/HomeScreen/HomeScreen'
 import OnboardingScreen from '../screens/Home/OnboardingScreen/OnboardingScreen'

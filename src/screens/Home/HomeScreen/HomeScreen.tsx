@@ -3,11 +3,11 @@ import background from '../../../../assets/images/dotsbackground.png'
 import {
   Text,
   View,
-  SafeAreaView,
   FlatList,
   TouchableOpacity,
   ImageBackground,
 } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { BASE_PATH } from 'react-native-dotenv'
 import styles from './styles'
 
