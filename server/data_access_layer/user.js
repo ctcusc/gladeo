@@ -3,10 +3,11 @@ const { extractContentFromRecords, getAllFromTable } = require('./helpers')
 
 const userBaseName = 'Users'
 const IDFieldName = 'ID'
+const EmailFieldName = 'Email'
 
-async function getUser(userId) {
+async function getUser(userId = undefined, email = undefined) {
   const userRecords = base(userBaseName).select({
-    filterByFormula: `{${IDFieldName}}=${userId}`,
+    filterByFormula: `OR ({${IDFieldName}}='${userId}', {${EmailFieldName}}='${email}')`,
     view: 'Grid view'
   })
   // assume there is always one user per userID
@@ -27,7 +28,20 @@ async function updateAnsweredQuestions(user, answeredQuestions) {
   return user
 }
 
+async function registerUser(fullName, email, title, company) {
+  const newUser = [{
+    fields: {
+      'Email': email,
+      'Company': [ company ],
+      'Current Title': title,
+      'Full Name': fullName
+    }
+  }]
+  await base('Users').update(newUser)
+}
+
 module.exports = {
   getUser,
-  updateAnsweredQuestions
+  updateAnsweredQuestions,
+  registerUser
 }
