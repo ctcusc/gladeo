@@ -5,6 +5,7 @@ async function getCompany(companyCode) {
   const companyTable = base('Company Codes').select({
     // Filter by company Code
     filterByFormula: `Code='${companyCode}'`,
+    fields: ['ID', 'Title', 'Code'],
     view: 'Grid view'
   })
   // Gets all fields, '_record, Code, ID, Title'

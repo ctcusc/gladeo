@@ -19,7 +19,7 @@ const HomeStack = createStackNavigator(
     FinalStep: FinalStepScreen
   },
   {
-    initialRouteName: 'Onboarding',
+    initialRouteName: 'Home',
   }
 )
 
