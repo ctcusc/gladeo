@@ -21,7 +21,7 @@ const HomeStack = createStackNavigator(
     Record: RecordScreen
   },
   {
-    initialRouteName: 'Record',
+    initialRouteName: 'Home',
   }
 )
 
