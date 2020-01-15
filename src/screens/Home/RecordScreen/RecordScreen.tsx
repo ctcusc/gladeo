@@ -5,12 +5,10 @@ import styles from './styles'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
 
 interface Props {
-  navigation: NavigationScreenProp<NavigationState>,
   question: string,
 }
 
 export default function RecordScreen(props: Props) {
-  const {navigate} = props.navigation
   const [hasPermission, setHasPermission] = useState(false)
   const [camera, setCamera] = useState()
   const [isRecording, setIsRecording] = useState(false)

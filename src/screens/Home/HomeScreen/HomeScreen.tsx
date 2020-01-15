@@ -50,7 +50,7 @@ export default function HomeScreen(props: Props) {
               selected={selected === item.id}
               onSelect={() => {
                 setSelected(item.id)
-                navigate('Record')
+                navigate('Record', {question: item.text})
               }}
             />
           )}
