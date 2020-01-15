@@ -34,7 +34,7 @@ describe('Checks to see if adding a user that already exists is handled', () => 
 // check successfully adding a user
 describe('Checks to see if a new user is created successfully', () => {
   it('should return 200 and successfully create a user', async() => {
-    const res = await request.post('api/auth/register').send({
+    const res = await request.post('/api/auth/register').send({
       'Full Name': 'Yang Qiao',
       'Email': 'xiaoyanq@usc.edu',
       'Current Title': 'Developer',
