@@ -10,10 +10,12 @@ import RenderingVideoScreen from '../screens/Home/RenderingVideoScreen/Rendering
 import ProfileScreen from '../screens/Home/ProfileScreen/ProfileScreen'
 import StepScreens from '../screens/Home/OnboardingScreen/StepScreens'
 import FinalStepScreen from '../screens/Home/OnboardingScreen/FinalStepScreen'
+import RecordScreen from '../screens/Home/RecordScreen/RecordScreen'
 
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
+    Record: RecordScreen,
     Onboarding: OnboardingScreen,
     Steps: StepScreens,
     FinalStep: FinalStepScreen
