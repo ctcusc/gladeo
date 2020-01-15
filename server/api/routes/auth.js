@@ -6,7 +6,7 @@ const { getUserByEmail, registerUser } = require('../../data_access_layer/user')
 // })
 
 router.post('/register', async (req, res) => {
-  const {Email:email} = req.body
+  const email = req.body['Email']
   const fullName = req.body['Full Name'] 
   const title = req.body['Current Title']
   const company = req.body['Company']

@@ -20,7 +20,7 @@ async function getUserByEmail(email) {
     filterByFormula: `{${EmailFieldName}}=${email}`,
     view: 'Grid view'
   })
-  // assume there is always one user per userID
+  // assume there is always one user per email
   const users = extractContentFromRecords(await getAllFromTable(userRecords))
   return users.length == 0 ? null : users[0]
 }
