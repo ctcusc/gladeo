@@ -10,15 +10,21 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { BASE_PATH } from 'react-native-dotenv'
 import styles from './styles'
+import { NavigationScreenProp, NavigationState } from 'react-navigation'
 
 interface Question {
   id: number,
   text: string,
 }
+
+interface Props {
+  navigation: NavigationScreenProp<NavigationState>,
+}
 /* AKA: Q&A screen */
-export default function HomeScreen() {
+export default function HomeScreen(props: Props) {
   const [selected, setSelected] = useState<number | null>(null)
   const [questions, setQuestions] = useState<Array<Question>>([])
+  const {navigate} = props.navigation
 
   useEffect(() => {
     fetch(`${BASE_PATH}/api/questions`)
@@ -42,7 +48,10 @@ export default function HomeScreen() {
               id={item.id}
               title={item.text}
               selected={selected === item.id}
-              onSelect={() => setSelected(item.id)}
+              onSelect={() => {
+                setSelected(item.id)
+                navigate('Record')
+              }}
             />
           )}
           keyExtractor={item => item.text}

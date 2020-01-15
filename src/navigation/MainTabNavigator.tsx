@@ -15,10 +15,10 @@ import RecordScreen from '../screens/Home/RecordScreen/RecordScreen'
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
+    Record: RecordScreen,
     Onboarding: OnboardingScreen,
     Steps: StepScreens,
-    FinalStep: FinalStepScreen,
-    Record: RecordScreen
+    FinalStep: FinalStepScreen
   },
   {
     initialRouteName: 'Home',

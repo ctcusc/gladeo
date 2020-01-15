@@ -11,8 +11,8 @@ interface Props {
 
 export default function RecordScreen(props: Props) {
   const {navigate} = props.navigation
-  const [hasPermission, setHasPermission] = useState(null)
-  const [camera, setCamera] = useState(null)
+  const [hasPermission, setHasPermission] = useState(false)
+  const [camera, setCamera] = useState()
   const [isRecording, setIsRecording] = useState(false)
 
   useEffect(() => {
@@ -31,18 +31,12 @@ export default function RecordScreen(props: Props) {
   return (
     <View style={{ flex: 1 }}>
       <Camera 
-        style={{ flex: 1 }}
         ref={(ref: Camera) => {
           setCamera(ref)
         }}
         type={Camera.Constants.Type.front}
       >
         <View>
-          <TouchableOpacity
-            onPress={() => navigate('FinalStep')}
-          >
-            <Text>GO BACK</Text>
-          </TouchableOpacity>
           <View style={{height: 50}}/>
           <TouchableOpacity
             onPress={ () => {
@@ -59,9 +53,10 @@ export default function RecordScreen(props: Props) {
             style={styles.recordButton}
           >
           </TouchableOpacity>
+          {/* Temporary recording indicator */}
           <View>
-            {isRecording &&
-                <Text>RECORDING IN PROGRESS...</Text>
+            {
+              isRecording && <Text>RECORDING IN PROGRESS...</Text>
             }
           </View>
         </View>
