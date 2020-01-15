@@ -40,7 +40,7 @@ describe('Checks to see if a new user is created successfully', () => {
       'Current Title': 'Developer',
       'Company': '1', 
     })
-    expect(res.status).toBe(202)
+    expect(res.status).toBe(200)
     expect(res.body['Full Name']).toBeTruthy()
     expect(res.body['Email']).toBeTruthy()
     // done()
