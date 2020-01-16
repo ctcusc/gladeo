@@ -39,11 +39,8 @@ describe('Checks to see if a new user is created successfully', () => {
       'Company Code': '1234', 
     })
     expect(res.status).toBe(200)
-    expect(res.body['Full Name']).toMatch('Yang Qiao')
-    expect(res.body['Email']).toMatch('xiaoyanq@usc.edu')
-  })
-
-  afterAll(async() => {
-    await base('Users').drop()
+    expect(res.body['fields']['Full Name']).toMatch('Yang Qiao')
+    expect(res.body['fields']['Email']).toMatch('xiaoyanq@usc.edu')
+    await base('Users').destroy(res.body['id'])
   })
 })  

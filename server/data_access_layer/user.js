@@ -42,8 +42,7 @@ async function registerUser(fullName, email, title, company) {
     'Current Title': title,
     'Full Name': fullName
   }
-  await base('Users').create(newUser)
-  return newUser
+  return await base('Users').create(newUser)
 }
 
 module.exports = {
