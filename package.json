@@ -57,7 +57,7 @@
     "express-session": "^1.17.0",
     "mem": "^6.0.1",
     "react": "16.9.0",
-    "react-dom": "16.9.0",
+    "react-dom": "16.12.0",
     "react-native": "https://github.com/expo/react-native/archive/sdk-36.0.1.tar.gz",
     "react-native-animated-ellipsis": "^2.0.0",
     "react-native-gesture-handler": "~1.5.0",
