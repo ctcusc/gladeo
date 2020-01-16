@@ -8,7 +8,7 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native'
-import styles from './finalStepStyles'
+import styles from './styles'
 
 export default function FinalStepScreen(props: Props) {
   const {navigate} = props.navigation
@@ -24,7 +24,7 @@ export default function FinalStepScreen(props: Props) {
         </Text>
       </View>
       <View style={styles.footer}>
-        <TouchableOpacity onPress={() => navigate('Home')} style={styles.button}>
+        <TouchableOpacity onPress={() => navigate('Questions')} style={styles.button}>
           <Text style={styles.buttonText}>
             LET&apos;S GO!
           </Text>

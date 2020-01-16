@@ -9,7 +9,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native'
-import styles from './stepStyles'
+import styles from './styles'
 
 export default function StepScreens(props: Props) {
   const {navigate} = props.navigation

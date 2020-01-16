@@ -4,21 +4,20 @@ import { Platform } from 'react-native'
 import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
 import TabBarIcon from '../shared_components/TabBarIcon'
-import HomeScreen from '../screens/Home/HomeScreen/HomeScreen'
-import OnboardingScreen from '../screens/Home/OnboardingScreen/OnboardingScreen'
-import RenderingVideoScreen from '../screens/Home/RenderingVideoScreen/RenderingVideoScreen'
-import ProfileScreen from '../screens/Home/ProfileScreen/ProfileScreen'
-import RecordScreen from '../screens/Home/RecordScreen/RecordScreen'
+import QuestionsScreen from '../screens/Main/RecordStack/QuestionsScreen/QuestionsScreen'
+import RenderingVideoScreen from '../screens/Main/EditStack/RenderingVideoScreen/RenderingVideoScreen'
+import RecordScreen from '../screens/Main/RecordStack/RecordScreen/RecordScreen'
 
-const HomeStack = createStackNavigator(
+// Tab #1 - Question Selection + Recording
+const RecordStack = createStackNavigator(
   {
-    Home: HomeScreen,
+    Questions: QuestionsScreen,
     Record: RecordScreen,
   },
 )
 
-HomeStack.navigationOptions = {
-  tabBarLabel: 'Answer',
+RecordStack.navigationOptions = {
+  tabBarLabel: 'Record',
   tabBarIcon: (focused: boolean) => (
     <TabBarIcon
       focused={focused}
@@ -30,38 +29,23 @@ HomeStack.navigationOptions = {
     />
   ),
 }
-
-const CreateStack = createStackNavigator(
+// Tab #2 - Should contain Selecting Snippets, Creating Video, Complete video.. Rendering
+const EditStack = createStackNavigator(
   {
     RenderingVideo: RenderingVideoScreen,
-    Onboarding: OnboardingScreen,
   },
 )
 
-CreateStack.navigationOptions = {
+EditStack.navigationOptions = {
   tabBarLabel: 'Create',
   tabBarIcon: (focused: boolean) => (
     <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-create' : 'md-create'} />
   ),
 }
 
-const ProfileStack = createStackNavigator(
-  {
-    Profile: ProfileScreen,
-  },
-)
-
-ProfileStack.navigationOptions = {
-  tabBarLabel: 'Profile',
-  tabBarIcon: (focused: boolean) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-person' : 'md-person'} />
-  ),
-}
-
-const tabNavigator = createBottomTabNavigator({
-  HomeStack,
-  CreateStack,
-  ProfileStack,
+const mainTabNavigator = createBottomTabNavigator({
+  RecordStack,
+  EditStack,
 })
 
-export default tabNavigator
+export default mainTabNavigator

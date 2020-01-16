@@ -3,14 +3,17 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: '5%',
-    marginBottom: '4%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingBottom: '4%',
     alignContent: 'space-between',
     backgroundColor: '#fff',
   },
 
   main: {
-    flex: 3,
+    flex: 4,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',

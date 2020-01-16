@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import background from '../../../../assets/images/dotsbackground.png'
+import background from '../../../../../assets/images/dotsbackground.png'
 import {
   Text,
   View,
@@ -21,7 +21,7 @@ interface Props {
   navigation: NavigationScreenProp<NavigationState>,
 }
 /* AKA: Q&A screen */
-export default function HomeScreen(props: Props) {
+export default function QuestionsScreen(props: Props) {
   const [selected, setSelected] = useState<number | null>(null)
   const [questions, setQuestions] = useState<Array<Question>>([])
   const {navigate} = props.navigation
@@ -39,30 +39,31 @@ export default function HomeScreen(props: Props) {
   }, [])
 
   return (
-    <SafeAreaView style={styles.container}>
-      <ImageBackground source={background} style={{ width: '100%', height: '100%' }}>
-        <FlatList<Question>
-          data={questions}
-          renderItem={({ item }) => (
-            <Item
-              id={item.id}
-              title={item.text}
-              selected={selected === item.id}
-              onSelect={() => {
-                setSelected(item.id)
-                navigate('Record', {question: item.text})
-              }}
-            />
-          )}
-          keyExtractor={item => item.text}
-          extraData={selected}
-        />
-      </ImageBackground>
-    </SafeAreaView>
+    <ImageBackground source={background} style={styles.container}>
+      <Text style={styles.tip}>Tip: Answer 3-4 questions for a great video!</Text>
+   
+      <FlatList<Question>
+        data={questions}
+        renderItem={({ item }) => (
+          <Item
+            id={item.id}
+            title={item.text}
+            selected={selected === item.id}
+            onSelect={() => {
+              setSelected(item.id)
+              navigate('Record', {question: item.text})
+            }}
+          />
+        )}
+        keyExtractor={item => item.text}
+        extraData={selected}
+      />
+
+    </ImageBackground>
   )
 }
 
-HomeScreen.navigationOptions = {
+QuestionsScreen.navigationOptions = {
   title: 'QUESTIONS',
   headerTitleStyle: {
     fontFamily: 'roboto-bold',
@@ -70,18 +71,15 @@ HomeScreen.navigationOptions = {
     fontSize: 18,
     color: '#D94077',
   },
-  headerStyle: {
-    paddingBottom: '2%',
-    marginRight: '5%'
-  },
-  headerRight:
+  // eslint-disable-next-line react/display-name
+  headerRight: () => (
     <View style={styles.counter}>
       <View style={styles.numberCounter}>
         <Text style={styles.number}>0</Text>
       </View>
       <Text style={styles.answered}>answered</Text>
-
     </View>
+  )   
 }
 
 function Item(props: ItemProps) {

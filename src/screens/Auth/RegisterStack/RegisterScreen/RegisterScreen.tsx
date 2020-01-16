@@ -4,10 +4,10 @@ import {
   View,
   TouchableOpacity,
 } from 'react-native'
-import styles from '../../Auth/RegisterScreen/styles'
-import BlackHeading from '../../../shared_components/BlackHeading/BlackHeading'
-import GreyTextInput from '../../../shared_components/GreyTextInput/GreyTextInput'
-import PinkButton from '../../../shared_components/PinkButton/PinkButton'
+import styles from './styles'
+import BlackHeading from '../../../../shared_components/BlackHeading/BlackHeading'
+import GreyTextInput from '../../../../shared_components/GreyTextInput/GreyTextInput'
+import PinkButton from '../../../../shared_components/PinkButton/PinkButton'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
 
 interface Props {

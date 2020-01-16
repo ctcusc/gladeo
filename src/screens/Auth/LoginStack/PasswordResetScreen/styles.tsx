@@ -2,16 +2,16 @@ import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#fff',
   },
 
   main: {
-    flex: 3,
+    flex: 4,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
     color: '#000',
   },
 
@@ -19,7 +19,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'roboto-regular',
     fontStyle: 'normal',
-    lineHeight: 19,
     textAlign: 'center',
     color: '#777777',
     marginLeft: '17.6%',
@@ -32,14 +31,12 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontFamily: 'roboto-regular',
     fontSize: 16,
-    lineHeight: 19,
     color: '#777777',
   },
 
   pinkTextButton: {
     fontStyle: 'normal',
     fontSize: 16,
-    lineHeight: 19,
     fontFamily: 'roboto-regular',
     color: '#E5186E',
   },
@@ -48,7 +45,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: '2.3%'
+    paddingTop: 10,
   },
 
   footer: {

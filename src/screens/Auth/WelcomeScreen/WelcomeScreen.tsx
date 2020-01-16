@@ -5,8 +5,7 @@ import {
   TouchableOpacity,
   Image
 } from 'react-native'
-import styles from '../../Auth/WelcomeScreen/styles'
-import PinkButton from '../../../shared_components/PinkButton/PinkButton'
+import styles from './styles'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
 
 interface Props {
@@ -25,7 +24,14 @@ export default function WelcomeScreen(props: Props) {
         <Image style={styles.imageMiddle} resizeMode='contain' source={require('../../../../assets/images/gladeo_logo.png')} />
       </View>
       <View style={styles.footer}>
-        <PinkButton title="GET STARTED" onPress={() => navigate('Register')} disabled={false}/>
+        <TouchableOpacity
+          onPress={() => navigate('Register')}
+          style={styles.pinkButton}
+        >
+          <Text
+            style={styles.pinkButtonText}
+          >GET STARTED</Text>
+        </TouchableOpacity>
         <TouchableOpacity onPress={() => navigate('Login')}>
           <Text style={styles.blackTextButton}>Sign In</Text>
         </TouchableOpacity>        

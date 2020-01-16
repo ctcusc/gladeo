@@ -7,9 +7,9 @@ import {
   TouchableOpacity
 } from 'react-native'
 import styles from './styles'
-import BlackHeading from '../../../shared_components/BlackHeading/BlackHeading'
-import GreyTextInput from '../../../shared_components/GreyTextInput/GreyTextInput'
-import PinkButton from '../../../shared_components/PinkButton/PinkButton'
+import BlackHeading from '../../../../shared_components/BlackHeading/BlackHeading'
+import GreyTextInput from '../../../../shared_components/GreyTextInput/GreyTextInput'
+import PinkButton from '../../../../shared_components/PinkButton/PinkButton'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
 
 interface Props {
@@ -25,7 +25,7 @@ export default function LoginScreen(props: Props) {
     <View style={styles.container}>
       <View style={styles.main}>
         <BlackHeading title="Welcome Back" />
-        <Image style={styles.image} resizeMode='contain' source={require('../../../../assets/images/gladeo_logo.png')} />
+        <Image style={styles.image} resizeMode='contain' source={require('../../../../../assets/images/gladeo_logo.png')} />
         <GreyTextInput changeTextContent={(email) => setEmail(email)} placeholder="Email Address" inputType='emailAddress'/>
         <GreyTextInput changeTextContent={(pass) => setPassword(pass)} placeholder="Password" inputType='password'/>
         <TouchableOpacity

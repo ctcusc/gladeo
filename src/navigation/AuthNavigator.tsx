@@ -1,13 +1,12 @@
 import { createSwitchNavigator } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 
-import LoginScreen from '../screens/Auth/LoginScreen/LoginScreen'
-import RegisterScreen from '../screens/Auth/RegisterScreen/RegisterScreen'
-import ExampleScreen from '../screens/Auth/ExampleScreen/ExampleScreen'
-import PasswordResetScreen from '../screens/Auth/PasswordResetScreen/PasswordResetScreen'
-import CreatePasswordScreen from '../screens/Auth/CreatePasswordScreen/CreatePasswordScreen'
+import LoginScreen from '../screens/Auth/LoginStack/LoginScreen/LoginScreen'
+import RegisterScreen from '../screens/Auth/RegisterStack/RegisterScreen/RegisterScreen'
+import PasswordResetScreen from '../screens/Auth/LoginStack/PasswordResetScreen/PasswordResetScreen'
+import CreatePasswordScreen from '../screens/Auth/RegisterStack/CreatePasswordScreen/CreatePasswordScreen'
 import WelcomeScreen from '../screens/Auth/WelcomeScreen/WelcomeScreen'
-import GetStartedScreen from '../screens/Auth/GetStartedScreen/GetStartedScreen'
+import GetStartedScreen from '../screens/Auth/RegisterStack/GetStartedScreen/GetStartedScreen'
 
 const LoginStack = createStackNavigator(
   {

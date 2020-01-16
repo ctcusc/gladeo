@@ -2,8 +2,12 @@ import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
   container: {
+    display: 'flex',
     flex: 1,
     marginTop: 0,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   banner: {
     display: 'flex',
@@ -70,6 +74,7 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'space-around',
     alignSelf: 'flex-end',
+    marginRight: 10,
   },
   answered: {
     fontFamily: 'roboto-regular',
@@ -94,6 +99,12 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 4,
     color: '#D94077',
+  },
+  tip: {
+    fontFamily: 'roboto-regular',
+    fontSize: 12,
+    color: '#727272',
+    marginVertical: '5%',
   }
 })
 

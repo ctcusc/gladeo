@@ -2,7 +2,8 @@ import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    backgroundColor: '#fff',
   },
 
   imageTop: {
@@ -16,7 +17,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
     color: '#000',
     marginTop: '10%'
   },
@@ -44,6 +44,21 @@ const styles = StyleSheet.create({
     fontFamily: 'montserrat-semibold',
     color: '#000000',
     marginTop: '5%'
+  },
+  pinkButton: {
+    backgroundColor: '#E5186E',
+    borderRadius: 64,
+    justifyContent: 'center',
+    paddingHorizontal: '10%',
+    paddingVertical: '5%',
+  },
+
+  pinkButtonText: {
+    fontStyle: 'normal',
+    fontSize: 24,
+    fontFamily: 'montserrat-semibold',
+    color: '#F5F5F5',
+    textAlign: 'center',
   },
 
   imageMiddle: {

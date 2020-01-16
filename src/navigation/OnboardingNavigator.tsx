@@ -1,12 +1,12 @@
 /* eslint-disable react/display-name */
 import { createStackNavigator } from 'react-navigation-stack'
-import OnboardingScreen from '../screens/Home/OnboardingScreen/OnboardingScreen'
-import StepScreens from '../screens/Home/OnboardingScreen/StepScreens'
-import FinalStepScreen from '../screens/Home/OnboardingScreen/FinalStepScreen'
+import InitialOnboardingScreen from '../screens/Onboarding/InitialOnboardingScreen/InitialOnboardingScreen'
+import StepScreens from '../screens/Onboarding/StepScreens/StepScreens'
+import FinalStepScreen from '../screens/Onboarding/FinalStepScreen/FinalStepScreen'
 
 const OnboardingStack = createStackNavigator(
   {
-    Onboarding: OnboardingScreen,
+    InitialOnboarding: InitialOnboardingScreen,
     Steps: StepScreens,
     FinalStep: FinalStepScreen
   },

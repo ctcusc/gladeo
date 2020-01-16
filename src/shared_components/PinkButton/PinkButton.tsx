@@ -17,7 +17,7 @@ export default function PinkButton (props: Props) {
     <View>
       <TouchableOpacity
         onPress={() => props.onPress()}
-        style={props.disabled ? styles.pinkButtonDisabled : styles.pinkButton}
+        style={props.disabled ? [styles.pinkButton, styles.pinkButtonDisabled] : styles.pinkButton }
         disabled={props.disabled}
       >
         <Text

@@ -11,7 +11,7 @@ import {
 } from 'react-native'
 import styles from './styles'
 
-export default function OnboardingScreen(props: Props) {
+export default function InitialOnboardingScreen(props: Props) {
   const {navigate} = props.navigation
 
   return (
