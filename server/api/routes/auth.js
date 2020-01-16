@@ -9,11 +9,11 @@ router.post('/register', async (req, res) => {
   const email = req.body['Email']
   const fullName = req.body['Full Name'] 
   const title = req.body['Current Title']
-  const company = req.body['Company']
+  const companyCode = req.body['Company Code']
 
   try{
     // check if the user already exists
-    const user = await getUserByEmail(email)
+    let user = await getUserByEmail(email)
     // if exists, return error 409
     if (user != null) {
       throw {
@@ -22,7 +22,8 @@ router.post('/register', async (req, res) => {
       }
     }
     // else:
-    user = await registerUser(fullName, email, title, company)
+    const company = await getCompany(companyCode)
+    user = await registerUser(fullName, email, title, company._record)
     return res.status(200).send(user)
   } catch (err) {
     // when `statusCode` is not included, it is a server error 500

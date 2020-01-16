@@ -10,10 +10,9 @@ describe('Checks to see if an invalid route is handled', () => {
       'Full Name': 'Aliya Petranik',
       'Email': 'petranik@usc.edu',
       'Current Title': 'Tech Lead',
-      'Company': '1', 
+      'Company Code': 'anything', 
     })
     expect(res.status).toBe(404)
-    // done()
   })
 })
 
@@ -24,10 +23,9 @@ describe('Checks to see if adding a user that already exists is handled', () => 
       'Full Name': 'Aliya Petranik',
       'Email': 'petranik@usc.edu',
       'Current Title': 'Tech Lead',
-      'Company': '1', 
+      'Company Code': 'anything', 
     })
     expect(res.status).toBe(409)
-    // done()
   })
 }) 
 
@@ -38,15 +36,14 @@ describe('Checks to see if a new user is created successfully', () => {
       'Full Name': 'Yang Qiao',
       'Email': 'xiaoyanq@usc.edu',
       'Current Title': 'Developer',
-      'Company': '1', 
+      'Company Code': '1234', 
     })
     expect(res.status).toBe(200)
-    expect(res.body['Full Name']).toBeTruthy()
-    expect(res.body['Email']).toBeTruthy()
-    // done()
+    expect(res.body['Full Name']).toMatch('Yang Qiao')
+    expect(res.body['Email']).toMatch('xiaoyanq@usc.edu')
   })
 
   afterAll(async() => {
-    await base('User').drop()
+    await base('Users').drop()
   })
 })  
