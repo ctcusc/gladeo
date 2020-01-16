@@ -11,6 +11,7 @@ describe('Checks to see if an invalid route is handled', () => {
       'Email': 'petranik@usc.edu',
       'Current Title': 'Tech Lead',
       'Company Code': 'anything', 
+      'Password': 'abcdefgh'
     })
     expect(res.status).toBe(404)
   })
@@ -24,6 +25,7 @@ describe('Checks to see if adding a user that already exists is handled', () => 
       'Email': 'petranik@usc.edu',
       'Current Title': 'Tech Lead',
       'Company Code': 'anything', 
+      'Password': 'abcdefgh'
     })
     expect(res.status).toBe(409)
   })
@@ -37,10 +39,11 @@ describe('Checks to see if a new user is created successfully', () => {
       'Email': 'xiaoyanq@usc.edu',
       'Current Title': 'Developer',
       'Company Code': '1234', 
+      'Password': '12345678'
     })
     expect(res.status).toBe(200)
-    expect(res.body['fields']['Full Name']).toMatch('Yang Qiao')
-    expect(res.body['fields']['Email']).toMatch('xiaoyanq@usc.edu')
-    await base('Users').destroy(res.body['id'])
+    expect(res.body['Full Name']).toMatch('Yang Qiao')
+    expect(res.body['Email']).toMatch('xiaoyanq@usc.edu')
+    await base('Users').destroy(res.body['_record'])
   })
 })  

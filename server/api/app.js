@@ -1,4 +1,5 @@
 const express = require('express')
+const session = require('express-session')
 const questions = require('./routes/question')
 const user = require('./routes/user')
 const auth = require('./routes/auth')
@@ -7,7 +8,6 @@ const company = require('./routes/company')
 const app = express()
 
 const bodyParser = require('body-parser')
-const session = require('express-session')
 
 // connection checkpoint
 app.get('/status', (req, res) => {
@@ -36,12 +36,6 @@ app.use((req, res, next) => {
 // transforms the raw string of req.body into json
 app.use(bodyParser.json())
 
-// Tell app where our routes are
-app.use('/api/questions', questions)
-app.use('/api/user', user)
-app.use('/api/company', company)
-app.use('/api/auth', auth)
-
 // session config
 app.use(
   session({
@@ -50,6 +44,13 @@ app.use(
     saveUninitialized: true
   })
 )
+
+// Tell app where our routes are
+app.use('/api/questions', questions)
+app.use('/api/user', user)
+app.use('/api/auth', auth)
+app.use('/api/company', company)
+
 
 // general 404 error hendler
 app.use((req, res, next) => {

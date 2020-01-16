@@ -25,6 +25,7 @@ router.get('/:id', async (req, res) => {
     return res.status(404).send(err)
   }
 })
+
 // Returns array of all questions user has answered
 router.get('/:id/answered', async (req, res) => {
   try {

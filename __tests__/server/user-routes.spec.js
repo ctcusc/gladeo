@@ -47,7 +47,7 @@ describe('Checks user answered routes', () => {
     res = await request.get(`/api/user/${user2ID}/answered`)
     expect(res.status).toBe(200)
     expect(res.body.length).toBe(0)
-    let numOfQuestionsAdded = Math.min(4, questions.length)
+    const numOfQuestionsAdded = Math.min(4, questions.length)
     for (let i = 0; i < numOfQuestionsAdded; ++i) {
       res = await request.post(`/api/user/${user2ID}/answer`).send({ questionId: questionIDs[i]})
       expect(res.status).toBe(200)
@@ -56,7 +56,7 @@ describe('Checks user answered routes', () => {
       res = await request.get(`/api/user/${user2ID}/answered`)
       expect(res.status).toBe(200)
       expect(res.body.length).toBe(numOfQuestionsAdded)
-      let answered = res.body.Answered
+      const answered = res.body.Answered
       answered.forEach((question, index) => {
         expect(question.ID == questions[index]) 
       })
@@ -72,17 +72,16 @@ describe('Checks user answered routes', () => {
       res = await request.get(`/api/user/${user2ID}/answered`)
       expect(res.status).toBe(200)
       expect(res.body.length).toBe(1)
-      let answered = res.body.Answered
+      const answered = res.body.Answered
       expect(answered.includes(questions[7]))
     }, (3)) // needs a little time for the change go through the DB
   })
   afterAll(async () => {
     clearFieldsInSingleRecord(userBaseName, user2Id, answeredFieldName)
-    
   })
 })
 
-describe('Checks to see if user route returns the first user data successfully', () => {
+describe('Checks to see if user data is correct', () => {
   it('should print the first user data if successful', async () => {
     const res = await request.get('/api/user/1')
 
@@ -91,14 +90,12 @@ describe('Checks to see if user route returns the first user data successfully',
     expect(res.body['Current Title']).toMatch('Tech Lead')
     expect(res.status).toBe(200)
   })
-})
-
-describe('Checks to see if Full Name/Email/Current Title/Answered members exist for returned value', () => {
-  it('should print user data if successful', async () => {
+  it('should return Full Name/Email/Current Title/Answered members if successful', async () => {
     const res = await request.get('/api/user/1')
-    var keys = Object.keys(res.body)
+    const keys = Object.keys(res.body)
     expect(keys[0]).toMatch('_record')
     expect(keys[1]).toMatch('Current Title')
+    expect(keys[2]).toMatch('Password')
     expect(keys[3]).toMatch('Full Name')
     expect(keys[4]).toMatch('Company')
     expect(keys[5]).toMatch('Email')
@@ -110,14 +107,7 @@ describe('Checks to see if Full Name/Email/Current Title/Answered members exist 
 
 describe('Checks to see if invalid url is handled', () => {
   it('should return a 404 error', async () => {
-    const res = await request.get('/api/users/1')
-    expect(res.status).toBe(404)
-  })
-})
-
-describe('Checks to see if invalid user code is handled', () => {
-  it('should return a 404 error', async () => {
-    const res = await request.get('/api/user/999')
+    const res = await request.get('/api/users')
     expect(res.status).toBe(404)
   })
 })

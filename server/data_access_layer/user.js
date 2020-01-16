@@ -1,4 +1,6 @@
+const bcrypt = require('bcrypt')
 const { base } = require('./index')
+const { getCompany } = require('./company')
 const { extractContentFromRecords, getAllFromTable } = require('./helpers')
 
 async function getUser(userId) {
@@ -35,19 +37,41 @@ async function updateAnsweredQuestions(user, answeredQuestions) {
   return user
 }
 
-async function registerUser(fullName, email, title, company) {
+async function registerUser(fullName, email, title, companyCode, password) {
+  const company = await getCompany(companyCode)
+
+  // Hash password w/ 10 salt rounds
+  const passwordHashed = bcrypt.hashSync(password, 10)
+
   const newUser = {
     'Email': email,
-    'Company': [ company ],
+    'Company': [ company._record ],
     'Current Title': title,
-    'Full Name': fullName
+    'Full Name': fullName,
+    'Password': passwordHashed
   }
-  return await base('Users').create(newUser)
+  const createdUser = await base('Users').create(newUser)
+  return {
+    '_record': createdUser.id,
+    ...createdUser.fields,
+  }
 }
+
+async function verifyLogin(email, password) {
+  const user = await getUserByEmail(email)
+  // compare stored hash w/ plaintext
+  const match = await bcrypt.compare(password, user.Password)
+  if(match) {
+    return user
+  }
+  return
+}
+
 
 module.exports = {
   getUser,
   getUserByEmail,
   updateAnsweredQuestions,
-  registerUser
+  registerUser,
+  verifyLogin
 }
