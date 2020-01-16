@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { getUserByEmail, registerUser } = require('../../data_access_layer/user')
+const { getCompany } = require('../../data_access_layer/company')
 
 // router.get('/login', async (req, res) => {
 // })

@@ -37,12 +37,10 @@ async function updateAnsweredQuestions(user, answeredQuestions) {
 
 async function registerUser(fullName, email, title, company) {
   const newUser = {
-    'fields': {
-      'Email': email,
-      'Company': [ company ],
-      'Current Title': title,
-      'Full Name': fullName
-    }
+    'Email': email,
+    'Company': [ company ],
+    'Current Title': title,
+    'Full Name': fullName
   }
   await base('Users').create(newUser)
   return newUser
