@@ -1,3 +1,4 @@
+import { createSwitchNavigator } from 'react-navigation'
 import { createStackNavigator } from 'react-navigation-stack'
 
 import LoginScreen from '../screens/Auth/LoginScreen/LoginScreen'
@@ -8,19 +9,37 @@ import CreatePasswordScreen from '../screens/Auth/CreatePasswordScreen/CreatePas
 import WelcomeScreen from '../screens/Auth/WelcomeScreen/WelcomeScreen'
 import GetStartedScreen from '../screens/Auth/GetStartedScreen/GetStartedScreen'
 
-const AuthStack = createStackNavigator(
+const LoginStack = createStackNavigator(
   {
     Login: LoginScreen,
-    Register: RegisterScreen,
     PasswordReset: PasswordResetScreen,
-    Example: ExampleScreen,
-    CreatePassword: CreatePasswordScreen,
-    Welcome: WelcomeScreen,
-    GetStarted: GetStartedScreen,
   },
   {
-    initialRouteName: 'Welcome', // Determines which screen is shown first from AuthStack
+    headerMode: 'none',
   }
 )
 
-export default AuthStack
+const RegisterStack = createStackNavigator(
+  {
+    GetStarted: GetStartedScreen,
+    Register: RegisterScreen,
+    CreatePassword: CreatePasswordScreen,
+  },
+  {
+    headerMode: 'none',
+  }
+)
+
+const AuthNavigator = createSwitchNavigator(
+  {
+    Welcome: WelcomeScreen,
+    Login: LoginStack,
+    Register: RegisterStack,
+  },
+  {
+    headerMode: 'none',
+    initialRouteName: 'Welcome', // Determines which screen is shown first from AuthStack
+  },
+)
+
+export default AuthNavigator

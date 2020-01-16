@@ -25,9 +25,9 @@ export default function WelcomeScreen(props: Props) {
         <Image style={styles.imageMiddle} resizeMode='contain' source={require('../../../../assets/images/gladeo_logo.png')} />
       </View>
       <View style={styles.footer}>
-        <PinkButton title="Get Started" onPress={() => navigate('Register')} disabled={false}/>
+        <PinkButton title="GET STARTED" onPress={() => navigate('Register')} disabled={false}/>
         <TouchableOpacity onPress={() => navigate('Login')}>
-          <Text style={styles.blackTextButton}>Log In</Text>
+          <Text style={styles.blackTextButton}>Sign In</Text>
         </TouchableOpacity>        
       </View>
     </View>

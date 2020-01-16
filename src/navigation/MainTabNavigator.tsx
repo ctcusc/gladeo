@@ -8,21 +8,13 @@ import HomeScreen from '../screens/Home/HomeScreen/HomeScreen'
 import OnboardingScreen from '../screens/Home/OnboardingScreen/OnboardingScreen'
 import RenderingVideoScreen from '../screens/Home/RenderingVideoScreen/RenderingVideoScreen'
 import ProfileScreen from '../screens/Home/ProfileScreen/ProfileScreen'
-import StepScreens from '../screens/Home/OnboardingScreen/StepScreens'
-import FinalStepScreen from '../screens/Home/OnboardingScreen/FinalStepScreen'
 import RecordScreen from '../screens/Home/RecordScreen/RecordScreen'
 
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
     Record: RecordScreen,
-    Onboarding: OnboardingScreen,
-    Steps: StepScreens,
-    FinalStep: FinalStepScreen
   },
-  {
-    initialRouteName: 'Home',
-  }
 )
 
 HomeStack.navigationOptions = {

@@ -2,15 +2,16 @@ import { createAppContainer, createSwitchNavigator } from 'react-navigation'
 
 import MainTabNavigator from './MainTabNavigator'
 import AuthNavigator from './AuthNavigator'
+import OnboardingNavigator from './OnboardingNavigator'
 
 export default createAppContainer(
-  createSwitchNavigator({
-    // AuthLoading: Loading screen, 
-    Main: MainTabNavigator,
-    Auth: AuthNavigator,
-  },
-  {
-    initialRouteName: 'Main', // Determines which nav stack is shown first
-  }
-  )
+  createSwitchNavigator(
+    {
+      Main: MainTabNavigator,
+      Auth: AuthNavigator,
+      Onboarding: OnboardingNavigator, 
+    },
+    {
+      initialRouteName: 'Onboarding', // Determines which nav stack is shown first
+    })
 )

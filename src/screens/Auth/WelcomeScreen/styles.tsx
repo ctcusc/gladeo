@@ -40,8 +40,7 @@ const styles = StyleSheet.create({
 
   blackTextButton: {
     fontStyle: 'normal',
-    fontSize: 18,
-    lineHeight: 22,
+    fontSize: 24,
     fontFamily: 'montserrat-semibold',
     color: '#000000',
     marginTop: '5%'

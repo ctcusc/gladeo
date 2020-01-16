@@ -31,7 +31,7 @@ export default function CreatePasswordScreen(props: Props) {
           setConfirmPassword(confirmPassword)
         }} placeholder="Confirm Password" inputType='password'/>
         <PinkButton title="CONTINUE" onPress={() => {
-          navigate('GetStarted')
+          navigate('Home')
         }
         }
         disabled={password.length < 8 || password != confirmPassword}

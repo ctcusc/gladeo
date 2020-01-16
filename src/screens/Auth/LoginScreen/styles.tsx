@@ -5,7 +5,8 @@ const styles = StyleSheet.create({
     flex: 1,
     marginTop: '5%',
     marginBottom: '4%',
-    alignContent: 'space-between'
+    alignContent: 'space-between',
+    backgroundColor: '#fff',
   },
 
   main: {
@@ -14,7 +15,6 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: '#fff',
     color: '#000',
   },
 

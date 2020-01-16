@@ -2,12 +2,11 @@ import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
   pinkButton: {
-    width: 320,
-    height: 48,
+    height: 60,
     backgroundColor: '#E5186E',
     borderRadius: 64,
     justifyContent: 'center',
-    marginTop: '1.5%',
+    paddingHorizontal: '10%',
   },
 
   pinkButtonDisabled: {
@@ -22,9 +21,9 @@ const styles = StyleSheet.create({
 
   buttonText: {
     fontStyle: 'normal',
-    fontSize: 16,
-    fontFamily: 'roboto-bold',
-    color: '#E5E5E5',
+    fontSize: 24,
+    fontFamily: 'montserrat-semibold',
+    color: '#F5F5F5',
     textAlign: 'center',
   }
 })
