@@ -29,6 +29,9 @@ describe('Checks user answered routes', () => {
   // the following test might modify `answered` field of user test2
   beforeEach(async () => {
     clearFieldsInSingleRecord(userBaseName, user2Id, answeredFieldName)
+    await testSession.post('/api/auth/login').send({ Email: 'a2@b.com', Password: 'password'})
+    const res = await testSession.post('/api/user/answer').send({ questionId: questionIDs[7]})
+
   })
   // assume user always has at least one answered questions
   it('should return the nonempty array of the answered questions of user test', async () => {
@@ -82,7 +85,7 @@ describe('Checks to see if user answers update correctly', () => {
     }
     setTimeout(async () => {
       res = await testSession.get('/api/user/answered')
-      expect(res.status).toBe(200)
+      expect(res.status).toBe(400)
       expect(res.body.length).toBe(numOfQuestionsAdded)
       const answered = res.body.Answered
       answered.forEach((question, index) => {
