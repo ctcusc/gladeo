@@ -56,9 +56,9 @@ router.post('/answer', async (req, res) => {
     if(req.session && req.session.authenticated) { // user logged in
       const user = req.session.authenticated
       const { questionId } = req.body
-      const answeredQuestions = [] // ensures array is at least defined if it is empty
+      let answeredQuestions = [] // ensures array is at least defined if it is empty
       if (user.Answered !== undefined) {
-        answeredQuestions.concat(user.Answered) // already answered by user
+        answeredQuestions = user.Answered // already answered by user
       }
 
       // Use question's ID to grab the whole object from questions table
@@ -74,7 +74,11 @@ router.post('/answer', async (req, res) => {
       const updatedUser = await updateAnsweredQuestions(user, answeredQuestions)
 
       return res.status(200).send(updatedUser)
-    } 
+    } else {
+      return res.status(403).send({
+        message: 'user is not authorized to use this resource',
+      })
+    }
   } catch (err) {
     // when `statusCode` is not included, it is a server error 500
     if (err.statusCode === undefined) {
