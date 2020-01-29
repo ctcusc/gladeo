@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import background from '../../../../../assets/images/dotsbackground.png'
+
+import ModalBaseScene from '../utils/ModalBaseScene'
+import DefaultModalContent from '../utils/DefaultModalContent'
 import {
   Text,
   View,
@@ -7,6 +10,7 @@ import {
   TouchableOpacity,
   ImageBackground,
 } from 'react-native'
+import Modal from 'react-native-modal'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { BASE_PATH } from 'react-native-dotenv'
 import styles from './styles'
@@ -25,6 +29,7 @@ export default function QuestionsScreen(props: Props) {
   const [selected, setSelected] = useState<number | null>(null)
   const [questions, setQuestions] = useState<Array<Question>>([])
   const {navigate} = props.navigation
+  const [modalVisibility, setModalVisibility] = useState(true)
 
   useEffect(() => {
     fetch(`${BASE_PATH}/api/questions`)
@@ -50,14 +55,51 @@ export default function QuestionsScreen(props: Props) {
             title={item.text}
             selected={selected === item.id}
             onSelect={() => {
-              setSelected(item.id)
-              navigate('Record', {question: item.text})
+              setModalVisibility(true)
+              //setSelected(item.id)
+              //navigate('Record', {question: item.text})
             }}
           />
         )}
         keyExtractor={item => item.text}
         extraData={selected}
       />
+
+      <Modal
+        isVisible={modalVisibility}
+        onRequestClose={() => {
+          setModalVisibility(false)
+        } }
+        backdropOpacity={0.2}
+        
+        animationInTiming={600}
+        animationOutTiming={600}
+        backdropTransitionInTiming={600}
+        backdropTransitionOutTiming={600}>
+        <View style={styles.modalLayout}>
+          <View style={styles.topModalBorder}>
+            <TouchableOpacity style={styles.topModal}>
+              <Text style={styles.modalContent}>view question</Text>
+            </TouchableOpacity>
+          </View>
+
+          <View style={styles.middleModalBorder}>
+            <TouchableOpacity style={styles.middleModal}>
+              <Text style={styles.modalContent}>re-record question</Text>
+            </TouchableOpacity>
+          </View>
+
+
+          <View style={styles.bottomModalBorder}>
+            <TouchableOpacity style={styles.bottomModal}
+              onPress={() => {
+                setModalVisibility(false)
+              }}>
+              <Text style={styles.closeTitle}>close</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
 
     </ImageBackground>
   )
