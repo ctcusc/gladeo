@@ -25,8 +25,8 @@ export default function GetStartedScreen(props: Props) {
       <View style={styles.main}>
         <BlackHeading title="Let's get Started!" />
         <Text style={styles.margin}></Text>
-        <GreyTextInput changeTextContent={(title) => setTitle(title)} placeholder="Current Title" inputType='text'/>
-        <GreyTextInput changeTextContent={(code) => setCode(code)} placeholder="Company Code" inputType='text'/>
+        <GreyTextInput changeTextContent={(title) => setTitle(title)} input={title} placeholder="Current Title" inputType='text'/>
+        <GreyTextInput changeTextContent={(code) => setCode(code)} input={code} placeholder="Company Code" inputType='text'/>
         <PinkButton title="START CREATING" 
           onPress={
             () => navigate('Register')
