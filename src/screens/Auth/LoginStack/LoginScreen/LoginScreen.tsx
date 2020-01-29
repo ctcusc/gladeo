@@ -34,12 +34,12 @@ export default function LoginScreen(props: Props) {
         'Password': password
       }),
     })
-      .then(res => res.json()
-      )
+      .then(res => res.json())
       .then(data => {
         console.log(data)
         if(data.ID == undefined) {
           Alert.alert('Incorrect email address or password')
+          setPassword('')
         } else if(data.Answered == undefined || data.Answered.length == 0) {
           navigate('Onboarding')
         } else if(data.Answered.length >= 1) {
@@ -56,12 +56,12 @@ export default function LoginScreen(props: Props) {
       <View style={styles.main}>
         <BlackHeading title="Welcome Back" />
         <Image style={styles.image} resizeMode='contain' source={require('../../../../../assets/images/gladeo_logo.png')} />
-        <GreyTextInput changeTextContent={(email) => setEmail(email)} placeholder="Email Address" inputType='emailAddress'/>
-        <GreyTextInput changeTextContent={(pass) => setPassword(pass)} placeholder="Password" inputType='password'/>
+        <GreyTextInput changeTextContent={(email) => setEmail(email)} input={email} placeholder="Email Address" inputType='emailAddress'/>
+        <GreyTextInput changeTextContent={(pass) => setPassword(pass)} input={password} placeholder="Password" inputType='password'/>
         <TouchableOpacity
           onPress={() => navigate('PasswordReset')}
         >
-          <Text  style={styles.textButton}>Forgot Password?</Text>
+          <Text style={styles.textButton}>Forgot Password?</Text>
         </TouchableOpacity>
         <PinkButton title="LOG IN" onPress={handleLogin} disabled={!email || !password}/>
       </View>
