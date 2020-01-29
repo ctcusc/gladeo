@@ -26,8 +26,8 @@ export default function LoginScreen(props: Props) {
       <View style={styles.main}>
         <BlackHeading title="Welcome Back" />
         <Image style={styles.image} resizeMode='contain' source={require('../../../../assets/images/gladeo_logo.png')} />
-        <GreyTextInput changeTextContent={(email) => setEmail(email)} placeholder="Email Address" inputType='emailAddress'/>
-        <GreyTextInput changeTextContent={(pass) => setPassword(pass)} placeholder="Password" inputType='password'/>
+        <GreyTextInput changeTextContent={(email) => setEmail(email)} input={email} placeholder="Email Address" inputType='emailAddress'/>
+        <GreyTextInput changeTextContent={(pass) => setPassword(pass)} input={password} placeholder="Password" inputType='password'/>
         <TouchableOpacity
           onPress={() => navigate('PasswordReset')}
         >

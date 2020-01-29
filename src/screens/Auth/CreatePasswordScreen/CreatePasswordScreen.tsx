@@ -26,10 +26,10 @@ export default function CreatePasswordScreen(props: Props) {
         <Text style={styles.regularText}>Keep this secure!</Text>
         <GreyTextInput changeTextContent={(password) => {
           setPassword(password)
-        }} placeholder="Password (8+ characters)" inputType='password'/>
+        }} placeholder="Password (8+ characters)" inputType='password' input={password}/>
         <GreyTextInput changeTextContent={(confirmPassword) => {
           setConfirmPassword(confirmPassword)
-        }} placeholder="Confirm Password" inputType='password'/>
+        }} placeholder="Confirm Password" inputType='password' input={confirmPassword}/>
         <PinkButton title="CONTINUE" onPress={() => {
           navigate('Home')
         }

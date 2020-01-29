@@ -24,8 +24,8 @@ export default function RegisterScreen(props: Props) {
       <View style={styles.main}>
         <BlackHeading title="What's your Email?" />
         <Text style={styles.regularText}>Make sure to use your work email so we can match you to your employer</Text>
-        <GreyTextInput changeTextContent={(name) => setName(name)} placeholder="Name" inputType='text'/>
-        <GreyTextInput changeTextContent={(email) => setEmail(email)} placeholder="Email Address" inputType='emailAddress'/>
+        <GreyTextInput changeTextContent={(name) => setName(name)} placeholder="Name" inputType='text' input={name}/>
+        <GreyTextInput changeTextContent={(email) => setEmail(email)} placeholder="Email Address" inputType='emailAddress' input={email}/>
         <PinkButton title="CONTINUE" 
           onPress={
             () => navigate('CreatePassword')
