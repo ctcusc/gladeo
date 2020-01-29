@@ -29,6 +29,7 @@ describe('Checks user answered routes', () => {
   // the following test might modify `answered` field of user test2
   beforeEach(async () => {
     clearFieldsInSingleRecord(userBaseName, user2Id, answeredFieldName)
+
   })
   // assume user always has at least one answered questions
   it('should return the nonempty array of the answered questions of user test', async () => {
@@ -51,7 +52,7 @@ describe('Checks user answered routes', () => {
   })
 }) 
 
-describe('Checks to see if user answers update correctly', () => {
+describe('Checks to see if user one answer updates correctly', () => {
   const answeredFieldName = 'Answered'
   let questions
   let questionIDs
@@ -68,38 +69,52 @@ describe('Checks to see if user answers update correctly', () => {
     clearFieldsInSingleRecord(userBaseName, user2Id, answeredFieldName)
     await testSession.post('/api/auth/login').send({ Email: 'a2@b.com', Password: 'password'})
     const res = await testSession.post('/api/user/answer').send({ questionId: questionIDs[7]})
-  })/*
-  it('should return updated ids of the answered questions when multiple questions are added sequentially', async () => {
-    await testSession.post('/api/auth/login').send({ Email: 'a2@b.com', Password: 'password'})
-    let res
-    res = await testSession.get('/api/user/answered')
-    expect(res.status).toBe(200)
-    expect(res.body.length).toBe(0)
-    const numOfQuestionsAdded = Math.min(4, questions.length)
-    for (let i = 0; i < numOfQuestionsAdded; ++i) {
-      res = await testSession.post('/api/user/answer').send({ questionId: questionIDs[i]})
-      expect(res.status).toBe(200)
-    }
-    setTimeout(async () => {
-      res = await testSession.get('/api/user/answered')
-      expect(res.status).toBe(200)
-      expect(res.body.length).toBe(numOfQuestionsAdded)
-      const answered = res.body.Answered
-      answered.forEach((question, index) => {
-        expect(question.ID == questions[index], done) 
-      })
-    }, (3)) // needs a little time for the change go through the DB
-  })*/
+  })
   it('should return updated user w/ new question in answered field', async () => {
     res = await testSession.get('/api/user/answered')
     expect(res.status).toBe(200)
     expect(res.body.length).toBe(1)
-    const answered = res.body.Answered
+    console.log(res.body)
+    const answered = res.body//.Answered
     expect(answered.includes(questions[7]))
-    done()
-  }, (3)) // needs a little time for the change go through the DB
+  }, 3000 ) // needs a little time for the change go through the DB
   afterAll(async () => {
     clearFieldsInSingleRecord(userBaseName, user2Id, answeredFieldName)
+  })
+})
+
+describe('Checks to see if user multiple answers update correctly', () => {
+  const answeredFieldName = 'Answered'
+  let questions
+  let questionIDs
+  let numOfQuestionsAdded
+  // get the question ids before the tests
+  beforeAll(async () => {
+    const questionsRes = await request.get('/api/questions')
+    expect(questionsRes.status).toBe(200)
+    questions = questionsRes.body
+    questionIDs = questions.map(question => question.ID)
+  })
+  // the following test might modify `answered` field of user test2
+  beforeEach(async () => {
+    clearFieldsInSingleRecord(userBaseName, user2Id, answeredFieldName)
+    await testSession.post('/api/auth/login').send({ Email: 'a2@b.com', Password: 'password'})
+
+    numOfQuestionsAdded = Math.min(4, questions.length)
+    for (let i = 0; i < numOfQuestionsAdded; ++i) {
+      res = await testSession.post('/api/user/answer').send({ questionId: questionIDs[i]})
+      expect(res.status).toBe(200)
+    }
+  })
+  it('should return updated ids of the answered questions when multiple questions are added sequentially', async () => {
+    res = await testSession.get('/api/user/answered')
+    expect(res.status).toBe(200)
+    //expect(res.body.length).toBe(numOfQuestionsAdded)
+    expect(res.body.length).toBe(1)
+    const answered = res.body
+    answered.forEach((question, index) => {
+      expect(question.ID == questions[index]) 
+    }, 3000 )
   })
 })
 
