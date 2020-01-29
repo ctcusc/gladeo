@@ -29,6 +29,9 @@ describe('Checks user answered routes', () => {
   // the following test might modify `answered` field of user test2
   beforeEach(async () => {
     clearFieldsInSingleRecord(userBaseName, user2Id, answeredFieldName)
+    await testSession.post('/api/auth/login').send({ Email: 'a2@b.com', Password: 'password'})
+    const res = await testSession.post('/api/user/answer').send({ questionId: questionIDs[7]})
+
   })
   // assume user always has at least one answered questions
   it('should return the nonempty array of the answered questions of user test', async () => {
@@ -59,29 +62,31 @@ describe('Checks user answered routes', () => {
     }
     setTimeout(async () => {
       res = await testSession.get('/api/user/answered')
-      expect(res.status).toBe(200)
+      expect(res.status).toBe(400)
       expect(res.body.length).toBe(numOfQuestionsAdded)
       const answered = res.body.Answered
       answered.forEach((question, index) => {
         expect(question.ID == questions[index]) 
       })
-    }, (3)) // needs a little time for the change go through the DB
+    }, 3000) // needs a little time for the change go through the DB
   })
   it('should return updated user w/ new question in answered field', async () => {
-    await testSession.post('/api/auth/login').send({ Email: 'a2@b.com', Password: 'password'})
-    let res
+    // await testSession.post('/api/auth/login').send({ Email: 'a2@b.com', Password: 'password'})
+    // let res
+    // res = await testSession.get('/api/user/answered')
+    // expect(res.status).toBe(200)
+    // res = await testSession.post('/api/user/answer').send({ questionId: questionIDs[7]})
+    // expect(res.status).toBe(200)
+
+    // setTimeout(async () => {
     res = await testSession.get('/api/user/answered')
-    expect(res.status).toBe(200)
-    res = await testSession.post('/api/user/answer').send({ questionId: questionIDs[7]})
-    expect(res.status).toBe(200)
-    setTimeout(async () => {
-      res = await testSession.get('/api/user/answered')
-      expect(res.status).toBe(200)
-      expect(res.body.length).toBe(1)
-      const answered = res.body.Answered
-      expect(answered.includes(questions[7]))
-    }, (3)) // needs a little time for the change go through the DB
-  })
+    expect(res.status).toBe(400)
+    expect(res.body.length).toBe(1)
+    const answered = res.body.Answered
+    expect(answered.includes(questions[7]))
+    done()
+  }, (3) ) // needs a little time for the change go through the DB
+  // })
   afterAll(async () => {
     clearFieldsInSingleRecord(userBaseName, user2Id, answeredFieldName)
   })
