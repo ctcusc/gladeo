@@ -27,7 +27,7 @@ export default function HomeScreen(props: Props) {
   const {navigate} = props.navigation
 
   useEffect(() => {
-    fetch(`${BASE_PATH}/api/questions`)
+    fetch('https://9f43903c.ngrok.io/api/questions')
       .then(res => res.json())
       .then(data => {
         setQuestions(data)
