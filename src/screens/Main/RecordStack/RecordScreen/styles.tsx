@@ -36,7 +36,13 @@ const styles = StyleSheet.create({
     borderWidth: 5,
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
+  leftContainer: {
+    flex: 1,
+    flexDirection: 'row-reverse',
+    justifyContent: 'space-around',
+    marginTop: 20
+  },
 })
 
 export default styles

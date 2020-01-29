@@ -4,6 +4,7 @@ import { Camera } from 'expo-camera'
 import styles from './styles'
 import { FontAwesome } from '@expo/vector-icons'
 import { StopWatch } from 'react-native-stopwatch-timer'
+import { ScreenOrientation } from 'expo'
 
 // Note: This page is meant to be displayed in landscape, so components are ordered left to right
 // instead of top to bottom. 
@@ -35,6 +36,7 @@ export default function RecordScreen(props: Props) {
     (async () => {
       const { status } = await Camera.requestPermissionsAsync()
       setHasPermission(status === 'granted')
+      await ScreenOrientation.lockAsync(ScreenOrientation.Orientation.LANDSCAPE)
     })()
   }, [])
 
@@ -51,9 +53,10 @@ export default function RecordScreen(props: Props) {
           setCamera(ref)
         }}
         type={cameraType}
+        style={{flex: 1}}
       >
-        <View>
-          <View>
+        <View style={{flex: 1}}>
+          <View style={styles.leftContainer}>
             <View style={styles.photoButtonCircle}>
               <TouchableOpacity
                 onPress={ async () => {
@@ -62,21 +65,22 @@ export default function RecordScreen(props: Props) {
                 style={styles.photoButton}  
               />
             </View>
-            <View style={styles.recordButtonCircle}/>
-            <TouchableOpacity
-              onPress={ () => {
-                if(camera) {
-                  if (isRecording) {
-                    setIsRecording(false)
-                    camera.stopRecording()
-                  } else {
-                    const video = camera.recordAsync()
-                    setIsRecording(true)
+            <View style={styles.recordButtonCircle}>
+              <TouchableOpacity
+                onPress={ () => {
+                  if(camera) {
+                    if (isRecording) {
+                      setIsRecording(false)
+                      camera.stopRecording()
+                    } else {
+                      const video = camera.recordAsync()
+                      setIsRecording(true)
+                    }
                   }
-                }
-              }}
-              style={isRecording ? styles.stopRecordButton : styles.startRecordButton}
-            />
+                }}
+                style={isRecording ? styles.stopRecordButton : styles.startRecordButton}
+              />
+            </View>
             <FontAwesome.Button
               name="camera"
               color="#FFFFFF"
@@ -87,13 +91,14 @@ export default function RecordScreen(props: Props) {
                   setCameraType(Camera.Constants.Type.front)
                 }
               }}
+              backgroundColor='rgba(52, 52, 52, 0.01)'
             />
           </View>
           <View>
-            <StopWatch
+            {/*<StopWatch
               options={options}
               start={isRecording}
-            />
+            />*/}
             <View>
               <Text>
                 {props.question}
