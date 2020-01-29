@@ -56,7 +56,7 @@ export default function QuestionsScreen(props: Props) {
             selected={selected === item.id}
             onSelect={() => {
               setModalVisibility(true)
-              //setSelected(item.id)
+              setSelected(item.id)
               //navigate('Record', {question: item.text})
             }}
           />
@@ -72,6 +72,8 @@ export default function QuestionsScreen(props: Props) {
         } }
         backdropOpacity={0.2}
         
+        animationIn="zoomIn"
+        animationOut="zoomOut"
         animationInTiming={600}
         animationOutTiming={600}
         backdropTransitionInTiming={600}
