@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     letterSpacing: -50,
   },
   text: {
-    fontFamily: 'montserrat-regular', 
+    fontFamily: 'montserrat-regular',
     fontStyle: 'normal',
     fontWeight: 'bold',
     fontSize: 30,
