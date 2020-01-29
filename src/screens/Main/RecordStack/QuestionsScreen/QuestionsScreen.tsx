@@ -29,7 +29,7 @@ export default function QuestionsScreen(props: Props) {
   const [selected, setSelected] = useState<number | null>(null)
   const [questions, setQuestions] = useState<Array<Question>>([])
   const {navigate} = props.navigation
-  const [modalVisibility, setModalVisibility] = useState(true)
+  const [modalVisibility, setModalVisibility] = useState(false)
 
   useEffect(() => {
     fetch(`${BASE_PATH}/api/questions`)
