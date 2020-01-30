@@ -10,8 +10,9 @@ const userBaseName = 'Users'
 let testSession = null
 
 let server
-beforeEach(async () => {
+beforeEach(async (done) => {
   testSession = await supertestsession(app)
+  done()
 })
 
 describe('Checks user already answered routes', () => {
