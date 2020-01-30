@@ -35,15 +35,15 @@ describe('Checks to see if adding a user that already exists is handled', () => 
 describe('Checks to see if a new user is created successfully', () => {
   it('should return 200 and successfully create a user', async() => {
     const res = await request.post('/api/auth/register').send({
-      'Full Name': 'Yang Qiao',
-      'Email': 'xiaoyanq@usc.edu',
+      'Full Name': 'Random User',
+      'Email': 'random@usc.edu',
       'Current Title': 'Developer',
       'Company Code': '1234', 
       'Password': '12345678'
     })
     expect(res.status).toBe(200)
-    expect(res.body['Full Name']).toMatch('Yang Qiao')
-    expect(res.body['Email']).toMatch('xiaoyanq@usc.edu')
+    expect(res.body['Full Name']).toMatch('Random User')
+    expect(res.body['Email']).toMatch('random@usc.edu')
     await base('Users').destroy(res.body['_record'])
   })
 })  

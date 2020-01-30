@@ -9,11 +9,11 @@ interface Props {
   placeholder: string,
   inputType: string,
   changeTextContent(input: string): void,
+  input: string,
 }
 
 export default function GreyTextInput (props: Props){
   const [text, setText] = useState('')
-
   const [inFocus, setInFocus] = useState(false)
 
   return (
@@ -26,7 +26,7 @@ export default function GreyTextInput (props: Props){
             props.changeTextContent(input)
           }
         }
-        value={text}
+        value={props.input}
         style={inFocus ? styles.inFocus : styles.input}
         onFocus={() => setInFocus(true)}
         onBlur={() => setInFocus(false)}

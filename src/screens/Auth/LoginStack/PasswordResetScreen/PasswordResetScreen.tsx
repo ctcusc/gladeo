@@ -20,7 +20,7 @@ export default function PasswordResetScreen() {
         <Text style={styles.regularText}>We&apos;ll send a reset link to the email linked to your account</Text>
         <GreyTextInput changeTextContent={(email) => {
           setEmail(email)
-        }} placeholder="Email Address" inputType='emailAddress'/>
+        }} placeholder="Email Address" inputType='emailAddress' input={email}/>
         <PinkButton title="SEND" onPress={() => Alert.alert('pressed')} disabled={!email}/>
         <View style={styles.resendButtonLine}> 
           <Text style={styles.normalText}>No dice?</Text>
