@@ -6,7 +6,7 @@
     "ios": "expo start --ios",
     "web": "expo start --web",
     "eject": "expo eject",
-    "test": "jest __tests__/server/ --collect-coverage --detectOpenHandles ",
+    "test": "jest __tests__/server/ --collect-coverage ",
     "testDebug": "jest -o --watch --coverage",
     "testFinal": "jest",
     "updateSnapshots": "jest -u --coverage=false",
