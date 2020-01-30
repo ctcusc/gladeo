@@ -8,8 +8,9 @@ const user1Id = 'recmAyOc3FPftHqZG'
 const userBaseName = 'Users'
 
 let testSession = null
-beforeEach(function () {
-  testSession = supertestsession(app)
+let server
+beforeEach(async () => {
+  testSession = await supertestsession(app)
 })
 
 describe('Checks user already answered routes', () => {
@@ -83,8 +84,9 @@ describe('Checks user answer and answered routes', () => {
       expect(question.ID == questions[index]) 
     }, 3000 )
   })
-  afterAll(async () => {
+  afterAll(() => {
     clearFieldsInSingleRecord(userBaseName, user1Id, answeredFieldName)
+    done()
   })
 }) 
 
