@@ -32,6 +32,10 @@ router.get('/answered', async (req, res) => {
       extractQuestions().then(data => {
         return res.status(200).send(data)
       })
+    } else {
+      return res.status(403).send({
+        message: 'user is not authorized to use this resource',
+      })
     }
   } catch (err) {
     // when `statusCode` is not included, it is a server error 500
