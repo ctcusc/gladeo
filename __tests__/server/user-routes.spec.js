@@ -7,20 +7,14 @@ const supertestsession = require('supertest-session')
 const user1Id = 'recmAyOc3FPftHqZG'
 const userBaseName = 'Users'
 
-let testSession = null
-
-let server
-beforeEach(async (done) => {
-  testSession = await supertestsession(app)
-  done()
-})
-
 describe('Checks user already answered routes', () => {
   const answeredFieldName = 'Answered'
   let questions
   let questionIDs
+  let testSession
   // get the question ids before the tests
   beforeAll(async (done) => {
+    testSession = await supertestsession(app)
     const questionsRes = await request.get('/api/questions')
     expect(questionsRes.status).toBe(200)
     questions = questionsRes.body
@@ -52,8 +46,10 @@ describe('Checks user answer and answered routes', () => {
   const answeredFieldName = 'Answered'
   let questions
   let questionIDs
+  let testSession
   // get the question ids before the tests
   beforeAll(async (done) => {
+    testSession = await supertestsession(app)
     const questionsRes = await request.get('/api/questions')
     expect(questionsRes.status).toBe(200)
     questions = questionsRes.body
@@ -101,6 +97,12 @@ describe('Checks user answer and answered routes', () => {
 }) 
 
 describe('Checks to see if user data is correct', () => {
+  let testSession
+  // get the question ids before the tests
+  beforeAll(async (done) => {
+    testSession = await supertestsession(app)
+    done()
+  })
   it('should 404 if no user is logged in', async (done) => {
     const res = await testSession.get('/api/user')
     expect(res.status).toBe(404)
