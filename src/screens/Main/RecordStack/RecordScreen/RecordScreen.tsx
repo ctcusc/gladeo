@@ -3,7 +3,6 @@ import { Text, View, TouchableOpacity } from 'react-native'
 import { Camera } from 'expo-camera'
 import styles from './styles'
 import { FontAwesome } from '@expo/vector-icons'
-import { StopWatch } from 'react-native-stopwatch-timer'
 import { ScreenOrientation } from 'expo'
 
 // Note: This page is meant to be displayed in landscape, so components are ordered left to right

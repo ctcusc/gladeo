@@ -39,9 +39,8 @@ const styles = StyleSheet.create({
   },
   leftContainer: {
     flex: 1,
-    flexDirection: 'row-reverse',
     justifyContent: 'space-around',
-    marginTop: 20
+    marginLeft: 20
   },
 })
 

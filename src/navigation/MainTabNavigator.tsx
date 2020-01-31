@@ -14,10 +14,14 @@ const RecordStack = createStackNavigator(
     Questions: QuestionsScreen,
     Record: RecordScreen,
   },
+  { 
+    headerMode: 'none' 
+  }
 )
 
 RecordStack.navigationOptions = {
   tabBarLabel: 'Record',
+  tabBarVisible: false,
   tabBarIcon: (focused: boolean) => (
     <TabBarIcon
       focused={focused}
@@ -46,6 +50,7 @@ EditStack.navigationOptions = {
 const mainTabNavigator = createBottomTabNavigator({
   RecordStack,
   EditStack,
-})
+}
+)
 
 export default mainTabNavigator
