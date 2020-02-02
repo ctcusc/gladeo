@@ -2,12 +2,8 @@ import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
   container: {
-    display: 'flex',
     flex: 1,
     marginTop: 0,
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
   },
   banner: {
     display: 'flex',
@@ -74,7 +70,6 @@ const styles = StyleSheet.create({
     height: 40,
     justifyContent: 'space-around',
     alignSelf: 'flex-end',
-    marginRight: 10,
   },
   answered: {
     fontFamily: 'roboto-regular',
@@ -99,86 +94,7 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: 4,
     color: '#D94077',
-  },
-  tip: {
-    fontFamily: 'roboto-regular',
-    fontSize: 12,
-    color: '#727272',
-    marginVertical: '5%',
-  },
-  modalLayout: {
-    display: 'flex',
-    flexDirection: 'column',
-    backgroundColor: 'white',
-    width: '80%',
-    left: '10%',
-    borderRadius: 10,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalContent: {
-    fontSize: 18,
-    color: '#D94077',
-    fontFamily: 'roboto-bold', 
-    fontStyle: 'normal',
-    marginVertical: 15,
-  },
-  topModalBorder: {
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    backgroundColor: '#E8E8E8',
-    width: '100%',
-    borderBottomColor:'#F0F0F0',
-    borderBottomWidth: 2,
-    borderStyle: 'solid',
-  },
-  middleModalBorder: {
-    backgroundColor: '#E8E8E8',
-    width: '100%',
-    borderBottomColor:'#F0F0F0',
-    borderBottomWidth: 2,
-    borderStyle: 'solid',
-  },
-  bottomModalBorder: {
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
-    backgroundColor: '#E8E8E8',
-    width: '100%',
-    borderBottomColor:'#F0F0F0',
-    borderBottomWidth: 2,
-    borderStyle: 'solid',
-  },
-  topModal: {
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    backgroundColor: 'white',
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  middleModal: {
-    backgroundColor: 'white',
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  bottomModal: {
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
-    backgroundColor: 'white',
-    width: '100%',
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  closeTitle: {
-    fontSize: 18,
-    marginVertical: 15,
-    color: '#727272',
-    fontFamily: 'roboto-bold', 
-    borderBottomLeftRadius: 10,
-    borderBottomRightRadius: 10,
   }
-
 })
 
 export default styles
