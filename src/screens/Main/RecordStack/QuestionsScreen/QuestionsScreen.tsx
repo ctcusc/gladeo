@@ -27,7 +27,7 @@ export default function QuestionsScreen(props: Props) {
   const {navigate} = props.navigation
 
   useEffect(() => {
-    fetch('https://e9f5cf12.ngrok.io/api/questions')
+    fetch('https://38561c4d.ngrok.io/api/questions')
       .then(res => res.json())
       .then(data => {
         setQuestions(data)
