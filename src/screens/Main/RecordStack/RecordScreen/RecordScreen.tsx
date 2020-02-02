@@ -4,6 +4,8 @@ import { Camera } from 'expo-camera'
 import styles from './styles'
 import { FontAwesome } from '@expo/vector-icons'
 import { ScreenOrientation } from 'expo'
+import TickingTimer from '../../../../shared_components/TickingTimer/TickingTimer'
+import StopWatch from 'react-native-stopwatch-timer'
 
 // Note: This page is meant to be displayed in landscape, so components are ordered left to right
 // instead of top to bottom. 
@@ -54,8 +56,9 @@ export default function RecordScreen(props: Props) {
         type={cameraType}
         style={{flex: 1}}
       >
-        <View style={{flex: 1}}>
+        <View style={styles.mainView}>
           <View style={styles.leftContainer}>
+            <TickingTimer />
             <View style={styles.photoButtonCircle}>
               <TouchableOpacity
                 onPress={ async () => {
@@ -93,11 +96,8 @@ export default function RecordScreen(props: Props) {
               backgroundColor='rgba(52, 52, 52, 0.01)'
             />
           </View>
-          <View>
-            {/*<StopWatch
-              options={options}
-              start={isRecording}
-            />*/}
+          <View style={flex = 1}>
+            <TopDisplay isRecording={isRecording}/>
             <View>
               <Text>
                 {props.question}
@@ -116,12 +116,9 @@ interface TopDisplayProps {
 
 // Use this for the conditional rendering of the stopwatch.
 function TopDisplay(props: TopDisplayProps) {
-  if(props.isRecording) {
+  if(props.isRecording || true) {
     return (
-      <StopWatch
-        options={options}
-        start={true}
-      />
+      <TickingTimer/>
     )
   } else {
     return (
@@ -131,3 +128,4 @@ function TopDisplay(props: TopDisplayProps) {
     )
   }
 }
+

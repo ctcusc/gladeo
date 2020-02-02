@@ -13,15 +13,11 @@ const RecordStack = createStackNavigator(
   {
     Questions: QuestionsScreen,
     Record: RecordScreen,
-  },
-  { 
-    headerMode: 'none' 
   }
 )
 
 RecordStack.navigationOptions = {
   tabBarLabel: 'Record',
-  tabBarVisible: false,
   tabBarIcon: (focused: boolean) => (
     <TabBarIcon
       focused={focused}
@@ -33,6 +29,7 @@ RecordStack.navigationOptions = {
     />
   ),
 }
+
 // Tab #2 - Should contain Selecting Snippets, Creating Video, Complete video.. Rendering
 const EditStack = createStackNavigator(
   {

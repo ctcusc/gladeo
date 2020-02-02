@@ -27,7 +27,7 @@ export default function QuestionsScreen(props: Props) {
   const {navigate} = props.navigation
 
   useEffect(() => {
-    fetch('https://d6714cad.ngrok.io/api/questions')
+    fetch('https://e9f5cf12.ngrok.io/api/questions')
       .then(res => res.json())
       .then(data => {
         setQuestions(data)
@@ -79,7 +79,7 @@ QuestionsScreen.navigationOptions = {
       </View>
       <Text style={styles.answered}>answered</Text>
     </View>
-  )   
+  )  
 }
 
 function Item(props: ItemProps) {

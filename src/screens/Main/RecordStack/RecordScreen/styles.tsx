@@ -2,9 +2,9 @@ import { StyleSheet } from 'react-native'
 
 const styles = StyleSheet.create({
   photoButtonCircle: {
-    height: 40,
-    width: 40,
-    borderRadius: 40,
+    height: 45,
+    width: 45,
+    borderRadius: 45,
     borderColor: '#FFFFFF',
     borderWidth: 5,
     alignItems: 'center',
@@ -29,9 +29,9 @@ const styles = StyleSheet.create({
     borderRadius: 4,
   },
   recordButtonCircle: {
-    height: 48,
-    width: 48,
-    borderRadius: 48,
+    height: 53,
+    width: 53,
+    borderRadius: 53,
     borderColor: '#FFFFFF',
     borderWidth: 5,
     alignItems: 'center',
@@ -42,6 +42,9 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     marginLeft: 20
   },
+  mainView: {
+    flex: 1,
+  }
 })
 
 export default styles
