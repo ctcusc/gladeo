@@ -34,6 +34,7 @@ RecordStack.navigationOptions = {
 const EditStack = createStackNavigator(
   {
     CreatingVideo: CreatingVideoScreen,
+    UploadingVideo: UploadingVideoScreen,
   },
 )
 

@@ -9,7 +9,7 @@ import {
 import styles from './styles'
 
 export default function UploadingVideoScreen() {
-  const [screenCreated, setScreenCreated] = useState(true)
+  const [screenCreated, setScreenCreated] = useState(false)
   if(screenCreated) {
     return (
       <View style={styles.container}>
@@ -29,7 +29,7 @@ export default function UploadingVideoScreen() {
         <View style={styles.main}>
           <Image 
             style={{width: 100, height: 100}}
-            source={require('./checkmark.png')}/>
+            source={require('../../../../../assets/images/checkmark.png')}/>
           <Text style={styles.submittedText}>SUBMITTED</Text>
           <Text style={styles.subtext}>
             Your video will be ready for viewing on Gladeo’s Youtube

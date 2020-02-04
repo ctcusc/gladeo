@@ -30,7 +30,7 @@ export default function CreatingVideoScreen() {
         <View style={styles.main}>
           <Image 
             style={{width: 100, height: 100}}
-            source={require('./checkmark.png')}/>
+            source={require('../../../../../assets/images/checkmark.png')}/>
           <Text style={styles.completedText}>COMPLETE</Text>
           <TouchableOpacity style={styles.button}>
             <Text style={styles.buttonText}>
