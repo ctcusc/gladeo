@@ -47,7 +47,6 @@ const styles = StyleSheet.create({
     color: '#727272',
     textAlign: 'center',
     marginHorizontal: '10%',
-    marginTop: '0%',
     marginBottom: '19%',
   },
   button: {
