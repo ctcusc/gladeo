@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { updateAnsweredQuestions } = require('../../data_access_layer/user')
-const { getQuestion } = require('../../data_access_layer/question')
+const { getQuestion, getAllQuestions } = require('../../data_access_layer/question')
 
 router.get('/', async (req, res) => {
   if(req.session && req.session.authenticated) { // user logged in
@@ -32,6 +32,49 @@ router.get('/answered', async (req, res) => {
       extractQuestions().then(data => {
         return res.status(200).send(data)
       })
+    } else {
+      return res.status(403).send({
+        message: 'user is not authorized to use this resource',
+      })
+    }
+  } catch (err) {
+    // when `statusCode` is not included, it is a server error 500
+    if (err.statusCode === undefined) {
+      return res.status(500).send({
+        statusCode: 500,
+        message: err.message,
+        stack: err.stack
+      })
+    }
+    return res.status(err.statusCode).send(err)
+  }
+})
+
+// Return all questions specific to a user
+router.get('/questions', async (req, res) => {
+  try {
+    if(req.session && req.session.authenticated) { // user logged in
+      const user = req.session.authenticated
+      // get all questions from the questions table
+      const allQuestions = await getAllQuestions()
+
+      const userQuestions = labelAnsweredQuestions = () => {
+        const result = []
+        Promise.all(allQuestions.map(question => {
+          const newQuestion = {
+            _record: question._record,
+            text: question.text,
+            ID: question.ID,
+            Answered: false
+          }
+          if(question.Users && question.Users.includes(user._record)) {
+            newQuestion.Answered = true
+          }
+          result.push(newQuestion)
+        }
+        ))
+        return res.status(200).send(result)
+      }
     } else {
       return res.status(403).send({
         message: 'user is not authorized to use this resource',
