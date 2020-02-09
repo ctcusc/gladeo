@@ -7,6 +7,7 @@ import TabBarIcon from '../shared_components/TabBarIcon'
 import QuestionsScreen from '../screens/Main/RecordStack/QuestionsScreen/QuestionsScreen'
 import RenderingVideoScreen from '../screens/Main/EditStack/RenderingVideoScreen/RenderingVideoScreen'
 import RecordScreen from '../screens/Main/RecordStack/RecordScreen/RecordScreen'
+import SnippetSelectionScreen from '../screens/Main/EditStack/SnippetSelection/SnippetSelection'
 
 // Tab #1 - Question Selection + Recording
 const RecordStack = createStackNavigator(
@@ -33,6 +34,7 @@ RecordStack.navigationOptions = {
 const EditStack = createStackNavigator(
   {
     RenderingVideo: RenderingVideoScreen,
+    SnippetSelection: SnippetSelectionScreen,
   },
 )
 
