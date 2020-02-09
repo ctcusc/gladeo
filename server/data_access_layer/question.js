@@ -5,7 +5,7 @@ const { extractContentFromRecords, getAllFromTable } = require('./helpers')
 async function getAllQuestions() {
   const questionTable = base('Questions').select({
     view: 'Grid view',
-    fields: ['ID', 'text']
+    fields: ['ID', 'text', 'Users']
   })
   // get all questions {'ID', 'text', 'Users'}
   const questions = extractContentFromRecords(
