@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Text, View, TouchableOpacity } from 'react-native'
+import { Text, View, TouchableOpacity, Route } from 'react-native'
 import { Camera } from 'expo-camera'
 import styles from './styles'
 import { FontAwesome } from '@expo/vector-icons'
@@ -58,7 +58,7 @@ export default function RecordScreen(props: Props) {
       >
         <View style={styles.mainView}>
           <View style={styles.leftContainer}>
-            <TickingTimer />
+            <TickingTimer/>
             <View style={styles.photoButtonCircle}>
               <TouchableOpacity
                 onPress={ async () => {
@@ -96,11 +96,11 @@ export default function RecordScreen(props: Props) {
               backgroundColor='rgba(52, 52, 52, 0.01)'
             />
           </View>
-          <View style={flex = 1}>
+          <View>
             <TopDisplay isRecording={isRecording}/>
             <View>
-              <Text>
-                {props.question}
+              <Text style={styles.question}>
+                Question: {props.question}
               </Text>
             </View>
           </View>

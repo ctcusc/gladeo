@@ -34,16 +34,19 @@ const styles = StyleSheet.create({
     borderRadius: 53,
     borderColor: '#FFFFFF',
     borderWidth: 5,
-    alignItems: 'center',
     justifyContent: 'center',
   },
   leftContainer: {
     flex: 1,
-    justifyContent: 'space-around',
-    marginLeft: 20
+    flexDirection: 'column',
+    justifyContent: 'space-between',
   },
   mainView: {
     flex: 1,
+  },
+  question: {
+    color: 'white',
+    textAlign: 'center',
   }
 })
 
