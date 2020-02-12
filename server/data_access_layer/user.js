@@ -1,6 +1,7 @@
 const bcrypt = require('bcrypt')
 const { base } = require('./index')
 const { getCompany } = require('./company')
+const nodemailer = require('nodemailer')
 const { extractContentFromRecords, getAllFromTable } = require('./helpers')
 
 async function getUser(userId) {
@@ -67,11 +68,43 @@ async function verifyLogin(email, password) {
   return
 }
 
+async function sendPasswordResetEmail(email, fullName) {
+  // Generate random num between 1000-9999
+  const code = Math.floor((Math.random() * 9000) + 1000)
+
+  // Sets up sender details
+  const transporter = nodemailer.createTransport({
+    service: 'Outlook365',
+    auth: {
+      user: 'PUT EMAIL OF SENDER',
+      pass: 'PUT PASSWORD OF SENDER'
+    }
+  })
+  
+  // Message contents
+  const info = {
+    from: '"Gladeo" <vikramkher@live.com>',
+    to: email,
+    subject: 'Gladeo Password Reset',
+    html: '<p>Hello ' + fullName + ',</p><p>There was a request to change your password.<br>Please enter this' 
+     + ' 4-digit code into the Gladeo App to continue the password reset process.</p>' + code
+  }
+  
+  // Sends message
+  transporter.sendMail(info, function(error,  info) {
+    if(error) {
+      console.log(error)
+    }
+  })
+ 
+}
+
 
 module.exports = {
   getUser,
   getUserByEmail,
   updateAnsweredQuestions,
   registerUser,
-  verifyLogin
+  verifyLogin,
+  sendPasswordResetEmail
 }

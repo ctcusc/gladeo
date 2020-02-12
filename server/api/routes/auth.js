@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { getUserByEmail, registerUser, verifyLogin } = require('../../data_access_layer/user')
+const { getUserByEmail, registerUser, verifyLogin, sendPasswordResetEmail } = require('../../data_access_layer/user')
 
 router.post('/register', async (req, res) => {
   const email = req.body['Email']
@@ -63,6 +63,28 @@ router.post('/login', async (req, res) => {
       })
     }
     return res.status(err.statusCode).send(err)
+  }
+})
+
+router.post('/forgot-password', async(req, res) => {
+  const email = req.body['Email']
+  const fullName = req.body['Full Name'] 
+  try {
+    const user = await getUserByEmail(email, fullName)
+    // Check to see if email exists in database
+    if(user === null) {
+      throw {
+        message: 'A user does not exist with that email',
+        statusCode: 404
+      }
+    } else {
+      // Sends password reset email
+      await sendPasswordResetEmail(email, fullName)
+      return res.status(200).send('Success')
+    }
+  } catch(err) {
+    return res.status(err.statusCode).send(err)
+
   }
 })
 
