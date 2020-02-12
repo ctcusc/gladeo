@@ -36,6 +36,9 @@ const EditStack = createStackNavigator(
     RenderingVideo: RenderingVideoScreen,
     SnippetSelection: SnippetSelectionScreen,
   },
+  {
+    initialRouteName: 'SnippetSelection', 
+  }
 )
 
 EditStack.navigationOptions = {
