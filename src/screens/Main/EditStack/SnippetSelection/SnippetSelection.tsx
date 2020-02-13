@@ -5,12 +5,11 @@ import {
   FlatList,
   TouchableOpacity,
 } from 'react-native'
-
 import { BASE_PATH } from 'react-native-dotenv'
 import styles from './styles'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
 
-interface questionSelected {
+interface QuestionSelected {
   id: number,
   isSelected: boolean,
   orderInList: number,
@@ -23,10 +22,8 @@ interface Props {
 
 export default function SnippetSelectionScreen(props: Props) {
   const [text, setText] = useState('A great video requires at least 3 - 4 clips')
-  // const [selected, setSelected] = useState<number | null>(null)
-  const [selectedQuestions, setSelectedQuestions] = useState<Array<questionSelected>>([])
+  const [selectedQuestions, setSelectedQuestions] = useState<Array<QuestionSelected>>([])
   const [numSelected, setNumSelected] = useState<number>(1)
-  // const {navigate} = props.navigation
 
   useEffect(() => {
     fetch(`${BASE_PATH}/api/questions`)
@@ -34,7 +31,7 @@ export default function SnippetSelectionScreen(props: Props) {
       .then(data => {     
         const temp = []
         for(let i = 0; i < data.length; i++){
-          const item: questionSelected = {
+          const item: QuestionSelected = {
             id: data[i]['ID'], 
             isSelected: false, 
             orderInList: 0,
@@ -53,20 +50,13 @@ export default function SnippetSelectionScreen(props: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.questions}>
-        <FlatList<questionSelected>
+        <FlatList<QuestionSelected>
           data={selectedQuestions}
           renderItem={({ item }) => (
             <View style={styles.questionAndCircle}>
               <TouchableOpacity
                 onPress={
                   () => {
-                    console.log(item)
-                    if(item.isSelected){
-                      setNumSelected(numSelected - 1)
-                    } else{
-                      setNumSelected(numSelected + 1)
-                    }
-                    
                     // the question is selected previously
                     if(selectedQuestions[item.id-1].isSelected){
                       const temp = []
@@ -74,7 +64,7 @@ export default function SnippetSelectionScreen(props: Props) {
                       for(let i = 0; i < selectedQuestions.length; i++){
                         if(i != (item.id-1)){
                           if(selectedQuestions[i].orderInList > preOrder){  
-                            const newQuestion: questionSelected = {
+                            const newQuestion: QuestionSelected = {
                               id: selectedQuestions[i].id, 
                               isSelected: selectedQuestions[i].isSelected, 
                               orderInList: selectedQuestions[i].orderInList-1,
@@ -82,7 +72,7 @@ export default function SnippetSelectionScreen(props: Props) {
                             }
                             temp.push(newQuestion)
                           } else{
-                            const newQuestion: questionSelected = {
+                            const newQuestion: QuestionSelected = {
                               id: selectedQuestions[i].id, 
                               isSelected: selectedQuestions[i].isSelected, 
                               orderInList: selectedQuestions[i].orderInList,
@@ -91,7 +81,7 @@ export default function SnippetSelectionScreen(props: Props) {
                             temp.push(newQuestion)
                           }
                         } else{
-                          const newQuestion: questionSelected = {
+                          const newQuestion: QuestionSelected = {
                             id: item.id, 
                             isSelected: false, 
                             orderInList: 0,
@@ -105,7 +95,7 @@ export default function SnippetSelectionScreen(props: Props) {
                       const temp = []
                       for(let i = 0; i < selectedQuestions.length; i++){
                         if(i != (item.id-1)){
-                          const newQuestion: questionSelected = {
+                          const newQuestion: QuestionSelected = {
                             id: selectedQuestions[i].id, 
                             isSelected: selectedQuestions[i].isSelected, 
                             orderInList: selectedQuestions[i].orderInList,
@@ -113,7 +103,7 @@ export default function SnippetSelectionScreen(props: Props) {
                           }
                           temp.push(newQuestion)
                         } else{
-                          const newQuestion: questionSelected = {
+                          const newQuestion: QuestionSelected = {
                             id: item.id, 
                             isSelected: true, 
                             orderInList: numSelected,
@@ -124,15 +114,25 @@ export default function SnippetSelectionScreen(props: Props) {
                         setSelectedQuestions(temp)
                       }
                     }
-                    console.log(item.isSelected)
 
-                    if(numSelected == 0){
-                      setText('A great video requires at least 3 - 4 clips')
-                    }
-                    if(numSelected == 1){
-                      setText(numSelected + ' snippet selected')
+                    if(item.isSelected){
+                      setNumSelected(numSelected-1)
+                      if(numSelected == 2){
+                        setText('A great video requires at least 3 - 4 clips')
+                      } else if(numSelected == 3){
+                        setText((numSelected-2) + ' snippet selected')
+                      } else{
+                        setText((numSelected-2) + ' snippets selected')
+                      }
                     } else{
-                      setText(numSelected + ' snippets selected')
+                      setNumSelected(numSelected+1)
+                      if(numSelected == 0){
+                        setText('A great video requires at least 3 - 4 clips')
+                      } else if(numSelected == 1){
+                        setText(numSelected + ' snippet selected')
+                      } else{
+                        setText(numSelected + ' snippets selected')
+                      }
                     }
                   }
                 }
@@ -149,12 +149,11 @@ export default function SnippetSelectionScreen(props: Props) {
           extraData={null}
         />
       </View>
-      
       <View style={styles.createVideo}>
         <Text>{text}</Text>
         <TouchableOpacity
-          disabled={numSelected >= 3 ? false : true}
-          style={numSelected >= 3 ? styles.pinkButtonAbled : styles.pinkButton}
+          disabled={numSelected > 3 ? false : true}
+          style={numSelected > 3 ? styles.pinkButtonAbled : styles.pinkButton}
         >
           <Text style={styles.buttontext}>
             CREATE VIDEO
@@ -166,12 +165,11 @@ export default function SnippetSelectionScreen(props: Props) {
 }
 
 SnippetSelectionScreen.navigationOptions = {
-  title: 'Snippet Selection',
-  headerTitleStyle: {
-    fontFamily: 'montserrat-semibold',
-    fontStyle: 'normal',
-    fontSize: 30,
-    color: '#000',
-    lineHeight: 37,
-  },
+  title: '',
+  // eslint-disable-next-line react/display-name
+  headerLeft: () => (
+    <View>
+      <Text style={styles.header}>Snippet Selection</Text>
+    </View>
+  )   
 }
