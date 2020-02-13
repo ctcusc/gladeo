@@ -62,33 +62,44 @@ export default function SnippetSelectionScreen(props: Props) {
                   () => {
                     console.log(item)
                     if(item.isSelected){
-                      setNumSelected(numSelected - 2)
+                      setNumSelected(numSelected - 1)
                     } else{
                       setNumSelected(numSelected + 1)
                     }
                     
+                    // the question is selected previously
                     if(selectedQuestions[item.id-1].isSelected){
                       const temp = []
+                      const preOrder = item.orderInList
                       for(let i = 0; i < selectedQuestions.length; i++){
                         if(i != (item.id-1)){
-                          const newQuestion: questionSelected = {
-                            id: selectedQuestions[i].id, 
-                            isSelected: selectedQuestions[i].isSelected, 
-                            orderInList: selectedQuestions[i].orderInList,
-                            text: selectedQuestions[i].text
+                          if(selectedQuestions[i].orderInList > preOrder){  
+                            const newQuestion: questionSelected = {
+                              id: selectedQuestions[i].id, 
+                              isSelected: selectedQuestions[i].isSelected, 
+                              orderInList: selectedQuestions[i].orderInList-1,
+                              text: selectedQuestions[i].text
+                            }
+                            temp.push(newQuestion)
+                          } else{
+                            const newQuestion: questionSelected = {
+                              id: selectedQuestions[i].id, 
+                              isSelected: selectedQuestions[i].isSelected, 
+                              orderInList: selectedQuestions[i].orderInList,
+                              text: selectedQuestions[i].text
+                            }
+                            temp.push(newQuestion)
                           }
-                          temp.push(newQuestion)
                         } else{
                           const newQuestion: questionSelected = {
-                            id: selectedQuestions[i].id, 
+                            id: item.id, 
                             isSelected: false, 
-                            orderInList: selectedQuestions[i].orderInList,
-                            text: selectedQuestions[i].text
+                            orderInList: 0,
+                            text: item.text
                           }
                           temp.push(newQuestion)
                         }
                         setSelectedQuestions(temp)
-                        // setNumSelected(numSelected-1)
                       }
                     } else{
                       const temp = []
@@ -103,15 +114,14 @@ export default function SnippetSelectionScreen(props: Props) {
                           temp.push(newQuestion)
                         } else{
                           const newQuestion: questionSelected = {
-                            id: selectedQuestions[i].id, 
+                            id: item.id, 
                             isSelected: true, 
-                            orderInList: selectedQuestions[i].orderInList,
-                            text: selectedQuestions[i].text
+                            orderInList: numSelected,
+                            text: item.text
                           }
                           temp.push(newQuestion)
                         }
                         setSelectedQuestions(temp)
-                        // setNumSelected(numSelected+1)
                       }
                     }
                     console.log(item.isSelected)
@@ -131,7 +141,7 @@ export default function SnippetSelectionScreen(props: Props) {
                 <Text style={styles.titleSelected}>{item.text}</Text>
               </TouchableOpacity>
               <View style={item.isSelected ? styles.circleSelected : styles.circle}>
-                <Text style={styles.circleText}> 1 </Text>
+                <Text style={styles.circleText}> {item.orderInList} </Text>
               </View>
             </View>
           )}

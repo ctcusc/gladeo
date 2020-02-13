@@ -51,6 +51,9 @@ EditStack.navigationOptions = {
 const mainTabNavigator = createBottomTabNavigator({
   RecordStack,
   EditStack,
+},
+{
+  initialRouteName: 'EditStack'
 })
 
 export default mainTabNavigator
