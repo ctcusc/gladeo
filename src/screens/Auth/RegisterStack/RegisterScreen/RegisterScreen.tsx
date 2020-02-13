@@ -18,6 +18,8 @@ export default function RegisterScreen(props: Props) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const {navigate} = props.navigation 
+  const userTitle = props.navigation.state.params.userTitle
+  const companyCode = props.navigation.state.params.companyCode
 
   return (
     <View style={styles.container}>
@@ -28,7 +30,12 @@ export default function RegisterScreen(props: Props) {
         <GreyTextInput changeTextContent={(email) => setEmail(email)} placeholder="Email Address" inputType='emailAddress' input={email}/>
         <PinkButton title="CONTINUE" 
           onPress={
-            () => navigate('CreatePassword')
+            () => navigate('CreatePassword', {
+              userTitle: userTitle,
+              companyCode: companyCode,
+              name: name,
+              email: email
+            })
           }
           disabled={!name || !email}
         />
