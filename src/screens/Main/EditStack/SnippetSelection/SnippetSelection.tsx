@@ -56,72 +56,84 @@ export default function SnippetSelectionScreen(props: Props) {
         <FlatList<questionSelected>
           data={selectedQuestions}
           renderItem={({ item }) => (
-            <TouchableOpacity
-              onPress={
-                () => {
-                  console.log(selectedQuestions[item.id-1])
-                  console.log(selectedQuestions.length)
-                  
-                  if(selectedQuestions[item.id-1].isSelected){
-                    const temp = []
-                    for(let i = 0; i < selectedQuestions.length; i++){
-                      if(i != (item.id-1)){
-                        const newQuestion: questionSelected = {
-                          id: selectedQuestions[i].id, 
-                          isSelected: selectedQuestions[i].isSelected, 
-                          orderInList: selectedQuestions[i].orderInList,
-                          text: selectedQuestions[i].text
-                        }
-                        temp.push(newQuestion)
-                      } else{
-                        const newQuestion: questionSelected = {
-                          id: selectedQuestions[i].id, 
-                          isSelected: false, 
-                          orderInList: selectedQuestions[i].orderInList,
-                          text: selectedQuestions[i].text
-                        }
-                        temp.push(newQuestion)
-                      }
-                      setSelectedQuestions(temp)
-                      setNumSelected(numSelected-1)
+            <View style={styles.questionAndCircle}>
+              <TouchableOpacity
+                onPress={
+                  () => {
+                    console.log(item)
+                    if(item.isSelected){
+                      setNumSelected(numSelected - 2)
+                    } else{
+                      setNumSelected(numSelected + 1)
                     }
-                  } else{
-                    const temp = []
-                    for(let i = 0; i < selectedQuestions.length; i++){
-                      if(i != (item.id-1)){
-                        const newQuestion: questionSelected = {
-                          id: selectedQuestions[i].id, 
-                          isSelected: selectedQuestions[i].isSelected, 
-                          orderInList: selectedQuestions[i].orderInList,
-                          text: selectedQuestions[i].text
+                    
+                    if(selectedQuestions[item.id-1].isSelected){
+                      const temp = []
+                      for(let i = 0; i < selectedQuestions.length; i++){
+                        if(i != (item.id-1)){
+                          const newQuestion: questionSelected = {
+                            id: selectedQuestions[i].id, 
+                            isSelected: selectedQuestions[i].isSelected, 
+                            orderInList: selectedQuestions[i].orderInList,
+                            text: selectedQuestions[i].text
+                          }
+                          temp.push(newQuestion)
+                        } else{
+                          const newQuestion: questionSelected = {
+                            id: selectedQuestions[i].id, 
+                            isSelected: false, 
+                            orderInList: selectedQuestions[i].orderInList,
+                            text: selectedQuestions[i].text
+                          }
+                          temp.push(newQuestion)
                         }
-                        temp.push(newQuestion)
-                      } else{
-                        const newQuestion: questionSelected = {
-                          id: selectedQuestions[i].id, 
-                          isSelected: true, 
-                          orderInList: selectedQuestions[i].orderInList,
-                          text: selectedQuestions[i].text
-                        }
-                        temp.push(newQuestion)
+                        setSelectedQuestions(temp)
+                        // setNumSelected(numSelected-1)
                       }
-                      setSelectedQuestions(temp)
-                      setNumSelected(numSelected+1)
+                    } else{
+                      const temp = []
+                      for(let i = 0; i < selectedQuestions.length; i++){
+                        if(i != (item.id-1)){
+                          const newQuestion: questionSelected = {
+                            id: selectedQuestions[i].id, 
+                            isSelected: selectedQuestions[i].isSelected, 
+                            orderInList: selectedQuestions[i].orderInList,
+                            text: selectedQuestions[i].text
+                          }
+                          temp.push(newQuestion)
+                        } else{
+                          const newQuestion: questionSelected = {
+                            id: selectedQuestions[i].id, 
+                            isSelected: true, 
+                            orderInList: selectedQuestions[i].orderInList,
+                            text: selectedQuestions[i].text
+                          }
+                          temp.push(newQuestion)
+                        }
+                        setSelectedQuestions(temp)
+                        // setNumSelected(numSelected+1)
+                      }
                     }
-                  }
-                  console.log(selectedQuestions[item.id-1].isSelected)
+                    console.log(item.isSelected)
 
-                  if(numSelected == 1){
-                    setText(numSelected + ' snippet selected')
-                  } else{
-                    setText(numSelected + ' snippets selected')
+                    if(numSelected == 0){
+                      setText('A great video requires at least 3 - 4 clips')
+                    }
+                    if(numSelected == 1){
+                      setText(numSelected + ' snippet selected')
+                    } else{
+                      setText(numSelected + ' snippets selected')
+                    }
                   }
                 }
-              }
-              style={item.isSelected ? styles.questionSelected : styles.question}
-            >
-              <Text style={styles.titleSelected}>{item.text}</Text>
-            </TouchableOpacity>
+                style={item.isSelected ? styles.questionSelected : styles.question}
+              >
+                <Text style={styles.titleSelected}>{item.text}</Text>
+              </TouchableOpacity>
+              <View style={item.isSelected ? styles.circleSelected : styles.circle}>
+                <Text style={styles.circleText}> 1 </Text>
+              </View>
+            </View>
           )}
           keyExtractor={(item: { text: any }) => item.text}
           extraData={null}
@@ -135,7 +147,7 @@ export default function SnippetSelectionScreen(props: Props) {
           style={numSelected >= 3 ? styles.pinkButtonAbled : styles.pinkButton}
         >
           <Text style={styles.buttontext}>
-          CREATE VIDEO
+            CREATE VIDEO
           </Text>
         </TouchableOpacity>
       </View>
