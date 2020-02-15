@@ -17,9 +17,11 @@ interface Props {
 export default function RegisterScreen(props: Props) {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-  const {navigate} = props.navigation 
-  const userTitle = props.navigation.state.params.userTitle
-  const companyCode = props.navigation.state.params.companyCode
+  const {navigate} = props.navigation
+  const user = {
+    userTitle: props.navigation.state.params.userTitle,
+    companyCode: props.navigation.state.params.companyCode,
+  }
 
   return (
     <View style={styles.container}>
@@ -31,8 +33,8 @@ export default function RegisterScreen(props: Props) {
         <PinkButton title="CONTINUE" 
           onPress={
             () => navigate('CreatePassword', {
-              userTitle: userTitle,
-              companyCode: companyCode,
+              userTitle: user.userTitle,
+              companyCode: user.companyCode,
               name: name,
               email: email
             })

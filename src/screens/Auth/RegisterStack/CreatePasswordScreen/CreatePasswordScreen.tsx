@@ -20,10 +20,12 @@ export default function CreatePasswordScreen(props: Props) {
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const {navigate} = props.navigation 
-  const userTitle = props.navigation.state.params.userTitle
-  const companyCode = props.navigation.state.params.companyCode
-  const name = props.navigation.state.params.name
-  const email = props.navigation.state.params.email
+  const user = {
+    userTitle: props.navigation .state.params.userTitle,
+    companyCode: props.navigation .state.params.companyCode,
+    name: props.navigation .state.params.name,
+    email: props.navigation .state.params.email
+  }
 
   async function handleRegister(){
     fetch(`${BASE_PATH}/api/auth/register`, {
@@ -33,10 +35,10 @@ export default function CreatePasswordScreen(props: Props) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        'Full Name': name,
-        'Email': email,
-        'Current Title': userTitle,
-        'Company Code': companyCode,
+        'Full Name': user.name,
+        'Email': user.email,
+        'Current Title': user.userTitle,
+        'Company Code': user.companyCode,
         'Password': password,
       }),
     })
@@ -65,7 +67,7 @@ export default function CreatePasswordScreen(props: Props) {
         <GreyTextInput changeTextContent={(confirmPassword) => {
           setConfirmPassword(confirmPassword)
         }} placeholder="Confirm Password" inputType='password' input={confirmPassword}/>
-        <PinkButton title="CONTINUE" onPress={handleRegister}
+        <PinkButton title="CONTINUE" onPress={() => handleRegister()}
           disabled={password.length < 8 || password != confirmPassword}
         />
       </View>
