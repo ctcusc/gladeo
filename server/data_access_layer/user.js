@@ -74,10 +74,10 @@ async function sendPasswordResetEmail(email, fullName) {
 
   // Sets up sender details
   const transporter = nodemailer.createTransport({
-    service: 'Outlook365',
+    service: 'INSERT SENDER EMAIL SERVICE HERE (EX: Outlook365, Gmail)',
     auth: {
-      user: 'PUT EMAIL OF SENDER',
-      pass: 'PUT PASSWORD OF SENDER'
+      user: 'INSERT SENDER EMAIL HERE',
+      pass: 'INSERT SENDER EMAIL PASSWORD HERE'
     }
   })
   
@@ -96,9 +96,17 @@ async function sendPasswordResetEmail(email, fullName) {
       console.log(error)
     }
   })
- 
-}
 
+  // Updates User record with forgot password code
+  const user = await getUserByEmail(email)
+  base('Users').update([{
+    'id': user['_record'], 
+    'fields': {
+      'Forgot Password Code': code
+    }
+  }])
+  
+}
 
 module.exports = {
   getUser,
