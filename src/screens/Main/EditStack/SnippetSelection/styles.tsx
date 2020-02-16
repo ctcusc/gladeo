@@ -11,17 +11,17 @@ const styles = StyleSheet.create({
   },
   question: {
     backgroundColor: '#E5186E',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    padding: '4.9%',
+    marginVertical: '2.0%',
+    marginHorizontal: '3.8%',
     borderRadius: 8,
     width: '90%'
   },
   questionSelected: {
     backgroundColor: '#A02257',
-    padding: 20,
-    marginVertical: 8,
-    marginHorizontal: 16,
+    padding: '4.9%',
+    marginVertical: '2.0%',
+    marginHorizontal: '3.8%',
     borderRadius: 8,
     width: '90%'
   },
@@ -41,13 +41,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    width: '100%',
+    height: '100%'
   },
   questions: {
     flex: 5,
   },
   pinkButton: {
-    width: 240,
-    height: 40,
+    width: '58%',
+    height: '35%',
     backgroundColor: '#E5186E',
     borderRadius: 32,
     justifyContent: 'center',
@@ -55,8 +57,8 @@ const styles = StyleSheet.create({
     opacity: 0.5
   },
   pinkButtonAbled: {
-    width: 240,
-    height: 40,
+    width: '58%',
+    height: '35%',
     backgroundColor: '#E5186E',
     borderRadius: 32,
     justifyContent: 'center',
@@ -76,7 +78,7 @@ const styles = StyleSheet.create({
   circleSelected: {
     width: 30,
     height: 30,
-    borderRadius: 100/2,
+    borderRadius: 50,
     backgroundColor: '#FFF',
     borderColor: '#A02257',
     borderWidth: 2,
@@ -98,9 +100,8 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontSize: 30,
     color: '#000',
-    lineHeight: 37,
-    // marginLeft: "2%"
-    paddingLeft: 20
+    paddingLeft: '7%',
+    width: '100%'
   }
 })
 

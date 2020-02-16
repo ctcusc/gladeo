@@ -33,8 +33,8 @@ RecordStack.navigationOptions = {
 // Tab #2 - Should contain Selecting Snippets, Creating Video, Complete video.. Rendering
 const EditStack = createStackNavigator(
   {
-    RenderingVideo: RenderingVideoScreen,
     SnippetSelection: SnippetSelectionScreen,
+    RenderingVideo: RenderingVideoScreen,
   },
   {
     initialRouteName: 'SnippetSelection', 
