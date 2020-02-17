@@ -20,76 +20,6 @@ interface Props {
   navigation: NavigationScreenProp<NavigationState>,
 }
 
-const updateSnippetState = function(
-  item: Snippet, 
-  snippetState: Array<Snippet>, 
-  selectedSnippetCount: number, 
-  setSnippetState: Function, 
-  setSelectedSnippetCount: Function) {
-  const currentQuestionState = snippetState
-  // the question is selected previously, remove it from the list and update the order of other items
-  if(currentQuestionState[item.id-1].isSelected){
-    const temp = []
-    const preOrder = item.orderInList
-    for(let i = 0; i < currentQuestionState.length; i++){
-      // move up question in list
-      if(i != (item.id-1)){
-        if(currentQuestionState[i].orderInList > preOrder){  
-          const newQuestion: Snippet = {
-            id: currentQuestionState[i].id, 
-            isSelected: currentQuestionState[i].isSelected, 
-            orderInList: currentQuestionState[i].orderInList-1,
-            text: currentQuestionState[i].text
-          }
-          temp.push(newQuestion)
-        } else{
-          temp.push(currentQuestionState[i])
-        }
-      } else{
-        item.isSelected = false
-        item.orderInList = 0
-        temp.push(item)
-      }
-      // snippet is newly selected, add to list
-      setSnippetState(temp)
-      setSelectedSnippetCount(selectedSnippetCount-1)
-    }
-  } else{
-    const temp = []
-    for(let i = 0; i < currentQuestionState.length; i++){
-      if(i != (item.id-1)){
-        temp.push(currentQuestionState[i])
-      } else{
-        item.isSelected = true
-        item.orderInList = selectedSnippetCount
-        temp.push(item)
-      }
-      setSnippetState(temp)
-      setSelectedSnippetCount(selectedSnippetCount+1)
-    }
-  }
-}
-
-const updateBottomText = function(isSelected: boolean, selectedSnippetCount: number, setText: Function){
-  if(isSelected){
-    if(selectedSnippetCount == 0){
-      setText('A great video requires at least 3 - 4 clips')
-    } else if(selectedSnippetCount == 1){
-      setText((selectedSnippetCount) + ' snippet selected')
-    } else{
-      setText((selectedSnippetCount) + ' snippets selected')
-    }
-  } else{
-    if(selectedSnippetCount == 2){
-      setText('A great video requires at least 3 - 4 clips')
-    } else if(selectedSnippetCount == 3){
-      setText(selectedSnippetCount-2 + ' snippet selected')
-    } else{
-      setText(selectedSnippetCount-2 + ' snippets selected')
-    }
-  }
-}
-
 export default function SnippetSelectionScreen(props: Props) {
   const [text, setText] = useState('A great video requires at least 3 - 4 clips')
   const [snippetState, setSnippetState] = useState<Array<Snippet>>([])
@@ -116,6 +46,59 @@ export default function SnippetSelectionScreen(props: Props) {
         console.log('Error' + error)
       })
   }, [])
+
+  function updateSnippetState(item: Snippet) {
+    const modifiedQuestionState = snippetState
+    // the question is selected previously, remove it from the list and update the order of other items
+    if(modifiedQuestionState[item.id-1].isSelected){
+      const preOrder = item.orderInList
+      for(let i = 0; i < modifiedQuestionState.length; i++){
+        // move up question in list
+        if(i != (item.id-1)){
+          if(modifiedQuestionState[i].orderInList > preOrder){  
+            modifiedQuestionState[i].orderInList = modifiedQuestionState[i].orderInList-1
+          }
+        } else{
+          modifiedQuestionState[i].isSelected = false
+          modifiedQuestionState[i].orderInList = 0
+        }
+        // snippet is newly selected, add to list
+        setSnippetState(modifiedQuestionState)
+        setSelectedSnippetCount(selectedSnippetCount-1)
+      }
+    } 
+    // newly selected question
+    else{
+      for(let i = 0; i < modifiedQuestionState.length; i++){
+        if(i == (item.id-1)){
+          modifiedQuestionState[i].isSelected = true
+          modifiedQuestionState[i].orderInList = selectedSnippetCount
+        }
+        setSnippetState(modifiedQuestionState)
+        setSelectedSnippetCount(selectedSnippetCount+1)
+      }
+    }
+  }
+  
+  function updateBottomText(item: Snippet){
+    if(item.isSelected){
+      if(selectedSnippetCount == 0){
+        setText('A great video requires at least 3 - 4 clips')
+      } else if(selectedSnippetCount == 1){
+        setText((selectedSnippetCount) + ' snippet selected')
+      } else{
+        setText((selectedSnippetCount) + ' snippets selected')
+      }
+    } else{
+      if(selectedSnippetCount == 2){
+        setText('A great video requires at least 3 - 4 clips')
+      } else if(selectedSnippetCount == 3){
+        setText(selectedSnippetCount-2 + ' snippet selected')
+      } else{
+        setText(selectedSnippetCount-2 + ' snippets selected')
+      }
+    }
+  }
   
   return (
     <View style={styles.container}>
@@ -127,8 +110,8 @@ export default function SnippetSelectionScreen(props: Props) {
               <TouchableOpacity
                 onPress={
                   () => {
-                    updateSnippetState(item, snippetState, selectedSnippetCount, setSnippetState, setSelectedSnippetCount)
-                    updateBottomText(item.isSelected, selectedSnippetCount, setText)
+                    updateSnippetState(item)
+                    updateBottomText(item)
                   }
                 }
                 style={item.isSelected ? styles.questionSelected : styles.question}
