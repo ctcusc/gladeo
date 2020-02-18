@@ -26,16 +26,36 @@ const styles = StyleSheet.create({
   },
   text: {
     fontFamily: 'montserrat-regular', 
-    fontStyle: 'normal',
-    fontWeight: 'bold',
     fontSize: 30,
-    lineHeight: 37,
     textAlign: 'center',
     color: '#E5186E',
-    height: 114,
-    width: 307,
+    marginHorizontal: '20%',
     marginBottom: '45%',
   },
+  completedText: {
+    margin: '5%',
+    marginBottom: '20%',
+    fontFamily: 'montserrat-bold', 
+    fontSize: 30,
+    textAlign: 'center',
+    color: '#E5186E',
+    marginHorizontal: '10%',
+  },
+  button: {
+    paddingHorizontal:'20%',
+    backgroundColor: '#E5186E',
+    borderRadius: 25,
+    justifyContent: 'center',
+  },
+    
+  buttonText: {
+    paddingVertical: '8%',
+    fontStyle: 'normal',
+    fontSize: 16,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    textAlign: 'center',
+  }
 })
 
 export default styles

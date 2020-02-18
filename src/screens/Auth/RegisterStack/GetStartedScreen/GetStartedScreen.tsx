@@ -29,7 +29,10 @@ export default function GetStartedScreen(props: Props) {
         <GreyTextInput changeTextContent={(code) => setCode(code)} placeholder="Company Code" inputType='text' input={code}/>
         <PinkButton title="START CREATING" 
           onPress={
-            () => navigate('Register')
+            () => navigate('Register', {
+              userTitle: title,
+              companyCode: code,
+            })
           } 
           disabled={!title || !code}
         />
