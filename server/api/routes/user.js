@@ -58,23 +58,24 @@ router.get('/questions', async (req, res) => {
       // get all questions from the questions table
       const allQuestions = await getAllQuestions()
 
-      const userQuestions = labelAnsweredQuestions = () => {
-        const result = []
-        Promise.all(allQuestions.map(question => {
-          const newQuestion = {
-            _record: question._record,
-            text: question.text,
-            ID: question.ID,
-            Answered: false
-          }
-          if(question.Users && question.Users.includes(user._record)) {
-            newQuestion.Answered = true
-          }
-          result.push(newQuestion)
+      const userQuestions = []
+
+      allQuestions.map(question => {
+        const newQuestion = {
+          _record: question._record,
+          text: question.text,
+          ID: question.ID,
+          Answered: false
         }
-        ))
-        return res.status(200).send(result)
-      }
+        // if user answered the question update it's Answered variable
+        if(question.Users && question.Users.includes(user._record)) {
+          newQuestion.Answered = true
+        }
+        userQuestions.push(newQuestion)
+      })
+      
+      return res.status(200).send(userQuestions)
+      
     } else {
       return res.status(403).send({
         message: 'user is not authorized to use this resource',
