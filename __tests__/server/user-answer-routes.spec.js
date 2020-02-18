@@ -10,8 +10,7 @@ describe('Checks user answered route for test user 1', () => {
   beforeAll(async (done) => {
     // setup session and login
     session = await supertestsession(app)
-    const userData = await session.post('/api/auth/login').send({ Email: 'a@b.com', Password: 'password' })
-    user = userData.body
+    await session.post('/api/auth/login').send({ Email: 'a@b.com', Password: 'password' })
     res = await session.get('/api/user/answered')
     done()
   })
@@ -75,7 +74,6 @@ describe('Checks answering new questions', () => {
     // Answer a question, a check it see if it's successful
     await session.post('/api/user/answer').send({ questionId: questionIDs[7] })
     res = await session.get('/api/user/answered')
-
     done()
   })
   
@@ -88,12 +86,12 @@ describe('Checks answering new questions', () => {
     expect(answered.includes(questions[7]))
   })
 
-  afterAll(() => {
+  afterAll(async () => {
     const baseName = 'Users'
     const userTestID = 'recmAyOc3FPftHqZG'
-    const fieldName = ['Answered']
+    const fieldName = 'Answered'
 
-    clearFieldsInSingleRecord(baseName, userTestID, fieldName)
+    await clearFieldsInSingleRecord(baseName, userTestID, fieldName)
   })
 })
 
