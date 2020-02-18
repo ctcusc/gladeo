@@ -145,6 +145,3 @@ interface ItemProps {
   selected: boolean,
   onSelect: Function,
 }
-
-
-
