@@ -59,6 +59,9 @@ async function registerUser(fullName, email, title, companyCode, password) {
 
 async function verifyLogin(email, password) {
   const user = await getUserByEmail(email)
+  if(user == undefined) {
+    return
+  }
   // compare stored hash w/ plaintext
   const match = await bcrypt.compare(password, user.Password)
   if(match) {
