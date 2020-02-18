@@ -8,6 +8,7 @@ import QuestionsScreen from '../screens/Main/RecordStack/QuestionsScreen/Questio
 import CreatingVideoScreen from '../screens/Main/EditStack/CreatingVideoScreen/CreatingVideoScreen'
 import UploadingVideoScreen from '../screens/Main/EditStack/UploadingVideoScreen/UploadingVideoScreen'
 import RecordScreen from '../screens/Main/RecordStack/RecordScreen/RecordScreen'
+import SnippetSelectionScreen from '../screens/Main/EditStack/SnippetSelection/SnippetSelection'
 
 // Tab #1 - Question Selection + Recording
 const RecordStack = createStackNavigator(
@@ -33,9 +34,14 @@ RecordStack.navigationOptions = {
 // Tab #2 - Should contain Selecting Snippets, Creating Video, Complete video.. Rendering
 const EditStack = createStackNavigator(
   {
+    SnippetSelection: SnippetSelectionScreen,
+    RenderingVideo: RenderingVideoScreen,
     CreatingVideo: CreatingVideoScreen,
     UploadingVideo: UploadingVideoScreen,
   },
+  {
+    initialRouteName: 'SnippetSelection', 
+  }
 )
 
 EditStack.navigationOptions = {
