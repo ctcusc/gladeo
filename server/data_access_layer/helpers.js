@@ -38,7 +38,7 @@ async function getAllFromTable(table) {
 async function clearFieldsInSingleRecord(baseName, recordId, ...fieldNames) {
   const fields = {}
   fieldNames.forEach(fieldName => {
-    fields[fieldName] = '' 
+    fields[fieldName] = ''
   })
   try {
     await base(baseName).update([
