@@ -3,18 +3,12 @@ const router = express.Router()
 const { getAllQuestions, getQuestion } = require('../../data_access_layer/question')
 
 // Returns all questions from table - /api/questions/
+// No authentication required
 router.get('/', async (req, res) => {
   try {
     const questions = await getAllQuestions()
     return res.status(200).send(questions)
   } catch (err) {
-    // when `statusCode` is not included, it is a server error 500
-    // if (err.statusCode === undefined) {
-    //   return res.status(500).send({
-    //     message: err.message,
-    //     stack: err.stack
-    //   })
-    // }
     return res.status(err.statusCode).send(err)
   }
 })

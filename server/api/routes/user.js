@@ -50,7 +50,7 @@ router.get('/answered', async (req, res) => {
   }
 })
 
-// Return all questions specific to a user
+// returns list of questions, marked w/ true/false if use has answered or not
 router.get('/questions', async (req, res) => {
   try {
     if(req.session && req.session.authenticated) { // user logged in
@@ -95,11 +95,13 @@ router.get('/questions', async (req, res) => {
 })
 
 /* 
+Answers question for user given questionId
+  returns user object, including questions field
   Takes ID of question in body request
   { questionId: 2 }
   Returns the updated User
 */
-router.post('/answer', async (req, res) => {
+router.post('/questions', async (req, res) => {
   try {
     if(req.session && req.session.authenticated) { // user logged in
       const user = req.session.authenticated

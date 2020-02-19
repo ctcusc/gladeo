@@ -1,5 +1,6 @@
 const supertest = require('supertest')
 const app = require('../../server/api/app')
+const { clearFieldsInSingleRecord } = require('../../server/data_access_layer/helpers')
 const request = supertest(app)
 const supertestsession = require('supertest-session')
 
@@ -69,4 +70,40 @@ describe('Checks user questions route for a new user', () => {
     expect(questions[8].Answered).toBe(false)
   })
 }) 
+
+
+describe('Checks updated user is returned when question is answered', () => {
+  let session
+  let questionIDs
+  beforeAll(async () => {
+    // setup session and login
+    session = await supertestsession(app)
+    await session.post('/api/auth/login').send({ Email: 'a@b.com', Password: 'password' })
+
+    const questions = await request.get('/api/questions')
+    questionIDs = (questions.body).map(question => question.ID)
+
+  })
+  it('should return successful w/ updated user w/ new question in answered field ',  async () => {
+    // answer question 7 and then retrieve questions
+    await session.post('/api/user/questions').send({ questionId: questionIDs[7] })
+    const res = await session.get('/api/user/questions')
+
+    expect(res.status).toBe(200)
+
+    // Confirm the # of answered questions is only 1 and verify it is question #7
+    const answered = res.body
+    expect(answered.length).toBe(9)
+    expect(answered[7].Answered).toBe(true)
+  })
+
+  afterEach(async () => {
+    const baseName = 'Users'
+    const userTestID = 'recmAyOc3FPftHqZG'
+    const fieldName = 'Answered'
+
+    await clearFieldsInSingleRecord(baseName, userTestID, fieldName)
+  })
+}) 
+
 
