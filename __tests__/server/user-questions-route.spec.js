@@ -18,7 +18,7 @@ describe('Checks user questions route', () => {
   it('should return successful w/ an array of the questions', () => {
     // Check getting user's answered questions
     expect(res.status).toBe(200)
-    expect(res.body.length).toBe(9)
+    expect(res.body.length).toBe(10)
   })
   it('should return array w/ 5/9 questions answered ', () => {
     // Check getting user's answered questions
@@ -29,11 +29,12 @@ describe('Checks user questions route', () => {
     expect(questions[1].Answered).toBe(true)
     expect(questions[2].Answered).toBe(true)
     expect(questions[3].Answered).toBe(true)
-    expect(questions[4].Answered).toBe(false)
+    expect(questions[4].Answered).toBe(true)
     expect(questions[5].Answered).toBe(false)
     expect(questions[6].Answered).toBe(false)
     expect(questions[7].Answered).toBe(false)
     expect(questions[8].Answered).toBe(false)
+    expect(questions[9].Answered).toBe(false)
   })
 }) 
 
@@ -52,7 +53,7 @@ describe('Checks user questions route for a new user', () => {
   it('should return successful w/ an array of the questions', () => {
     // Check getting user's answered questions
     expect(res.status).toBe(200)
-    expect(res.body.length).toBe(9)
+    expect(res.body.length).toBe(10)
   })
   it('should return array w/ 0 questions answered ', () => {
     // Check getting user's answered questions
@@ -68,6 +69,7 @@ describe('Checks user questions route for a new user', () => {
     expect(questions[6].Answered).toBe(false)
     expect(questions[7].Answered).toBe(false)
     expect(questions[8].Answered).toBe(false)
+    expect(questions[9].Answered).toBe(false)
   })
 }) 
 
@@ -93,7 +95,7 @@ describe('Checks updated user is returned when question is answered', () => {
 
     // Confirm the # of answered questions is only 1 and verify it is question #7
     const answered = res.body
-    expect(answered.length).toBe(9)
+    expect(answered.length).toBe(10)
     expect(answered[7].Answered).toBe(true)
   })
 

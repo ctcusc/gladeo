@@ -14,7 +14,7 @@ describe('Checks to see if questions route returns the list of questions', () =>
     expect(res.body.length).toBeGreaterThan(8)
   })
   it('should return the first question correctly', () => {
-    expect(res.body[0].text).toMatch('Who/what influenced or inspired you to do what you do?')
+    expect(res.body[0].text).toMatch('Explain what you do in one minute or less')
   })
   it('should return the correct fields', () => {
     for (let i = 0; i < res.body.length; i++) {

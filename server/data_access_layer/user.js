@@ -40,13 +40,12 @@ async function updateAnsweredQuestions(user, answeredQuestions) {
 
 async function registerUser(fullName, email, title, companyCode, password) {
   const company = await getCompany(companyCode)
-
   // Hash password w/ 10 salt rounds
   const passwordHashed = bcrypt.hashSync(password, 10)
 
   const newUser = {
     'Email': email,
-    'Company': [ company._record ],
+    'Company': company._record,
     'Current Title': title,
     'Full Name': fullName,
     'Password': passwordHashed
