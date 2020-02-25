@@ -11,7 +11,7 @@ import BlackHeading from '../../../../shared_components/BlackHeading/BlackHeadin
 import GreyTextInput from '../../../../shared_components/GreyTextInput/GreyTextInput'
 import PinkButton from '../../../../shared_components/PinkButton/PinkButton'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
-import { BASE_PATH } from 'react-native-dotenv'
+import { TESTING_PATH } from 'react-native-dotenv'
 
 interface Props {
   navigation: NavigationScreenProp<NavigationState>,
@@ -23,7 +23,7 @@ export default function LoginScreen(props: Props) {
   const [password, setPassword] = useState('')
 
   async function handleLogin(){
-    fetch(`${BASE_PATH}/api/auth/login`, {
+    fetch(`${TESTING_PATH}/api/auth/login`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

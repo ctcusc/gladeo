@@ -12,6 +12,6 @@ export default createAppContainer(
       Onboarding: OnboardingNavigator, 
     },
     {
-      initialRouteName: 'Auth', // Determines which nav stack is shown first
+      initialRouteName: 'Main', // Determines which nav stack is shown first
     })
 )

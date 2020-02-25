@@ -13,29 +13,38 @@ import SnippetSelectionScreen from '../screens/Main/EditStack/SnippetSelection/S
 // Tab #1 - Question Selection + Recording
 const RecordStack = createStackNavigator(
   {
-    Questions: QuestionsScreen,
-    Record: RecordScreen,
+    Questions:  QuestionsScreen,
+    Record: {
+      screen: RecordScreen,
+      navigationOptions: {
+        headerShown: false,
+        
+      }
+    }
   },
 )
 
-RecordStack.navigationOptions = {
-  tabBarLabel: 'Record',
-  tabBarIcon: (focused: boolean) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-videocam${focused ? '' : '-outline'}`
-          : 'md-videocam'
+RecordStack.navigationOptions = ({ navigation }) => {
+  let tabBarVisible
+  if (navigation.state.routes.length > 1) {
+    navigation.state.routes.map(route => {
+      if (route.routeName === 'Record') {
+        tabBarVisible = false
+      } else {
+        tabBarVisible = true
       }
-    />
-  ),
+    })
+  }
+
+  return {
+    tabBarVisible
+  }
 }
+
 // Tab #2 - Should contain Selecting Snippets, Creating Video, Complete video.. Rendering
 const EditStack = createStackNavigator(
   {
     SnippetSelection: SnippetSelectionScreen,
-    RenderingVideo: RenderingVideoScreen,
     CreatingVideo: CreatingVideoScreen,
     UploadingVideo: UploadingVideoScreen,
   },

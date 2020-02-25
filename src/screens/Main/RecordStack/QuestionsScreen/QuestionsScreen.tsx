@@ -9,10 +9,11 @@ import {
   FlatList,
   TouchableOpacity,
   ImageBackground,
+  Alert
 } from 'react-native'
 import Modal from 'react-native-modal'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { BASE_PATH } from 'react-native-dotenv'
+import { BASE_PATH, TESTING_PATH } from 'react-native-dotenv'
 import styles from './styles'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
 
@@ -28,7 +29,7 @@ interface Props {
 export default function QuestionsScreen(props: Props) {
   const [selected, setSelected] = useState<number | null>(null)
   const [questions, setQuestions] = useState<Array<Question>>([])
-  const {navigate} = props.navigation
+  const {navigate, push} = props.navigation
   const [modalVisibility, setModalVisibility] = useState(false)
 
   useEffect(() => {
@@ -55,9 +56,10 @@ export default function QuestionsScreen(props: Props) {
             title={item.text}
             selected={selected === item.id}
             onSelect={() => {
-              setModalVisibility(true)
+              // setModalVisibility(true)
               setSelected(item.id)
-              //navigate('Record', {question: item.text})
+              // Alert.alert(item.text)
+              push('Record', {question: item.text})
             }}
           />
         )}
