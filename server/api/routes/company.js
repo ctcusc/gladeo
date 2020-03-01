@@ -1,23 +1,29 @@
 const express = require('express')
 const router = express.Router()
-const { getCompany } = require('../../data_access_layer/company')
+const { getCompany, getUserByCompanyCode } = require('../../data_access_layer/company')
 
 router.get('/:code', async (req, res) => {
   try {
     const { code } = req.params
-    const company = await getCompany(code)
+    const company = await getUserByCompanyCode(code)
     if (company == null) {
       throw {
         statusCode: 404,
-        message: `Company with ID: ${code} not found.`
+        message: `No user exists with the company code '${code}'.`
       }
-    } 
-    return res.status(200).send(company)
+    } else if(company['Email']){
+      return res.status(200).send(company)
+    } else{
+      throw {
+        statusCode: 409,
+        message: `User with the company code '${code}' has already registered.`
+      }
+    }
   } catch (err) {
     if (err.statusCode === undefined) {
       return res.status(404).send({
         statusCode: 404,
-        message: 'Company code does not exist'
+        message: `Company code '${code}' does not exist.`
       })
     }
     return res.status(404).send(err)

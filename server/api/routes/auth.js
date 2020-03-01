@@ -4,9 +4,9 @@ const { getUserByEmail, registerUser, verifyLogin, sendPasswordResetEmail } = re
 
 router.post('/register', async (req, res) => {
   const email = req.body['Email']
-  const fullName = req.body['Full Name'] 
-  const title = req.body['Current Title']
-  const companyCode = req.body['Company Code']
+  // const fullName = req.body['Full Name'] 
+  // const title = req.body['Current Title']
+  // const companyCode = req.body['Company Code']
   const password = req.body['Password']
 
   try {
