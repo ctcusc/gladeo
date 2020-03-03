@@ -26,18 +26,20 @@ export default function SnippetSelectionScreen(props: Props) {
   const [selectedSnippetCount, setSelectedSnippetCount] = useState<number>(1)
 
   useEffect(() => {
-    fetch(`${BASE_PATH}/api/questions`)
+    fetch(`${BASE_PATH}/api/user/questions`)
       .then(res => res.json())
       .then(data => {     
         const initialSnippetState = []
         for(let i = 0; i < data.length; i++){
-          const item: Snippet = {
-            id: data[i]['ID'], 
-            isSelected: false, 
-            orderInList: 0,
-            text: data[i]['text']
+          if (data[i]['Answered']) {
+            const item: Snippet = {
+              id: data[i]['ID'], 
+              isSelected: false, 
+              orderInList: 0,
+              text: data[i]['text']
+            }
+            initialSnippetState.push(item)
           }
-          initialSnippetState.push(item)
         }
         setSnippetState(initialSnippetState)
         console.log(data)
