@@ -20,11 +20,27 @@ import { NavigationScreenProp, NavigationState } from 'react-navigation'
 interface Question {
   id: number,
   text: string,
+  Answered: boolean,
 }
 
 interface Props {
   navigation: NavigationScreenProp<NavigationState>,
 }
+
+function questionStyle(props: any) {
+  console.log('selected: '+props.selected)
+  console.log('answered: '+props.answered)
+  if(props.selected) {
+    if(props.answered)
+      return styles.selectedAnswered
+    else return styles.selectedUnanswered
+  } else { // unselected
+    if(props.answered)
+      return styles.notSelectedAnswered
+    else return styles.notSelectedUnanswered
+  }
+}
+
 /* AKA: Q&A screen */
 export default function QuestionsScreen(props: Props) {
   const [selected, setSelected] = useState<number | null>(null)
@@ -33,7 +49,7 @@ export default function QuestionsScreen(props: Props) {
   const [modalVisibility, setModalVisibility] = useState(false)
 
   useEffect(() => {
-    fetch(`${BASE_PATH}/api/questions`)
+    fetch(`${BASE_PATH}/api/user/questions`)
       .then(res => res.json())
       .then(data => {
         setQuestions(data)
@@ -46,7 +62,6 @@ export default function QuestionsScreen(props: Props) {
 
   return (
     <ImageBackground source={background} style={styles.container}>
-      <Text style={styles.tip}>Tip: Answer 3-4 questions for a great video!</Text>
    
       <FlatList<Question>
         data={questions}
@@ -55,11 +70,13 @@ export default function QuestionsScreen(props: Props) {
             id={item.id}
             title={item.text}
             selected={selected === item.id}
+            answered={item.Answered}
             onSelect={() => {
-              // setModalVisibility(true)
+              if(item.Answered)
+                setModalVisibility(true)
               setSelected(item.id)
               // Alert.alert(item.text)
-              push('Record', {question: item.text})
+              //push('Record', {question: item.text})
             }}
           />
         )}
@@ -117,25 +134,19 @@ QuestionsScreen.navigationOptions = {
     fontSize: 18,
     color: '#D94077',
   },
-  // eslint-disable-next-line react/display-name
-  headerRight: () => (
-    <View style={styles.counter}>
-      <View style={styles.numberCounter}>
-        <Text style={styles.number}>0</Text>
-      </View>
-      <Text style={styles.answered}>answered</Text>
-    </View>
-  )   
+  // eslint-disable-next-line react/display-name 
 }
 
 function Item(props: ItemProps) {
   return (
     <TouchableOpacity
       onPress={() => props.onSelect(props.id)}
-      style={props.selected ? styles.questionSelected : styles.question}
+      style={questionStyle(props)}
+      //style={props.selected ? styles.questionSelected : styles.question}
     >
       <Text
-        style={props.selected ? styles.titleSelected : styles.title}
+        //style={props.selected ? styles.titleSelected : styles.title}
+        style={props.answered ? styles.titleAnswered : styles.titleUnanswered}
       >{props.title}</Text>
     </TouchableOpacity>
   )
@@ -145,5 +156,6 @@ interface ItemProps {
   id: number,
   title: string,
   selected: boolean,
+  answered: boolean,
   onSelect: Function,
 }
