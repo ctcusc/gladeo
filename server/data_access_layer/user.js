@@ -110,11 +110,38 @@ async function sendPasswordResetEmail(email, fullName) {
   
 }
 
+async function verifyPasswordCode(email, code) {
+  const user = await getUserByEmail(email)
+  const passwordCode = user['Forgot Password Code']
+  if(code == passwordCode) {
+    return true
+  } else {
+    return false
+  }
+}
+
+async function updateUserPassword(email, password) {
+  const user = await getUserByEmail(email)
+  if(user == null) {
+    return false
+  }
+  const updatedUser = [{
+    id: user._record,
+    fields: {
+      'Password': password
+    },
+  }]
+  base('Users').update(updatedUser)
+  return true
+}
+
 module.exports = {
   getUser,
   getUserByEmail,
   updateAnsweredQuestions,
   registerUser,
   verifyLogin,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
+  verifyPasswordCode,
+  updateUserPassword
 }

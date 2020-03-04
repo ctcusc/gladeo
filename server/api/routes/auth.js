@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { getUserByEmail, registerUser, verifyLogin, sendPasswordResetEmail } = require('../../data_access_layer/user')
+const { getUserByEmail, registerUser, verifyLogin, sendPasswordResetEmail, verifyPasswordCode, updateUserPassword} = require('../../data_access_layer/user')
 
 router.post('/register', async (req, res) => {
   const email = req.body['Email']
@@ -88,5 +88,28 @@ router.post('/forgot-password', async(req, res) => {
   }
 })
 
-module.exports = router
+router.get('/confirm-reset-code/:email/:code', async(req, res) => {
+  const email = req.params['email']
+  const code = req.params['code']
+  const success = await verifyPasswordCode(email, code)
+  if(success) {
+    return res.status(200).send('Success')
+  } else {
+    return res.status(401).send('Incorrect Password Code')
+  }
+  return res.status(500)
+})
 
+router.post('/reset-password', async(req, res) => {
+  const email = req.body['Email']
+  const password = req.body['Password']
+  const success = await updateUserPassword(email, password)
+  if(success) {
+    return res.status(200).send('Successfully changed password')
+  } else {
+    return res.status(404).send('User does not exist')
+  }
+  return res.status(500)
+})
+
+module.exports = router
