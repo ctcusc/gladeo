@@ -148,8 +148,9 @@ SnippetSelectionScreen.navigationOptions = {
   title: '',
   // eslint-disable-next-line react/display-name
   headerLeft: () => (
-    <View>
+    <View style={styles.headerContainer}>
       <Text style={styles.header}>Snippet Selection</Text>
     </View>
-  )   
+  ),
+  headerStyle: {height: 140},   
 }
