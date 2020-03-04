@@ -89,27 +89,47 @@ router.post('/forgot-password', async(req, res) => {
 })
 
 router.get('/confirm-reset-code/:email/:code', async(req, res) => {
-  const email = req.params['email']
-  const code = req.params['code']
-  const success = await verifyPasswordCode(email, code)
-  if(success) {
-    return res.status(200).send('Success')
-  } else {
-    return res.status(401).send('Incorrect Password Code')
+  try {
+    const email = req.params['email']
+    const code = req.params['code']
+    const success = await verifyPasswordCode(email, code)
+    if(success) {
+      return res.status(200).send('Success')
+    } else {
+      return res.status(401).send('Incorrect Password Code')
+    }
+  } catch(err) {
+    if (err.statusCode === undefined) {
+      return res.status(500).send({
+        statusCode: 500,
+        message: err.message,
+        stack: err.stack
+      })
+    }
+    return res.status(err.statusCode).send(err)
   }
-  return res.status(500)
 })
 
 router.post('/reset-password', async(req, res) => {
-  const email = req.body['Email']
-  const password = req.body['Password']
-  const success = await updateUserPassword(email, password)
-  if(success) {
-    return res.status(200).send('Successfully changed password')
-  } else {
-    return res.status(404).send('User does not exist')
+  try {
+    const email = req.body['Email']
+    const password = req.body['Password']
+    const success = await updateUserPassword(email, password)
+    if(success) {
+      return res.status(200).send('Successfully changed password')
+    } else {
+      return res.status(404).send('User not found')
+    }
+  }catch(err) {
+    if (err.statusCode === undefined) {
+      return res.status(500).send({
+        statusCode: 500,
+        message: err.message,
+        stack: err.stack
+      })
+    }
+    return res.status(err.statusCode).send(err)
   }
-  return res.status(500)
 })
 
 module.exports = router
