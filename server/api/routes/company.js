@@ -12,10 +12,10 @@ router.get('/:code', async (req, res) => {
         message: `No user exists with the company code '${code}'.`
       }
     } else if(user['Email']){
-      throw {
+      return res.status(409).send({
         statusCode: 409,
         message: `User with the company code '${code}' has already registered.`
-      }
+      })
     } else{
       const data = {
         '_record': user['_record'],

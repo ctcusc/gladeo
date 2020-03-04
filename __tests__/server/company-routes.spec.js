@@ -14,18 +14,10 @@ describe('Checks to see if company route returns user data successfully with val
 })
 
 describe('Checks to see if valid company code with a registered user is handled', () => {
-  it('should return a 409 error', async (done) => {
+  it('should return a 409 error', async () => {
     const res = await request.get('/api/company/acefh')
     expect(res.status).toBe(409)
-    done()
-  })
-})
-
-describe('Checks to see if invalid url is handled', () => {
-  it('should return a 404 error', async (done) => {
-    const res = await request.get('/api/companycod/1111')
-    expect(res.status).toBe(404)
-    done()
+    // done()
   })
 })
 
