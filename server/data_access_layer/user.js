@@ -38,6 +38,20 @@ async function updateAnsweredQuestions(user, answeredQuestions) {
   return user
 }
 
+async function updateEmailandPassword(record, email, password){
+  const updatedUser = [{
+    id: record,
+    fields: {
+      'Email': email,
+      'Password': password
+    }
+  }]
+
+  await base('Users').update(updatedUser)
+  const newUser = getUserByEmail(email)
+  return newUser
+}
+
 async function registerUser(fullName, email, title, companyCode, password) {
   const company = await getCompany(companyCode)
   // Hash password w/ 10 salt rounds
@@ -116,5 +130,6 @@ module.exports = {
   updateAnsweredQuestions,
   registerUser,
   verifyLogin,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
+  updateEmailandPassword
 }

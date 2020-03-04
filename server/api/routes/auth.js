@@ -1,28 +1,29 @@
 const express = require('express')
 const router = express.Router()
-const { getUserByEmail, registerUser, verifyLogin, sendPasswordResetEmail } = require('../../data_access_layer/user')
+const { getUserByEmail, verifyLogin, sendPasswordResetEmail, updateEmailandPassword } = require('../../data_access_layer/user')
+const { getUserByCompanyCode } = require('../../data_access_layer/company')
 
 router.post('/register', async (req, res) => {
   const email = req.body['Email']
-  // const fullName = req.body['Full Name'] 
-  // const title = req.body['Current Title']
-  // const companyCode = req.body['Company Code']
+  const companyCode = req.body['Company Code']
   const password = req.body['Password']
-
+ 
   try {
-    // check if the user already exists
-    let user = await getUserByEmail(email)
-    // if exists, return error 409
-    if (user != null) {
-      throw {
-        statusCode: 409,
-        message: 'user already exists'
+    // get the user by the company code
+    let user = await getUserByCompanyCode(companyCode)
+
+    // update the user info with received password and email
+    user = await updateEmailandPassword(user['_record'], email, password)
+
+    // if the email of the user is not updated
+    if(user.Email != email || user.Password != password){
+      throw{
+        statusCode: 500,
+        message: 'Update is unsuccessful.'
       }
     }
-    // else:
-    user = await registerUser(fullName, email, title, companyCode, password)
+    // else return 200 and the full record of the user
     return res.status(200).send(user)
-
   } catch (err) {
     // when `statusCode` is not included, it is a server error 500
     if (err.statusCode === undefined) {
