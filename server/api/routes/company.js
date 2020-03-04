@@ -12,17 +12,17 @@ router.get('/:code', async (req, res) => {
         message: `No user exists with the company code '${code}'.`
       }
     } else if(user['Email']){
+      throw {
+        statusCode: 409,
+        message: `User with the company code '${code}' has already registered.`
+      }
+    } else{
       const data = {
         '_record': user['_record'],
         'Company Code': user['Company Code'],
         'Full Name': user['Full Name']
       }
       return res.status(200).send(data)
-    } else{
-      throw {
-        statusCode: 409,
-        message: `User with the company code '${code}' has already registered.`
-      }
     }
   } catch (err) {
     if (err.statusCode === undefined) {

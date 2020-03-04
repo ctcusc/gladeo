@@ -1,29 +1,19 @@
+const bcrypt = require('bcrypt')
 const express = require('express')
-const router = express.Router()
+const router = express.Router() 
 const { getUserByEmail, verifyLogin, sendPasswordResetEmail, updateEmailandPassword } = require('../../data_access_layer/user')
-const { getUserByCompanyCode } = require('../../data_access_layer/company')
 
 router.post('/register', async (req, res) => {
   const email = req.body['Email']
-  const companyCode = req.body['Company Code']
   const password = req.body['Password']
+  const record = req.body['_record']
  
   try {
-    // get the user by the company code
-    let user = await getUserByCompanyCode(companyCode)
-
     // update the user info with received password and email
-    user = await updateEmailandPassword(user['_record'], email, password)
-
-    // if the email of the user is not updated
-    if(user.Email != email || user.Password != password){
-      throw{
-        statusCode: 500,
-        message: 'Update is unsuccessful.'
-      }
-    }
-    // else return 200 and the full record of the user
-    return res.status(200).send(user)
+    const passwordHashed = bcrypt.hashSync(password, 10)
+    const data = await updateEmailandPassword(record, email, passwordHashed)
+    // return status 200 and the full record of the user
+    return res.status(200).send(data)
   } catch (err) {
     // when `statusCode` is not included, it is a server error 500
     if (err.statusCode === undefined) {
