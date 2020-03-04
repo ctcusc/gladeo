@@ -38,6 +38,25 @@ async function updateAnsweredQuestions(user, answeredQuestions) {
   return user
 }
 
+async function updateEmailandPassword(record, email, password){
+  const passwordHashed = bcrypt.hashSync(password, 10)
+
+  const updatedUser = [{
+    id: record,
+    fields: {
+      'Email': email,
+      'Password': passwordHashed
+    }
+  }]
+
+  await base('Users').update(updatedUser)
+  const data = {
+    '_record': record,
+    'Email': email,
+  }
+  return data
+}
+
 async function registerUser(fullName, email, title, companyCode, password) {
   const company = await getCompany(companyCode)
   // Hash password w/ 10 salt rounds
@@ -116,5 +135,6 @@ module.exports = {
   updateAnsweredQuestions,
   registerUser,
   verifyLogin,
-  sendPasswordResetEmail
+  sendPasswordResetEmail,
+  updateEmailandPassword
 }
