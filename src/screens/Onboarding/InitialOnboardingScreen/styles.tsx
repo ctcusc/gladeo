@@ -28,18 +28,19 @@ const styles = StyleSheet.create({
   text: {
     fontFamily: 'montserrat-regular', 
     fontWeight: 'bold',
-    fontSize: 22,
+    fontSize: 18,
     lineHeight: 27,
     color: '#F5F5F5',
     textAlign: 'center',
     width: 283,
+    marginTop: '10%',
   }, 
 
   button: {
     width: 179,
     height: 50,
     backgroundColor: '#FFFFFF',
-    borderRadius: 8,
+    borderRadius: 25,
     justifyContent: 'center',
   },
 

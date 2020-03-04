@@ -17,7 +17,7 @@ export default function InitialOnboardingScreen(props: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.main}>
-        <Image style={styles.image} resizeMode='contain' source={require('../../../../assets/images/Gladeo_Favicon_Logo_Large_Black.png')} />
+        <Image style={styles.image} resizeMode='contain' source={require('../../../../assets/images/GladeoWhiteLogo_Transparent.png')} />
         <Text style={styles.text}>helps you create videos where you can answer questions & share your professional story with students.</Text>
       </View>
 

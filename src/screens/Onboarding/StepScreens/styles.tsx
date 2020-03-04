@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#D94077',
+    backgroundColor: 'white',
   },
     
   header: {
@@ -19,16 +19,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-
-  title: {
-    color: '#DEA3BB',
-    fontFamily: 'montserrat-regular', 
-    fontWeight: 'bold',
-    fontSize: 30,
-    marginBottom: '10%',
-    marginTop: '15%'
-  },
-
   text: {
     fontFamily: 'montserrat-regular', 
     fontStyle: 'normal',
@@ -36,7 +26,8 @@ const styles = StyleSheet.create({
     fontSize: 30,
     lineHeight: 37,
     textAlign: 'center',
-    color: '#F5F5F5',
+    color: 'black',
+    marginTop: '40%',
   },
 
   textOne: {
