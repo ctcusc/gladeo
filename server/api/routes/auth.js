@@ -10,8 +10,7 @@ router.post('/register', async (req, res) => {
  
   try {
     // update the user info with received password and email
-    const passwordHashed = bcrypt.hashSync(password, 10)
-    const data = await updateEmailandPassword(record, email, passwordHashed)
+    const data = await updateEmailandPassword(record, email, password)
     // return status 200 and the full record of the user
     return res.status(200).send(data)
   } catch (err) {

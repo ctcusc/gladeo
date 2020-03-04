@@ -39,11 +39,13 @@ async function updateAnsweredQuestions(user, answeredQuestions) {
 }
 
 async function updateEmailandPassword(record, email, password){
+  const passwordHashed = bcrypt.hashSync(password, 10)
+
   const updatedUser = [{
     id: record,
     fields: {
       'Email': email,
-      'Password': password
+      'Password': passwordHashed
     }
   }]
 
