@@ -46,8 +46,6 @@ export default function QuestionsScreen(props: Props) {
   }, [])
 
   function questionStyle(selected: boolean, answered: boolean) {
-    console.log('selected: '+selected)
-    console.log('answered: '+answered)
     if(selected) {
       if(answered)
         return styles.selectedAnswered
@@ -57,10 +55,6 @@ export default function QuestionsScreen(props: Props) {
         return styles.notSelectedAnswered
       else return styles.notSelectedUnanswered
     }
-  }
-
-  function itemSelected(id: number) {
-    return id == selected
   }
 
   return (
@@ -78,9 +72,7 @@ export default function QuestionsScreen(props: Props) {
               }
               setSelected(item.ID)
             }}
-            style={
-              questionStyle(itemSelected(item.ID), item.Answered)
-            }
+            style={questionStyle((item.ID == selected), item.Answered)}
             key={item.text}>
             <Text
               style={item.Answered ? styles.titleAnswered : styles.titleUnanswered}
@@ -141,13 +133,11 @@ QuestionsScreen.navigationOptions = {
     fontSize: 18,
     color: '#D94077',
   },
-  // eslint-disable-next-line react/display-name 
 }
 
 interface ItemProps {
   id: number,
   title: string,
   selected: boolean,
-  answered: boolean,
   onSelect: Function,
 }
