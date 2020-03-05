@@ -88,15 +88,18 @@ router.post('/forgot-password', async(req, res) => {
   }
 })
 
-router.get('/confirm-reset-code/:email/:code', async(req, res) => {
+router.get('/confirm-reset-code', async(req, res) => {
   try {
-    const email = req.params['email']
-    const code = req.params['code']
+    const email = req.body['Email']
+    const code = req.body['Code']
     const success = await verifyPasswordCode(email, code)
     if(success) {
-      return res.status(200).send('Success')
+      return res.status(200).send({'success': true})
     } else {
-      return res.status(401).send('Incorrect Password Code')
+      return res.status(401).send({
+        'success': false,
+        'message' : 'Incorrect Password Code'
+      })
     }
   } catch(err) {
     if (err.statusCode === undefined) {

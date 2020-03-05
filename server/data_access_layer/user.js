@@ -115,9 +115,8 @@ async function verifyPasswordCode(email, code) {
   const passwordCode = user['Forgot Password Code']
   if(code == passwordCode) {
     return true
-  } else {
-    return false
   }
+  return false
 }
 
 async function updateUserPassword(email, password) {
