@@ -50,11 +50,9 @@ async function updateEmailandPassword(record, email, password){
   }]
 
   await base('Users').update(updatedUser)
-  const data = {
-    '_record': record,
-    'Email': email,
-  }
-  return data
+
+  const newUser = getUserByEmail(email)
+  return newUser
 }
 
 async function registerUser(fullName, email, title, companyCode, password) {
