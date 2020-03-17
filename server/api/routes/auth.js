@@ -1,7 +1,8 @@
 const bcrypt = require('bcrypt')
 const express = require('express')
-const router = express.Router() 
-const { getUserByEmail, verifyLogin, sendPasswordResetEmail, updateEmailandPassword } = require('../../data_access_layer/user')
+
+const router = express.Router()
+const { getUserByEmail, registerUser, verifyLogin, sendPasswordResetEmail, updateEmailandPassword, verifyPasswordCode, updateUserPassword} = require('../../data_access_layer/user')
 
 router.post('/register', async (req, res) => {
   const email = req.body['Email']
@@ -78,5 +79,51 @@ router.post('/forgot-password', async(req, res) => {
   }
 })
 
-module.exports = router
+router.get('/confirm-reset-code', async(req, res) => {
+  try {
+    const email = req.body['Email']
+    const code = req.body['Code']
+    const success = await verifyPasswordCode(email, code)
+    if(success) {
+      return res.status(200).send({'success': true})
+    } else {
+      return res.status(401).send({
+        'success': false,
+        'message' : 'Incorrect Password Code'
+      })
+    }
+  } catch(err) {
+    if (err.statusCode === undefined) {
+      return res.status(500).send({
+        statusCode: 500,
+        message: err.message,
+        stack: err.stack
+      })
+    }
+    return res.status(err.statusCode).send(err)
+  }
+})
 
+router.post('/reset-password', async(req, res) => {
+  try {
+    const email = req.body['Email']
+    const password = req.body['Password']
+    const success = await updateUserPassword(email, password)
+    if(success) {
+      return res.status(200).send('Successfully changed password')
+    } else {
+      return res.status(404).send('User not found')
+    }
+  }catch(err) {
+    if (err.statusCode === undefined) {
+      return res.status(500).send({
+        statusCode: 500,
+        message: err.message,
+        stack: err.stack
+      })
+    }
+    return res.status(err.statusCode).send(err)
+  }
+})
+
+module.exports = router
