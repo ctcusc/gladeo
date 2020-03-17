@@ -102,6 +102,9 @@ const styles = StyleSheet.create({
     color: '#000',
     paddingLeft: '7%',
     width: '100%'
+  },
+  headerContainer: {
+    paddingTop: 40,
   }
 })
 
