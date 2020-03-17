@@ -159,6 +159,6 @@ module.exports = {
   verifyLogin,
   sendPasswordResetEmail,
   verifyPasswordCode,
-  updateUserPassword
+  updateUserPassword,
   updateEmailandPassword
 }
