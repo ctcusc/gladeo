@@ -18,12 +18,11 @@ export default function StepScreens(props: Props) {
   const [title, setTitle] = useState('Step 1')
   const [textStyle, setTextStyle] = useState(styles.textOne)
   const [imageSource, setImageSource] = useState(require('../../../../assets/images/step1.png'))
-  const [buttonContent, setButtonContent] = useState('Next')
+  const [imageSource2, setImageSource2] = useState(require('../../../../assets/images/ellipses1.png'))
 
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text style={styles.title}>{title}</Text>
         <Text style={[styles.text, textStyle]}>{text}</Text>
         <Image resizeMode='contain' source={imageSource} />
       </View>
@@ -36,29 +35,32 @@ export default function StepScreens(props: Props) {
               setText('Record your responses as video snippets')
               setTitle('Step 2')
               setImageSource(require('../../../../assets/images/step2.png'))
+              setImageSource2(require('../../../../assets/images/ellipses2.png'))
             }
             if(step == 3) {
               setTextStyle(styles.textThree)
               setText('Choose snippets to include in your video')
               setTitle('Step 3')
               setImageSource(require('../../../../assets/images/step3.png'))
+              setImageSource2(require('../../../../assets/images/ellipses3.png'))
             }
             if(step == 4) {
               setTextStyle(styles.textFour)
               setText('Create + publish your video to Gladeo\'s Youtube')
               setTitle('Step 4')
               setImageSource(require('../../../../assets/images/step4.png'))
-              setButtonContent('GET STARTED')
+              setImageSource2(require('../../../../assets/images/ellipses4.png'))
             }
             if(step == 5){
               navigate('FinalStep')
             } 
           } }
-          style={styles.button}>
-          <Text style={styles.buttonText}>
-            {buttonContent}
+        >
+          <Text>
+            <Image resizeMode='contain' source={require('../../../../assets/images/Arrow.png')} />
           </Text>
         </TouchableOpacity>
+        <Image resizeMode='contain' source={imageSource2} />
       </View>
     </View>
   )

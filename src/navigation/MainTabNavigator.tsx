@@ -9,6 +9,7 @@ import CreatingVideoScreen from '../screens/Main/EditStack/CreatingVideoScreen/C
 import UploadingVideoScreen from '../screens/Main/EditStack/UploadingVideoScreen/UploadingVideoScreen'
 import RecordScreen from '../screens/Main/RecordStack/RecordScreen/RecordScreen'
 import SnippetSelectionScreen from '../screens/Main/EditStack/SnippetSelection/SnippetSelection'
+import Colors from '../constants/Colors'
 
 // Tab #1 - Question Selection + Recording
 const RecordStack = createStackNavigator(
@@ -37,6 +38,11 @@ RecordStack.navigationOptions = ({ navigation }) => {
   }
 
   return {
+    title: 'Record',
+    tabBarOptions: {  activeTintColor: Colors.tabIconSelected  },
+    tabBarIcon: ({focused}: any) => (
+      <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-videocam' : 'md-videocam'} />
+    ),
     tabBarVisible
   }
 }
@@ -54,9 +60,10 @@ const EditStack = createStackNavigator(
 )
 
 EditStack.navigationOptions = {
-  tabBarLabel: 'Create',
-  tabBarIcon: (focused: boolean) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-create' : 'md-create'} />
+  tabBarLabel: 'Edit',
+  tabBarOptions: {  activeTintColor: Colors.tabIconSelected  },
+  tabBarIcon: ({focused}: any) => (
+    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-film' : 'md-film'} />
   ),
 }
 

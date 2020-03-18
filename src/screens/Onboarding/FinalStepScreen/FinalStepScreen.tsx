@@ -7,6 +7,7 @@ import {
   Text,
   View,
   TouchableOpacity,
+  Image,
 } from 'react-native'
 import styles from './styles'
 
@@ -20,8 +21,9 @@ export default function FinalStepScreen(props: Props) {
             First, we want to get to know you better!
         </Text>
         <Text style={styles.content}>
-            EXPLAIN WHAT YOU DO IN ONE MINUTE OR LESS
+            Explain what you do in one minute or less
         </Text>
+        <Image resizeMode='contain' source={require('../../../../assets/images/finalscreen.png')} />
       </View>
       <View style={styles.footer}>
         <TouchableOpacity onPress={() => navigate('Questions')} style={styles.button}>
