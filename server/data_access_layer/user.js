@@ -50,11 +50,9 @@ async function updateEmailandPassword(record, email, password){
   }]
 
   await base('Users').update(updatedUser)
-  const data = {
-    '_record': record,
-    'Email': email,
-  }
-  return data
+
+  const newUser = getUserByEmail(email)
+  return newUser
 }
 
 async function registerUser(fullName, email, title, companyCode, password) {
@@ -129,6 +127,30 @@ async function sendPasswordResetEmail(email, fullName) {
   
 }
 
+async function verifyPasswordCode(email, code) {
+  const user = await getUserByEmail(email)
+  const passwordCode = user['Forgot Password Code']
+  if(code == passwordCode) {
+    return true
+  }
+  return false
+}
+
+async function updateUserPassword(email, password) {
+  const user = await getUserByEmail(email)
+  if(user == null) {
+    return false
+  }
+  const updatedUser = [{
+    id: user._record,
+    fields: {
+      'Password': password
+    },
+  }]
+  base('Users').update(updatedUser)
+  return true
+}
+
 module.exports = {
   getUser,
   getUserByEmail,
@@ -136,5 +158,7 @@ module.exports = {
   registerUser,
   verifyLogin,
   sendPasswordResetEmail,
+  verifyPasswordCode,
+  updateUserPassword,
   updateEmailandPassword
 }
