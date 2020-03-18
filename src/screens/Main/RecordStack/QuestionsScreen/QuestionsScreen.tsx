@@ -9,7 +9,6 @@ import {
   FlatList,
   TouchableOpacity,
   ImageBackground,
-  Alert
 } from 'react-native'
 import Modal from 'react-native-modal'
 import { SafeAreaView } from 'react-native-safe-area-context'
@@ -18,13 +17,15 @@ import styles from './styles'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
 
 interface Question {
-  id: number,
+  ID: number,
   text: string,
+  Answered: boolean,
 }
 
 interface Props {
   navigation: NavigationScreenProp<NavigationState>,
 }
+
 /* AKA: Q&A screen */
 export default function QuestionsScreen(props: Props) {
   const [selected, setSelected] = useState<number | null>(null)
@@ -33,7 +34,7 @@ export default function QuestionsScreen(props: Props) {
   const [modalVisibility, setModalVisibility] = useState(false)
 
   useEffect(() => {
-    fetch(`${BASE_PATH}/api/questions`)
+    fetch(`${BASE_PATH}/api/user/questions`)
       .then(res => res.json())
       .then(data => {
         setQuestions(data)
@@ -44,24 +45,39 @@ export default function QuestionsScreen(props: Props) {
       })
   }, [])
 
+  function questionStyle(selected: boolean, answered: boolean) {
+    if(selected) {
+      if(answered)
+        return styles.selectedAnswered
+      else return styles.selectedUnanswered
+    } else { // unselected
+      if(answered)
+        return styles.notSelectedAnswered
+      else return styles.notSelectedUnanswered
+    }
+  }
+
   return (
     <ImageBackground source={background} style={styles.container}>
-      <Text style={styles.tip}>Tip: Answer 3-4 questions for a great video!</Text>
    
       <FlatList<Question>
         data={questions}
         renderItem={({ item }) => (
-          <Item
-            id={item.id}
-            title={item.text}
-            selected={selected === item.id}
-            onSelect={() => {
-              // setModalVisibility(true)
-              setSelected(item.id)
-              // Alert.alert(item.text)
-              push('Record', {question: item.text})
+          <TouchableOpacity
+            onPress={() => {
+              if(item.Answered) {
+                setModalVisibility(true)
+              } else {
+                push('Record', {question: item.text})
+              }
+              setSelected(item.ID)
             }}
-          />
+            style={questionStyle((item.ID == selected), item.Answered)}
+            key={item.text}>
+            <Text
+              style={item.Answered ? styles.titleAnswered : styles.titleUnanswered}
+            >{item.text}</Text>
+          </TouchableOpacity>
         )}
         keyExtractor={item => item.text}
         extraData={selected}
@@ -117,28 +133,6 @@ QuestionsScreen.navigationOptions = {
     fontSize: 18,
     color: '#D94077',
   },
-  // eslint-disable-next-line react/display-name
-  headerRight: () => (
-    <View style={styles.counter}>
-      <View style={styles.numberCounter}>
-        <Text style={styles.number}>0</Text>
-      </View>
-      <Text style={styles.answered}>answered</Text>
-    </View>
-  )   
-}
-
-function Item(props: ItemProps) {
-  return (
-    <TouchableOpacity
-      onPress={() => props.onSelect(props.id)}
-      style={props.selected ? styles.questionSelected : styles.question}
-    >
-      <Text
-        style={props.selected ? styles.titleSelected : styles.title}
-      >{props.title}</Text>
-    </TouchableOpacity>
-  )
 }
 
 interface ItemProps {
