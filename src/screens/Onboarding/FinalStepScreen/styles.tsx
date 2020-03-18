@@ -24,12 +24,12 @@ const styles = StyleSheet.create({
     color: '#777777',
     fontFamily: 'montserrat-regular', 
     fontWeight: 'bold',
-    fontSize: 22,
+    fontSize: 15,
     lineHeight: 27,
     width: 301,
     height: 71,
     textAlign: 'center',
-    marginTop: '30%'
+    marginTop: '40%'
   },
 
   content: {
@@ -38,16 +38,17 @@ const styles = StyleSheet.create({
     fontSize: 30,
     lineHeight: 37,
     textAlign: 'center',
-    color: '#E5186E',
+    color: 'black',
     height: 111,
     width: 281,
+    marginBottom: '10%',
   }, 
 
   button: {
     width: 179,
     height: 50,
     backgroundColor: '#E5186E',
-    borderRadius: 8,
+    borderRadius: 25,
     justifyContent: 'center',
   },
     
