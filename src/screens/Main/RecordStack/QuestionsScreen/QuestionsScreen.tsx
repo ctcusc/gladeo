@@ -1,20 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import background from '../../../../../assets/images/dotsbackground.png'
 
-import ModalBaseScene from '../utils/ModalBaseScene'
-import DefaultModalContent from '../utils/DefaultModalContent'
 import {
   Text,
   View,
   FlatList,
   TouchableOpacity,
-  ImageBackground,
+  TouchableHighlight,
 } from 'react-native'
 import Modal from 'react-native-modal'
-import { SafeAreaView } from 'react-native-safe-area-context'
-import { BASE_PATH, TESTING_PATH } from 'react-native-dotenv'
 import styles from './styles'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
+import { BASE_PATH } from 'react-native-dotenv'
 
 interface Question {
   ID: number,
@@ -30,7 +26,7 @@ interface Props {
 export default function QuestionsScreen(props: Props) {
   const [selected, setSelected] = useState<number | null>(null)
   const [questions, setQuestions] = useState<Array<Question>>([])
-  const {navigate, push} = props.navigation
+  const {push} = props.navigation
   const [modalVisibility, setModalVisibility] = useState(false)
 
   useEffect(() => {
@@ -45,25 +41,12 @@ export default function QuestionsScreen(props: Props) {
       })
   }, [])
 
-  function questionStyle(selected: boolean, answered: boolean) {
-    if(selected) {
-      if(answered)
-        return styles.selectedAnswered
-      else return styles.selectedUnanswered
-    } else { // unselected
-      if(answered)
-        return styles.notSelectedAnswered
-      else return styles.notSelectedUnanswered
-    }
-  }
-
   return (
-    <ImageBackground source={background} style={styles.container}>
-   
+    <View style={styles.container}>
       <FlatList<Question>
         data={questions}
         renderItem={({ item }) => (
-          <TouchableOpacity
+          <TouchableHighlight
             onPress={() => {
               if(item.Answered) {
                 setModalVisibility(true)
@@ -72,15 +55,17 @@ export default function QuestionsScreen(props: Props) {
               }
               setSelected(item.ID)
             }}
-            style={questionStyle((item.ID == selected), item.Answered)}
+            underlayColor={item.Answered ? '#A02257' : '#E8E8E8'}
+            style={[styles.question, item.Answered ? styles.notSelectedAnswered : styles.notSelectedUnanswered]}
             key={item.text}>
             <Text
               style={item.Answered ? styles.titleAnswered : styles.titleUnanswered}
             >{item.text}</Text>
-          </TouchableOpacity>
+          </TouchableHighlight>
         )}
         keyExtractor={item => item.text}
         extraData={selected}
+        showsVerticalScrollIndicator={false}
       />
 
       <Modal
@@ -120,24 +105,17 @@ export default function QuestionsScreen(props: Props) {
           </View>
         </View>
       </Modal>
-
-    </ImageBackground>
+    </View>
   )
 }
 
 QuestionsScreen.navigationOptions = {
-  title: 'QUESTIONS',
-  headerTitleStyle: {
-    fontFamily: 'roboto-bold',
-    fontStyle: 'normal',
-    fontSize: 18,
-    color: '#D94077',
-  },
-}
-
-interface ItemProps {
-  id: number,
-  title: string,
-  selected: boolean,
-  onSelect: Function,
+  title: '',
+  // eslint-disable-next-line react/display-name
+  headerLeft: () => (
+    <View style={styles.headerContainer}>
+      <Text style={styles.header}>Profile</Text>
+    </View>
+  ),
+  headerStyle: {height: 140},   
 }

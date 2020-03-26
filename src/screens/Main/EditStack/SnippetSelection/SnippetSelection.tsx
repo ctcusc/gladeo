@@ -3,7 +3,8 @@ import {
   Text,
   View,
   FlatList,
-  TouchableOpacity,
+  TouchableHighlight,
+  TouchableOpacity
 } from 'react-native'
 import { BASE_PATH } from 'react-native-dotenv'
 import styles from './styles'
@@ -109,7 +110,8 @@ export default function SnippetSelectionScreen(props: Props) {
           data={snippetState}
           renderItem={({ item }) => (
             <View style={styles.questionAndCircle}>
-              <TouchableOpacity
+              <TouchableHighlight
+                underlayColor={'#A02257'}
                 onPress={
                   () => {
                     updateSnippetState(item)
@@ -119,7 +121,7 @@ export default function SnippetSelectionScreen(props: Props) {
                 style={item.isSelected ? styles.questionSelected : styles.question}
               >
                 <Text style={styles.titleSelected}>{item.text}</Text>
-              </TouchableOpacity>
+              </TouchableHighlight>
               <View style={item.isSelected ? styles.circleSelected : styles.circle}>
                 <Text style={styles.circleText}> {item.orderInList} </Text>
               </View>
@@ -127,6 +129,7 @@ export default function SnippetSelectionScreen(props: Props) {
           )}
           keyExtractor={(item: { text: any }) => item.text}
           extraData={null}
+          showsVerticalScrollIndicator={false}
         />
       </View>
       <View style={styles.createVideo}>
