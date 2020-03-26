@@ -10,12 +10,13 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   question: {
+    zIndex: 10,
     backgroundColor: '#E5186E',
     padding: '4.9%',
     marginVertical: '2.0%',
     marginHorizontal: '3.8%',
     borderRadius: 8,
-    width: '90%'
+    width: '90%',
   },
   questionSelected: {
     backgroundColor: '#A02257',
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
     marginVertical: '2.0%',
     marginHorizontal: '3.8%',
     borderRadius: 8,
-    width: '90%'
+    width: '90%',
   },
   title: {
     fontSize: 18,
@@ -101,7 +102,7 @@ const styles = StyleSheet.create({
     fontSize: 30,
     color: '#000',
     paddingLeft: '7%',
-    width: '100%'
+    width: '100%',
   },
   headerContainer: {
     paddingTop: 40,
