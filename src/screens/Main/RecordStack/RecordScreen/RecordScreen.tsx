@@ -10,8 +10,8 @@ interface Props {
 }
 
 export default function RecordScreen(props: Props) {
-  const {state, goBack} = props.navigation
-  const text = props.navigation.state.params.question
+  const {goBack} = props.navigation
+  const question = props.navigation.state.params.question
   const [hasPermission, setHasPermission] = useState(false)
   const [camera, setCamera] = useState()
   const [isRecording, setIsRecording] = useState(false)
@@ -49,17 +49,14 @@ export default function RecordScreen(props: Props) {
           <Text style={styles.infoText}>Create a 3-4 Minute Video</Text>
         </View>
         <View style={styles.overlay}>
-          <Text style={styles.question}>{text}</Text>
+          <Text style={styles.question}>{question}</Text>
         </View>
 
       </View>
      
       <View style={styles.topSection}>
         <TouchableOpacity
-          onPress={() => {
-            Alert.alert(props.navigation.state.params.question)
-            goBack()
-          }}
+          onPress={() => goBack()}
           style={styles.whiteButtonOutline}
         >
           <View style={styles.whiteButton}>

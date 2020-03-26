@@ -26,7 +26,7 @@ interface Props {
 export default function QuestionsScreen(props: Props) {
   const [selected, setSelected] = useState<number | null>(null)
   const [questions, setQuestions] = useState<Array<Question>>([])
-  const {navigate, push} = props.navigation
+  const {push} = props.navigation
   const [modalVisibility, setModalVisibility] = useState(false)
 
   useEffect(() => {
