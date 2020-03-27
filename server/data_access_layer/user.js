@@ -141,10 +141,12 @@ async function updateUserPassword(email, password) {
   if(user == null) {
     return false
   }
+  const passwordHashed = bcrypt.hashSync(password, 10)
+
   const updatedUser = [{
     id: user._record,
     fields: {
-      'Password': password
+      'Password': passwordHashed
     },
   }]
   base('Users').update(updatedUser)

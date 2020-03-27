@@ -10,6 +10,7 @@ router.get('/', async (req, res) => {
   }
   return res.status(404).send({
     message: 'user not logged in',
+    statusCode: 404,
   })
 })
 
@@ -33,8 +34,9 @@ router.get('/answered', async (req, res) => {
         return res.status(200).send(data)
       })
     } else {
-      return res.status(403).send({
-        message: 'user is not authorized to use this resource',
+      return res.status(404).send({
+        message: 'user not logged in',
+        statusCode: 404,
       })
     }
   } catch (err) {
@@ -77,8 +79,9 @@ router.get('/questions', async (req, res) => {
       return res.status(200).send(userQuestions)
       
     } else {
-      return res.status(403).send({
-        message: 'user is not authorized to use this resource',
+      return res.status(404).send({
+        message: 'user not logged in',
+        statusCode: 404,
       })
     }
   } catch (err) {
@@ -125,8 +128,9 @@ router.post('/questions', async (req, res) => {
 
       return res.status(200).send(updatedUser)
     } else {
-      return res.status(403).send({
-        message: 'user is not authorized to use this resource',
+      return res.status(404).send({
+        message: 'user not logged in',
+        statusCode: 404,
       })
     }
   } catch (err) {

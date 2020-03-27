@@ -112,7 +112,10 @@ router.post('/reset-password', async(req, res) => {
     if(success) {
       return res.status(200).send('Successfully changed password')
     } else {
-      return res.status(404).send('User not found')
+      return res.status(404).send({
+        'message': 'User not found',
+        'statusCode': 404
+      })
     }
   }catch(err) {
     if (err.statusCode === undefined) {
