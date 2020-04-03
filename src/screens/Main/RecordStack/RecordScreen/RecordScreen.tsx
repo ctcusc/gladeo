@@ -78,25 +78,27 @@ export default function RecordScreen(props: Props) {
               if (isRecording) {
                 setIsRecording(false)
                 camera.stopRecording()
-
+                // get permission to access camera_roll
                 const status = Permissions.askAsync(Permissions.CAMERA_ROLL)
                 if (status === 'granted') {
+                  // Method 1
                   const asset = MediaLibrary.createAssetAsync(uri)
                   const assetInfo = MediaLibrary.getAssetInfoAsync(asset)
                   console.log(assetInfo)
+
+                  // Method 2
+                  // let saveResult = await FileSystem.moveAsync({
+                  //   from: uri,
+                  //   to: `${FileSystem.documentDirectory}videos/Video_Record`,
+                  // });
                 } else {
                   console.log('Uh oh! The user has not granted us permission.')
                 }
-
                 console.log('stop recording...')
               } else {
                 camera.recordAsync(recordingConfig).then(async data => {
                   console.log(data.uri)
                   setUri(data.uri)
-                  // let saveResult = await FileSystem.moveAsync({
-                  //   from: data.uri,
-                  //   to: `${FileSystem.documentDirectory}videos/Video_Record`,
-                  // });
                 })
                 console.log('start recording...')
                 setIsRecording(true)
