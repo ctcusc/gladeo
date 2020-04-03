@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from 'react'
-import { Text, View, TouchableOpacity, Image, StatusBar, Alert } from 'react-native'
+import { Text, View, TouchableOpacity, Image, StatusBar} from 'react-native'
 import { Camera } from 'expo-camera'
 import styles from './styles'
+import * as Permissions from 'expo-permissions'
+import * as MediaLibrary from 'expo-media-library'
 import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation'
+import CreatingVideoScreen from '../../EditStack/CreatingVideoScreen/CreatingVideoScreen'
 
 interface Props {
   question: string,
@@ -16,6 +19,7 @@ export default function RecordScreen(props: Props) {
   const [camera, setCamera] = useState()
   const [isRecording, setIsRecording] = useState(false)
   const [cameraDirection, setCameraDirection] = useState(Camera.Constants.Type.front)
+  const [uri, setUri] = useState('')
 
   useEffect(() => {
     (async () => {
@@ -65,12 +69,36 @@ export default function RecordScreen(props: Props) {
        
         <TouchableOpacity
           onPress={ () => {
+            const recordingConfig = {
+              quality : Camera.Constants.VideoQuality['720p'],
+              maxDuration : 120 * 60,
+            }
+
             if(camera) {
               if (isRecording) {
                 setIsRecording(false)
                 camera.stopRecording()
+
+                const status = Permissions.askAsync(Permissions.CAMERA)
+                if (status === 'granted') {
+                  const asset = MediaLibrary.createAssetAsync(uri)
+                  const assetInfo = MediaLibrary.getAssetInfoAsync(asset)
+                  console.log(assetInfo)
+                } else {
+                  console.log('Uh oh! The user has not granted us permission.')
+                }
+
+                console.log('stop recording...')
               } else {
-                const video = camera.recordAsync()
+                camera.recordAsync(recordingConfig).then(async data => {
+                  console.log(data.uri)
+                  setUri(data.uri)
+                  // let saveResult = await FileSystem.moveAsync({
+                  //   from: data.uri,
+                  //   to: `${FileSystem.documentDirectory}videos/Video_Record`,
+                  // });
+                })
+                console.log('start recording...')
                 setIsRecording(true)
               }
             }
