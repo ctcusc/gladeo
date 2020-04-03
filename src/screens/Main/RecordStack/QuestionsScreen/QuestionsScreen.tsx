@@ -6,8 +6,8 @@ import {
   FlatList,
   TouchableOpacity,
   TouchableHighlight,
+  Alert,
 } from 'react-native'
-import Modal from 'react-native-modal'
 import styles from './styles'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
 import { BASE_PATH } from 'react-native-dotenv'
@@ -49,7 +49,30 @@ export default function QuestionsScreen(props: Props) {
           <TouchableHighlight
             onPress={() => {
               if(item.Answered) {
-                setModalVisibility(true)
+                //setModalVisibility(true)
+                Alert.alert(
+                  'Edit your question clip',
+                  'If you want to change your clip, do it here!',
+                  [
+                    {text: 'View Question'},
+                    {text: 'Re-record Question', 
+                      onPress: () => {
+                        Alert.alert(
+                          'Are you sure you want to re-record your clip?',
+                          'You\'ll lose your old clip',
+                          [
+                            {text: 'Re-record',
+                              onPress: () => {
+                                push('Record', {question: item.text})
+                              }
+                            },
+                            {text: 'Cancel', style: 'cancel'}
+                          ]
+                        )
+                      }},
+                    {text: 'Cancel', style: 'cancel'}
+                  ]
+                )
               } else {
                 push('Record', {question: item.text})
               }
@@ -67,44 +90,6 @@ export default function QuestionsScreen(props: Props) {
         extraData={selected}
         showsVerticalScrollIndicator={false}
       />
-
-      <Modal
-        isVisible={modalVisibility}
-        onRequestClose={() => {
-          setModalVisibility(false)
-        } }
-        backdropOpacity={0.2}
-        
-        animationIn="zoomIn"
-        animationOut="zoomOut"
-        animationInTiming={600}
-        animationOutTiming={600}
-        backdropTransitionInTiming={600}
-        backdropTransitionOutTiming={600}>
-        <View style={styles.modalLayout}>
-          <View style={styles.topModalBorder}>
-            <TouchableOpacity style={styles.topModal}>
-              <Text style={styles.modalContent}>view question</Text>
-            </TouchableOpacity>
-          </View>
-
-          <View style={styles.middleModalBorder}>
-            <TouchableOpacity style={styles.middleModal}>
-              <Text style={styles.modalContent}>re-record question</Text>
-            </TouchableOpacity>
-          </View>
-
-
-          <View style={styles.bottomModalBorder}>
-            <TouchableOpacity style={styles.bottomModal}
-              onPress={() => {
-                setModalVisibility(false)
-              }}>
-              <Text style={styles.closeTitle}>close</Text>
-            </TouchableOpacity>
-          </View>
-        </View>
-      </Modal>
     </View>
   )
 }

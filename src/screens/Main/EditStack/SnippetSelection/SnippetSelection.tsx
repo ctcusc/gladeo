@@ -4,7 +4,8 @@ import {
   View,
   FlatList,
   TouchableHighlight,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native'
 import { BASE_PATH } from 'react-native-dotenv'
 import styles from './styles'
@@ -135,7 +136,17 @@ export default function SnippetSelectionScreen(props: Props) {
       <View style={styles.createVideo}>
         <Text>{text}</Text>
         <TouchableOpacity
-          disabled={selectedSnippetCount > 3 ? false : true}
+          onPress={ () => {
+            if(selectedSnippetCount < 3) {
+              Alert.alert(
+                'Warning',
+                'You should select at least 3 snippets before creating your video',
+                [
+                  {text: 'Okay', style: 'cancel'}
+                ]
+              )
+            }
+          }}
           style={selectedSnippetCount > 3 ? styles.pinkButtonAbled : styles.pinkButton}
         >
           <Text style={styles.buttontext}>
