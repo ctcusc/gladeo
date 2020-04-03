@@ -79,7 +79,7 @@ export default function RecordScreen(props: Props) {
                 setIsRecording(false)
                 camera.stopRecording()
 
-                const status = Permissions.askAsync(Permissions.CAMERA)
+                const status = Permissions.askAsync(Permissions.CAMERA_ROLL)
                 if (status === 'granted') {
                   const asset = MediaLibrary.createAssetAsync(uri)
                   const assetInfo = MediaLibrary.getAssetInfoAsync(asset)
