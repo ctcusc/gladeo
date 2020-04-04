@@ -5,7 +5,6 @@ import styles from './styles'
 import * as Permissions from 'expo-permissions'
 import * as MediaLibrary from 'expo-media-library'
 import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation'
-import CreatingVideoScreen from '../../EditStack/CreatingVideoScreen/CreatingVideoScreen'
 
 interface Props {
   question: string,
@@ -19,7 +18,35 @@ export default function RecordScreen(props: Props) {
   const [camera, setCamera] = useState()
   const [isRecording, setIsRecording] = useState(false)
   const [cameraDirection, setCameraDirection] = useState(Camera.Constants.Type.front)
-  const [video, setVideo] = useState()
+  const [video, setVideo] = useState(null)
+
+  async function saveVideo(){
+    const asset = await MediaLibrary.createAssetAsync(video.uri)
+    if (asset) {
+      setVideo(null)
+    }
+  }
+
+  async function stopRecord(){
+    setIsRecording(false)
+    camera.stopRecording()
+  }
+
+  async function startRecord(){
+    if (camera) {
+      setIsRecording(true)
+      const data = await camera.recordAsync()
+      setVideo(data)
+    }
+  }
+
+  async function toogleRecord(){
+    if (isRecording) {
+      stopRecord()
+    } else {
+      startRecord()
+    }
+  }
 
   useEffect(() => {
     (async () => {
@@ -67,30 +94,20 @@ export default function RecordScreen(props: Props) {
           </View> 
         </TouchableOpacity>
        
+        {video && (
+          <TouchableOpacity
+            onPress={()=>saveVideo()}
+            style={{
+              padding: 20,
+              width: '100%',
+              backgroundColor: '#fff'
+            }}
+          >
+            <Text style={{ textAlign: 'center' }}>save</Text>
+          </TouchableOpacity>
+        )}
         <TouchableOpacity
-          onPress={ async () => {
-            const recordingConfig = {
-              quality : Camera.Constants.VideoQuality['720p'],
-              maxDuration : 120 * 60,
-            }
-            
-            if(camera) {
-              if (isRecording) {
-                setIsRecording(false)
-                camera.stopRecording()
-                MediaLibrary.createAssetAsync(video.uri)
-                console.log('stop recording...')
-              } else {
-                camera.recordAsync(recordingConfig).then(async data => {
-                  console.log(data.uri)
-                  setVideo(data)
-                })
-                console.log('start recording...')
-                setIsRecording(true)
-              }
-            }
-          }
-          }
+          onPress={()=>toogleRecord()}
           style={styles.recordOutline}
         >
           <View style={styles.recordButton}>
