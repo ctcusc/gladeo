@@ -20,7 +20,6 @@ export default function PinkButton (props: Props) {
         </Text>
       </View>
     )
-  } else {
-    return null
   }
+  return null
 }
