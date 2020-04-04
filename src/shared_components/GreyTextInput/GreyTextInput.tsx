@@ -19,6 +19,7 @@ export default function GreyTextInput (props: Props){
   return (
     <View>
       <TextInput 
+        autoCapitalize="none"
         placeholder={props.placeholder}
         onChangeText={
           (input) => {
