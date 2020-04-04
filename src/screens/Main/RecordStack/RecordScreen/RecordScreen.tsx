@@ -19,13 +19,13 @@ export default function RecordScreen(props: Props) {
   const [camera, setCamera] = useState()
   const [isRecording, setIsRecording] = useState(false)
   const [cameraDirection, setCameraDirection] = useState(Camera.Constants.Type.front)
-  const [uri, setUri] = useState('')
+  const [video, setVideo] = useState()
 
   useEffect(() => {
     (async () => {
-      const { status } = await Camera.requestPermissionsAsync()
-      setHasPermission(status === 'granted')
-
+      const { status: cameraPermission } = await Camera.requestPermissionsAsync()
+      const { status: cameraRollPermission } = await Permissions.askAsync(Permissions.CAMERA_ROLL)
+      setHasPermission(cameraPermission === 'granted' && cameraRollPermission === 'granted')
     })()
   }, [])
 
@@ -68,43 +68,29 @@ export default function RecordScreen(props: Props) {
         </TouchableOpacity>
        
         <TouchableOpacity
-          onPress={ () => {
+          onPress={ async () => {
             const recordingConfig = {
               quality : Camera.Constants.VideoQuality['720p'],
               maxDuration : 120 * 60,
             }
-
+            
             if(camera) {
               if (isRecording) {
                 setIsRecording(false)
                 camera.stopRecording()
-                // get permission to access camera_roll
-                const status = Permissions.askAsync(Permissions.CAMERA_ROLL)
-                if (status === 'granted') {
-                  // Method 1
-                  const asset = MediaLibrary.createAssetAsync(uri)
-                  const assetInfo = MediaLibrary.getAssetInfoAsync(asset)
-                  console.log(assetInfo)
-
-                  // Method 2
-                  // let saveResult = await FileSystem.moveAsync({
-                  //   from: uri,
-                  //   to: `${FileSystem.documentDirectory}videos/Video_Record`,
-                  // });
-                } else {
-                  console.log('Uh oh! The user has not granted us permission.')
-                }
+                MediaLibrary.createAssetAsync(video.uri)
                 console.log('stop recording...')
               } else {
                 camera.recordAsync(recordingConfig).then(async data => {
                   console.log(data.uri)
-                  setUri(data.uri)
+                  setVideo(data)
                 })
                 console.log('start recording...')
                 setIsRecording(true)
               }
             }
-          }}
+          }
+          }
           style={styles.recordOutline}
         >
           <View style={styles.recordButton}>
