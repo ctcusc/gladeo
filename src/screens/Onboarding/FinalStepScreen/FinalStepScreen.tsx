@@ -23,6 +23,8 @@ export default function FinalStepScreen(props: Props) {
         <Text style={styles.content}>
             Explain what you do in one minute or less
         </Text>
+      </View>
+      <View style={styles.header}>
         <Image resizeMode='contain' source={require('../../../../assets/images/finalscreen.png')} />
       </View>
       <View style={styles.footer}>

@@ -4,17 +4,16 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FFFFFF',
+    justifyContent: 'center'
   },
     
   header: {
-    flex: 2,
     display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
   },
 
   footer: {
-    flex: 1,
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
@@ -29,7 +28,6 @@ const styles = StyleSheet.create({
     width: 301,
     height: 71,
     textAlign: 'center',
-    marginTop: '40%'
   },
 
   content: {
@@ -41,7 +39,6 @@ const styles = StyleSheet.create({
     color: 'black',
     height: 111,
     width: 281,
-    marginBottom: '10%',
   }, 
 
   button: {
