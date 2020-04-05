@@ -72,10 +72,18 @@ export default function RecordScreen(props: Props) {
     >
       <StatusBar hidden/>
       <View style={styles.bottomSection}>
-
+        {video && (
+          <TouchableOpacity
+            onPress={()=>saveVideo()}
+            style={styles.saveButton}
+          >
+            <Text style={styles.saveText}>save</Text>
+          </TouchableOpacity>
+        )}
       </View>
-      <View style={styles.middleSection}>
-       
+      
+      {!video && (<View style={styles.middleSection}>
+    
         <View style={styles.overlay}>
           <Text style={styles.infoText}>Create a 3-4 Minute Video</Text>
         </View>
@@ -83,44 +91,32 @@ export default function RecordScreen(props: Props) {
           <Text style={styles.question}>{question}</Text>
         </View>
 
-      </View>
+      </View>)}
      
       <View style={styles.topSection}>
-        <TouchableOpacity
+        {!video && (<TouchableOpacity
           onPress={() => goBack()}
           style={styles.whiteButtonOutline}
         >
           <View style={styles.whiteButton}>
           </View> 
-        </TouchableOpacity>
+        </TouchableOpacity>)}
        
-        {video && (
-          <TouchableOpacity
-            onPress={()=>saveVideo()}
-            style={{
-              padding: 20,
-              width: '100%',
-              backgroundColor: '#fff'
-            }}
-          >
-            <Text style={{ textAlign: 'center' }}>save</Text>
-          </TouchableOpacity>
-        )}
-        <TouchableOpacity
+        {!video && (<TouchableOpacity
           onPress={()=>toogleRecord()}
           style={styles.recordOutline}
         >
-          <View style={styles.recordButton}>
+          <View style={isRecording ? styles.isRecordingButton : styles.recordButton}>
           </View>
-        </TouchableOpacity>
+        </TouchableOpacity>)}
        
-        <TouchableOpacity 
+        {!video && (<TouchableOpacity 
           onPress={() => {
             setCameraDirection(cameraDirection === Camera.Constants.Type.front ? Camera.Constants.Type.back : Camera.Constants.Type.front)
           }}
         >
           <Image style={styles.flipCamera} resizeMode='contain' source={require('../../../../../assets/images/flip_camera.png')} />
-        </TouchableOpacity>
+        </TouchableOpacity>)}
       </View>
         
     </Camera>
