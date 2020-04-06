@@ -54,8 +54,8 @@ export default function QuestionsScreen(props: Props) {
                   'Edit your Answer clip',
                   'If you want to change your clip, do it here!',
                   [
-                    {text: 'View Auestion'},
-                    {text: 'Re-record Auestion', 
+                    {text: 'View Answer'},
+                    {text: 'Re-record Answer', 
                       onPress: () => {
                         Alert.alert(
                           'Are you sure you want to re-record your clip?',
