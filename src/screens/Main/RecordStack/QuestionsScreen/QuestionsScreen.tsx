@@ -49,7 +49,6 @@ export default function QuestionsScreen(props: Props) {
           <TouchableHighlight
             onPress={() => {
               if(item.Answered) {
-                //setModalVisibility(true)
                 Alert.alert(
                   'Edit your Answer clip',
                   'If you want to change your clip, do it here!',

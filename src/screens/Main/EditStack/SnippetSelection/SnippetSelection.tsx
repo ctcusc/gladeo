@@ -151,7 +151,7 @@ export default function SnippetSelectionScreen(props: Props) {
         <Text>{text}</Text>
         <TouchableOpacity
           onPress={ () => {
-            if(nextSnippetIndex < 3) {
+            if(nextSnippetIndex < 4) {
               Alert.alert(
                 'Warning',
                 'You should select at least 3 snippets before creating your video',
