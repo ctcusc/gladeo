@@ -28,7 +28,6 @@ const RegisterStack = createStackNavigator(
   },
   {
     headerMode: 'none',
-    initialRouteName: 'UserInfo'
   }
 )
 
@@ -41,7 +40,7 @@ const AuthNavigator = createSwitchNavigator(
   },
   {
     headerMode: 'none',
-    initialRouteName: 'Register', // Determines which screen is shown first from AuthStack
+    initialRouteName: 'Welcome', // Determines which screen is shown first from AuthStack
   },
 )
 

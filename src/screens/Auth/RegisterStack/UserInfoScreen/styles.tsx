@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     color: '#000',
-    marginTop: '30%'
+    marginTop: '10%'
   },
 
   main: {
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
 
   footer: {
-    flex: 1,
+    flex: .5,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -39,9 +39,8 @@ const styles = StyleSheet.create({
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     color: '#000',
-    
   },
 
   catagories: {
@@ -50,9 +49,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    fontFamily: 'montserrat-bold',
-    fontStyle: 'normal',
-    fontWeight: '600',
+    fontFamily: 'montserrat-semibold',
     fontSize: 16,
     lineHeight: 20,
     color: '#000000'
@@ -65,15 +62,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     fontFamily: 'montserrat-regular',
-    fontStyle: 'normal',
-    fontWeight: '600',
     fontSize: 22,
     lineHeight: 27,
     color: '#E5186E',
   },
 
   bar: {
-    flex: 1,
+    flex: .5,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -83,53 +78,39 @@ const styles = StyleSheet.create({
   },
   
   titleText: {
+    display: 'flex',
     fontFamily: 'roboto-regular',
-    fontStyle: 'normal',
-    fontWeight: '600',
     fontSize: 30,
     lineHeight: 37,
-    textAlign: 'center'
+    textAlign: 'center',
+    marginTop: '15%'
   },
 
   subtitleText: {
     fontFamily: 'roboto-regular',
-    fontStyle: 'normal',
-    fontWeight: 'normal',
     fontSize: 16,
     lineHeight: 19,
     display: 'flex',
     alignItems: 'center',
     textAlign: 'center',
-    marginTop: '5%'
-
-  },
-
-  normalText: {
-    fontStyle: 'normal',
-    fontFamily: 'roboto-regular',
-    fontSize: 16,
-    lineHeight: 19,
-    color: '#000000',
   },
 
   pinkTextButton: {
-    fontStyle: 'normal',
+    display: 'flex',
     fontSize: 16,
     lineHeight: 19,
     fontFamily: 'roboto-regular',
     color: '#E5186E',
   },
 
-  resendButtonLine: {
-    marginBottom: '4%',
+  buttonLine: {
+    marginBottom: '50%',
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: '4%'
-  },
-
-  image: {
   }
+
 })
 
 export default styles
