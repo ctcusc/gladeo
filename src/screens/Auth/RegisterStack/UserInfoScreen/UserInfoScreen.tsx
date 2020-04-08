@@ -24,17 +24,17 @@ export default function UserInfoScreen(props: Props) {
       <View style={styles.main}>
         <View style={styles.subsection}> 
           <View style={styles.bar}><Text>                                                                              </Text></View>
-          <Text style={styles.catagories}>Name</Text>
+          <Text style={styles.categories}>Name</Text>
           <Text style={styles.valuesText}>Tommy Trojan</Text>
         </View>
         <View style={styles.subsection}> 
           <View style={styles.bar}><Text>                                                                              </Text></View>
-          <Text style={styles.catagories}>Company</Text>
+          <Text style={styles.categories}>Company</Text>
           <Text style={styles.valuesText}>Figma</Text>       
         </View>
         <View style={styles.subsection}> 
           <View style={styles.bar}><Text>                                                                              </Text></View>
-          <Text style={styles.catagories}>Job Title</Text>
+          <Text style={styles.categories}>Job Title</Text>
           <Text style={styles.valuesText}>Software Engineer</Text>
         </View>
         <View style={styles.bar}><Text>                                                                              </Text></View>

@@ -43,46 +43,29 @@ const styles = StyleSheet.create({
     color: '#000',
   },
 
-  catagories: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontFamily: 'montserrat-semibold',
+  categories: {
+    fontFamily: 'montserrat-bold',
     fontSize: 16,
     lineHeight: 20,
     color: '#000000'
   },
 
   valuesText: {
-    flex: 1,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
-    fontFamily: 'montserrat-regular',
+    fontFamily: 'montserrat-semibold',
     fontSize: 22,
     lineHeight: 27,
     color: '#E5186E',
   },
 
   bar: {
-    flex: .25,
-    display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'center',
-    alignItems: 'center',
     borderColor: '#D1D1D1', 
     borderTopWidth:1,
   },
   
   titleText: {
-    display: 'flex',
     fontFamily: 'roboto-regular',
     fontSize: 30,
     lineHeight: 37,
-    textAlign: 'center',
     marginTop: '15%'
   },
 
