@@ -7,7 +7,7 @@ const styles = StyleSheet.create({
   },
 
   header: {
-    flex: 1,
+    flex: 1.5,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
 
   footer: {
-    flex: .5,
+    flex: 1,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   },
 
   bar: {
-    flex: .5,
+    flex: .25,
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
@@ -89,27 +89,9 @@ const styles = StyleSheet.create({
   subtitleText: {
     fontFamily: 'roboto-regular',
     fontSize: 16,
-    lineHeight: 19,
-    display: 'flex',
-    alignItems: 'center',
-    textAlign: 'center',
+    marginTop: '2%',
+    marginBottom: '5%'
   },
-
-  pinkTextButton: {
-    display: 'flex',
-    fontSize: 16,
-    lineHeight: 19,
-    fontFamily: 'roboto-regular',
-    color: '#E5186E',
-  },
-
-  buttonLine: {
-    marginBottom: '50%',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    marginTop: '4%'
-  }
 
 })
 

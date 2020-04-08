@@ -35,8 +35,7 @@ const AuthNavigator = createSwitchNavigator(
   {
     Welcome: WelcomeScreen,
     Login: LoginStack,
-    Register: RegisterStack,
-    UserInfo: UserInfoScreen
+    Register: RegisterStack
   },
   {
     headerMode: 'none',

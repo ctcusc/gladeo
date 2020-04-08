@@ -17,15 +17,9 @@ export default function UserInfoScreen(props: Props) {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <View style={styles.subsection}> 
-          <Text style={styles.titleText}>Hi Tommy</Text>
-        </View>
-        <View style={styles.subsection}> 
-          <Text style={styles.subtitleText}>You are all set up.</Text>
-        </View>
-        <View style={styles.subsection}> 
-          <Image source={require('../../../../../assets/images/wavinghands.png')} />
-        </View>
+        <Text style={styles.titleText}>Hi Tommy</Text>
+        <Text style={styles.subtitleText}>You&apos;re all set up.</Text>
+        <Image source={require('../../../../../assets/images/wavinghands.png')} />
       </View>
       <View style={styles.main}>
         <View style={styles.subsection}> 
@@ -46,7 +40,7 @@ export default function UserInfoScreen(props: Props) {
         <View style={styles.bar}><Text>                                                                              </Text></View>
       </View>
       <View style={styles.footer}>
-        <View style={styles.buttonLine}> 
+        <View> 
           <PinkButton title="LET'S GO!" 
             onPress={
               () => navigate('', {
