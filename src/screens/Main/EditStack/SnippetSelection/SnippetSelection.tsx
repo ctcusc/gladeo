@@ -4,7 +4,8 @@ import {
   View,
   FlatList,
   TouchableHighlight,
-  TouchableOpacity
+  TouchableOpacity,
+  Alert
 } from 'react-native'
 import { BASE_PATH } from 'react-native-dotenv'
 import styles from './styles'
@@ -24,7 +25,7 @@ interface Props {
 export default function SnippetSelectionScreen(props: Props) {
   const [text, setText] = useState('A great video requires at least 3 - 4 clips')
   const [snippetState, setSnippetState] = useState<Array<Snippet>>([])
-  const [selectedSnippetCount, setSelectedSnippetCount] = useState<number>(1)
+  const [nextSnippetIndex, setNextSnippetIndex] = useState<number>(2)
 
   useEffect(() => {
     fetch(`${BASE_PATH}/api/user/questions`)
@@ -39,6 +40,10 @@ export default function SnippetSelectionScreen(props: Props) {
               orderInList: 0,
               text: data[i]['text']
             }
+            if (i == 0) {
+              item.isSelected = true
+              item.orderInList = 1
+            }
             initialSnippetState.push(item)
           }
         }
@@ -52,8 +57,18 @@ export default function SnippetSelectionScreen(props: Props) {
 
   function updateSnippetState(item: Snippet) {
     const modifiedQuestionState = snippetState
+    // if question is the intro, don't let the user deselect it.
+    if (item.id == 1) {
+      Alert.alert(
+        'Warning',
+        'You must include your introduction as the first snippet',
+        [
+          {text: 'Okay', style: 'cancel'}
+        ]
+      )
+    }
     // the question is selected previously, remove it from the list and update the order of other items
-    if(modifiedQuestionState[item.id-1].isSelected){
+    else if(modifiedQuestionState[item.id-1].isSelected){
       const preOrder = item.orderInList
       for(let i = 0; i < modifiedQuestionState.length; i++){
         // move up question in list
@@ -67,7 +82,7 @@ export default function SnippetSelectionScreen(props: Props) {
         }
         // snippet is newly selected, add to list
         setSnippetState(modifiedQuestionState)
-        setSelectedSnippetCount(selectedSnippetCount-1)
+        setNextSnippetIndex(nextSnippetIndex-1)
       }
     } 
     // newly selected question
@@ -75,30 +90,30 @@ export default function SnippetSelectionScreen(props: Props) {
       for(let i = 0; i < modifiedQuestionState.length; i++){
         if(i == (item.id-1)){
           modifiedQuestionState[i].isSelected = true
-          modifiedQuestionState[i].orderInList = selectedSnippetCount
+          modifiedQuestionState[i].orderInList = nextSnippetIndex
         }
         setSnippetState(modifiedQuestionState)
-        setSelectedSnippetCount(selectedSnippetCount+1)
+        setNextSnippetIndex(nextSnippetIndex+1)
       }
     }
   }
   
   function updateBottomText(item: Snippet){
     if(item.isSelected){
-      if(selectedSnippetCount == 0){
+      if(nextSnippetIndex == 0){
         setText('A great video requires at least 3 - 4 clips')
-      } else if(selectedSnippetCount == 1){
-        setText((selectedSnippetCount) + ' snippet selected')
+      } else if(nextSnippetIndex == 1){
+        setText((nextSnippetIndex) + ' snippet selected')
       } else{
-        setText((selectedSnippetCount) + ' snippets selected')
+        setText((nextSnippetIndex) + ' snippets selected')
       }
     } else{
-      if(selectedSnippetCount == 2){
+      if(nextSnippetIndex == 2){
         setText('A great video requires at least 3 - 4 clips')
-      } else if(selectedSnippetCount == 3){
-        setText(selectedSnippetCount-2 + ' snippet selected')
+      } else if(nextSnippetIndex == 3){
+        setText(nextSnippetIndex-2 + ' snippet selected')
       } else{
-        setText(selectedSnippetCount-2 + ' snippets selected')
+        setText(nextSnippetIndex-2 + ' snippets selected')
       }
     }
   }
@@ -135,8 +150,18 @@ export default function SnippetSelectionScreen(props: Props) {
       <View style={styles.createVideo}>
         <Text>{text}</Text>
         <TouchableOpacity
-          disabled={selectedSnippetCount > 3 ? false : true}
-          style={selectedSnippetCount > 3 ? styles.pinkButtonAbled : styles.pinkButton}
+          onPress={ () => {
+            if(nextSnippetIndex < 4) {
+              Alert.alert(
+                'Warning',
+                'You should select at least 3 snippets before creating your video',
+                [
+                  {text: 'Okay', style: 'cancel'}
+                ]
+              )
+            }
+          }}
+          style={nextSnippetIndex > 3 ? styles.pinkButtonAbled : styles.pinkButton}
         >
           <Text style={styles.buttontext}>
             CREATE VIDEO
