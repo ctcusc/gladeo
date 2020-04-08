@@ -23,6 +23,13 @@ const styles = StyleSheet.create({
     borderRadius: 48,
     alignSelf: 'center',
   },
+  isRecordingButton: {
+    backgroundColor: '#FF3B30',
+    width: 16,
+    height: 16,
+    borderRadius: 4,
+    alignSelf: 'center',
+  },
   recordOutline: {
     display: 'flex',
     justifyContent: 'center',
@@ -50,7 +57,6 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderColor: '#fff',
   },
- 
   middleSection: {
     display: 'flex',
     flexDirection: 'column',
@@ -58,11 +64,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'flex-start',
     alignSelf: 'center',
-    
   },
   overlay: {
     position: 'absolute',
-
   },
   infoText: {
     backgroundColor: 'rgba(51,51,51,0.4)',
@@ -94,6 +98,24 @@ const styles = StyleSheet.create({
   bottomSection: {
     flex: 1,
   },
+  saveButton: {
+    backgroundColor: '#E5186E',
+    transform: [ { rotateZ: '270deg'}],
+    width: 79,
+    height: 48,
+    justifyContent: 'center',
+    left: '75%',
+    top: '15%',
+    borderRadius: 24,
+    right: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.25)
+  },
+  saveText: {
+    textAlign: 'center', 
+    color: '#fff', 
+    fontSize: 18,
+    lineHeight: 21,
+    fontFamily: 'roboto-regular'
+  }
 })
 
 export default styles
