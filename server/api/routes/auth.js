@@ -64,14 +64,18 @@ router.post('/forgot-password', async(req, res) => {
     const user = await getUserByEmail(email, fullName)
     // Check to see if email exists in database
     if(user === null) {
-      throw {
-        message: 'A user does not exist with that email',
-        statusCode: 404
-      }
+      return res.status(404).send({
+        'message': 'A user does not exist with that email',
+        'statusCode': 404
+      })
     } else {
       // Sends password reset email
       await sendPasswordResetEmail(email, fullName)
-      return res.status(200).send('Success')
+      // Currently doesn't send EMAIL because authentication not setup
+      return res.status(200).send({
+        'message': 'Successfully sent reset password email',
+        'statusCode': 200
+      })
     }
   } catch(err) {
     return res.status(err.statusCode).send(err)
@@ -79,13 +83,16 @@ router.post('/forgot-password', async(req, res) => {
   }
 })
 
-router.get('/confirm-reset-code', async(req, res) => {
+router.post('/confirm-reset-code', async(req, res) => {
   try {
     const email = req.body['Email']
     const code = req.body['Code']
     const success = await verifyPasswordCode(email, code)
     if(success) {
-      return res.status(200).send({'success': true})
+      return res.status(200).send({
+        'message': 'Successfully confirmed reset password code',
+        'statusCode': 200
+      })
     } else {
       return res.status(401).send({
         'success': false,
@@ -110,7 +117,10 @@ router.post('/reset-password', async(req, res) => {
     const password = req.body['Password']
     const success = await updateUserPassword(email, password)
     if(success) {
-      return res.status(200).send('Successfully changed password')
+      return res.status(200).send({
+        'message': 'Successfully changed password',
+        'statusCode': 200
+      })
     } else {
       return res.status(404).send({
         'message': 'User not found',
