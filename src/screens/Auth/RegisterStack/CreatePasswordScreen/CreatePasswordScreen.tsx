@@ -1,4 +1,4 @@
-import React, { useState, useReducer } from 'react'
+import React, { useState } from 'react'
 import {
   Text,
   View,
@@ -26,8 +26,7 @@ export default function CreatePasswordScreen(props: Props) {
     email: props.navigation .state.params.email,
     userRecord: props.navigation .state.params.userRecord,
   }
-  const [message, setMessage] = useState('Keep this secure! Use 8+ characters')
-  const [messageStyle, setMessageStyle] = useState(styles.regularText)
+  const message = 'Keep this secure! Use 8+ characters'
 
   async function handleRegister(){
     fetch(`${BASE_PATH}/api/auth/register`, {
@@ -45,11 +44,7 @@ export default function CreatePasswordScreen(props: Props) {
       .then(res => res.json())
       .then(data => {
         console.log(data)
-        if(data.ID == undefined) {
-          Alert.alert('User already exists')
-        } else {
-          navigate('Onboarding')
-        }
+        navigate('Onboarding')
       })
       .catch(error => {
         console.log('Error: ' + error)
@@ -60,7 +55,7 @@ export default function CreatePasswordScreen(props: Props) {
     <View style={styles.container}>
       <View style={styles.main}>
         <BlackHeading title="Create a Password" />
-        <Text style={messageStyle}>{message}</Text>
+        <Text style={styles.regularText}>{message}</Text>
         <Text style={styles.margin}></Text>
         <GreyTextInput changeTextContent={(password) => {
           setPassword(password)

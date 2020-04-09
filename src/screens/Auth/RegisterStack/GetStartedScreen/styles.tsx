@@ -4,6 +4,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    paddingTop: '40%',
   },
 
   main: {
@@ -13,7 +14,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     color: '#000',
-    marginTop: 150,
+    marginTop: '20%',
   },
 
   normalText: {
@@ -47,10 +48,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 
-  image: {
-    height: 92,
-  },
-
   messageNormal: {
     marginTop: 0,
   },
@@ -61,7 +58,7 @@ const styles = StyleSheet.create({
   },
 
   graphic: {
-    height: 200,
+    height: '60%',
   },
 
   footer: {
