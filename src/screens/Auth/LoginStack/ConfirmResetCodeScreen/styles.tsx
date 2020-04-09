@@ -15,14 +15,23 @@ const styles = StyleSheet.create({
     color: '#000',
   },
 
+  code: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: '#000',
+    marginBottom: '5%',
+  },
+
   regularText: {
     fontSize: 16,
     fontFamily: 'roboto-regular',
     fontStyle: 'normal',
     textAlign: 'center',
     color: '#777777',
-    marginLeft: '15.6%',
-    marginRight: '15.3%',
+    marginLeft: '10%.6%',
+    marginRight: '10.3%',
     marginTop: '7.46%',
     marginBottom: '10%'
   },
