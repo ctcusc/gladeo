@@ -7,6 +7,7 @@ import PasswordResetScreen from '../screens/Auth/LoginStack/PasswordResetScreen/
 import CreatePasswordScreen from '../screens/Auth/RegisterStack/CreatePasswordScreen/CreatePasswordScreen'
 import WelcomeScreen from '../screens/Auth/WelcomeScreen/WelcomeScreen'
 import GetStartedScreen from '../screens/Auth/RegisterStack/GetStartedScreen/GetStartedScreen'
+import UserInfoScreen from '../screens/Auth/RegisterStack/UserInfoScreen/UserInfoScreen'
 
 const LoginStack = createStackNavigator(
   {
@@ -23,6 +24,7 @@ const RegisterStack = createStackNavigator(
     GetStarted: GetStartedScreen,
     Register: RegisterScreen,
     CreatePassword: CreatePasswordScreen,
+    UserInfo: UserInfoScreen
   },
   {
     headerMode: 'none',
@@ -33,7 +35,7 @@ const AuthNavigator = createSwitchNavigator(
   {
     Welcome: WelcomeScreen,
     Login: LoginStack,
-    Register: RegisterStack,
+    Register: RegisterStack
   },
   {
     headerMode: 'none',
