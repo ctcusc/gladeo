@@ -21,11 +21,12 @@ export default function CreatePasswordScreen(props: Props) {
   const [confirmPassword, setConfirmPassword] = useState('')
   const {navigate} = props.navigation 
   const user = {
-    userTitle: props.navigation .state.params.userTitle,
     companyCode: props.navigation .state.params.companyCode,
     name: props.navigation .state.params.name,
-    email: props.navigation .state.params.email
+    email: props.navigation .state.params.email,
+    userRecord: props.navigation .state.params.userRecord,
   }
+  const message = 'Keep this secure! Use 8+ characters'
 
   async function handleRegister(){
     fetch(`${BASE_PATH}/api/auth/register`, {
@@ -35,21 +36,15 @@ export default function CreatePasswordScreen(props: Props) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        'Full Name': user.name,
         'Email': user.email,
-        'Current Title': user.userTitle,
-        'Company Code': user.companyCode,
         'Password': password,
+        '_record': user.userRecord,
       }),
     })
       .then(res => res.json())
       .then(data => {
         console.log(data)
-        if(data.ID == undefined) {
-          Alert.alert('User already exists')
-        } else {
-          navigate('Onboarding')
-        }
+        navigate('Onboarding')
       })
       .catch(error => {
         console.log('Error: ' + error)
@@ -60,7 +55,8 @@ export default function CreatePasswordScreen(props: Props) {
     <View style={styles.container}>
       <View style={styles.main}>
         <BlackHeading title="Create a Password" />
-        <Text style={styles.regularText}>Keep this secure!</Text>
+        <Text style={styles.regularText}>{message}</Text>
+        <Text style={styles.margin}></Text>
         <GreyTextInput changeTextContent={(password) => {
           setPassword(password)
         }} placeholder="Password (8+ characters)" inputType='password' input={password}/>
