@@ -15,6 +15,10 @@ const styles = StyleSheet.create({
     color: '#000',
   },
 
+  margin: {
+    marginBottom: '10%',
+  },
+
   regularText: {
     fontSize: 16,
     fontFamily: 'roboto-regular',
@@ -50,6 +54,20 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     marginTop: '4%'
+  },
+
+  messageError: {
+    fontSize: 16,
+    fontFamily: 'roboto-regular',
+    fontStyle: 'normal',
+    lineHeight: 19,
+    textAlign: 'center',
+    color: '#777777',
+    marginLeft: '17.6%',
+    marginRight: '17.3%',
+    marginTop: '7%',
+    marginBottom: '7.7%',
+    color: 'red',
   },
 
   imageLine: {

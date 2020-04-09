@@ -13,10 +13,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     color: '#000',
-  },
-
-  margin: {
-    marginBottom: '16%',
+    marginTop: 150,
   },
 
   normalText: {
@@ -52,6 +49,19 @@ const styles = StyleSheet.create({
 
   image: {
     height: 92,
+  },
+
+  messageNormal: {
+    marginTop: 0,
+  },
+
+  messageError: {
+    marginTop: 0,
+    color: 'red',
+  },
+
+  graphic: {
+    height: 200,
   },
 
   footer: {
