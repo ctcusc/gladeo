@@ -15,6 +15,10 @@ const styles = StyleSheet.create({
     color: '#000',
   },
 
+  margin: {
+    marginBottom: '20%',
+  },
+
   regularText: {
     fontSize: 16,
     fontFamily: 'roboto-regular',
