@@ -20,10 +20,10 @@ export default function CreatePasswordScreen(props: Props) {
   const [confirmPassword, setConfirmPassword] = useState('')
   const {navigate} = props.navigation 
   const user = {
-    companyCode: props.navigation .state.params.companyCode,
-    name: props.navigation .state.params.name,
-    email: props.navigation .state.params.email,
-    userRecord: props.navigation .state.params.userRecord,
+    companyCode: props.navigation.state.params.companyCode,
+    name: props.navigation.state.params.name,
+    email: props.navigation.state.params.email,
+    userRecord: props.navigation.state.params.userRecord,
   }
   const [message, setMessage] = useState('Keep this secure! Use 8+ characters')
   const [messageStyle, setMessageStyle] = useState(styles.regularText)

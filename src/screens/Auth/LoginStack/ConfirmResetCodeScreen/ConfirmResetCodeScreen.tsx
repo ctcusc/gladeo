@@ -24,7 +24,7 @@ export default function ConfirmResetCodeScreen(props: Props) {
   const [messageStyle, setMessageStyle] = useState(styles.messageError)
   const {navigate} = props.navigation 
   const user = {
-    email: props.navigation .state.params.email,
+    email: props.navigation.state.params.email,
   }
 
   async function checkVerificationCode(){
@@ -45,16 +45,45 @@ export default function ConfirmResetCodeScreen(props: Props) {
         if(data.statusCode == 401) {
           setMessage('Error: Verification Code is invalid.')
           setMessageStyle(styles.messageError)
-        } else {
+        } else if(data.statusCode == 200) {
           navigate('CreateResetPassword', {
             email: user.email,
           })
-        } 
+        } else {
+          setMessage('Error: Something went wrong')
+          setMessageStyle(styles.messageError)
+        }
       })
       .catch(error => {
         console.log('Error: ' + error)
       })
   }
+
+  async function resendEmail(){
+    fetch(`${BASE_PATH}/api/auth/forgot-password`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        'Email': user.email,
+        'Full name': '',
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        if(data.statusCode != 200) {
+          setMessage('Error: Something went wrong')
+          setMessageStyle(styles.messageError)
+        }
+      })
+      .catch(error => {
+        console.log('Error: ' + error)
+      })
+  }
+
 
   return (
     <View style={styles.container}>
@@ -65,16 +94,16 @@ export default function ConfirmResetCodeScreen(props: Props) {
         <View style = {styles.code}>
           <GreyTextNumInput changeTextContent={(first) => {
             setFirst(first)
-          }} placeholder="" inputType='first' input={first}/>
+          }} input={first}/>
           <GreyTextNumInput changeTextContent={(second) => {
             setSecond(second)
-          }} placeholder="" inputType='second' input={second}/>
+          }} input={second}/>
           <GreyTextNumInput changeTextContent={(third) => {
             setThird(third)
-          }} placeholder="" inputType='third' input={third}/>
+          }} input={third}/>
           <GreyTextNumInput changeTextContent={(fourth) => {
             setFourth(fourth)
-          }} placeholder="" inputType='fourth' input={fourth}/>
+          }} input={fourth}/>
         </View>
         <PinkButton title="SEND" 
           onPress={checkVerificationCode}
@@ -82,7 +111,7 @@ export default function ConfirmResetCodeScreen(props: Props) {
         />
         <View style={styles.resendButtonLine}> 
           <Text style={styles.normalText}>No dice?</Text>
-          <TouchableOpacity onPress={checkVerificationCode}>
+          <TouchableOpacity onPress={resendEmail}>
             <Text style={styles.pinkTextButton}> Resend validation link.</Text>
           </TouchableOpacity>
         </View>

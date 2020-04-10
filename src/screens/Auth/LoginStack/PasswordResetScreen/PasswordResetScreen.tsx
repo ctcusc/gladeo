@@ -38,11 +38,14 @@ export default function PasswordResetScreen(props: Props) {
         if(data.statusCode == 404) {
           setMessage('Error: Email is not registered to a user.')
           setMessageStyle(styles.messageError)
-        } else {
+        } else if(data.statusCode == 200) {
           navigate('ConfirmResetCode', {
             email: email,
           })
-        } 
+        } else {
+          setMessage('Error: Something went wrong')
+          setMessageStyle(styles.messageError)
+        }
       })
       .catch(error => {
         console.log('Error: ' + error)

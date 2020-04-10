@@ -21,7 +21,7 @@ export default function CreateResetPasswordScreen(props: Props) {
   const [message, setMessage] = useState('')
 
   const user = {
-    email: props.navigation .state.params.email,
+    email: props.navigation.state.params.email,
   }
 
   async function handleRegister(){
@@ -39,7 +39,7 @@ export default function CreateResetPasswordScreen(props: Props) {
       .then(res => res.json())
       .then(data => {
         console.log(data)
-        navigate('Onboarding')
+        navigate('Questions')
       })
       .catch(error => {
         console.log('Error: ' + error)
@@ -54,9 +54,8 @@ export default function CreateResetPasswordScreen(props: Props) {
     } else {
       handleRegister()
     }
-
   }
-
+  
   return (
     <View style={styles.container}>
       <View style={styles.main}>

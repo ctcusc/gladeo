@@ -67,7 +67,6 @@ const styles = StyleSheet.create({
     marginRight: '17.3%',
     marginTop: '7%',
     marginBottom: '7.7%',
-    color: 'red',
   },
 
   imageLine: {
@@ -75,10 +74,6 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-
-  image: {
-    height: 92,
   },
 
   footer: {
