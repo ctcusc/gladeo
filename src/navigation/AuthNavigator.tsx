@@ -7,12 +7,16 @@ import PasswordResetScreen from '../screens/Auth/LoginStack/PasswordResetScreen/
 import CreatePasswordScreen from '../screens/Auth/RegisterStack/CreatePasswordScreen/CreatePasswordScreen'
 import WelcomeScreen from '../screens/Auth/WelcomeScreen/WelcomeScreen'
 import GetStartedScreen from '../screens/Auth/RegisterStack/GetStartedScreen/GetStartedScreen'
+import CreateResetPasswordScreen from '../screens/Auth/LoginStack/CreateResetPasswordScreen/CreateResetPasswordScreen'
+import ConfirmResetCodeScreen from '../screens/Auth/LoginStack/ConfirmResetCodeScreen/ConfirmResetCodeScreen'
 import UserInfoScreen from '../screens/Auth/RegisterStack/UserInfoScreen/UserInfoScreen'
 
 const LoginStack = createStackNavigator(
   {
     Login: LoginScreen,
     PasswordReset: PasswordResetScreen,
+    ConfirmResetCode: ConfirmResetCodeScreen,
+    CreateResetPassword: CreateResetPasswordScreen,
   },
   {
     headerMode: 'none',
