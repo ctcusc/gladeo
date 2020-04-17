@@ -108,4 +108,47 @@ describe('Checks updated user is returned when question is answered', () => {
   })
 }) 
 
+describe('Checks updated user is returned when question is deleted after confirming re-record', () => {
+  let session
+  let questionIDs
+  beforeAll(async () => {
+    // setup session and login
+    session = await supertestsession(app)
+    await session.post('/api/auth/login').send({ Email: 'a@b.com', Password: 'password' })
 
+    const questions = await request.get('/api/questions')
+    questionIDs = (questions.body).map(question => question.ID)
+
+  })
+  it('should return successful w/ updated user w/ new question deleted in answered field ',  async () => {
+    // answer question 7 and then retrieve questions
+    await session.post('/api/user/questions').send({ questionId: questionIDs[7] })
+    const res = await session.get('/api/user/questions')
+
+    expect(res.status).toBe(200)
+
+    // Confirm the # of answered questions is only 1 and verify it is question #7
+    const answered = res.body
+    expect(answered.length).toBe(10)
+    expect(answered[7].Answered).toBe(true)
+
+    // delete question 7 and then retrieve questions
+    await session.delete('/api/user/questions').send({ questionId: questionIDs[7] })
+    const res2 = await session.get('/api/user/questions')
+
+    expect(res2.status).toBe(200)
+
+    // Verify question #7 is deleted from user's answered list
+    const answered2 = res2.body
+    expect(answered2.length).toBe(10)
+    expect(answered2[7].Answered).toBe(false)
+  })
+
+  afterAll(async () => {
+    const baseName = 'Users'
+    const userTestID = 'recmAyOc3FPftHqZG'
+    const fieldName = 'Answered'
+
+    await clearFieldsInSingleRecord(baseName, userTestID, fieldName)
+  })
+}) 
