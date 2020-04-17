@@ -138,13 +138,13 @@ describe('Checks updated user is returned when question is deleted after confirm
 
     expect(res2.status).toBe(200)
 
-    // Verify question #7 is deleted from user's answered list
+    // Verify question 7 is deleted from user's answered list
     const answered2 = res2.body
     expect(answered2.length).toBe(10)
     expect(answered2[7].Answered).toBe(false)
   })
 
-  afterAll(async () => {
+  afterEach(async () => {
     const baseName = 'Users'
     const userTestID = 'recmAyOc3FPftHqZG'
     const fieldName = 'Answered'
