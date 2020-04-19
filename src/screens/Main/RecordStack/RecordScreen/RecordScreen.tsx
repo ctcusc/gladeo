@@ -50,9 +50,8 @@ export default function RecordScreen(props: Props) {
 
   useEffect(() => {
     (async () => {
-      const { status: cameraPermission } = await Camera.requestPermissionsAsync()
-      const { status: cameraRollPermission } = await Permissions.askAsync(Permissions.CAMERA_ROLL)
-      setHasPermission(cameraPermission === 'granted' && cameraRollPermission === 'granted')
+      const { status } = await Permissions.getAsync(Permissions.CAMERA_ROLL, Permissions.CAMERA, Permissions.AUDIO_RECORDING)
+      setHasPermission(status === 'granted')
     })()
   }, [])
 
