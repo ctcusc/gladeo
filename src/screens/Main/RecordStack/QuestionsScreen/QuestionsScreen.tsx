@@ -11,6 +11,9 @@ import {
 import styles from './styles'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
 import { BASE_PATH } from 'react-native-dotenv'
+import { connect } from 'react-redux'
+import { saveVideo } from '../../../../redux/actions'
+import { bindActionCreators } from 'redux'
 
 interface Question {
   ID: number,
@@ -30,6 +33,7 @@ export default function QuestionsScreen(props: Props) {
   const [modalVisibility, setModalVisibility] = useState(false)
 
   useEffect(() => {
+    
     fetch(`${BASE_PATH}/api/user/questions`)
       .then(res => res.json())
       .then(data => {
