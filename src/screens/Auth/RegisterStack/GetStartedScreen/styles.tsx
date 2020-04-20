@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
 
   normalText: {
     fontStyle: 'normal',
-    fontFamily: 'roboto-regular',
+    fontFamily: 'Roboto-Regular',
     fontSize: 16,
     lineHeight: 19,
     color: '#000000',
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontSize: 16,
     lineHeight: 19,
-    fontFamily: 'roboto-regular',
+    fontFamily: 'Roboto-Regular',
     color: '#E5186E',
   },
 

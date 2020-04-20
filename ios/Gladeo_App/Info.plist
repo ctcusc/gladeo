@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>Gladeo Q&A Video Creation App</string>
+	<string>Gladeo QA Video Creation App</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -57,26 +57,26 @@
 		</dict>
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>Allow Gladeo Q&A Video Creation App to access your calendar</string>
+	<string>Allow Gladeo QA Video Creation App to access your calendar</string>
 	<key>NSCameraUsageDescription</key>
-	<string>Allow Gladeo Q&A Video Creation App to use the camera</string>
+	<string>Allow Gladeo QA Video Creation App to use the camera</string>
 	<key>NSContactsUsageDescription</key>
-	<string>Allow Gladeo Q&A Video Creation App experiences to access your contacts</string>
+	<string>Allow Gladeo QA Video Creation App experiences to access your contacts</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Allow Gladeo Q&A Video Creation App to use your location</string>
+	<string>Allow Gladeo QA Video Creation App to use your location</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Allow Gladeo Q&A Video Creation App to use your location</string>
+	<string>Allow Gladeo QA Video Creation App to use your location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Allow Gladeo Q&A Video Creation App to use your location</string>
+	<string>Allow Gladeo QA Video Creation App to use your location</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Allow Gladeo Q&A Video Creation App to access your microphone</string>
+	<string>Allow Gladeo QA Video Creation App to access your microphone</string>
 	<key>NSMotionUsageDescription</key>
-	<string>Allow Gladeo Q&A Video Creation App to access your device's accelerometer</string>
+	<string>Allow Gladeo QA Video Creation App to access your device's accelerometer</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
-	<string>Give Gladeo Q&A Video Creation App periences permission to save photos</string>
+	<string>Give Gladeo QA Video Creation App periences permission to save photos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>Give Gladeo Q&A Video Creation App periences permission to access your photos</string>
+	<string>Give Gladeo QA Video Creation App periences permission to access your photos</string>
 	<key>NSRemindersUsageDescription</key>
-	<string>Allow Gladeo Q&A Video Creation App to access your reminders</string>
+	<string>Allow Gladeo QA Video Creation App to access your reminders</string>
 </dict>
 </plist>

@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   buttonText: {
     fontStyle: 'normal',
     fontSize: 14,
-    fontFamily: 'montserrat-semibold',
+    fontFamily: 'Montserrat-SemiBold',
     color: '#F5F5F5',
     textAlign: 'center',
     marginBottom: 5,

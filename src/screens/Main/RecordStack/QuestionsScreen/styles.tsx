@@ -12,13 +12,13 @@ const styles = StyleSheet.create({
   },
   titleAnswered: {
     fontSize: 18,
-    fontFamily: 'roboto-regular', 
+    fontFamily: 'Roboto-Regular', 
     color: '#FFFFFF',
     fontWeight: '500',
   },
   titleUnanswered: {
     fontSize: 18,
-    fontFamily: 'roboto-regular', 
+    fontFamily: 'Roboto-Regular', 
     color: '#E5186E',
     fontWeight: '500',
   },
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
   },
   header: {
-    fontFamily: 'montserrat-semibold',
+    fontFamily: 'Montserrat-SemiBold',
     fontStyle: 'normal',
     fontSize: 30,
     color: '#000',

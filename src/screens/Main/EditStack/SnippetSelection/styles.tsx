@@ -28,13 +28,13 @@ const styles = StyleSheet.create({
   },
   title: {
     fontSize: 18,
-    fontFamily: 'roboto-regular', 
+    fontFamily: 'Roboto-Regular', 
     color: '#FFFFFF',
     fontWeight: '500',
   },
   titleSelected: {
     fontSize: 18,
-    fontFamily: 'roboto-regular', 
+    fontFamily: 'Roboto-Regular', 
     color: '#FFFFFF',
     fontWeight: '500',
   },
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
     width: '100%'
   },
   header: {
-    fontFamily: 'montserrat-semibold',
+    fontFamily: 'Montserrat-SemiBold',
     fontStyle: 'normal',
     fontSize: 30,
     color: '#000',

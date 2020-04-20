@@ -93,7 +93,7 @@ const styles = StyleSheet.create({
     transform: [ { rotateZ: '270deg'}],
     position: 'absolute',
     right: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.25), // funky but it works
-    fontFamily: 'roboto-regular',
+    fontFamily: 'Roboto-Regular',
   },
   bottomSection: {
     flex: 1,
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
     color: '#fff', 
     fontSize: 18,
     lineHeight: 21,
-    fontFamily: 'roboto-regular'
+    fontFamily: 'Roboto-Regular'
   }
 })
 

@@ -12,18 +12,15 @@
     "server": "nodemon server/server.js",
     "dev": "run-p server start",
     "clean": "rm -rf node_modules .yarnclean && yarn",
-    "postinstall": "jetify"
-  },
-  "jest": {
-    "preset": "jest-expo",
-    "transformIgnorePatterns": [
-      "node_modules/(?!(jest-)?react-native|react-clone-referenced-element|@react-native-community|expo(nent)?|@expo(nent)?/.*|react-navigation|@react-navigation/.*|@unimodules/.*|sentry-expo|native-base)"
-    ]
+    "postinstall": "jetify && jetify"
   },
   "lint-staged": {
     "*.{js,tsx}": [
       "eslint --fix"
     ]
+  },
+  "jest": {
+    "preset": "react-native"
   },
   "husky": {
     "hooks": {
@@ -31,8 +28,6 @@
     }
   },
   "dependencies": {
-    "@expo/samples": "~3.0.3",
-    "@expo/vector-icons": "^10.0.0",
     "@react-native-community/masked-view": "0.1.5",
     "@react-navigation/core": "^3.0.0-alpha.13",
     "@react-navigation/web": "^1.0.0-alpha.9",
@@ -47,18 +42,8 @@
     "core-js": "^3",
     "core-util-is": "^1.0.2",
     "dotenv": "^8.2.0",
-    "expo": "^36.0.0",
-    "expo-asset": "~8.0.0",
-    "expo-av": "~8.0.0",
-    "expo-camera": "^8.2.0",
-    "expo-constants": "~8.0.0",
-    "expo-font": "~8.0.0",
-    "expo-media-library": "~8.0.0",
-    "expo-permissions": "~8.0.0",
-    "expo-web-browser": "~8.0.0",
     "express-session": "^1.17.0",
     "mem": "^6.0.1",
-    "metro-react-native-babel-preset": "^0.59.0",
     "nodemailer": "^6.4.2",
     "react": "~16.9.0",
     "react-dom": "16.9.0",
@@ -86,9 +71,7 @@
     "@babel/core": "^7.6.4",
     "@typescript-eslint/eslint-plugin": "^2.14.0",
     "@typescript-eslint/parser": "^2.14.0",
-    "babel-jest": "~24.9.0",
-    "babel-preset-expo": "^8.0.0",
-    "babel-preset-react-native": "^4.0.1",
+    "babel-preset-react-native": "5.0.2",
     "body-parser": "^1.19.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb": "^18.0.1",
@@ -103,10 +86,8 @@
     "express": "^4.17.1",
     "handlebars": "^4.7.1",
     "husky": "^3.1.0",
-    "jest": "~24.9.0",
-    "jest-expo": "^36.0.0",
+    "jest": "^25.4.0",
     "lint-staged": "^10.0.0-beta.14",
-    "metro-react-native-babel-preset": "~0.56.0",
     "nodemon": "^2.0.2",
     "npm-run-all": "^4.1.5",
     "prettier": "^1.19.1",

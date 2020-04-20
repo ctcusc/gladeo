@@ -3,7 +3,7 @@ import React from 'react'
 import { Platform } from 'react-native'
 import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
-import TabBarIcon from '../shared_components/TabBarIcon'
+// import TabBarIcon from '../shared_components/TabBarIcon'
 import QuestionsScreen from '../screens/Main/RecordStack/QuestionsScreen/QuestionsScreen'
 import CreatingVideoScreen from '../screens/Main/EditStack/CreatingVideoScreen/CreatingVideoScreen'
 import UploadingVideoScreen from '../screens/Main/EditStack/UploadingVideoScreen/UploadingVideoScreen'
@@ -40,9 +40,9 @@ RecordStack.navigationOptions = ({ navigation }) => {
   return {
     title: 'Record',
     tabBarOptions: {  activeTintColor: Colors.tabIconSelected  },
-    tabBarIcon: ({focused}: any) => (
-      <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-videocam' : 'md-videocam'} />
-    ),
+    // tabBarIcon: ({focused}: any) => (
+    //   // <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-videocam' : 'md-videocam'} />
+    // ),
     tabBarVisible
   }
 }
@@ -62,9 +62,9 @@ const EditStack = createStackNavigator(
 EditStack.navigationOptions = {
   tabBarLabel: 'Edit',
   tabBarOptions: {  activeTintColor: Colors.tabIconSelected  },
-  tabBarIcon: ({focused}: any) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-film' : 'md-film'} />
-  ),
+  // tabBarIcon: ({focused}: any) => (
+  //   <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-film' : 'md-film'} />
+  // ),
 }
 
 const mainTabNavigator = createBottomTabNavigator({
