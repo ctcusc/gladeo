@@ -10,6 +10,7 @@ import UploadingVideoScreen from '../screens/Main/EditStack/UploadingVideoScreen
 import RecordScreen from '../screens/Main/RecordStack/RecordScreen/RecordScreen'
 import SnippetSelectionScreen from '../screens/Main/EditStack/SnippetSelection/SnippetSelection'
 import Colors from '../constants/Colors'
+import ViewScreen from '../screens/Main/RecordStack/ViewScreen/ViewScreen'
 
 // Tab #1 - Question Selection + Recording
 const RecordStack = createStackNavigator(
@@ -19,7 +20,12 @@ const RecordStack = createStackNavigator(
       screen: RecordScreen,
       navigationOptions: {
         headerShown: false,
-        
+      }
+    },
+    View: {
+      screen: ViewScreen,
+      navigationOptions: {
+        headerShown: false,
       }
     }
   },
