@@ -18,7 +18,7 @@ interface Props {
 }
 
 function RecordScreen(props: Props) {
-  const {goBack} = props.navigation
+  const {goBack, pop} = props.navigation
   const question = props.navigation.state.params.question
   const questionID = props.navigation.state.params.questionID
   const [hasPermission, setHasPermission] = useState(false)
@@ -36,8 +36,11 @@ function RecordScreen(props: Props) {
 
     // let key = "video_"
     // key += questionID
-    props.dispatch(saveVideo({questionID: questionID, uri: video.uri, questionText: question}))
-    goBack()
+    const payload ={'questionID': questionID, 'uri': video.uri, 'questionText': question}
+
+    console.log('SAVING: ', payload)
+    props.dispatch(saveVideo(payload))
+    pop()
   }
 
   async function stopRecord(){
