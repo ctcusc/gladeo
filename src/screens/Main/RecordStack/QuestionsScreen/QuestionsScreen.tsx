@@ -56,13 +56,16 @@ function QuestionsScreen(props: Props) {
           <TouchableHighlight
             onPress={() => {
               if(item.Answered) {
+                console.log('VIDEOS in redux alert: ', props.videos)
+
                 Alert.alert(
                   'Edit your Answer clip',
                   'If you want to change your clip, do it here!',
                   [
                     {text: 'View Answer', 
                       onPress: () => {
-                        push('View', {question: props.videos[item.ID-1].questionText, uri: props.videos[item.ID-1].uri})
+
+                        push('View', {question: props.videos[item.ID].questionText, uri: props.videos[item.ID].uri})
                       }
                     },
                     {text: 'Re-record Answer', 
@@ -117,7 +120,7 @@ QuestionsScreen.navigationOptions = {
 
 const mapStateToProps = (state: any) => {
   return {
-    videos: state.videos
+    videos: state
   }
 }
 
