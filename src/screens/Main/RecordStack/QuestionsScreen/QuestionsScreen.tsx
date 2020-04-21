@@ -26,7 +26,7 @@ interface Props {
 }
 
 /* AKA: Q&A screen */
-function QuestionsScreen(props: Props) {
+function QuestionsScreen(props: Props, videos: Array<Record<string, any>>) {
   // const [videos, setVideos] = useState(null)
   const [selected, setSelected] = useState<number | null>(null)
   const [questions, setQuestions] = useState<Array<Question>>([])
