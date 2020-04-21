@@ -23,19 +23,21 @@ interface Question {
 
 interface Props {
   navigation: NavigationScreenProp<NavigationState>,
+  videos: any,
 }
 
 /* AKA: Q&A screen */
-function QuestionsScreen(props: Props, videos: Array<Record<string, any>>) {
-  // const [videos, setVideos] = useState(null)
+function QuestionsScreen(props: Props) {
+  // const [videos, setVideos] = useState([]])
   const [selected, setSelected] = useState<number | null>(null)
   const [questions, setQuestions] = useState<Array<Question>>([])
   const {push} = props.navigation
   const [modalVisibility, setModalVisibility] = useState(false)
 
   useEffect(() => {
-    
-    fetch('https://cfa83314.ngrok.io/api/user/questions')
+    console.log('VIDEOS in redux: ', props.videos)
+
+    fetch('https://38bae06e.ngrok.io/api/user/questions')
       .then(res => res.json())
       .then(data => {
         setQuestions(data)
@@ -60,7 +62,7 @@ function QuestionsScreen(props: Props, videos: Array<Record<string, any>>) {
                   [
                     {text: 'View Answer', 
                       onPress: () => {
-                        push('View', {question: videos[item.ID].questionText, uri: videos[item.ID].uri})
+                        push('View', {question: props.videos[item.ID-1].questionText, uri: props.videos[item.ID-1].uri})
                       }
                     },
                     {text: 'Re-record Answer', 
@@ -113,7 +115,7 @@ QuestionsScreen.navigationOptions = {
   headerStyle: {height: 140},   
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state: any) => {
   return {
     videos: state.videos
   }

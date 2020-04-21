@@ -1,8 +1,8 @@
 const initialState = {
   videos: [{
     questionId: 1,
-    uri: null,
-    questionText: null,
+    uri: 'file:///data/user/0/host.exp.exponent/cache/ExperienceData/%2540apetranik%252FGladeo/Camera/a9d0efd7-93eb-41c8-8206-5c3e3b945f26.mp4',
+    questionText: 'Explain what you do in one minute or less',
   },
   {
     questionId: 2,
