@@ -24,7 +24,7 @@ export default function LoginScreen(props: Props) {
   const [password, setPassword] = useState('')
 
   async function handleLogin(){
-    fetch('https://38bae06e.ngrok.io/api/auth/login', {
+    fetch('https://cfa83314.ngrok.io/api/auth/login', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

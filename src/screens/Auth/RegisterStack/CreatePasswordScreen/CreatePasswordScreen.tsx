@@ -29,7 +29,7 @@ export default function CreatePasswordScreen(props: Props) {
   const [messageStyle, setMessageStyle] = useState(styles.regularText)
 
   async function handleRegister(){
-    fetch(`${BASE_PATH}/api/auth/register`, {
+    fetch('https://cfa83314.ngrok.io/api/auth/register', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

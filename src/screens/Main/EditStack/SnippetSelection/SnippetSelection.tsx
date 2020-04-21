@@ -28,7 +28,7 @@ export default function SnippetSelectionScreen(props: Props) {
   const [nextSnippetIndex, setNextSnippetIndex] = useState<number>(2)
 
   useEffect(() => {
-    fetch(`${BASE_PATH}/api/user/questions`)
+    fetch('https://cfa83314.ngrok.io/api/user/questions')
       .then(res => res.json())
       .then(data => {     
         const initialSnippetState = []

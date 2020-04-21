@@ -21,7 +21,7 @@ export default function PasswordResetScreen(props: Props) {
   const {navigate} = props.navigation 
 
   async function checkEmail(){
-    fetch(`${BASE_PATH}/api/auth/forgot-password`, {
+    fetch('https://cfa83314.ngrok.io/api/auth/forgot-password', {
       method: 'POST',
       headers: {
         Accept: 'application/json',

@@ -23,7 +23,7 @@ export default function GetStartedScreen(props: Props) {
   const [messageStyle, setMessageStyle] = useState(styles.messageNormal)
 
   async function checkCompanyCode(){
-    fetch(`${BASE_PATH}/api/company/${code}`, {
+    fetch(`https://cfa83314.ngrok.io/api/company/${code}`, {
       method: 'GET',
       headers: {
         Accept: 'application/json',
