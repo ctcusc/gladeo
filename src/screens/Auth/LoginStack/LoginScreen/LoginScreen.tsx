@@ -17,14 +17,13 @@ interface Props {
   navigation: NavigationScreenProp<NavigationState>,
 }
 
-
 export default function LoginScreen(props: Props) {
   const {navigate} = props.navigation
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
   async function handleLogin(){
-    fetch('https://d46ef5f4.ngrok.io/api/auth/login', {
+    fetch(`${BASE_PATH}/api/auth/login`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',

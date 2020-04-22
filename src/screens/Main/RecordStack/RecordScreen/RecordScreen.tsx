@@ -8,12 +8,13 @@ import { Video } from 'expo-av'
 import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation'
 import { connect } from 'react-redux'
 import { saveVideo } from '../../../../redux/actions/index'
+import { BASE_PATH } from 'react-native-dotenv'
 
 interface Props {
-  dispatch: any,
-  saveVideo: any,
+  dispatch: Function,
+  saveVideo: Function,
   question: string,
-  questionID: any,
+  questionID: number,
   navigation: NavigationScreenProp<NavigationState, NavigationParams>,
 }
 
@@ -27,17 +28,34 @@ function RecordScreen(props: Props) {
   const [cameraDirection, setCameraDirection] = useState(Camera.Constants.Type.front)
   const [video, setVideo] = useState(null)
 
+  async function answerQuestion(){
+    fetch(`${BASE_PATH}/api/user/questions`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        'questionId': questionID,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+      })
+      .catch(error => {
+        console.log('Error: ' + error)
+      })
+  }
+
   async function save(){
     console.log(video.uri)
     const asset = await MediaLibrary.createAssetAsync(video.uri)
     if (asset) {
       setVideo(null)
     }
-
-    // let key = "video_"
-    // key += questionID
+    answerQuestion()
     const payload ={'questionID': questionID, 'uri': video.uri, 'questionText': question}
-
     console.log('SAVING: ', payload)
     props.dispatch(saveVideo(payload))
     pop()
@@ -153,17 +171,5 @@ function RecordScreen(props: Props) {
     )
   }
 }
-
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     saveVideo: (uri: string, question: string) => {
-//       dispatch(saveVideo({
-//         questionText: question,
-//         uri: uri
-//       }
-//       ))
-//     }
-//   }
-// }
 
 export default connect()(RecordScreen)

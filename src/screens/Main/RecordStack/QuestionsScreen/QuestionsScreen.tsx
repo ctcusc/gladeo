@@ -4,7 +4,6 @@ import {
   Text,
   View,
   FlatList,
-  TouchableOpacity,
   TouchableHighlight,
   Alert,
 } from 'react-native'
@@ -12,8 +11,6 @@ import styles from './styles'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
 import { BASE_PATH } from 'react-native-dotenv'
 import { connect } from 'react-redux'
-import { saveVideo } from '../../../../redux/actions'
-import { bindActionCreators } from 'redux'
 
 interface Question {
   ID: number,
@@ -28,7 +25,6 @@ interface Props {
 
 /* AKA: Q&A screen */
 function QuestionsScreen(props: Props) {
-  // const [videos, setVideos] = useState([]])
   const [selected, setSelected] = useState<number | null>(null)
   const [questions, setQuestions] = useState<Array<Question>>([])
   const {push} = props.navigation
@@ -36,8 +32,7 @@ function QuestionsScreen(props: Props) {
 
   useEffect(() => {
     console.log('VIDEOS in redux: ', props.videos)
-
-    fetch('https://d46ef5f4.ngrok.io/api/user/questions')
+    fetch(`${BASE_PATH}/api/user/questions`)
       .then(res => res.json())
       .then(data => {
         setQuestions(data)
