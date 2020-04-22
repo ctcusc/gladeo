@@ -37,7 +37,7 @@ function QuestionsScreen(props: Props) {
   useEffect(() => {
     console.log('VIDEOS in redux: ', props.videos)
 
-    fetch('https://38bae06e.ngrok.io/api/user/questions')
+    fetch('https://d46ef5f4.ngrok.io/api/user/questions')
       .then(res => res.json())
       .then(data => {
         setQuestions(data)
@@ -64,8 +64,7 @@ function QuestionsScreen(props: Props) {
                   [
                     {text: 'View Answer', 
                       onPress: () => {
-
-                        push('View', {question: props.videos[item.ID].questionText, uri: props.videos[item.ID].uri})
+                        push('View', {question: props.videos[item.ID-1].questionText, uri: props.videos[item.ID-1].uri})
                       }
                     },
                     {text: 'Re-record Answer', 
