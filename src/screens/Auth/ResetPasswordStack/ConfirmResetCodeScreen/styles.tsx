@@ -41,6 +41,8 @@ const styles = StyleSheet.create({
     fontFamily: 'roboto-regular',
     fontSize: 16,
     color: '#777777',
+    marginTop: '6%',
+    marginBottom: '20%',
   },
 
   pinkTextButton: {
@@ -48,6 +50,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'roboto-regular',
     color: '#E5186E',
+    marginBottom: '30%',
   },
 
   resendButtonLine: {
@@ -61,10 +64,36 @@ const styles = StyleSheet.create({
     marginTop: 0,
     color: 'red',
   },
+  codeField: {margin: 20},
 
-  footer: {
-    flex: 1
-  }
+  input: {
+    width: 48,
+    height: 64,
+    fontFamily: 'roboto-bold',
+    backgroundColor: '#E6E6E6',
+    borderRadius: 10,
+    color: '#000',
+    textAlign: 'center',
+    marginTop: 10,
+  },
+  
+  cell: {
+    width: 46,
+    height: 64,
+    lineHeight: 62,
+    fontSize: 36,
+    borderWidth:2,
+    borderRadius: 3,
+    backgroundColor: '#F0F0F0',
+    borderColor: '#fff',
+    textAlign: 'center',
+    fontFamily: 'roboto-bold',
+    margin: 10,
+
+  },
+  focusCell: {
+    borderColor: '#E5186E',
+  },
 })
 
 export default styles
