@@ -42,6 +42,26 @@ function QuestionsScreen(props: Props) {
       })
   })
 
+  async function removeQuestion(id: number){
+    fetch(`${BASE_PATH}/api/user/questions`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        'questionId': id,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+      })
+      .catch(error => {
+        console.log('Error: ' + error)
+      })
+  }
+
   return (
     <View style={styles.container}>
       <FlatList<Question>
@@ -67,6 +87,7 @@ function QuestionsScreen(props: Props) {
                           [
                             {text: 'Re-record',
                               onPress: () => {
+                                removeQuestion(item.ID)
                                 push('Record', {question: item.text, questionID: item.ID})
                               }
                             },
