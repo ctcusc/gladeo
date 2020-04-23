@@ -11,6 +11,9 @@ import {
 import styles from './styles'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
 import { BASE_PATH } from 'react-native-dotenv'
+import { connect } from 'react-redux'
+import { saveVideo } from '../../../../redux/actions'
+import { bindActionCreators } from 'redux'
 
 interface Question {
   ID: number,
@@ -30,6 +33,7 @@ export default function QuestionsScreen(props: Props) {
   const [modalVisibility, setModalVisibility] = useState(false)
 
   useEffect(() => {
+    
     fetch(`${BASE_PATH}/api/user/questions`)
       .then(res => res.json())
       .then(data => {
@@ -39,7 +43,27 @@ export default function QuestionsScreen(props: Props) {
       .catch(error => {
         console.log('Error' + error)
       })
-  }, [])
+  })
+
+  async function removeQuestion(id: number){
+    fetch(`${BASE_PATH}/api/user/questions`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        'questionId': id,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+      })
+      .catch(error => {
+        console.log('Error: ' + error)
+      })
+  }
 
   return (
     <View style={styles.container}>
@@ -62,6 +86,7 @@ export default function QuestionsScreen(props: Props) {
                           [
                             {text: 'Re-record',
                               onPress: () => {
+                                removeQuestion(item.ID)
                                 push('Record', {question: item.text})
                               }
                             },
