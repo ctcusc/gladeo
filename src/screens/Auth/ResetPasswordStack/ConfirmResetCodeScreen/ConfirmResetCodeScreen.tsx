@@ -43,7 +43,7 @@ export default function ConfirmResetCodeScreen(props: Props) {
       },
       body: JSON.stringify({
         'Email': user.email,
-        'Code': first + second + third + fourth,
+        'Code': code,
       }),
     })
       .then(res => res.json())

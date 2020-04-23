@@ -41,6 +41,8 @@ const styles = StyleSheet.create({
     fontFamily: 'roboto-regular',
     fontSize: 16,
     color: '#777777',
+    marginTop: '6%',
+    marginBottom: '20%',
   },
 
   pinkTextButton: {
@@ -48,6 +50,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontFamily: 'roboto-regular',
     color: '#E5186E',
+    marginBottom: '30%',
   },
 
   resendButtonLine: {
