@@ -20,7 +20,7 @@ interface Question {
 
 interface Props {
   navigation: NavigationScreenProp<NavigationState>,
-  videos: any,
+  videos: Array<Record<string, any>>,
 }
 
 /* AKA: Q&A screen */
@@ -31,7 +31,6 @@ function QuestionsScreen(props: Props) {
   const [modalVisibility, setModalVisibility] = useState(false)
 
   useEffect(() => {
-    console.log('VIDEOS in redux: ', props.videos)
     fetch(`${BASE_PATH}/api/user/questions`)
       .then(res => res.json())
       .then(data => {
@@ -41,7 +40,7 @@ function QuestionsScreen(props: Props) {
       .catch(error => {
         console.log('Error' + error)
       })
-  }, [])
+  })
 
   return (
     <View style={styles.container}>
@@ -51,8 +50,6 @@ function QuestionsScreen(props: Props) {
           <TouchableHighlight
             onPress={() => {
               if(item.Answered) {
-                console.log('VIDEOS in redux alert: ', props.videos)
-
                 Alert.alert(
                   'Edit your Answer clip',
                   'If you want to change your clip, do it here!',

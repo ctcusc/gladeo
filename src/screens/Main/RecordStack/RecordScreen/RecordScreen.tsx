@@ -49,14 +49,12 @@ function RecordScreen(props: Props) {
   }
 
   async function save(){
-    console.log(video.uri)
     const asset = await MediaLibrary.createAssetAsync(video.uri)
     if (asset) {
       setVideo(null)
     }
     answerQuestion()
     const payload ={'questionID': questionID, 'uri': video.uri, 'questionText': question}
-    console.log('SAVING: ', payload)
     props.dispatch(saveVideo(payload))
     pop()
   }
