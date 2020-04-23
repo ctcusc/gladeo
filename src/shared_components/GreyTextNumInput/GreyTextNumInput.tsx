@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useState, useRef} from 'react'
 import {
   View,
   TextInput,
@@ -7,19 +7,21 @@ import styles from './styles'
 
 interface Props {
   changeTextContent(input: string): void,
+  changeReference(input: React.MutableRefObject<unknown>): void,
   input: string,
 }
 
-export default function GreyTextInput (props: Props){
+const GreyTextNumInput = React.forwardRef((props: Props, ref) => {
   const [text, setText] = useState('')
   const [inFocus, setInFocus] = useState(false)
-
+  const inputRef = useRef(ref)
   return (
     <View>
       <TextInput 
         onChangeText={
           (input) => {
             setText(input),
+            props.changeReference(inputRef),
             props.changeTextContent(input)
           }
         }
@@ -32,4 +34,7 @@ export default function GreyTextInput (props: Props){
       />
     </View>
   )
-}
+})
+
+GreyTextNumInput.displayName = 'component'
+export default GreyTextNumInput

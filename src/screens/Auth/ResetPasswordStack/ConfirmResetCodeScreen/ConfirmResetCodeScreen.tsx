@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import {
   Text,
   View,
@@ -6,7 +6,7 @@ import {
 } from 'react-native'
 import styles from './styles'
 import BlackHeading from '../../../../shared_components/BlackHeading/BlackHeading'
-import GreyTextNumInput from '../../../../shared_components/GreyTextNumInput/GreyTextNumInput'
+import { GreyTextNumInput } from '../../../../shared_components/GreyTextNumInput/GreyTextNumInput'
 import PinkButton from '../../../../shared_components/PinkButton/PinkButton'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
 import { BASE_PATH } from 'react-native-dotenv'
@@ -16,6 +16,10 @@ interface Props {
 }
 
 export default function ConfirmResetCodeScreen(props: Props) {
+  const [reference1, setFirstRef] = useState(useRef(null))
+  const [reference2, setSecondRef] = useState(useRef(null))
+  const [reference3, setThirdRef] = useState(useRef(null))
+  const [reference4, setFourthRef] = useState(useRef(null))
   const [first, setFirst] = useState('')
   const [second, setSecond] = useState('')
   const [third, setThird] = useState('')
@@ -26,7 +30,7 @@ export default function ConfirmResetCodeScreen(props: Props) {
   const user = {
     email: props.navigation.state.params.email,
   }
-
+  
   async function checkVerificationCode(){
     fetch(`${BASE_PATH}/api/auth/confirm-reset-code`, {
       method: 'POST',
@@ -84,6 +88,25 @@ export default function ConfirmResetCodeScreen(props: Props) {
       })
   }
 
+  function focusFirst(first) {
+    setFirst(first)
+    if(first) reference2.current.focus()
+  }
+
+  function focusSecond(second) {
+    setSecond(second)
+    if(second) reference3.current.focus()
+  }
+
+  function focusThird(third) {
+    setThird(third)
+    if(third) reference4.current.focus()
+  }
+
+  function focusFourth(fourth) {
+    setFourth(fourth)
+    if(first && second && third && fourth) checkVerificationCode
+  }
 
   return (
     <View style={styles.container}>
@@ -93,17 +116,31 @@ export default function ConfirmResetCodeScreen(props: Props) {
         <Text style={messageStyle}>{message}</Text>
         <View style = {styles.code}>
           <GreyTextNumInput changeTextContent={(first) => {
-            setFirst(first)
-          }} input={first}/>
+            focusFirst(first)
+          }} changeReference={(ref1) => {
+            setFirstRef(ref1)
+          }}
+          input={first}/>
           <GreyTextNumInput changeTextContent={(second) => {
-            setSecond(second)
-          }} input={second}/>
+            focusSecond(second)
+          }}  changeReference={(ref2) => {
+            setSecondRef(ref2)
+          }}
+          input={second}/>
           <GreyTextNumInput changeTextContent={(third) => {
-            setThird(third)
-          }} input={third}/>
+            focusThird(third)
+          }} 
+          changeReference={(ref3) => {
+            setThirdRef(ref3)
+          }}
+          input={third}/>
           <GreyTextNumInput changeTextContent={(fourth) => {
-            setFourth(fourth)
-          }} input={fourth}/>
+            focusFourth(fourth)
+          }}
+          changeReference={(ref4) => {
+            setFourthRef(ref4)
+          }}
+          input={fourth}/>
         </View>
         <PinkButton title="SEND" 
           onPress={checkVerificationCode}
