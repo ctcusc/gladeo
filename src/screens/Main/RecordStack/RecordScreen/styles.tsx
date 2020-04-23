@@ -130,6 +130,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     margin: 20,
   },
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: 'black'
+  }
 })
 
 export default styles

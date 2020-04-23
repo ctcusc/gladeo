@@ -84,9 +84,11 @@ export default function RecordScreen(props: Props) {
   }
 
   return (
-    <View>
-      <Text>TEST</Text>
+    <View style={styles.container}>
       <RNCamera
+        ref={(ref: RNCamera) => {
+          setCamera(ref)
+        }}
         style={styles.preview}
         type={RNCamera.Constants.Type.back}
         flashMode={RNCamera.Constants.FlashMode.on}
@@ -103,7 +105,7 @@ export default function RecordScreen(props: Props) {
           buttonNegative: 'Cancel',
         }}
       >
-        {({ camera, status, recordAudioPermissionStatus }) => {
+        {({ camera, status }) => {
           if (status !== 'READY') return <PendingView />
           return (
             <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
