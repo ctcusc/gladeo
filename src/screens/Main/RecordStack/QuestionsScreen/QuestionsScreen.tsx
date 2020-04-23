@@ -29,7 +29,6 @@ interface Props {
 export default function QuestionsScreen(props: Props) {
   const [selected, setSelected] = useState<number | null>(null)
   const [questions, setQuestions] = useState<Array<Question>>([])
-  let questionToRemove = 0
   const {push} = props.navigation
   const [modalVisibility, setModalVisibility] = useState(false)
 
@@ -44,9 +43,9 @@ export default function QuestionsScreen(props: Props) {
       .catch(error => {
         console.log('Error' + error)
       })
-  }, [])
+  })
 
-  async function removeQuestion(){
+  async function removeQuestion(id: number){
     fetch(`${BASE_PATH}/api/user/questions`, {
       method: 'DELETE',
       headers: {
@@ -54,7 +53,7 @@ export default function QuestionsScreen(props: Props) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        'questionId': questionToRemove,
+        'questionId': id,
       }),
     })
       .then(res => res.json())
@@ -81,14 +80,13 @@ export default function QuestionsScreen(props: Props) {
                     {text: 'View Answer'},
                     {text: 'Re-record Answer', 
                       onPress: () => {
-                        questionToRemove = item.ID
                         Alert.alert(
                           'Are you sure you want to re-record your clip?',
                           'You\'ll lose your old clip',
                           [
                             {text: 'Re-record',
                               onPress: () => {
-                                removeQuestion()
+                                removeQuestion(item.ID)
                                 push('Record', {question: item.text})
                               }
                             },
