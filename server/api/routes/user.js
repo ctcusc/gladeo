@@ -146,5 +146,48 @@ router.post('/questions', async (req, res) => {
   }
 })
 
+/* 
+Removes question for user given questionId
+  returns user object, including questions field
+  Takes ID of question in body request
+  { questionId: 2 }
+  Returns the updated User
+*/
+router.delete('/questions', async (req, res) => {
+  try {
+    if(req.session && req.session.authenticated) { // user logged in
+      const user = req.session.authenticated
+      const { questionId } = req.body
+      const answeredQuestions = user.Answered // user's answered questions
+
+      // Use question's ID to grab the whole object from questions table
+      const newQuestion = await getQuestion(questionId)
+
+      // remove answered question
+      const updatedQuestions = answeredQuestions.filter(e => e !== newQuestion._record)
+
+      // remove question to user's answered list
+      const updatedUser = await updateAnsweredQuestions(user, updatedQuestions)
+
+      return res.status(200).send(updatedUser)
+    } else {
+      return res.status(404).send({
+        message: 'user not logged in',
+        statusCode: 404,
+      })
+    }
+  } catch (err) {
+    // when `statusCode` is not included, it is a server error 500
+    if (err.statusCode === undefined) {
+      return res.status(500).send({
+        status: 500,
+        message: err.message,
+        stack: err.stack
+      })
+    }
+    return res.status(err.statusCode).send(err)
+  }
+})
+
 module.exports = router
 

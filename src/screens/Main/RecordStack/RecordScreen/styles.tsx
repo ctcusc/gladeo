@@ -98,14 +98,18 @@ const styles = StyleSheet.create({
   bottomSection: {
     flex: 1,
   },
+  videoBottom: {
+    flex: 1,
+    position: 'absolute',
+  },
   saveButton: {
     backgroundColor: '#E5186E',
     transform: [ { rotateZ: '270deg'}],
     width: 79,
     height: 48,
     justifyContent: 'center',
-    left: '75%',
-    top: '15%',
+    left: '30%',
+    top: '1500%',
     borderRadius: 24,
     right: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.25)
   },
@@ -114,7 +118,16 @@ const styles = StyleSheet.create({
     color: '#fff', 
     fontSize: 18,
     lineHeight: 21,
-    fontFamily: 'roboto-regular'
+    fontFamily: 'roboto-regular',
+    transform: [{
+      rotate: '-180deg'
+    }],
+  },
+  videoPlay: {
+    flex: 1,
+    transform: [{
+      rotate: '-180deg'
+    }],
   }
 })
 
