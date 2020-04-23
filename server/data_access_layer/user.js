@@ -97,6 +97,7 @@ async function sendPasswordResetEmail(email, fullName) {
     auth: {
       user: 'gladeo.app@gmail.com',
       pass: 'Abq12Yx34z!8'
+      
     }
   })
   
