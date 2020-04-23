@@ -14,14 +14,14 @@ import Colors from '../constants/Colors'
 // Tab #1 - Question Selection + Recording
 const RecordStack = createStackNavigator(
   {
-    Questions:  QuestionsScreen,
     Record: {
       screen: RecordScreen,
       navigationOptions: {
         headerShown: false,
         
       }
-    }
+    },
+    Questions:  QuestionsScreen
   },
 )
 

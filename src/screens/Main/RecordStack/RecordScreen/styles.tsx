@@ -115,7 +115,21 @@ const styles = StyleSheet.create({
     fontSize: 18,
     lineHeight: 21,
     fontFamily: 'Roboto-Regular'
-  }
+  },
+  preview: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'center',
+  },
+  capture: {
+    flex: 0,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    padding: 15,
+    paddingHorizontal: 20,
+    alignSelf: 'center',
+    margin: 20,
+  },
 })
 
 export default styles

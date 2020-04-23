@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   modalContent: {
     fontSize: 18,
     color: '#D94077',
-    fontFamily: 'roboto-bold', 
+    fontFamily: 'Roboto-Bold', 
     fontStyle: 'normal',
     marginVertical: 15,
   },
@@ -111,7 +111,7 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
   },
   header: {
-    fontFamily: 'Montserrat-SemiBold',
+    fontFamily: 'montserrat-semibold',
     fontStyle: 'normal',
     fontSize: 30,
     color: '#000',
