@@ -22,9 +22,10 @@ const GreyTextNumInput = React.forwardRef((props: Props, ref) => {
           (input) => {
             setText(input),
             props.changeReference(inputRef),
-            props.changeTextContent(input)
+            props.changeTextContent(input)  
+            
           }
-        }
+        } 
         value={props.input}
         style={inFocus ? styles.inFocus : styles.input}
         onFocus={() => setInFocus(true)}

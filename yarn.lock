@@ -4128,10 +4128,10 @@ expo-asset@~8.0.0:
     path-browserify "^1.0.0"
     url-parse "^1.4.4"
 
-expo-av@^8.1.0:
-  version "8.1.0"
-  resolved "https://registry.yarnpkg.com/expo-av/-/expo-av-8.1.0.tgz#376e2a821168cd83e997c6dd84350fab6b293f10"
-  integrity sha512-owWxOCyK+dPyT3pF4rDOf2W8Sn8LSEvfw1HvU9xM0wzH7xF0bw3Zs3wcXxvtfhnXAZ5dCDQfvZI5cXk+lml+IQ==
+expo-av@~8.0.0:
+  version "8.0.0"
+  resolved "https://registry.yarnpkg.com/expo-av/-/expo-av-8.0.0.tgz#fc892a0e4ff7e1eff630002e0652da3125d18113"
+  integrity sha512-n1qOXi0jk6stY4q5RZqmQS90Rg9HDDGWE7EfLABhcyUA1EGJJbrupjpn75sxzNYMksad+oiGp0NULTHlKfa01A==
   dependencies:
     lodash "^4.17.15"
     nullthrows "^1.1.0"
@@ -8013,6 +8013,11 @@ react-native-animated-ellipsis@^2.0.0:
   dependencies:
     babel-preset-stage-2 "^6.24.1"
     prop-types "^15.5.10"
+
+react-native-confirmation-code-field@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-confirmation-code-field/-/react-native-confirmation-code-field-6.0.0.tgz#bc5e84cbe9bb9be85b5df2ab2d4e73a8084bc013"
+  integrity sha512-VydbDBernUpKTNw/ee6oGRgRYuYyRauodRCn8JrsTRGyi7+aG0O6Tx7fOiu+vCXjahTzqk0nC8qgodI/1fIWhw==
 
 react-native-dotenv@^0.2.0:
   version "0.2.0"
