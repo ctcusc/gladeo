@@ -17,7 +17,6 @@ interface Props {
   navigation: NavigationScreenProp<NavigationState>,
 }
 
-
 export default function LoginScreen(props: Props) {
   const {navigate} = props.navigation
   const [email, setEmail] = useState('')
