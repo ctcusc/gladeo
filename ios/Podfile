@@ -45,4 +45,6 @@ target 'Gladeo_App' do
   use_native_modules!
   pod 'react-native-camera', :path => '../node_modules/react-native-camera'
 
+  pod 'react-native-orientation', :path => '../node_modules/react-native-orientation'
+
 end
