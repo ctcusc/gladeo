@@ -139,14 +139,16 @@ export default function RecordScreen(props: Props) {
               <View style={isRecording ? styles.isRecordingButton : styles.recordButton}>
               </View>
             </TouchableOpacity>)}
-          
-            {!video && (<TouchableOpacity 
-              onPress={() => {
-                setCameraDirection(cameraDirection === RNCamera.Constants.Type.front ? RNCamera.Constants.Type.back : RNCamera.Constants.Type.front)
-              }}
-            >
-              <Image resizeMode='contain' source={require('../../../../../assets/images/flip_camera.png')} />
-            </TouchableOpacity>)}
+
+            <View style={styles.flipCamera}> 
+              {!video && (<TouchableOpacity 
+                onPress={() => {
+                  setCameraDirection(cameraDirection === RNCamera.Constants.Type.front ? RNCamera.Constants.Type.back : RNCamera.Constants.Type.front)
+                }}
+              >
+                <Image resizeMode='contain' source={require('../../../../../assets/images/flip_camera.png')} />
+              </TouchableOpacity>)}
+            </View> 
           </View>
           {!video && (<View style={styles.middleSection}>
             <View>
@@ -158,7 +160,7 @@ export default function RecordScreen(props: Props) {
           </View>)}
           <View style={{flexDirection: 'column'}}>
             <View>
-              {!video && (
+              {video && (
                 <TouchableOpacity
                   style={styles.saveButton}
                 >

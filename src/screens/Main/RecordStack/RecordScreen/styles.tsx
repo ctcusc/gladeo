@@ -13,6 +13,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
+    paddingRight: 100,
   },
   recordButton: {
     backgroundColor: '#FF3B30',
@@ -44,6 +45,11 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     alignSelf: 'center',
   },
+  flipCamera: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: 53
+  },
   whiteButtonOutline: {
     justifyContent: 'center',
     alignItems: 'center',
@@ -54,7 +60,7 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
   },
   middleSection: {
-    paddingHorizontal: 150,
+    paddingHorizontal: 100,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'space-between'
@@ -103,7 +109,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     alignItems: 'stretch',
-    justifyContent: 'space-around',
   },
   capture: {
     flex: 0,
@@ -117,12 +122,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: 'black',
-    justifyContent: 'center'
   },
   uiContainer: {
     flexDirection: 'row',
     margin: 30,
-    justifyContent: 'space-evenly'
+    justifyContent: 'flex-start'
+  },
+  saveView: {
+  },
+  noSave: {
   }
 })
 
