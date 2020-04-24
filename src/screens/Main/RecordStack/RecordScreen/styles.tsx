@@ -131,6 +131,10 @@ const styles = StyleSheet.create({
   saveView: {
   },
   noSave: {
+  },
+  backButton: {
+    color: '#fff',
+    fontSize: 40
   }
 })
 

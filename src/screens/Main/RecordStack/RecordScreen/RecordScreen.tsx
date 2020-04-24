@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Text, View, TouchableOpacity, Image, StatusBar, Dimensions} from 'react-native'
 // import { Camera } from 'expo-camera'
 import { RNCamera } from 'react-native-camera'
+import Icon from 'react-native-vector-icons/FontAwesome'
 import styles from './styles'
 import { Orientation } from 'react-native-orientation'
 // import * as Permissions from 'expo-permissions'
@@ -124,13 +125,13 @@ export default function RecordScreen(props: Props) {
         <StatusBar hidden/>
         <View style={styles.uiContainer}>
           <View style={styles.leftSection}>
-            {!video && (<TouchableOpacity
-              onPress={() => goBack()}
-              style={styles.whiteButtonOutline}
-            >
-              <View style={styles.whiteButton}>
-              </View> 
-            </TouchableOpacity>)}
+            {!video && (
+              <TouchableOpacity
+                style={{height: 30, width: 30}}
+                onPress = {() => goBack()}>
+                <Text style={styles.backButton}>{'<'}</Text>
+              </TouchableOpacity>
+            )}
           
             {!video && (<TouchableOpacity
               onPress={()=>toogleRecord()}
@@ -159,7 +160,7 @@ export default function RecordScreen(props: Props) {
             </View>
           </View>)}
           <View style={{flexDirection: 'column'}}>
-            <View>
+            <View style={video ? styles.saveView : styles.noSave}>
               {video && (
                 <TouchableOpacity
                   style={styles.saveButton}
