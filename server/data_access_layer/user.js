@@ -2,6 +2,7 @@ const bcrypt = require('bcrypt')
 const { base } = require('./index')
 const { getCompany } = require('./company')
 const nodemailer = require('nodemailer')
+const { google } = require('googleapis')
 const { extractContentFromRecords, getAllFromTable } = require('./helpers')
 
 async function getUser(userId) {
@@ -91,25 +92,46 @@ async function sendPasswordResetEmail(email, fullName) {
   // Generate random num between 1000-9999
   const code = Math.floor((Math.random() * 9000) + 1000)
 
+  // Gmail authentication
+  const OAuth2 = google.auth.OAuth2
+  const CLIENT_ID = process.env.CLIENT_ID
+  const CLIENT_SECRET = process.env.CLIENT_SECRET
+  const REFRESH_TOKEN = process.env.REFRESH_TOKEN
+
+  const oauth2Client = new OAuth2(
+    CLIENT_ID, // ClientID
+    CLIENT_SECRET, // Client Secret
+    'https://developers.google.com/oauthplayground' // Redirect URL
+  )
+
+  oauth2Client.setCredentials({
+    refresh_token: REFRESH_TOKEN
+  })
+  const accessToken = oauth2Client.getAccessToken()
+
   // Sets up sender details
   const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-      user: 'gladeo.app@gmail.com',
-      pass: 'Abq12Yx34z!8'
-      
+      type: 'OAuth2',
+      user: 'gladeo.app@gmail.com', 
+      clientId: CLIENT_ID,
+      clientSecret: CLIENT_SECRET,
+      refreshToken: REFRESH_TOKEN,
+      accessToken: accessToken
     }
   })
-  
+
   // Message contents
   const info = {
     from: '"Gladeo" <gladeo.app@gmail.com>',
     to: email,
     subject: 'Gladeo Password Reset',
+    generateTextFromHTML: true,
     html: '<p>Hello ' + fullName + ',</p><p>There was a request to change your password.<br>Please enter this' 
-     + ' 4-digit code into the Gladeo App to continue the password reset process.</p>' + code
+       + ' 4-digit code into the Gladeo App to continue the password reset process.</p>' + code
   }
-  
+    
   // Sends message
   transporter.sendMail(info, function(error,  info) {
     if(error) {
@@ -124,8 +146,7 @@ async function sendPasswordResetEmail(email, fullName) {
     'fields': {
       'Forgot Password Code': code
     }
-  }])
-  
+  }]) 
 }
 
 async function verifyPasswordCode(email, code) {
