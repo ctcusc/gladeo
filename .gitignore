@@ -10,3 +10,4 @@ npm-debug.*
 web-build/
 web-report/
 .env
+ios/Gladeo_App.xcodeproj/xcuserdata/jamieflores.xcuserdatad/xcschemes/xcschememanagement.plist
