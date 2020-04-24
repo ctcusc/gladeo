@@ -8,10 +8,10 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     backgroundColor: '#555',
   },
-  topSection: {
+  leftSection: {
     display: 'flex',
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'space-between',
     paddingHorizontal: '7%',
     alignItems: 'center',
@@ -58,15 +58,7 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
   },
   middleSection: {
-    display: 'flex',
     flexDirection: 'column',
-    flex: 4,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    alignSelf: 'center',
-  },
-  overlay: {
-    position: 'absolute',
   },
   infoText: {
     backgroundColor: 'rgba(51,51,51,0.4)',
@@ -77,8 +69,6 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlignVertical: 'center',
     textAlign: 'center',
-    transform: [ { rotateZ: '270deg'}],
-    position: 'absolute',
     left: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.35),
   },
   question: {
@@ -90,17 +80,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlignVertical: 'center',
     textAlign: 'center',
-    transform: [ { rotateZ: '270deg'}],
-    position: 'absolute',
     right: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.25), // funky but it works
     fontFamily: 'Roboto-Regular',
   },
-  bottomSection: {
-    flex: 1,
-  },
   saveButton: {
     backgroundColor: '#E5186E',
-    transform: [ { rotateZ: '270deg'}],
     width: 79,
     height: 48,
     justifyContent: 'center',
@@ -132,8 +116,11 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    flexDirection: 'column',
     backgroundColor: 'black'
+  },
+  uiContainer: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start'
   }
 })
 

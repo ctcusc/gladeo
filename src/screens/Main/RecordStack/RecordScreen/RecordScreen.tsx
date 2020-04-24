@@ -122,29 +122,8 @@ export default function RecordScreen(props: Props) {
           }}
         >
           <StatusBar hidden/>
-          <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
-            <View style={styles.bottomSection}>
-              {video && (
-                <TouchableOpacity
-                  style={styles.saveButton}
-                >
-                  <Text style={styles.saveText}>Save</Text>
-                </TouchableOpacity>
-              )}
-            </View>
-        
-            {!video && (<View style={styles.middleSection}>
-        
-              <View style={styles.overlay}>
-                <Text style={styles.infoText}>Create a 3-4 Minute Video</Text>
-              </View>
-              <View style={styles.overlay}>
-                <Text style={styles.question}>{/*question*/}Question will go here</Text>
-              </View>
-
-            </View>)}
-      
-            <View style={styles.topSection}>
+          <View style={styles.uiContainer}>
+            <View style={styles.leftSection}>
               {!video && (<TouchableOpacity
                 onPress={() => goBack()}
                 style={styles.whiteButtonOutline}
@@ -168,6 +147,25 @@ export default function RecordScreen(props: Props) {
               >
                 <Image style={styles.flipCamera} resizeMode='contain' source={require('../../../../../assets/images/flip_camera.png')} />
               </TouchableOpacity>)}
+            </View>
+            {!video && (<View style={styles.middleSection}>
+              <View>
+                <Text style={styles.infoText}>Create a 3-4 Minute Video</Text>
+              </View>
+              <View>
+                <Text style={styles.question}>{/*question*/}Question will go here</Text>
+              </View>
+            </View>)}
+            <View style={{flexDirection: 'column'}}>
+              <View>
+                {video && (
+                  <TouchableOpacity
+                    style={styles.saveButton}
+                  >
+                    <Text style={styles.saveText}>Save</Text>
+                  </TouchableOpacity>
+                )}
+              </View>
             </View>
           </View>
         </RNCamera>
