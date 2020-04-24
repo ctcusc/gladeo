@@ -100,76 +100,76 @@ export default function RecordScreen(props: Props) {
 
   if (screenData.isLandscape) {
     return (
-      <View style={styles.container}>
-        <RNCamera
-          ref={(ref: RNCamera) => {
-            setCamera(ref)
-          }}
-          style={styles.preview}
-          type={cameraDirection}
-          flashMode={RNCamera.Constants.FlashMode.on}
-          androidCameraPermissionOptions={{
-            title: 'Permission to use camera',
-            message: 'We need your permission to use your camera',
-            buttonPositive: 'Ok',
-            buttonNegative: 'Cancel',
-          }}
-          androidRecordAudioPermissionOptions={{
-            title: 'Permission to use audio recording',
-            message: 'We need your permission to use your audio',
-            buttonPositive: 'Ok',
-            buttonNegative: 'Cancel',
-          }}
-        >
-          <StatusBar hidden/>
-          <View style={styles.uiContainer}>
-            <View style={styles.leftSection}>
-              {!video && (<TouchableOpacity
-                onPress={() => goBack()}
-                style={styles.whiteButtonOutline}
-              >
-                <View style={styles.whiteButton}>
-                </View> 
-              </TouchableOpacity>)}
+      //<View style={styles.container}>
+      <RNCamera
+        ref={(ref: RNCamera) => {
+          setCamera(ref)
+        }}
+        style={styles.preview}
+        type={cameraDirection}
+        flashMode={RNCamera.Constants.FlashMode.on}
+        androidCameraPermissionOptions={{
+          title: 'Permission to use camera',
+          message: 'We need your permission to use your camera',
+          buttonPositive: 'Ok',
+          buttonNegative: 'Cancel',
+        }}
+        androidRecordAudioPermissionOptions={{
+          title: 'Permission to use audio recording',
+          message: 'We need your permission to use your audio',
+          buttonPositive: 'Ok',
+          buttonNegative: 'Cancel',
+        }}
+      >
+        <StatusBar hidden/>
+        <View style={styles.uiContainer}>
+          <View style={styles.leftSection}>
+            {!video && (<TouchableOpacity
+              onPress={() => goBack()}
+              style={styles.whiteButtonOutline}
+            >
+              <View style={styles.whiteButton}>
+              </View> 
+            </TouchableOpacity>)}
           
-              {!video && (<TouchableOpacity
-                onPress={()=>toogleRecord()}
-                style={styles.recordOutline}
-              >
-                <View style={isRecording ? styles.isRecordingButton : styles.recordButton}>
-                </View>
-              </TouchableOpacity>)}
+            {!video && (<TouchableOpacity
+              onPress={()=>toogleRecord()}
+              style={styles.recordOutline}
+            >
+              <View style={isRecording ? styles.isRecordingButton : styles.recordButton}>
+              </View>
+            </TouchableOpacity>)}
           
-              {!video && (<TouchableOpacity 
-                onPress={() => {
-                  setCameraDirection(cameraDirection === RNCamera.Constants.Type.front ? RNCamera.Constants.Type.back : RNCamera.Constants.Type.front)
-                }}
-              >
-                <Image style={styles.flipCamera} resizeMode='contain' source={require('../../../../../assets/images/flip_camera.png')} />
-              </TouchableOpacity>)}
+            {!video && (<TouchableOpacity 
+              onPress={() => {
+                setCameraDirection(cameraDirection === RNCamera.Constants.Type.front ? RNCamera.Constants.Type.back : RNCamera.Constants.Type.front)
+              }}
+            >
+              <Image resizeMode='contain' source={require('../../../../../assets/images/flip_camera.png')} />
+            </TouchableOpacity>)}
+          </View>
+          {!video && (<View style={styles.middleSection}>
+            <View>
+              <Text style={styles.infoText}>Create a 3-4 Minute Video</Text>
             </View>
-            {!video && (<View style={styles.middleSection}>
-              <View>
-                <Text style={styles.infoText}>Create a 3-4 Minute Video</Text>
-              </View>
-              <View>
-                <Text style={styles.question}>{/*question*/}Question will go here</Text>
-              </View>
-            </View>)}
-            <View style={{flexDirection: 'column'}}>
-              <View>
-                {video && (
-                  <TouchableOpacity
-                    style={styles.saveButton}
-                  >
-                    <Text style={styles.saveText}>Save</Text>
-                  </TouchableOpacity>
-                )}
-              </View>
+            <View>
+              <Text style={styles.question}>{/*question*/}Question will go here</Text>
+            </View>
+          </View>)}
+          <View style={{flexDirection: 'column'}}>
+            <View>
+              {!video && (
+                <TouchableOpacity
+                  style={styles.saveButton}
+                >
+                  <Text style={styles.saveText}>Save</Text>
+                </TouchableOpacity>
+              )}
             </View>
           </View>
-        </RNCamera>
-      </View>
+        </View>
+      </RNCamera>
+      //</View>
     // <Camera 
     //   style={styles.camera}
     //   ref={(ref: Camera) => {

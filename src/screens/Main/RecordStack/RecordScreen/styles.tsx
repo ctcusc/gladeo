@@ -13,8 +13,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between',
-    paddingHorizontal: '7%',
-    alignItems: 'center',
   },
   recordButton: {
     backgroundColor: '#FF3B30',
@@ -31,7 +29,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   recordOutline: {
-    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     width: 53,
@@ -48,7 +45,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   whiteButtonOutline: {
-    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     width: 44,
@@ -58,7 +54,10 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
   },
   middleSection: {
+    paddingHorizontal: 150,
     flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
   infoText: {
     backgroundColor: 'rgba(51,51,51,0.4)',
@@ -69,7 +68,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlignVertical: 'center',
     textAlign: 'center',
-    left: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.35),
+    //left: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.35),
   },
   question: {
     backgroundColor: 'rgba(51,51,51,0.4)',
@@ -80,7 +79,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlignVertical: 'center',
     textAlign: 'center',
-    right: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.25), // funky but it works
+    //right: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.25), // funky but it works
     fontFamily: 'Roboto-Regular',
   },
   saveButton: {
@@ -102,8 +101,9 @@ const styles = StyleSheet.create({
   },
   preview: {
     flex: 1,
-    justifyContent: 'flex-end',
-    alignItems: 'center',
+    flexDirection: 'row',
+    alignItems: 'stretch',
+    justifyContent: 'space-around',
   },
   capture: {
     flex: 0,
@@ -116,11 +116,13 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'black'
+    backgroundColor: 'black',
+    justifyContent: 'center'
   },
   uiContainer: {
     flexDirection: 'row',
-    justifyContent: 'flex-start'
+    margin: 30,
+    justifyContent: 'space-evenly'
   }
 })
 
