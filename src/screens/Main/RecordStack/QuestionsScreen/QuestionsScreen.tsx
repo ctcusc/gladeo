@@ -4,13 +4,13 @@ import {
   Text,
   View,
   FlatList,
-  TouchableOpacity,
   TouchableHighlight,
   Alert,
 } from 'react-native'
 import styles from './styles'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
 import { BASE_PATH } from 'react-native-dotenv'
+import { connect } from 'react-redux'
 
 interface Question {
   ID: number,
@@ -20,17 +20,18 @@ interface Question {
 
 interface Props {
   navigation: NavigationScreenProp<NavigationState>,
+  videos: Array<Record<string, any>>,
 }
 
 /* AKA: Q&A screen */
-export default function QuestionsScreen(props: Props) {
+function QuestionsScreen(props: Props) {
   const [selected, setSelected] = useState<number | null>(null)
   const [questions, setQuestions] = useState<Array<Question>>([])
   const {push} = props.navigation
   const [modalVisibility, setModalVisibility] = useState(false)
 
   useEffect(() => {
-    fetch(`${BASE_PATH}/api/user/questions`)
+    fetch('https://9b454f26.ngrok.io/api/user/questions')
       .then(res => res.json())
       .then(data => {
         setQuestions(data)
@@ -39,7 +40,27 @@ export default function QuestionsScreen(props: Props) {
       .catch(error => {
         console.log('Error' + error)
       })
-  }, [])
+  })
+
+  async function removeQuestion(id: number){
+    fetch(`${BASE_PATH}/api/user/questions`, {
+      method: 'DELETE',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        'questionId': id,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+      })
+      .catch(error => {
+        console.log('Error: ' + error)
+      })
+  }
 
   return (
     <View style={styles.container}>
@@ -53,7 +74,11 @@ export default function QuestionsScreen(props: Props) {
                   'Edit your Answer clip',
                   'If you want to change your clip, do it here!',
                   [
-                    {text: 'View Answer'},
+                    {text: 'View Answer', 
+                      onPress: () => {
+                        push('View', {question: props.videos[item.ID-1].questionText, uri: props.videos[item.ID-1].uri})
+                      }
+                    },
                     {text: 'Re-record Answer', 
                       onPress: () => {
                         Alert.alert(
@@ -62,6 +87,7 @@ export default function QuestionsScreen(props: Props) {
                           [
                             {text: 'Re-record',
                               onPress: () => {
+                                removeQuestion(item.ID)
                                 push('Record', {question: item.text, questionID: item.ID})
                               }
                             },
@@ -73,7 +99,7 @@ export default function QuestionsScreen(props: Props) {
                   ]
                 )
               } else {
-                push('Record', {question: item.text})
+                push('Record', {question: item.text, questionID: item.ID})
               }
               setSelected(item.ID)
             }}
@@ -103,3 +129,11 @@ QuestionsScreen.navigationOptions = {
   ),
   headerStyle: {height: 140},   
 }
+
+const mapStateToProps = (state: any) => {
+  return {
+    videos: state
+  }
+}
+
+export default connect(mapStateToProps)(QuestionsScreen)

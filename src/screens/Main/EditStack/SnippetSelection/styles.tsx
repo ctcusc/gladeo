@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
   buttontext: {
     fontStyle: 'normal',
     fontSize: 14,
-    fontFamily: 'roboto-bold',
+    fontFamily: 'Roboto-Bold',
     color: '#FFF',
     textAlign: 'center',
     marginBottom: 12,

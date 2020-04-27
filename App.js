@@ -1,13 +1,22 @@
 // import { AppLoading } from 'expo';
 // import { Asset } from 'expo-asset';
 // import * as Font from 'expo-font';
-import React, { useState } from 'react';
-import { Platform, StatusBar, StyleSheet, View } from 'react-native';
+import React, { useState } from 'react'
+import { Platform, StatusBar, StyleSheet, View } from 'react-native'
+import { Provider } from 'react-redux'
+import store from './src/redux/store'
 
-import AppNavigator from './src/navigation/AppNavigator';
+import AppNavigator from './src/navigation/AppNavigator'
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#fff',
+  },
+})
 
 export default function App(props) {
-  const [isLoadingComplete, setLoadingComplete] = useState(false);
+  const [isLoadingComplete, setLoadingComplete] = useState(false)
 
   // if (!isLoadingComplete && !props.skipLoadingScreen) {
   //   return (
@@ -18,12 +27,14 @@ export default function App(props) {
   //     />
   //   );
   // } else {
-    return (
-      <View style={styles.container}>
-        {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+  return (
+    <View style={styles.container}>
+      {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
+      <Provider store = { store }>
         <AppNavigator />
-      </View>
-    );
+      </Provider>
+    </View>
+  )
   // }
 }
 
@@ -51,16 +62,9 @@ export default function App(props) {
 function handleLoadingError(error) {
   // In this case, you might want to report the error to your error reporting
   // service, for example Sentry
-  console.warn(error);
+  console.warn(error)
 }
 
 function handleFinishLoading(setLoadingComplete) {
-  setLoadingComplete(true);
+  setLoadingComplete(true)
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-  },
-});

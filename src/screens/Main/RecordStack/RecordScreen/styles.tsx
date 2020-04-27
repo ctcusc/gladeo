@@ -4,16 +4,20 @@ const styles = StyleSheet.create({
   camera: {
     display: 'flex',
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    backgroundColor: '#555',
+    flexDirection: 'row',
   },
-  leftSection: {
-    display: 'flex',
+  uiContainer: {
     flex: 1,
     flexDirection: 'column',
+    justifyContent: 'flex-end'
+  },
+  controls: {
+    display: 'flex',
+    flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingRight: 100,
+    alignItems: 'center',
+    // paddingHorizontal: '5%',
+    marginBottom: 20,
   },
   recordButton: {
     backgroundColor: '#FF3B30',
@@ -59,7 +63,7 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderColor: '#fff',
   },
-  middleSection: {
+  texts: {
     paddingHorizontal: 100,
     flexDirection: 'column',
     alignItems: 'center',
@@ -107,7 +111,7 @@ const styles = StyleSheet.create({
   },
   preview: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
     alignItems: 'stretch',
   },
   capture: {
@@ -123,11 +127,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'black',
   },
-  uiContainer: {
-    flexDirection: 'row',
-    margin: 30,
-    justifyContent: 'flex-start'
-  },
+ 
   saveView: {
   },
   noSave: {

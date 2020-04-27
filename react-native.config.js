@@ -3,6 +3,6 @@ module.exports = {
     ios: {},
     android: {}, // grouped into "project"
   },
-  assets: ['./assets/'], // stays the same
+  assets: ['assets/fonts'], // stays the same
 //   commands: require('./path-to-commands.js'), // formerly "plugin", returns an array of commands
-};
+}

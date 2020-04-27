@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginVertical: 15,
     color: '#727272',
-    fontFamily: 'roboto-bold', 
+    fontFamily: 'Roboto-Bold', 
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
   },

@@ -17,12 +17,15 @@ const RecordStack = createStackNavigator(
     Record: {
       screen: RecordScreen,
       navigationOptions: {
-        headerShown: false,
+        headerShown: false, 
         
       }
     },
     Questions:  QuestionsScreen
   },
+  {
+    initialRouteName: 'Questions', 
+  }
 )
 
 RecordStack.navigationOptions = ({ navigation }) => {

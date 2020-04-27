@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
   input: {
     width: 50,
-    fontFamily: 'roboto-bold',
+    fontFamily: 'Roboto-Bold',
     height: 60,
     backgroundColor: '#E6E6E6',
     borderRadius: 10,
@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   inFocus: {
     width: 50,
     height: 60,
-    fontFamily: 'roboto-bold',
+    fontFamily: 'Roboto-Bold',
     backgroundColor: '#E6E6E6',
     borderRadius: 10,
     borderColor: '#E5186E',

@@ -68,7 +68,7 @@ function RecordScreen(props: Props) {
   const screenData = useScreenDimensions()
 
   async function answerQuestion(){
-    fetch(`${BASE_PATH}/api/user/questions`, {
+    fetch('https://9b454f26.ngrok.io/api/user/questions', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -98,9 +98,9 @@ function RecordScreen(props: Props) {
     // }
 
     setPreviewMode(true)
-    RNFS.readFile(video.uri, RNFS.PicturesDirectoryPath + '/Videos/' + 'change_this_name.mp4', 'base64')
+    RNFS.readFile(video.uri, RNFS.PicturesDirectoryPath + '/Videos/' + 'change_this_name.mov', 'base64')
       .then(success => {
-        console.log('FILE WRITTEN')
+        console.log('FILE WRITTEN? NOT GETTING HERE?')
         answerQuestion()
         const payload ={'questionID': questionID, 'uri': video.uri, 'questionText': question}
         props.dispatch(saveVideo(payload))
@@ -116,6 +116,17 @@ function RecordScreen(props: Props) {
   async function stopRecord(){
     setIsRecording(false)
     camera.stopRecording()
+    console.log('stopped')
+    // NOT SURE IF WE NEED THIS STILL
+    if (video) {
+      RNFS.copyFile(video.uri, RNFS.PicturesDirectoryPath + '/Videos/' + 'change_this_name.mp4').then(() => {
+        
+        console.log('Video copied locally!!')
+      }, (error) => {
+        console.log('CopyFile fail for video: ' + error)
+      })
+    }
+
   }
 
   async function startRecord(){
@@ -151,14 +162,13 @@ function RecordScreen(props: Props) {
     return <Text>No access to camera</Text>
   }
 
-  if (screenData.isLandscape && !isPreviewMode) {
+  if (!isPreviewMode) {
     return (
-      //<View style={styles.container}>
       <RNCamera
         ref={(ref: RNCamera) => {
           setCamera(ref)
         }}
-        style={styles.preview}
+        style={styles.camera}
         type={cameraDirection}
         flashMode={RNCamera.Constants.FlashMode.on}
         androidCameraPermissionOptions={{
@@ -176,113 +186,44 @@ function RecordScreen(props: Props) {
       >
         <StatusBar hidden/>
         <View style={styles.uiContainer}>
-          <View style={styles.leftSection}>
-            {!video && (
-              <TouchableOpacity
-                style={{height: 30, width: 30}}
-                onPress = {() => goBack()}>
-                <Text style={styles.backButton}>{'<'}</Text>
-              </TouchableOpacity>
-            )}
           
-            {!video && (<TouchableOpacity
-              onPress={()=>toogleRecord()}
-              style={styles.recordOutline}
-            >
-              <View style={isRecording ? styles.isRecordingButton : styles.recordButton}>
-              </View>
-            </TouchableOpacity>)}
-
-            <View style={styles.flipCamera}> 
-              {!video && (<TouchableOpacity 
-                onPress={() => {
-                  setCameraDirection(cameraDirection === RNCamera.Constants.Type.front ? RNCamera.Constants.Type.back : RNCamera.Constants.Type.front)
-                }}
-              >
-                <Image resizeMode='contain' source={require('../../../../../assets/images/flip_camera.png')} />
-              </TouchableOpacity>)}
-            </View> 
-          </View>
-          {!video && (<View style={styles.middleSection}>
+          <View style={styles.texts}>
             <View>
               <Text style={styles.infoText}>Create a 3-4 Minute Video</Text>
             </View>
             <View>
               <Text style={styles.question}>{/*question*/}Question will go here</Text>
             </View>
-          </View>)}
-          {/* <View style={{flexDirection: 'column'}}>
-            <View style={video ? styles.saveView : styles.noSave}>
-              {video && (
-                <TouchableOpacity
-                  style={styles.saveButton}
-                  onPress={() => save()}
-                >
-                  <Text style={styles.saveText}>Save</Text>
-                </TouchableOpacity>
-              )}
-            </View>
-          </View> */}
+          </View>
+          <View style={styles.controls}>
+            <TouchableOpacity 
+              onPress={() => {
+                pop()                
+              }}
+            >
+              <Image resizeMode='contain' source={require('../../../../../assets/images/back.png')} />
+            </TouchableOpacity>
+          
+            <TouchableOpacity
+              onPress={()=>toogleRecord()}
+              style={styles.recordOutline}
+            >
+              <View style={isRecording ? styles.isRecordingButton : styles.recordButton}>
+              </View>
+            </TouchableOpacity>
+
+            <View style={styles.flipCamera}> 
+              <TouchableOpacity 
+                onPress={() => {
+                  setCameraDirection(cameraDirection === RNCamera.Constants.Type.front ? RNCamera.Constants.Type.back : RNCamera.Constants.Type.front)
+                }}
+              >
+                <Image resizeMode='contain' source={require('../../../../../assets/images/flip_camera.png')} />
+              </TouchableOpacity>
+            </View> 
+          </View>
         </View>
       </RNCamera>
-      //</View>
-    // <Camera 
-    //   style={styles.camera}
-    //   ref={(ref: Camera) => {
-    //     setCamera(ref)
-    //   }}
-    //   type={cameraDirection}
-    // >
-    //   <StatusBar hidden/>
-    //   <View style={styles.bottomSection}>
-    //     {video && (
-    //       <TouchableOpacity
-    //         onPress={()=>saveVideo()}
-    //         style={styles.saveButton}
-    //       >
-    //         <Text style={styles.saveText}>save</Text>
-    //       </TouchableOpacity>
-    //     )}
-    //   </View>
-      
-    //   {!video && (<View style={styles.middleSection}>
-    
-    //     <View style={styles.overlay}>
-    //       <Text style={styles.infoText}>Create a 3-4 Minute Video</Text>
-    //     </View>
-    //     <View style={styles.overlay}>
-    //       <Text style={styles.question}>{question}</Text>
-    //     </View>
-
-    //   </View>)}
-     
-    //   <View style={styles.topSection}>
-    //     {!video && (<TouchableOpacity
-    //       onPress={() => goBack()}
-    //       style={styles.whiteButtonOutline}
-    //     >
-    //       <View style={styles.whiteButton}>
-    //       </View> 
-    //     </TouchableOpacity>)}
-       
-    //     {!video && (<TouchableOpacity
-    //       onPress={()=>toogleRecord()}
-    //       style={styles.recordOutline}
-    //     >
-    //       <View style={isRecording ? styles.isRecordingButton : styles.recordButton}>
-    //       </View>
-    //     </TouchableOpacity>)}
-       
-    //     {!video && (<TouchableOpacity 
-    //       onPress={() => {
-    //         setCameraDirection(cameraDirection === Camera.Constants.Type.front ? Camera.Constants.Type.back : Camera.Constants.Type.front)
-    //       }}
-    //     >
-    //       <Image style={styles.flipCamera} resizeMode='contain' source={require('../../../../../assets/images/flip_camera.png')} />
-    //     </TouchableOpacity>)}
-    //   </View>
-        
-    // </Camera>
     )
   } 
   if(isPreviewMode) {
