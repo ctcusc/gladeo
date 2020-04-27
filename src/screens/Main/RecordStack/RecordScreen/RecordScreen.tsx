@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { Text, View, TouchableOpacity, Image, StatusBar, Dimensions} from 'react-native'
-// import { Camera } from 'expo-camera'
 import { RNCamera } from 'react-native-camera'
-import Icon from 'react-native-vector-icons/FontAwesome'
+// import Icon from 'react-native-vector-icons/FontAwesome'
 import styles from './styles'
-import { Orientation } from 'react-native-orientation'
-// import * as Permissions from 'expo-permissions'
 // import * as MediaLibrary from 'expo-media-library'
 import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation'
+import RNFS from 'react-native-fs'
 
 interface Props {
   question: string,
   navigation: NavigationScreenProp<NavigationState, NavigationParams>,
 }
+
+//var RNFS = require('react-native-fs');
 
 const PendingView = () => (
   <View
@@ -57,12 +57,15 @@ export default function RecordScreen(props: Props) {
 
   const screenData = useScreenDimensions()
 
-  // async function saveVideo(){
-  //   const asset = await MediaLibrary.createAssetAsync(video.uri)
-  //   if (asset) {
-  //     setVideo(null)
-  //   }
-  // }
+  async function saveVideo(){
+    if (video) {
+      RNFS.copyFile(video.uri, RNFS.PicturesDirectoryPath + '/Videos/' + 'change_this_name.mp4').then(() => {
+        console.log('Video copied locally!!')
+      }, (error) => {
+        console.log('CopyFile fail for video: ' + error)
+      })
+    }
+  }
 
   async function stopRecord(){
     setIsRecording(false)
@@ -72,8 +75,18 @@ export default function RecordScreen(props: Props) {
   async function startRecord(){
     if (camera) {
       setIsRecording(true)
-      const data = await camera.recordAsync()
-      setVideo(data)
+      try {
+        const promise = camera.recordAsync()
+
+        if (promise) {
+          setIsRecording(true)
+          const data = await promise
+          setVideo(data)
+          console.log(data)
+        }
+      } catch (e) {
+        console.error(e)
+      }
     }
   }
 
@@ -90,13 +103,6 @@ export default function RecordScreen(props: Props) {
   }
   if (hasPermission === false) {
     return <Text>No access to camera</Text>
-  }
-
-  async function takePicture(camera: RNCamera) {
-    const options = { quality: 0.5, base64: true }
-    const data = await camera.takePictureAsync(options)
-    //  eslint-disable-next-line
-    console.log(data.uri);
   }
 
   if (screenData.isLandscape) {
@@ -164,6 +170,7 @@ export default function RecordScreen(props: Props) {
               {video && (
                 <TouchableOpacity
                   style={styles.saveButton}
+                  onPress={() => saveVideo()}
                 >
                   <Text style={styles.saveText}>Save</Text>
                 </TouchableOpacity>
