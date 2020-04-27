@@ -62,7 +62,7 @@ export default function QuestionsScreen(props: Props) {
                           [
                             {text: 'Re-record',
                               onPress: () => {
-                                push('Record', {question: item.text})
+                                push('Record', {question: item.text, questionID: item.ID})
                               }
                             },
                             {text: 'Cancel', style: 'cancel'}

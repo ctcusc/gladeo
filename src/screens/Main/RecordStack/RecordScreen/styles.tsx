@@ -135,6 +135,17 @@ const styles = StyleSheet.create({
   backButton: {
     color: '#fff',
     fontSize: 40
+  },
+  videoBottom: {
+    flex: 1,
+    position: 'absolute',
+  },
+  
+  videoPlay: {
+    flex: 1,
+    transform: [{
+      rotate: '-180deg'
+    }],
   }
 })
 

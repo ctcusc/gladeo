@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import { Text, View, TouchableOpacity, Image, StatusBar, Dimensions} from 'react-native'
 import { RNCamera } from 'react-native-camera'
-// import Icon from 'react-native-vector-icons/FontAwesome'
+import { BASE_PATH } from 'react-native-dotenv'
+import { connect } from 'react-redux'
+import { saveVideo } from '../../../../redux/actions/index'
+
 import styles from './styles'
-// import * as MediaLibrary from 'expo-media-library'
 import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation'
 import RNFS from 'react-native-fs'
+import Video from 'react-native-video'
 
 interface Props {
+  dispatch: Function,
+  saveVideo: Function,
+  questionID: number,
   question: string,
   navigation: NavigationScreenProp<NavigationState, NavigationParams>,
 }
@@ -27,15 +33,19 @@ const PendingView = () => (
   </View>
 )
 
-export default function RecordScreen(props: Props) {
-  const {goBack} = props.navigation
+function RecordScreen(props: Props) {
+  const {goBack, pop} = props.navigation
   //const question = props.navigation.state.params.question
   const [hasPermission, setHasPermission] = useState(true)
   const [camera, setCamera] = useState()
   const [isRecording, setIsRecording] = useState(false)
   const [cameraDirection, setCameraDirection] = useState(RNCamera.Constants.Type.front)
   const [video, setVideo] = useState(null)
-  
+  const [isPreviewMode, setPreviewMode] = useState(false)
+
+  const question = props.navigation.state.params.question
+  const questionID = props.navigation.state.params.questionID
+
   const useScreenDimensions = () => {
     const [screenData, setScreenData] = useState(Dimensions.get('screen'))
   
@@ -57,14 +67,50 @@ export default function RecordScreen(props: Props) {
 
   const screenData = useScreenDimensions()
 
-  async function saveVideo(){
-    if (video) {
-      RNFS.copyFile(video.uri, RNFS.PicturesDirectoryPath + '/Videos/' + 'change_this_name.mp4').then(() => {
-        console.log('Video copied locally!!')
-      }, (error) => {
-        console.log('CopyFile fail for video: ' + error)
+  async function answerQuestion(){
+    fetch(`${BASE_PATH}/api/user/questions`, {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        'questionId': questionID,
+      }),
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
       })
-    }
+      .catch(error => {
+        console.log('Error: ' + error)
+      })
+  }
+
+  async function save(){
+    // NOT SURE IF WE NEED THIS STILL
+    // if (video) {
+    //   RNFS.copyFile(video.uri, RNFS.PicturesDirectoryPath + '/Videos/' + 'change_this_name.mp4').then(() => {
+    //     console.log('Video copied locally!!')
+    //   }, (error) => {
+    //     console.log('CopyFile fail for video: ' + error)
+    //   })
+    // }
+
+    setPreviewMode(true)
+    RNFS.readFile(video.uri, RNFS.PicturesDirectoryPath + '/Videos/' + 'change_this_name.mp4', 'base64')
+      .then(success => {
+        console.log('FILE WRITTEN')
+        answerQuestion()
+        const payload ={'questionID': questionID, 'uri': video.uri, 'questionText': question}
+        props.dispatch(saveVideo(payload))
+        pop()
+      })
+      .catch(err => {
+        console.log('File Write Error: ', err.message)
+      })
+
+
   }
 
   async function stopRecord(){
@@ -105,7 +151,7 @@ export default function RecordScreen(props: Props) {
     return <Text>No access to camera</Text>
   }
 
-  if (screenData.isLandscape) {
+  if (screenData.isLandscape && !isPreviewMode) {
     return (
       //<View style={styles.container}>
       <RNCamera
@@ -165,18 +211,18 @@ export default function RecordScreen(props: Props) {
               <Text style={styles.question}>{/*question*/}Question will go here</Text>
             </View>
           </View>)}
-          <View style={{flexDirection: 'column'}}>
+          {/* <View style={{flexDirection: 'column'}}>
             <View style={video ? styles.saveView : styles.noSave}>
               {video && (
                 <TouchableOpacity
                   style={styles.saveButton}
-                  onPress={() => saveVideo()}
+                  onPress={() => save()}
                 >
                   <Text style={styles.saveText}>Save</Text>
                 </TouchableOpacity>
               )}
             </View>
-          </View>
+          </View> */}
         </View>
       </RNCamera>
       //</View>
@@ -238,7 +284,30 @@ export default function RecordScreen(props: Props) {
         
     // </Camera>
     )
+  } 
+  if(isPreviewMode) {
+    <View style={styles.videoPlay}>
+      <Video
+        source={{ uri: video.uri }}
+        rate={1.0}
+        volume={1.0}
+        isMuted={false}
+        resizeMode="cover"
+        shouldPlay={true}
+        isLooping={true}
+        style={{ width: '100%', height: '100%' }}
+      />
+      <View style={ styles.videoBottom }>
+        <TouchableOpacity
+          onPress={()=>save()}
+          style={styles.saveButton}
+        >
+          <Text style={styles.saveText}>save</Text>
+        </TouchableOpacity>
+      </View>
+    </View>
   } else {
     return <PendingView />
   }
 }
+export default connect()(RecordScreen)
