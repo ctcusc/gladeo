@@ -143,9 +143,6 @@ const styles = StyleSheet.create({
   
   videoPlay: {
     flex: 1,
-    transform: [{
-      rotate: '-180deg'
-    }],
   }
 })
 

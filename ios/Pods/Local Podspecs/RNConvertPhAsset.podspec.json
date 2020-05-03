@@ -1,0 +1,22 @@
+{
+  "name": "RNConvertPhAsset",
+  "version": "1.0.3",
+  "summary": "RNConvertPhAsset",
+  "homepage": "https://github.com/jzyds/react-native-convert-ph-asset",
+  "license": "MIT",
+  "authors": "jzyds",
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source": {
+    "git": "https://github.com/jzyds/react-native-convert-ph-asset.git",
+    "tag": "master"
+  },
+  "source_files": "ios/**/*.{h,m}",
+  "requires_arc": true,
+  "dependencies": {
+    "React": [
+
+    ]
+  }
+}

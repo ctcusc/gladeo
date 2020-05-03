@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
-import { Text, View, TouchableOpacity, Image, StatusBar, Dimensions} from 'react-native'
+import { Text, View, TouchableOpacity, Image, StatusBar, Dimensions, Alert} from 'react-native'
+import CameraRoll from '@react-native-community/cameraroll'
+
 import { RNCamera } from 'react-native-camera'
 import { BASE_PATH } from 'react-native-dotenv'
 import { connect } from 'react-redux'
@@ -7,8 +9,9 @@ import { saveVideo } from '../../../../redux/actions/index'
 
 import styles from './styles'
 import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation'
-import RNFS from 'react-native-fs'
 import Video from 'react-native-video'
+import RNConvertPhAsset from 'react-native-convert-ph-asset'
+
 
 interface Props {
   dispatch: Function,
@@ -42,6 +45,7 @@ function RecordScreen(props: Props) {
   const [cameraDirection, setCameraDirection] = useState(RNCamera.Constants.Type.front)
   const [video, setVideo] = useState(null)
   const [isPreviewMode, setPreviewMode] = useState(false)
+  const [audioCapture, setAudioCapture] = useState(true)
 
   const question = props.navigation.state.params.question
   const questionID = props.navigation.state.params.questionID
@@ -68,7 +72,7 @@ function RecordScreen(props: Props) {
   const screenData = useScreenDimensions()
 
   async function answerQuestion(){
-    fetch('https://9b454f26.ngrok.io/api/user/questions', {
+    fetch(`${BASE_PATH}/api/user/questions`, {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -88,62 +92,67 @@ function RecordScreen(props: Props) {
   }
 
   async function save(){
-    // NOT SURE IF WE NEED THIS STILL
-    // if (video) {
-    //   RNFS.copyFile(video.uri, RNFS.PicturesDirectoryPath + '/Videos/' + 'change_this_name.mp4').then(() => {
-    //     console.log('Video copied locally!!')
-    //   }, (error) => {
-    //     console.log('CopyFile fail for video: ' + error)
-    //   })
-    // }
 
-    setPreviewMode(true)
-    RNFS.readFile(video.uri, RNFS.PicturesDirectoryPath + '/Videos/' + 'change_this_name.mov', 'base64')
-      .then(success => {
-        console.log('FILE WRITTEN? NOT GETTING HERE?')
-        answerQuestion()
-        const payload ={'questionID': questionID, 'uri': video.uri, 'questionText': question}
-        props.dispatch(saveVideo(payload))
-        pop()
-      })
-      .catch(err => {
-        console.log('File Write Error: ', err.message)
-      })
+    const currVideo = video
+    const newURI = await CameraRoll.saveToCameraRoll(video.uri)
+      .then(Alert.alert('Success', 'Photo added to camera roll!'))
+      .catch(err => console.log('err:', err))
 
+    
+
+    RNConvertPhAsset.convertVideoFromUrl({
+      url: currVideo.uri,
+      convertTo: 'mov',
+      quality: 'medium'
+    }).then((response) => {
+      currVideo.uri = newURI
+      console.log('new video: ', response)
+      setVideo(currVideo)
+    }).catch((err) => {
+      console.log(err)
+    })
+    console.log('NEW VIDEO URI', currVideo)
+
+    answerQuestion()
+    const payload ={'questionID': questionID, 'uri': video.uri, 'questionText': question}
+    props.dispatch(saveVideo(payload))
+    pop()
 
   }
 
   async function stopRecord(){
-    setIsRecording(false)
     camera.stopRecording()
-    console.log('stopped')
-    // NOT SURE IF WE NEED THIS STILL
-    if (video) {
-      RNFS.copyFile(video.uri, RNFS.PicturesDirectoryPath + '/Videos/' + 'change_this_name.mp4').then(() => {
-        
-        console.log('Video copied locally!!')
-      }, (error) => {
-        console.log('CopyFile fail for video: ' + error)
-      })
-    }
-
   }
 
-  async function startRecord(){
+  async function startRecord () {
     if (camera) {
-      setIsRecording(true)
       try {
-        const promise = camera.recordAsync()
+        setIsRecording(true)
+        const data = await camera.recordAsync()
 
-        if (promise) {
-          setIsRecording(true)
-          const data = await promise
-          setVideo(data)
-          console.log(data)
-        }
+        setIsRecording(false)
+        setAudioCapture(false)
+        setVideo(data)
+          
+        setTimeout(() => {
+          setPreviewMode(true)
+          
+          
+        }, 1000)
+        
+        // setVideo(data)
+          
+        console.log('video data: ', data)
+        console.log('preview', isPreviewMode)
+        console.log('preview', audioCapture)
+
+        // setPreviewMode(true)
+          
+          
       } catch (e) {
         console.error(e)
       }
+      // setPreviewMode(true)
     }
   }
 
@@ -183,6 +192,7 @@ function RecordScreen(props: Props) {
           buttonPositive: 'Ok',
           buttonNegative: 'Cancel',
         }}
+        captureAudio={audioCapture}
       >
         <StatusBar hidden/>
         <View style={styles.uiContainer}>
@@ -227,26 +237,28 @@ function RecordScreen(props: Props) {
     )
   } 
   if(isPreviewMode) {
-    <View style={styles.videoPlay}>
-      <Video
-        source={{ uri: video.uri }}
-        rate={1.0}
-        volume={1.0}
-        isMuted={false}
-        resizeMode="cover"
-        shouldPlay={true}
-        isLooping={true}
-        style={{ width: '100%', height: '100%' }}
-      />
-      <View style={ styles.videoBottom }>
-        <TouchableOpacity
-          onPress={()=>save()}
-          style={styles.saveButton}
-        >
-          <Text style={styles.saveText}>save</Text>
-        </TouchableOpacity>
+    return (
+      <View style={styles.videoPlay}>
+        <Video
+          source={{ uri: video.uri }}
+          rate={1.0}
+          volume={1.0}
+          isMuted={false}
+          resizeMode="cover"
+          shouldPlay={true}
+          isLooping={true}
+          style={{ width: '100%', height: '100%' }}
+        />
+        <View style={ styles.videoBottom }>
+          <TouchableOpacity
+            onPress={()=>save()}
+            style={styles.saveButton}
+          >
+            <Text style={styles.saveText}>save</Text>
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    )
   } else {
     return <PendingView />
   }

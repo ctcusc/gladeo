@@ -31,7 +31,7 @@ function QuestionsScreen(props: Props) {
   const [modalVisibility, setModalVisibility] = useState(false)
 
   useEffect(() => {
-    fetch('https://9b454f26.ngrok.io/api/user/questions')
+    fetch(`${BASE_PATH}/api/user/questions`)
       .then(res => res.json())
       .then(data => {
         setQuestions(data)
@@ -70,6 +70,8 @@ function QuestionsScreen(props: Props) {
           <TouchableHighlight
             onPress={() => {
               if(item.Answered) {
+                console.log('redux: ', props.videos, )
+                console.log('items id: ', item.ID)
                 Alert.alert(
                   'Edit your Answer clip',
                   'If you want to change your clip, do it here!',

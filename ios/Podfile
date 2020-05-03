@@ -49,4 +49,8 @@ target 'Gladeo_App' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+
+
+  pod 'RNConvertPhAsset', :path => '../node_modules/react-native-convert-ph-asset'
+
 end

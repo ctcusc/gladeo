@@ -8,6 +8,7 @@ import QuestionsScreen from '../screens/Main/RecordStack/QuestionsScreen/Questio
 import CreatingVideoScreen from '../screens/Main/EditStack/CreatingVideoScreen/CreatingVideoScreen'
 import UploadingVideoScreen from '../screens/Main/EditStack/UploadingVideoScreen/UploadingVideoScreen'
 import RecordScreen from '../screens/Main/RecordStack/RecordScreen/RecordScreen'
+import ViewScreen from '../screens/Main/RecordStack/ViewScreen/ViewScreen'
 import SnippetSelectionScreen from '../screens/Main/EditStack/SnippetSelection/SnippetSelection'
 import Colors from '../constants/Colors'
 
@@ -17,8 +18,13 @@ const RecordStack = createStackNavigator(
     Record: {
       screen: RecordScreen,
       navigationOptions: {
-        headerShown: false, 
-        
+        headerShown: false,
+      }
+    },
+    View: {
+      screen: ViewScreen,
+      navigationOptions: {
+        headerShown: false,
       }
     },
     Questions:  QuestionsScreen
@@ -32,7 +38,7 @@ RecordStack.navigationOptions = ({ navigation }) => {
   let tabBarVisible
   if (navigation.state.routes.length > 1) {
     navigation.state.routes.map(route => {
-      if (route.routeName === 'Record') {
+      if (route.routeName === 'Record' || route.routeName === 'View') {
         tabBarVisible = false
       } else {
         tabBarVisible = true
