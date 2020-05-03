@@ -4,7 +4,11 @@
 import React, { useState } from 'react'
 import { Platform, StatusBar, StyleSheet, View } from 'react-native'
 import { Provider } from 'react-redux'
-import store from './src/redux/store'
+// import {store  from './src/redux/store'
+import {store, persistor} from './src/redux/store'
+import { persistStore } from 'redux-persist'
+
+import { PersistGate } from 'redux-persist/integration/react'
 
 import AppNavigator from './src/navigation/AppNavigator'
 
@@ -27,11 +31,17 @@ export default function App(props) {
   //     />
   //   );
   // } else {
+  // const per bsistor = persistStore(store)
   return (
+    
+
     <View style={styles.container}>
       {Platform.OS === 'ios' && <StatusBar barStyle="default" />}
       <Provider store = { store }>
-        <AppNavigator />
+        <PersistGate loading={null} persistor={persistor}>
+
+          <AppNavigator />
+        </PersistGate>
       </Provider>
     </View>
   )

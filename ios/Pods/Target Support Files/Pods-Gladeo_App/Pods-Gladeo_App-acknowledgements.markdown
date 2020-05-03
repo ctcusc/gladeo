@@ -212,11 +212,11 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
    END OF TERMS AND CONDITIONS
 
 
-## RNConvertPhAsset
+## RNCAsyncStorage
 
 MIT License
 
-Copyright (c) 2019 jzyds
+Copyright (c) 2015-present, Facebook, Inc.
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -236,12 +236,11 @@ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 
+## RNConvertPhAsset
 
-## RNFS
+MIT License
 
-The MIT License (MIT)
-
-Copyright (c) 2015 Johannes Lumpe
+Copyright (c) 2019 jzyds
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

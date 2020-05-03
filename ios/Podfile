@@ -53,4 +53,6 @@ target 'Gladeo_App' do
 
   pod 'RNConvertPhAsset', :path => '../node_modules/react-native-convert-ph-asset'
 
+  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
+
 end

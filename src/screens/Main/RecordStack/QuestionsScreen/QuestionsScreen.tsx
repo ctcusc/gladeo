@@ -78,7 +78,7 @@ function QuestionsScreen(props: Props) {
                   [
                     {text: 'View Answer', 
                       onPress: () => {
-                        push('View', {question: props.videos[item.ID-1].questionText, uri: props.videos[item.ID-1].uri})
+                        push('View', {question: props.videos[item.ID].questionText, uri: props.videos[item.ID].uri})
                       }
                     },
                     {text: 'Re-record Answer', 
