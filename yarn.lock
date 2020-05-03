@@ -7824,9 +7824,9 @@ react-native-camera@^3.23.1:
     prop-types "^15.6.2"
 
 react-native-confirmation-code-field@^6.0.0:
-  version "6.0.0"
-  resolved "https://registry.yarnpkg.com/react-native-confirmation-code-field/-/react-native-confirmation-code-field-6.0.0.tgz#bc5e84cbe9bb9be85b5df2ab2d4e73a8084bc013"
-  integrity sha512-VydbDBernUpKTNw/ee6oGRgRYuYyRauodRCn8JrsTRGyi7+aG0O6Tx7fOiu+vCXjahTzqk0nC8qgodI/1fIWhw==
+  version "6.0.2"
+  resolved "https://registry.yarnpkg.com/react-native-confirmation-code-field/-/react-native-confirmation-code-field-6.0.2.tgz#9bc93a27a714a248a8b8a1b1ef91dadfec089a0f"
+  integrity sha512-POAf6uOwvHMJcYLQhbQmbD8JnzmoJwGUn4F5y3WkVUlj59SDYzBQmzLJmQzLmy6dd1T8HxSDZb29pLP5wngwrQ==
 
 react-native-convert-ph-asset@^1.0.3:
   version "1.0.3"
