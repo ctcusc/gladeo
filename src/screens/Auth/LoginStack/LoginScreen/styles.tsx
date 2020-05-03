@@ -57,6 +57,11 @@ const styles = StyleSheet.create({
     color: '#E5186E',
   },
 
+  messageError: {
+    marginTop: 0,
+    color: 'red',
+  },
+
   text: {
     fontStyle: 'normal',
     fontFamily: 'Roboto-Regular',

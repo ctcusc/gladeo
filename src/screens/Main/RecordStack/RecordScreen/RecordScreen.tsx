@@ -67,6 +67,7 @@ function RecordScreen(props: Props) {
       ...screenData,
       isLandscape: screenData.width > screenData.height,
     }
+
   }
 
   const screenData = useScreenDimensions()
@@ -103,15 +104,14 @@ function RecordScreen(props: Props) {
     RNConvertPhAsset.convertVideoFromUrl({
       url: currVideo.uri,
       convertTo: 'mov',
-      quality: 'medium'
+      quality: 'high'
     }).then((response) => {
       currVideo.uri = newURI
-      console.log('new video: ', response)
       setVideo(currVideo)
     }).catch((err) => {
       console.log(err)
     })
-    console.log('NEW VIDEO URI', currVideo)
+    console.log('Saved video: ', currVideo)
 
     answerQuestion()
     const payload ={'questionID': questionID, 'uri': video.uri, 'questionText': question}
@@ -136,23 +136,11 @@ function RecordScreen(props: Props) {
           
         setTimeout(() => {
           setPreviewMode(true)
-          
-          
         }, 1000)
-        
-        // setVideo(data)
-          
-        console.log('video data: ', data)
-        console.log('preview', isPreviewMode)
-        console.log('preview', audioCapture)
-
-        // setPreviewMode(true)
-          
           
       } catch (e) {
         console.error(e)
       }
-      // setPreviewMode(true)
     }
   }
 

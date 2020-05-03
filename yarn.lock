@@ -7816,6 +7816,7 @@ react-native-animated-ellipsis@^2.0.0:
     babel-preset-stage-2 "^6.24.1"
     prop-types "^15.5.10"
 
+<<<<<<< HEAD
 react-native-camera@^3.23.1:
   version "3.23.1"
   resolved "https://registry.yarnpkg.com/react-native-camera/-/react-native-camera-3.23.1.tgz#fb6fe52f8a357852de6dcd81d0d187cd632dc7dd"
@@ -7827,6 +7828,12 @@ react-native-convert-ph-asset@^1.0.3:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/react-native-convert-ph-asset/-/react-native-convert-ph-asset-1.0.3.tgz#af299a6a3f7270b55c3bdfe472a40cea02c93c80"
   integrity sha512-qdTrUsDlxOvC7KnamjjRnxaijr3myfOwzbYR0vyTl0BjPT25jkCQ9a4Q26egRdy8uqiw7mqB1ZhG5OohwnpsOg==
+=======
+react-native-confirmation-code-field@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/react-native-confirmation-code-field/-/react-native-confirmation-code-field-6.0.0.tgz#bc5e84cbe9bb9be85b5df2ab2d4e73a8084bc013"
+  integrity sha512-VydbDBernUpKTNw/ee6oGRgRYuYyRauodRCn8JrsTRGyi7+aG0O6Tx7fOiu+vCXjahTzqk0nC8qgodI/1fIWhw==
+>>>>>>> master
 
 react-native-dotenv@^0.2.0:
   version "0.2.0"
@@ -8039,6 +8046,17 @@ react-navigation@^4.0.10:
     "@react-navigation/core" "^3.7.5"
     "@react-navigation/native" "^3.7.11"
 
+<<<<<<< HEAD
+=======
+react-proxy@^1.1.7:
+  version "1.1.8"
+  resolved "https://registry.yarnpkg.com/react-proxy/-/react-proxy-1.1.8.tgz#9dbfd9d927528c3aa9f444e4558c37830ab8c26a"
+  integrity sha1-nb/Z2SdSjDqp9ETkVYw3gwq4wmo=
+  dependencies:
+    lodash "^4.6.1"
+    react-deep-force-update "^1.0.0"
+
+>>>>>>> master
 react-redux@^7.2.0:
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/react-redux/-/react-redux-7.2.0.tgz#f970f62192b3981642fec46fd0db18a074fe879d"

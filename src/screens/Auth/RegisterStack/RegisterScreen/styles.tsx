@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   },
 
   margin: {
-    marginBottom: '20%',
+    marginBottom: '5%',
   },
 
   regularText: {
@@ -65,6 +65,11 @@ const styles = StyleSheet.create({
 
   image: {
     height: 92,
+  },
+
+  messageError: {
+    marginTop: 0,
+    color: 'red',
   },
 
   footer: {

@@ -92,13 +92,17 @@ const styles = StyleSheet.create({
     //right: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.25), // funky but it works
     fontFamily: 'Roboto-Regular',
   },
+  videoBottom: {
+    flex: 1,
+    position: 'absolute',
+  },
   saveButton: {
     backgroundColor: '#E5186E',
     width: 79,
     height: 48,
     justifyContent: 'center',
-    left: '75%',
-    top: '15%',
+    left: '30%',
+    top: '1500%',
     borderRadius: 24,
     right: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.25)
   },
@@ -136,11 +140,7 @@ const styles = StyleSheet.create({
     color: '#fff',
     fontSize: 40
   },
-  videoBottom: {
-    flex: 1,
-    position: 'absolute',
-  },
-  
+
   videoPlay: {
     flex: 1,
   }
