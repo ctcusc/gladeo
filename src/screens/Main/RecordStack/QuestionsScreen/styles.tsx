@@ -12,13 +12,13 @@ const styles = StyleSheet.create({
   },
   titleAnswered: {
     fontSize: 18,
-    fontFamily: 'roboto-regular', 
+    fontFamily: 'Roboto-Regular', 
     color: '#FFFFFF',
     fontWeight: '500',
   },
   titleUnanswered: {
     fontSize: 18,
-    fontFamily: 'roboto-regular', 
+    fontFamily: 'Roboto-Regular', 
     color: '#E5186E',
     fontWeight: '500',
   },
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
   modalContent: {
     fontSize: 18,
     color: '#D94077',
-    fontFamily: 'roboto-bold', 
+    fontFamily: 'Roboto-Bold', 
     fontStyle: 'normal',
     marginVertical: 15,
   },
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginVertical: 15,
     color: '#727272',
-    fontFamily: 'roboto-bold', 
+    fontFamily: 'Roboto-Bold', 
     borderBottomLeftRadius: 10,
     borderBottomRightRadius: 10,
   },

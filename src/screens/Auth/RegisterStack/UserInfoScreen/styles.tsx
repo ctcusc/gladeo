@@ -44,14 +44,14 @@ const styles = StyleSheet.create({
   },
 
   categories: {
-    fontFamily: 'montserrat-bold',
+    fontFamily: 'Montserrat-Bold',
     fontSize: 16,
     lineHeight: 20,
     color: '#000000'
   },
 
   valuesText: {
-    fontFamily: 'montserrat-semibold',
+    fontFamily: 'Montserrat-SemiBold',
     fontSize: 22,
     lineHeight: 27,
     color: '#E5186E',
@@ -63,14 +63,14 @@ const styles = StyleSheet.create({
   },
   
   titleText: {
-    fontFamily: 'roboto-regular',
+    fontFamily: 'Roboto-Regular',
     fontSize: 30,
     lineHeight: 37,
     marginTop: '15%'
   },
 
   subtitleText: {
-    fontFamily: 'roboto-regular',
+    fontFamily: 'Roboto-Regular',
     fontSize: 16,
     marginTop: '2%',
     marginBottom: '5%'

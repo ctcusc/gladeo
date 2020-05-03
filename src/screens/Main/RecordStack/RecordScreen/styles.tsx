@@ -4,17 +4,20 @@ const styles = StyleSheet.create({
   camera: {
     display: 'flex',
     flex: 1,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
-    backgroundColor: '#555',
+    flexDirection: 'row',
   },
-  topSection: {
-    display: 'flex',
+  uiContainer: {
     flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-end'
+  },
+  controls: {
+    display: 'flex',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: '7%',
     alignItems: 'center',
+    // paddingHorizontal: '5%',
+    marginBottom: 20,
   },
   recordButton: {
     backgroundColor: '#FF3B30',
@@ -31,7 +34,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   recordOutline: {
-    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     width: 53,
@@ -47,8 +49,12 @@ const styles = StyleSheet.create({
     borderRadius: 30,
     alignSelf: 'center',
   },
+  flipCamera: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    width: 53
+  },
   whiteButtonOutline: {
-    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
     width: 44,
@@ -57,16 +63,11 @@ const styles = StyleSheet.create({
     borderWidth: 4,
     borderColor: '#fff',
   },
-  middleSection: {
-    display: 'flex',
+  texts: {
+    paddingHorizontal: 100,
     flexDirection: 'column',
-    flex: 4,
-    justifyContent: 'center',
-    alignItems: 'flex-start',
-    alignSelf: 'center',
-  },
-  overlay: {
-    position: 'absolute',
+    alignItems: 'center',
+    justifyContent: 'space-between'
   },
   infoText: {
     backgroundColor: 'rgba(51,51,51,0.4)',
@@ -77,9 +78,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlignVertical: 'center',
     textAlign: 'center',
-    transform: [ { rotateZ: '270deg'}],
-    position: 'absolute',
-    left: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.35),
+    //left: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.35),
   },
   question: {
     backgroundColor: 'rgba(51,51,51,0.4)',
@@ -90,13 +89,8 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlignVertical: 'center',
     textAlign: 'center',
-    transform: [ { rotateZ: '270deg'}],
-    position: 'absolute',
-    right: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.25), // funky but it works
-    fontFamily: 'roboto-regular',
-  },
-  bottomSection: {
-    flex: 1,
+    //right: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.25), // funky but it works
+    fontFamily: 'Roboto-Regular',
   },
   videoBottom: {
     flex: 1,
@@ -104,7 +98,6 @@ const styles = StyleSheet.create({
   },
   saveButton: {
     backgroundColor: '#E5186E',
-    transform: [ { rotateZ: '270deg'}],
     width: 79,
     height: 48,
     justifyContent: 'center',
@@ -118,16 +111,38 @@ const styles = StyleSheet.create({
     color: '#fff', 
     fontSize: 18,
     lineHeight: 21,
-    fontFamily: 'roboto-regular',
-    transform: [{
-      rotate: '-180deg'
-    }],
+    fontFamily: 'Roboto-Regular'
   },
+  preview: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'stretch',
+  },
+  capture: {
+    flex: 0,
+    backgroundColor: '#fff',
+    borderRadius: 5,
+    padding: 15,
+    paddingHorizontal: 20,
+    alignSelf: 'center',
+    margin: 20,
+  },
+  container: {
+    flex: 1,
+    backgroundColor: 'black',
+  },
+ 
+  saveView: {
+  },
+  noSave: {
+  },
+  backButton: {
+    color: '#fff',
+    fontSize: 40
+  },
+
   videoPlay: {
     flex: 1,
-    transform: [{
-      rotate: '-180deg'
-    }],
   }
 })
 

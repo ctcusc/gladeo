@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     letterSpacing: -50,
   },
   text: {
-    fontFamily: 'montserrat-regular', 
+    fontFamily: 'Montserrat-Regular', 
     fontSize: 30,
     textAlign: 'center',
     color: '#E5186E',
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   submittedText: {
     margin: '5%',
-    fontFamily: 'montserrat-bold', 
+    fontFamily: 'Montserrat-Bold', 
     fontSize: 30,
     textAlign: 'center',
     color: '#E5186E',
@@ -42,7 +42,7 @@ const styles = StyleSheet.create({
   },
   subtext: {
     alignContent: 'center',
-    fontFamily: 'roboto-regular',
+    fontFamily: 'Roboto-Regular',
     fontSize: 16,
     color: '#727272',
     textAlign: 'center',
