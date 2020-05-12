@@ -10,6 +10,8 @@ import {
 import { BASE_PATH } from 'react-native-dotenv'
 import styles from './styles'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
+import store from '../../../../redux/store/index'
+import { RNFFmpeg } from 'react-native-ffmpeg'
 
 interface Snippet {
   id: number,
@@ -26,6 +28,9 @@ export default function SnippetSelectionScreen(props: Props) {
   const [text, setText] = useState('A great video requires at least 3 - 4 clips')
   const [snippetState, setSnippetState] = useState<Array<Snippet>>([])
   const [nextSnippetIndex, setNextSnippetIndex] = useState<number>(2)
+  //const [combinedVideo, setCombinedVideo] = useState('')
+  const {navigate} = props.navigation 
+
 
   useEffect(() => {
     fetch(`${BASE_PATH}/api/user/questions`)
@@ -117,6 +122,32 @@ export default function SnippetSelectionScreen(props: Props) {
       }
     }
   }
+
+  function combineVideo() {
+    const selectedVideos = []
+    for (let index = 0; index < snippetState.length; index++) {
+      if (snippetState[index].isSelected) {
+        selectedVideos.push(snippetState[index])
+      }
+    }
+    selectedVideos.sort((a, b) => a.orderInList - b.orderInList)
+
+    const ffmpegCommand = '-i \"concat:'
+
+    for (let index = 0; index < selectedVideos.length; index++) {
+      ffmpegCommand.concat(store.state[selectedVideos[index].id])
+      if (index != selectedVideos.length - 1) {
+        ffmpegCommand.concat('|')
+      }
+    }
+    ffmpegCommand.concat('\" -c copy output.mp4')
+    RNFFmpeg.execute(ffmpegCommand)
+      .then(
+        navigate('View', {
+          uri: 'output.mp4'
+        })
+      )
+  }
   
   return (
     <View style={styles.container}>
@@ -159,6 +190,8 @@ export default function SnippetSelectionScreen(props: Props) {
                   {text: 'Okay', style: 'cancel'}
                 ]
               )
+            } else {
+              combineVideo()
             }
           }}
           style={nextSnippetIndex > 3 ? styles.pinkButtonAbled : styles.pinkButton}

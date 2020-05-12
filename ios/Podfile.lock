@@ -29,6 +29,7 @@ PODS:
     - DoubleConversion
     - glog
   - glog (0.3.5)
+  - mobile-ffmpeg-https (4.3.1)
   - RCTRequired (0.61.5)
   - RCTTypeSafety (0.61.5):
     - FBLazyVector (= 0.61.5)
@@ -202,6 +203,12 @@ PODS:
     - React
   - react-native-cameraroll (1.6.0):
     - React
+  - react-native-ffmpeg (0.4.4):
+    - React
+    - react-native-ffmpeg/https (= 0.4.4)
+  - react-native-ffmpeg/https (0.4.4):
+    - mobile-ffmpeg-https (= 4.3.1)
+    - React
   - react-native-orientation (3.1.3):
     - React
   - react-native-safe-area-context (0.6.0):
@@ -300,6 +307,7 @@ DEPENDENCIES:
   - React-jsinspector (from `../node_modules/react-native/ReactCommon/jsinspector`)
   - react-native-camera (from `../node_modules/react-native-camera`)
   - "react-native-cameraroll (from `../node_modules/@react-native-community/cameraroll`)"
+  - react-native-ffmpeg (from `../node_modules/react-native-ffmpeg`)
   - react-native-orientation (from `../node_modules/react-native-orientation`)
   - react-native-safe-area-context (from `../node_modules/react-native-safe-area-context`)
   - react-native-video (from `../node_modules/react-native-video`)
@@ -336,8 +344,9 @@ DEPENDENCIES:
   - Yoga (from `../node_modules/react-native/ReactCommon/yoga`)
 
 SPEC REPOS:
-  https://github.com/cocoapods/specs.git:
+  trunk:
     - boost-for-react-native
+    - mobile-ffmpeg-https
 
 EXTERNAL SOURCES:
   DoubleConversion:
@@ -384,6 +393,8 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native-camera"
   react-native-cameraroll:
     :path: "../node_modules/@react-native-community/cameraroll"
+  react-native-ffmpeg:
+    :path: "../node_modules/react-native-ffmpeg"
   react-native-orientation:
     :path: "../node_modules/react-native-orientation"
   react-native-safe-area-context:
@@ -474,6 +485,7 @@ SPEC CHECKSUMS:
   FBReactNativeSpec: 118d0d177724c2d67f08a59136eb29ef5943ec75
   Folly: 30e7936e1c45c08d884aa59369ed951a8e68cf51
   glog: 1f3da668190260b06b429bb211bfbee5cd790c28
+  mobile-ffmpeg-https: c4a3c255163ddb1abc4b4dfc613c2d885f8c46eb
   RCTRequired: b153add4da6e7dbc44aebf93f3cf4fcae392ddf1
   RCTTypeSafety: 9aa1b91d7f9310fc6eadc3cf95126ffe818af320
   React: b6a59ef847b2b40bb6e0180a97d0ca716969ac78
@@ -485,6 +497,7 @@ SPEC CHECKSUMS:
   React-jsinspector: fa0ecc501688c3c4c34f28834a76302233e29dc0
   react-native-camera: 1b52abea404d04e040edb3e74b7c5523c01a3089
   react-native-cameraroll: 02e60e9af9273a3cc3b641632bf651189830aaf8
+  react-native-ffmpeg: f9a60452aaa5d478aac205b248224994f3bde416
   react-native-orientation: f1caf84d65f1a4fd4511a18f2b924e634ad7a628
   react-native-safe-area-context: d288138da2c800caa111f9352e9333f186a06ead
   react-native-video: eee541262ada11bc7ffe8ec5508e6a877937c462
@@ -519,6 +532,6 @@ SPEC CHECKSUMS:
   UMTaskManagerInterface: a98e37a576a5220bf43b8faf33cfdc129d2f441d
   Yoga: f2a7cd4280bfe2cca5a7aed98ba0eb3d1310f18b
 
-PODFILE CHECKSUM: f57d05c9ae435584f3ecdc0b99906aee3301aead
+PODFILE CHECKSUM: 5a403affa6f2276b0d9cb1ddff7e316ca1c2aa18
 
-COCOAPODS: 1.7.5
+COCOAPODS: 1.9.1

@@ -57,4 +57,6 @@ target 'Gladeo_App' do
 
   pod 'react-native-cameraroll', :path => '../node_modules/@react-native-community/cameraroll'
 
+  pod 'react-native-ffmpeg', :path => '../node_modules/react-native-ffmpeg'
+
 end
