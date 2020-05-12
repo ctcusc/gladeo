@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    fontFamily: 'montserrat-regular', 
+    fontFamily: 'Montserrat-Regular', 
     fontStyle: 'normal',
     fontWeight: 'bold',
     fontSize: 30,

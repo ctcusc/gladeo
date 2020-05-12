@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     letterSpacing: -50,
   },
   text: {
-    fontFamily: 'montserrat-regular', 
+    fontFamily: 'Montserrat-Regular', 
     fontSize: 30,
     textAlign: 'center',
     color: '#E5186E',
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   completedText: {
     margin: '5%',
     marginBottom: '20%',
-    fontFamily: 'montserrat-bold', 
+    fontFamily: 'Montserrat-Bold', 
     fontSize: 30,
     textAlign: 'center',
     color: '#E5186E',

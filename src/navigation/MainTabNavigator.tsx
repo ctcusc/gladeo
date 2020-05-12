@@ -3,33 +3,42 @@ import React from 'react'
 import { Platform } from 'react-native'
 import { createStackNavigator } from 'react-navigation-stack'
 import { createBottomTabNavigator } from 'react-navigation-tabs'
-import TabBarIcon from '../shared_components/TabBarIcon'
+// import TabBarIcon from '../shared_components/TabBarIcon'
 import QuestionsScreen from '../screens/Main/RecordStack/QuestionsScreen/QuestionsScreen'
 import CreatingVideoScreen from '../screens/Main/EditStack/CreatingVideoScreen/CreatingVideoScreen'
 import UploadingVideoScreen from '../screens/Main/EditStack/UploadingVideoScreen/UploadingVideoScreen'
 import RecordScreen from '../screens/Main/RecordStack/RecordScreen/RecordScreen'
+import ViewScreen from '../screens/Main/RecordStack/ViewScreen/ViewScreen'
 import SnippetSelectionScreen from '../screens/Main/EditStack/SnippetSelection/SnippetSelection'
 import Colors from '../constants/Colors'
 
 // Tab #1 - Question Selection + Recording
 const RecordStack = createStackNavigator(
   {
-    Questions:  QuestionsScreen,
     Record: {
       screen: RecordScreen,
       navigationOptions: {
         headerShown: false,
-        
       }
-    }
+    },
+    View: {
+      screen: ViewScreen,
+      navigationOptions: {
+        headerShown: false,
+      }
+    },
+    Questions:  QuestionsScreen
   },
+  {
+    initialRouteName: 'Questions', 
+  }
 )
 
 RecordStack.navigationOptions = ({ navigation }) => {
   let tabBarVisible
   if (navigation.state.routes.length > 1) {
     navigation.state.routes.map(route => {
-      if (route.routeName === 'Record') {
+      if (route.routeName === 'Record' || route.routeName === 'View') {
         tabBarVisible = false
       } else {
         tabBarVisible = true
@@ -40,9 +49,9 @@ RecordStack.navigationOptions = ({ navigation }) => {
   return {
     title: 'Record',
     tabBarOptions: {  activeTintColor: Colors.tabIconSelected  },
-    tabBarIcon: ({focused}: any) => (
-      <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-videocam' : 'md-videocam'} />
-    ),
+    // tabBarIcon: ({focused}: any) => (
+    //   // <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-videocam' : 'md-videocam'} />
+    // ),
     tabBarVisible
   }
 }
@@ -62,9 +71,9 @@ const EditStack = createStackNavigator(
 EditStack.navigationOptions = {
   tabBarLabel: 'Edit',
   tabBarOptions: {  activeTintColor: Colors.tabIconSelected  },
-  tabBarIcon: ({focused}: any) => (
-    <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-film' : 'md-film'} />
-  ),
+  // tabBarIcon: ({focused}: any) => (
+  //   <TabBarIcon focused={focused} name={Platform.OS === 'ios' ? 'ios-film' : 'md-film'} />
+  // ),
 }
 
 const mainTabNavigator = createBottomTabNavigator({

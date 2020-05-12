@@ -16,12 +16,12 @@ const styles = StyleSheet.create({
   },
 
   margin: {
-    marginBottom: '20%',
+    marginBottom: '5%',
   },
 
   regularText: {
     fontSize: 16,
-    fontFamily: 'roboto-regular',
+    fontFamily: 'Roboto-Regular',
     fontStyle: 'normal',
     lineHeight: 19,
     textAlign: 'center',
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
 
   normalText: {
     fontStyle: 'normal',
-    fontFamily: 'roboto-regular',
+    fontFamily: 'Roboto-Regular',
     fontSize: 16,
     lineHeight: 19,
     color: '#000000',
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontSize: 16,
     lineHeight: 19,
-    fontFamily: 'roboto-regular',
+    fontFamily: 'Roboto-Regular',
     color: '#E5186E',
   },
 
@@ -65,6 +65,11 @@ const styles = StyleSheet.create({
 
   image: {
     height: 92,
+  },
+
+  messageError: {
+    marginTop: 0,
+    color: 'red',
   },
 
   footer: {

@@ -25,7 +25,7 @@ export default function CreatePasswordScreen(props: Props) {
     email: props.navigation.state.params.email,
     userRecord: props.navigation.state.params.userRecord,
   }
-  const [message, setMessage] = useState('Keep this secure! Use 8+ characters')
+  const [message, setMessage] = useState('Keep this secure! Use 10+ characters')
   const [messageStyle, setMessageStyle] = useState(styles.regularText)
 
   async function handleRegister(){
