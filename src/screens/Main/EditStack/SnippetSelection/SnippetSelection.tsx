@@ -10,7 +10,7 @@ import {
 import { BASE_PATH } from 'react-native-dotenv'
 import styles from './styles'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
-import store from '../../../../redux/store/index'
+import { connect } from 'react-redux'
 import { RNFFmpeg } from 'react-native-ffmpeg'
 
 interface Snippet {
@@ -22,6 +22,7 @@ interface Snippet {
 
 interface Props {
   navigation: NavigationScreenProp<NavigationState>,
+  videos: Array<Record<string, any>>,
 }
 
 export default function SnippetSelectionScreen(props: Props) {
@@ -132,15 +133,17 @@ export default function SnippetSelectionScreen(props: Props) {
     }
     selectedVideos.sort((a, b) => a.orderInList - b.orderInList)
 
-    const ffmpegCommand = '-i \"concat:'
+    let ffmpegCommand = '-i \"concat:'
 
     for (let index = 0; index < selectedVideos.length; index++) {
-      ffmpegCommand.concat(store.state[selectedVideos[index].id])
+      ffmpegCommand = ffmpegCommand.concat(props.videos[selectedVideos[index].id].uri)
       if (index != selectedVideos.length - 1) {
-        ffmpegCommand.concat('|')
+        ffmpegCommand = ffmpegCommand.concat('|')
       }
     }
-    ffmpegCommand.concat('\" -c copy output.mp4')
+    ffmpegCommand = ffmpegCommand.concat('\" -c copy output.mp4')
+    console.log(ffmpegCommand)
+    
     RNFFmpeg.execute(ffmpegCommand)
       .then(
         navigate('View', {
@@ -215,3 +218,11 @@ SnippetSelectionScreen.navigationOptions = {
   ),
   headerStyle: {height: 140},   
 }
+
+const mapStateToProps = (state: any) => {
+  return {
+    videos: state
+  }
+}
+
+export default connect(mapStateToProps)(SnippetSelectionScreen)
