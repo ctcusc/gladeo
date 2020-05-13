@@ -10,3 +10,6 @@ npm-debug.*
 web-build/
 web-report/
 .env
+ios/Gladeo_App.xcworkspace/xcuserdata/
+ios/.DS_Store
+ios/Pods/Pods.xcodeproj/xcuserdata/

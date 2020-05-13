@@ -1,12 +1,26 @@
 const initialState = {
-  videos: []
+  1: {},
+  2: {},
+  3: {},
+  4: {},
+  5: {},
+  6: {},
+  7: {},
+  8: {},
+  9: {},
+  10: {},
+  11: {},
+  12: {},
 }
   
 function rootReducer(state = initialState, action) {
   if (action.type === 'SAVE_VIDEO') {
-    return {
+
+    const key = action.payload.questionID
+
+    return {   // a new array
       ...state,
-      videos: state.videos.concat(action.payload)
+      [key]: action.payload
     }
   }
   return state

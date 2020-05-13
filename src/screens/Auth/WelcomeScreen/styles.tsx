@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
 
   regularText: {
     fontSize: 24,
-    fontFamily: 'roboto-regular',
+    fontFamily: 'Roboto-Regular',
     fontStyle: 'normal',
     lineHeight: 28,
     textAlign: 'center',
@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
   blackTextButton: {
     fontStyle: 'normal',
     fontSize: 24,
-    fontFamily: 'montserrat-semibold',
+    fontFamily: 'Montserrat-SemiBold',
     color: '#000000',
     marginTop: '5%'
   },
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   pinkButtonText: {
     fontStyle: 'normal',
     fontSize: 24,
-    fontFamily: 'montserrat-semibold',
+    fontFamily: 'Montserrat-SemiBold',
     color: '#F5F5F5',
     textAlign: 'center',
   },

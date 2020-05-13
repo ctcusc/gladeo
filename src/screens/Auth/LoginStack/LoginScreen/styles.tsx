@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     color: '#777777',
     marginTop: '1%',
     marginBottom: '3%',
-    fontFamily: 'roboto-regular',
+    fontFamily: 'Roboto-Regular',
     letterSpacing: 0.05,
   },
 
@@ -53,13 +53,18 @@ const styles = StyleSheet.create({
     fontStyle: 'normal',
     fontSize: 16,
     lineHeight: 19,
-    fontFamily: 'roboto-regular',
+    fontFamily: 'Roboto-Regular',
     color: '#E5186E',
+  },
+
+  messageError: {
+    marginTop: 0,
+    color: 'red',
   },
 
   text: {
     fontStyle: 'normal',
-    fontFamily: 'roboto-regular',
+    fontFamily: 'Roboto-Regular',
     fontSize: 16,
     lineHeight: 19,
     color: '#000000',

@@ -3,7 +3,7 @@ import { StyleSheet } from 'react-native'
 const styles = StyleSheet.create({
   title: {
     fontStyle: 'normal',
-    fontFamily: 'montserrat-semibold',
+    fontFamily: 'Montserrat-SemiBold',
     fontSize: 30,
     lineHeight: 37,
     textAlign: 'center',

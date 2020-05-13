@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   },
 
   text: {
-    fontFamily: 'montserrat-regular', 
+    fontFamily: 'Montserrat-Regular', 
     fontWeight: 'bold',
     fontSize: 18,
     lineHeight: 27,

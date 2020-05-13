@@ -3,20 +3,17 @@ import { createStackNavigator } from 'react-navigation-stack'
 
 import LoginScreen from '../screens/Auth/LoginStack/LoginScreen/LoginScreen'
 import RegisterScreen from '../screens/Auth/RegisterStack/RegisterScreen/RegisterScreen'
-import PasswordResetScreen from '../screens/Auth/LoginStack/PasswordResetScreen/PasswordResetScreen'
+import PasswordResetScreen from '../screens/Auth/ResetPasswordStack/PasswordResetScreen/PasswordResetScreen'
 import CreatePasswordScreen from '../screens/Auth/RegisterStack/CreatePasswordScreen/CreatePasswordScreen'
 import WelcomeScreen from '../screens/Auth/WelcomeScreen/WelcomeScreen'
 import GetStartedScreen from '../screens/Auth/RegisterStack/GetStartedScreen/GetStartedScreen'
-import CreateResetPasswordScreen from '../screens/Auth/LoginStack/CreateResetPasswordScreen/CreateResetPasswordScreen'
-import ConfirmResetCodeScreen from '../screens/Auth/LoginStack/ConfirmResetCodeScreen/ConfirmResetCodeScreen'
+import CreateResetPasswordScreen from '../screens/Auth/ResetPasswordStack/CreateResetPasswordScreen/CreateResetPasswordScreen'
+import ConfirmResetCodeScreen from '../screens/Auth/ResetPasswordStack/ConfirmResetCodeScreen/ConfirmResetCodeScreen'
 import UserInfoScreen from '../screens/Auth/RegisterStack/UserInfoScreen/UserInfoScreen'
 
 const LoginStack = createStackNavigator(
   {
     Login: LoginScreen,
-    PasswordReset: PasswordResetScreen,
-    ConfirmResetCode: ConfirmResetCodeScreen,
-    CreateResetPassword: CreateResetPasswordScreen,
   },
   {
     headerMode: 'none',
@@ -35,11 +32,23 @@ const RegisterStack = createStackNavigator(
   }
 )
 
+const ResetPasswordStack = createStackNavigator(
+  {
+    PasswordReset: PasswordResetScreen,
+    ConfirmResetCode: ConfirmResetCodeScreen,
+    CreateResetPassword: CreateResetPasswordScreen,
+  },
+  {
+    headerMode: 'none',
+  }
+)
+
 const AuthNavigator = createSwitchNavigator(
   {
     Welcome: WelcomeScreen,
     Login: LoginStack,
-    Register: RegisterStack
+    Register: RegisterStack,
+    ResetPassword: ResetPasswordStack,
   },
   {
     headerMode: 'none',
