@@ -56,6 +56,7 @@
     "react-dom": "16.9.0",
     "react-native": "~0.61.4",
     "react-native-animated-ellipsis": "^2.0.0",
+    "react-native-background-timer": "^2.2.0",
     "react-native-camera": "^3.23.1",
     "react-native-confirmation-code-field": "^6.0.0",
     "react-native-convert-ph-asset": "^1.0.3",

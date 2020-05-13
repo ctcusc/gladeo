@@ -11,7 +11,8 @@ import styles from './styles'
 import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation'
 import Video from 'react-native-video'
 import RNConvertPhAsset from 'react-native-convert-ph-asset'
-
+import BackgroundTimer from 'react-native-background-timer'
+import { TIMEOUT } from 'dns'
 
 interface Props {
   dispatch: Function,
@@ -37,6 +38,7 @@ const PendingView = () => (
 )
 
 function RecordScreen(props: Props) {
+  const {navigate} = props.navigation
   const {goBack, pop} = props.navigation
   //const question = props.navigation.state.params.question
   const [hasPermission, setHasPermission] = useState(true)
@@ -46,6 +48,9 @@ function RecordScreen(props: Props) {
   const [video, setVideo] = useState(null)
   const [isPreviewMode, setPreviewMode] = useState(false)
   const [audioCapture, setAudioCapture] = useState(true)
+  const [second, setSecond] = useState(0)
+  const [topText, setTopText] = useState('Create a 3-4 Minute Video')
+  const [playing, setPlaying] = useState(false)
 
   const question = props.navigation.state.params.question
   const questionID = props.navigation.state.params.questionID
@@ -54,6 +59,15 @@ function RecordScreen(props: Props) {
     const [screenData, setScreenData] = useState(Dimensions.get('screen'))
   
     useEffect(() => {
+      if(playing == true) {
+        setTopText(second.toString())
+      }
+      const timer =
+        setInterval(() => setSecond(second + 1), 1000)
+      return () => clearInterval(timer)
+    }, [second])
+
+    useEffect(() => {
       const onChange = result => {
         setScreenData(result.screen)
       }
@@ -61,7 +75,7 @@ function RecordScreen(props: Props) {
       Dimensions.addEventListener('change', onChange)
   
       return () => Dimensions.removeEventListener('change', onChange)
-    })
+    }, )
   
     return {
       ...screenData,
@@ -122,11 +136,15 @@ function RecordScreen(props: Props) {
 
   async function stopRecord(){
     camera.stopRecording()
+    setPlaying(false)
+    setSecond(0)
   }
 
   async function startRecord () {
     if (camera) {
       try {
+        setPlaying(true)
+        setSecond(0)
         setIsRecording(true)
         const data = await camera.recordAsync()
 
@@ -187,10 +205,10 @@ function RecordScreen(props: Props) {
           
           <View style={styles.texts}>
             <View>
-              <Text style={styles.infoText}>Create a 3-4 Minute Video</Text>
+              <Text style={styles.infoText}>{topText}</Text>
             </View>
             <View>
-              <Text style={styles.question}>{/*question*/}Question will go here</Text>
+              <Text style={styles.question}>{question}</Text>
             </View>
           </View>
           <View style={styles.controls}>
@@ -223,7 +241,8 @@ function RecordScreen(props: Props) {
         </View>
       </RNCamera>
     )
-  } 
+  }
+
   if(isPreviewMode) {
     return (
       <View style={styles.videoPlay}>
@@ -237,16 +256,40 @@ function RecordScreen(props: Props) {
           isLooping={true}
           style={{ width: '100%', height: '100%' }}
         />
-        <View style={ styles.videoBottom }>
+  
+       
+        <View style={styles.videoTop}>
           <TouchableOpacity
-            onPress={()=>save()}
-            style={styles.saveButton}
+            onPress={() => {
+              Alert.alert(
+                'Confirm Deletion?',
+                'This video will not be recoverable. You will return to snippet selections.',
+                [
+                  {text: 'Delete',
+                    onPress: () => {
+                      setTopText('Create a 3-4 Minute Video')
+                      setPreviewMode(false)
+                    }
+                  },
+                  {text: 'Cancel', style: 'cancel'}
+                ]
+              )
+            }}
           >
-            <Text style={styles.saveText}>save</Text>
+            <Image resizeMode='contain' source={require('../../../../../assets/images/xmark.png')} style = {{tintColor: 'white'}}/>
           </TouchableOpacity>
         </View>
-      </View>
-    )
+
+
+          
+        <View style={styles.videoBottom}></View>
+        <TouchableOpacity
+          onPress={()=>save()}
+          style={styles.saveButton}
+        >
+          <Text style={styles.saveText}>SAVE</Text>
+        </TouchableOpacity>
+      </View>  )
   } else {
     return <PendingView />
   }
