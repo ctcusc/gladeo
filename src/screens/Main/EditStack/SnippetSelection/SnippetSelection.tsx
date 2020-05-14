@@ -133,23 +133,31 @@ export default function SnippetSelectionScreen(props: Props) {
     }
     selectedVideos.sort((a, b) => a.orderInList - b.orderInList)
 
-    let ffmpegCommand = '-i \"concat:'
+    //let ffmpegCommand = '-i \"concat:'
+    let ffmpegCommand = '-safe 0 -f concat -i '
+    const ffmpegCommandList = ['-i', '-safe', '0', '-f', 'concat', '-c', 'copy']
 
     for (let index = 0; index < selectedVideos.length; index++) {
+      ffmpegCommandList.push(props.videos[selectedVideos[index].id].uri)
       ffmpegCommand = ffmpegCommand.concat(props.videos[selectedVideos[index].id].uri)
       if (index != selectedVideos.length - 1) {
         ffmpegCommand = ffmpegCommand.concat('|')
       }
+      //videoURIs.push(props.videos[selectedVideos[index].id].uri)
     }
-    ffmpegCommand = ffmpegCommand.concat('\" -c copy output.mp4')
+
+    ffmpegCommand = ffmpegCommand.concat('\" -c copy output.mov')
     console.log(ffmpegCommand)
     
+    /*
     RNFFmpeg.execute(ffmpegCommand)
       .then(
         navigate('View', {
-          uri: 'output.mp4'
+          uri: 'output.mov'
         })
-      )
+      )*/
+    //RNFFmpeg.execute(ffmpegCommand).then(result => console.log('FFmpeg process exited with rc ' + result.rc))
+    RNFFmpeg.executeWithArguments(ffmpegCommandList).then(result => console.log('FFmpeg process exited with rc ' + result.rc))
   }
   
   return (

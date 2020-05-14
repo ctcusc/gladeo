@@ -227,7 +227,7 @@ function RecordScreen(props: Props) {
   if(isPreviewMode) {
     return (
       <View style={styles.videoPlay}>
-        <Video
+        {/*<Video
           source={{ uri: video.uri }}
           rate={1.0}
           volume={1.0}
@@ -235,8 +235,7 @@ function RecordScreen(props: Props) {
           resizeMode="cover"
           shouldPlay={true}
           isLooping={true}
-          style={{ width: '100%', height: '100%' }}
-        />
+        />*/}
         <View style={ styles.videoBottom }>
           <TouchableOpacity
             onPress={()=>save()}
