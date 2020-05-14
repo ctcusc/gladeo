@@ -25,7 +25,7 @@ interface Props {
   videos: Array<Record<string, any>>,
 }
 
-export default function SnippetSelectionScreen(props: Props) {
+function SnippetSelectionScreen(props: Props) {
   const [text, setText] = useState('A great video requires at least 3 - 4 clips')
   const [snippetState, setSnippetState] = useState<Array<Snippet>>([])
   const [nextSnippetIndex, setNextSnippetIndex] = useState<number>(2)
@@ -146,7 +146,7 @@ export default function SnippetSelectionScreen(props: Props) {
       //videoURIs.push(props.videos[selectedVideos[index].id].uri)
     }
 
-    ffmpegCommand = ffmpegCommand.concat('\" -c copy output.mov')
+    ffmpegCommand = ffmpegCommand.concat(' -c copy output.mov')
     console.log(ffmpegCommand)
     
     /*
