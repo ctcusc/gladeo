@@ -10,6 +10,8 @@ import {
 import { BASE_PATH } from 'react-native-dotenv'
 import styles from './styles'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
+import { connect } from 'react-redux'
+// import { RNFFmpeg } from 'react-native-ffmpeg'
 
 interface Snippet {
   id: number,
@@ -20,12 +22,16 @@ interface Snippet {
 
 interface Props {
   navigation: NavigationScreenProp<NavigationState>,
+  videos: Array<Record<string, any>>,
 }
 
 export default function SnippetSelectionScreen(props: Props) {
   const [text, setText] = useState('A great video requires at least 3 - 4 clips')
   const [snippetState, setSnippetState] = useState<Array<Snippet>>([])
   const [nextSnippetIndex, setNextSnippetIndex] = useState<number>(2)
+  //const [combinedVideo, setCombinedVideo] = useState('')
+  const {navigate} = props.navigation 
+
 
   useEffect(() => {
     fetch(`${BASE_PATH}/api/user/questions`)
@@ -117,6 +123,42 @@ export default function SnippetSelectionScreen(props: Props) {
       }
     }
   }
+
+  function combineVideo() {
+    const selectedVideos = []
+    for (let index = 0; index < snippetState.length; index++) {
+      if (snippetState[index].isSelected) {
+        selectedVideos.push(snippetState[index])
+      }
+    }
+    selectedVideos.sort((a, b) => a.orderInList - b.orderInList)
+
+    //let ffmpegCommand = '-i \"concat:'
+    let ffmpegCommand = '-safe 0 -f concat -i '
+    const ffmpegCommandList = ['-i', '-safe', '0', '-f', 'concat', '-c', 'copy']
+
+    for (let index = 0; index < selectedVideos.length; index++) {
+      ffmpegCommandList.push(props.videos[selectedVideos[index].id].uri)
+      ffmpegCommand = ffmpegCommand.concat(props.videos[selectedVideos[index].id].uri)
+      if (index != selectedVideos.length - 1) {
+        ffmpegCommand = ffmpegCommand.concat('|')
+      }
+      //videoURIs.push(props.videos[selectedVideos[index].id].uri)
+    }
+
+    ffmpegCommand = ffmpegCommand.concat('\" -c copy output.mov')
+    console.log(ffmpegCommand)
+    
+    /*
+    RNFFmpeg.execute(ffmpegCommand)
+      .then(
+        navigate('View', {
+          uri: 'output.mov'
+        })
+      )*/
+    //RNFFmpeg.execute(ffmpegCommand).then(result => console.log('FFmpeg process exited with rc ' + result.rc))
+    // RNFFmpeg.executeWithArguments(ffmpegCommandList).then(result => console.log('FFmpeg process exited with rc ' + result.rc))
+  }
   
   return (
     <View style={styles.container}>
@@ -159,6 +201,8 @@ export default function SnippetSelectionScreen(props: Props) {
                   {text: 'Okay', style: 'cancel'}
                 ]
               )
+            } else {
+              combineVideo()
             }
           }}
           style={nextSnippetIndex > 3 ? styles.pinkButtonAbled : styles.pinkButton}
@@ -182,3 +226,11 @@ SnippetSelectionScreen.navigationOptions = {
   ),
   headerStyle: {height: 140},   
 }
+
+const mapStateToProps = (state: any) => {
+  return {
+    videos: state
+  }
+}
+
+export default connect(mapStateToProps)(SnippetSelectionScreen)

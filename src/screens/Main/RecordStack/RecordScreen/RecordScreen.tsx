@@ -1,3 +1,4 @@
+  
 import React, { useState, useEffect } from 'react'
 import { Text, View, TouchableOpacity, Image, StatusBar, Dimensions, Alert} from 'react-native'
 import CameraRoll from '@react-native-community/cameraroll'
@@ -235,7 +236,6 @@ function RecordScreen(props: Props) {
           resizeMode="cover"
           shouldPlay={true}
           isLooping={true}
-          style={{ width: '100%', height: '100%' }}
         />
         <View style={ styles.videoBottom }>
           <TouchableOpacity

@@ -94,17 +94,16 @@ const styles = StyleSheet.create({
   },
   videoBottom: {
     flex: 1,
-    position: 'absolute',
   },
   saveButton: {
     backgroundColor: '#E5186E',
-    width: 79,
-    height: 48,
+    width: 179,
+    height: 148,
     justifyContent: 'center',
     left: '30%',
-    top: '1500%',
+    //top: '1500%',
     borderRadius: 24,
-    right: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.25)
+    //right: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.25)
   },
   saveText: {
     textAlign: 'center', 
