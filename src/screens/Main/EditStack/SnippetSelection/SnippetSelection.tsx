@@ -29,7 +29,6 @@ function SnippetSelectionScreen(props: Props) {
   const [text, setText] = useState('A great video requires at least 3 - 4 clips')
   const [snippetState, setSnippetState] = useState<Array<Snippet>>([])
   const [nextSnippetIndex, setNextSnippetIndex] = useState<number>(2)
-  //const [combinedVideo, setCombinedVideo] = useState('')
   const {navigate, push} = props.navigation 
 
 
@@ -125,14 +124,16 @@ function SnippetSelectionScreen(props: Props) {
   }
 
   async function combineVideo() {
+    // Store choose only the selected Snippets.
     const selectedVideos = []
     for (let index = 0; index < snippetState.length; index++) {
       if (snippetState[index].isSelected) {
         selectedVideos.push(snippetState[index])
       }
     }
+    // Sort the Snippets according to the order the user selected them in.
     selectedVideos.sort((a, b) => a.orderInList - b.orderInList)
-
+    
     push('CreatingVideo', {'videosToCombine': selectedVideos})
   }
   
