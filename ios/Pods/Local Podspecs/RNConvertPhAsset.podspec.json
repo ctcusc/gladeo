@@ -4,7 +4,9 @@
   "summary": "RNConvertPhAsset",
   "homepage": "https://github.com/jzyds/react-native-convert-ph-asset",
   "license": "MIT",
-  "authors": "jzyds",
+  "authors": {
+    "name": "jzyds"
+  },
   "platforms": {
     "ios": "9.0"
   },
