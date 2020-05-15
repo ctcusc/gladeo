@@ -51,4 +51,6 @@ target 'Gladeo_App' do
 
 
 
+  pod 'react-native-webview', :path => '../node_modules/react-native-webview'
+
 end
