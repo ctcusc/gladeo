@@ -33,6 +33,7 @@
     ]
   },
   "dependencies": {
+    "@google-cloud/local-auth": "^0.1.0",
     "@react-native-community/async-storage": "^1.9.0",
     "@react-native-community/cameraroll": "^1.6.0",
     "@react-native-community/masked-view": "0.1.5",
@@ -50,8 +51,11 @@
     "core-util-is": "^1.0.2",
     "dotenv": "^8.2.0",
     "express-session": "^1.17.0",
+    "google-auth-library": "^6.0.0",
+    "googleapis": "^50.0.0",
     "mem": "^6.0.1",
     "nodemailer": "^6.4.2",
+    "opn": "^6.0.0",
     "react": "~16.9.0",
     "react-dom": "16.9.0",
     "react-native": "~0.61.4",
