@@ -31,76 +31,46 @@ function CreatingVideoScreen(props: Props) {
   const [videoURI, setVideoURI] = useState()
   const {push} = props.navigation 
   const videosToCombine = props.navigation.state.params.videosToCombine
-  // const videos = props.navigation.state.params.videos
 
   
   useEffect(() => {
-    async function load() {
+    //  Combine videos selected in SnippetSelection page
+    async function renderVideo() {
 
       let ffmpegCommandFiles = ''
       let ffmpegCommandAV = ''
 
-      console.log('length? ', props)
-
+      // generate command string
       for (let index = 0; index < videosToCombine.length; index++) {
         ffmpegCommandFiles = ffmpegCommandFiles.concat('-i ' + props.videos[videosToCombine[index].id].uri + ' ')
         ffmpegCommandAV = ffmpegCommandAV.concat('[' + index + ':v:0]')
         ffmpegCommandAV = ffmpegCommandAV.concat('[' + index + ':a:0]')
       }
-
-      // RNFFmpeg.execute(`-i ${props.videos[selectedVideos[0].id].uri} 
-      // -i ${props.videos[selectedVideos[1].id].uri} 
-      // -i ${props.videos[selectedVideos[0].id].uri} 
-      // -filter_complex 
-      // "[0:v:0][0:a:0][1:v:0][1:a:0][2:v:0][2:a:0]concat=n=3:v=1:a=1[outv][outa]"
-      //  -map "[outv]" -map "[outa]" -y ${props.videos['COMBINED_PLACEHOLDER'].uri}`)
-      //   .then(result => {
-      //     console.log('URI: ', newURI)
-
-        
-      //   })
-
-      console.log('created command', `${ffmpegCommandFiles}
-      -filter_complex 
-      "${ffmpegCommandAV}concat=n=${videosToCombine.length}:v=1:a=1[outv][outa]"
-       -map "[outv]" -map "[outa]" -y ${props.videos['COMBINED_PLACEHOLDER'].uri}`)
-
-      console.log('other: ', `-i ${props.videos[videosToCombine[0].id].uri} 
-      -i ${props.videos[videosToCombine[1].id].uri} 
-      -i ${props.videos[videosToCombine[2].id].uri} 
-      -filter_complex 
-      "[0:v:0][0:a:0][1:v:0][1:a:0][2:v:0][2:a:0]concat=n=3:v=1:a=1[outv][oua]"
-       -map "[outv]" -map "[outa]" -y ${props.videos['COMBINED_PLACEHOLDER'].uri}`)
-      
        
-       
+      // Render videos together
       await RNFFmpeg.execute(`${ffmpegCommandFiles} -filter_complex "${ffmpegCommandAV}concat=n=${videosToCombine.length}:v=1:a=1[outv][outa]" -map "[outv]" -map "[outa]" -y ${props.videos['COMBINED_PLACEHOLDER'].uri}`)
         .then(result => {
           console.log('result: ', result.rc)
-
         })
+        // Save to camera roll
       const combinedURI = await CameraRoll.saveToCameraRoll(props.videos['COMBINED_PLACEHOLDER'].uri)
         .catch(err => console.log('err:', err))
 
+      // convert camera roll URI to viewable URI
       await RNConvertPhAsset.convertVideoFromUrl({
         url: combinedURI,
         convertTo: 'mov',
         quality: 'high'
       }).then(response => {
-        console.log('response? ', response)
+        console.log('response: ', response)
         setVideoURI(response.path)
       }).catch((err) => {
         console.log(err)
       })
       setRenderComplete(true)
     }
-    load()
+    renderVideo()
   })
-
-  // async function renderVideos() {
-    
-    
-  // }
 
   if(!renderComplete) {
     return (
@@ -146,4 +116,3 @@ const mapStateToProps = (state: any) => {
 }
 
 export default connect(mapStateToProps)(CreatingVideoScreen)
-
