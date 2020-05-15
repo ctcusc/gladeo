@@ -73,51 +73,51 @@ function CreatingVideoScreen(props: Props) {
    });
 };*/
 
-  // function generateInfoTitleCard(user: User) { 
-  //   console.log('info titlecard');
+  function generateInfoTitleCard(user: User) { 
+    console.log('info titlecard')
 
-  //   const GIFEncoder = require('gifencoder');
-  //   const { createCanvas } = require('canvas');
-  //   const fs = require('react-native-fs');
+    const GIFEncoder = require('gifencoder')
+    const { createCanvas } = require('canvas')
+    const fs = require('react-native-fs')
 
-  //   // screen dimensions
-  //   const width = Math.round(Dimensions.get('window').width);
-  //   const height = Math.round(Dimensions.get('window').height);
+    // screen dimensions
+    const width = Math.round(Dimensions.get('window').width)
+    const height = Math.round(Dimensions.get('window').height)
 
-  //   const encoder = new GIFEncoder(width, height);
-  //   encoder.start();
-  //   encoder.setRepeat(0);
-  //   encoder.setDelay(0);
-  //   encoder.setQuality(10);
+    const encoder = new GIFEncoder(width, height)
+    encoder.start()
+    encoder.setRepeat(0)
+    encoder.setDelay(0)
+    encoder.setQuality(10)
 
-  //   const canvas = createCanvas(width, height);
-  //   const ctx = canvas.getContext('2d');
+    const canvas = createCanvas(width, height)
+    const ctx = canvas.getContext('2d')
 
-  //   // set white background
-  //   ctx.fillStyle='#FFFFFF';
-  //   ctx.fillRect(0, 0, width, height);
+    // set white background
+    ctx.fillStyle='#FFFFFF'
+    ctx.fillRect(0, 0, width, height)
 
-  //   // set name text
-  //   ctx.font = '48px Roboto-Bold';
-  //   ctx.fillStyle = '#0E0E0E';
-  //   var namewidth = ctx.measureText(user.Name).width;
-  //   var nameX = (width-namewidth)/2;
-  //   ctx.fillText(user.Name,nameX,150);
-  //   // set position text
-  //   ctx.font = '18px Roboto-Bold';
-  //   ctx.fillStyle = '#0E0E0E';
-  //   var position = user.Title+' at '+user.Company;
-  //   var poswidth = ctx.measureText(position).width;
-  //   var posX = (width-poswidth)/2;
-  //   ctx.fillText(position,posX,250);
+    // set name text
+    ctx.font = '48px Roboto-Bold'
+    ctx.fillStyle = '#0E0E0E'
+    const namewidth = ctx.measureText(user.Name).width
+    const nameX = (width-namewidth)/2
+    ctx.fillText(user.Name,nameX,150)
+    // set position text
+    ctx.font = '18px Roboto-Bold'
+    ctx.fillStyle = '#0E0E0E'
+    const position = user.Title+' at '+user.Company
+    const poswidth = ctx.measureText(position).width
+    const posX = (width-poswidth)/2
+    ctx.fillText(position,posX,250)
 
-  //   encoder.addFrame(ctx);
-  //   encoder.finish();
+    encoder.addFrame(ctx)
+    encoder.finish()
 
-  //   const buf = encoder.out.getData();
-  //   //fs.writeFile('infotitlecard.gif', buf, function (err: any) {});
-  //   return buf
-  // }
+    const buf = encoder.out.getData()
+    //fs.writeFile('infotitlecard.gif', buf, function (err: any) {});
+    return buf
+  }
 
   // function generateQuestionTitleCard(question: string) {
   //   console.log('question titlecard');
