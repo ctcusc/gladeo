@@ -119,41 +119,41 @@ function CreatingVideoScreen(props: Props) {
     return buf
   }
 
-  // function generateQuestionTitleCard(question: string) {
-  //   console.log('question titlecard');
+  function generateQuestionTitleCard(question: string) {
+    console.log('question titlecard')
 
-  //   const GIFEncoder = require('gifencoder');
-  //   const { createCanvas } = require('canvas');
-  //   const fs = require('react-native-fs');
+    const GIFEncoder = require('gifencoder')
+    const { createCanvas } = require('canvas')
+    const fs = require('react-native-fs')
 
-  //   // screen dimensions
-  //   const width = Math.round(Dimensions.get('window').width);
-  //   const height = Math.round(Dimensions.get('window').height);
+    // screen dimensions
+    const width = Math.round(Dimensions.get('window').width)
+    const height = Math.round(Dimensions.get('window').height)
 
-  //   const encoder = new GIFEncoder(width, height);
-  //   encoder.start();
-  //   encoder.setRepeat(0);
-  //   encoder.setDelay(0);
-  //   encoder.setQuality(10);
+    const encoder = new GIFEncoder(width, height)
+    encoder.start()
+    encoder.setRepeat(0)
+    encoder.setDelay(0)
+    encoder.setQuality(10)
 
-  //   const canvas = createCanvas(width, height);
-  //   const ctx = canvas.getContext('2d');
+    const canvas = createCanvas(width, height)
+    const ctx = canvas.getContext('2d')
 
-  //   // set white background
-  //   ctx.fillStyle='#FFFFFF';
-  //   ctx.fillRect(0, 0, width, height);
+    // set white background
+    ctx.fillStyle='#FFFFFF'
+    ctx.fillRect(0, 0, width, height)
 
-  //   // set question text
-  //   ctx.font = '36px Roboto-Bold';
-  //   ctx.fillStyle = '#E5186E';
-  //   ctx.fillText(question,100,150);
-  //   encoder.addFrame(ctx);
-  //   encoder.finish();
+    // set question text
+    ctx.font = '36px Roboto-Bold'
+    ctx.fillStyle = '#E5186E'
+    ctx.fillText(question,100,150)
+    encoder.addFrame(ctx)
+    encoder.finish()
 
-  //   const buf = encoder.out.getData();
-  //   fs.writeFile('questiontitlecard.gif', buf, function (err: any) {});
-  //   return buf
-  // }
+    const buf = encoder.out.getData()
+    //fs.writeFile('questiontitlecard.gif', buf, function (err: any) {});
+    return buf
+  }
 
   // console.log('generate')
   // generateQuestionTitleCard("hello")
