@@ -43,18 +43,12 @@ target 'Gladeo_App' do
 
   # react-native-cli autolinking
   use_native_modules!
-  pod 'react-native-camera', :path => '../node_modules/react-native-camera'
-
-  pod 'react-native-orientation', :path => '../node_modules/react-native-orientation'
-
-  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
 
 
-  pod 'RNConvertPhAsset', :path => '../node_modules/react-native-convert-ph-asset'
 
-  pod 'RNCAsyncStorage', :path => '../node_modules/@react-native-community/async-storage'
 
-  pod 'react-native-cameraroll', :path => '../node_modules/@react-native-community/cameraroll'
+
+
 
 end

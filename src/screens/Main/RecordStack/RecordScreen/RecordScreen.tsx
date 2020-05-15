@@ -1,3 +1,4 @@
+  
 import React, { useState, useEffect } from 'react'
 import { Text, View, TouchableOpacity, Image, StatusBar, Dimensions, Alert} from 'react-native'
 import CameraRoll from '@react-native-community/cameraroll'
@@ -5,7 +6,7 @@ import CameraRoll from '@react-native-community/cameraroll'
 import { RNCamera } from 'react-native-camera'
 import { BASE_PATH } from 'react-native-dotenv'
 import { connect } from 'react-redux'
-import { saveVideo } from '../../../../redux/actions/index'
+import { saveVideo, savePlaceholder } from '../../../../redux/actions/index'
 
 import styles from './styles'
 import { NavigationScreenProp, NavigationState, NavigationParams } from 'react-navigation'
@@ -94,19 +95,24 @@ function RecordScreen(props: Props) {
 
   async function save(){
 
+    // save placeholder video URI (for combined video) 
+    let payload = {'uri': video.uri}
+    props.dispatch(savePlaceholder(payload))
+
     const currVideo = video
     const newURI = await CameraRoll.saveToCameraRoll(video.uri)
       .then(Alert.alert('Success', 'Photo added to camera roll!'))
       .catch(err => console.log('err:', err))
 
     
-
-    RNConvertPhAsset.convertVideoFromUrl({
-      url: currVideo.uri,
+    console.log('saved to camera roll', newURI)
+    await RNConvertPhAsset.convertVideoFromUrl({
+      url: newURI,
       convertTo: 'mov',
       quality: 'high'
-    }).then((response) => {
-      currVideo.uri = newURI
+    }).then(response => {
+      console.log('response? ', response)
+      currVideo.uri = response.path
       setVideo(currVideo)
     }).catch((err) => {
       console.log(err)
@@ -114,7 +120,7 @@ function RecordScreen(props: Props) {
     console.log('Saved video: ', currVideo)
 
     answerQuestion()
-    const payload ={'questionID': questionID, 'uri': video.uri, 'questionText': question}
+    payload ={'questionID': questionID, 'uri': currVideo.uri, 'questionText': question}
     props.dispatch(saveVideo(payload))
     pop()
 
@@ -235,7 +241,6 @@ function RecordScreen(props: Props) {
           resizeMode="cover"
           shouldPlay={true}
           isLooping={true}
-          style={{ width: '100%', height: '100%' }}
         />
         <View style={ styles.videoBottom }>
           <TouchableOpacity
