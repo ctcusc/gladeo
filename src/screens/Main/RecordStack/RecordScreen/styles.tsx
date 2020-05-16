@@ -107,8 +107,8 @@ const styles = StyleSheet.create({
   },
   saveButton: {
     backgroundColor: '#E5186E',
-    width: 79,
-    height: 48,
+    width: 179,
+    height: 148,
     justifyContent: 'center',
     alignSelf: 'center',
     //marginLeft: '50%',
