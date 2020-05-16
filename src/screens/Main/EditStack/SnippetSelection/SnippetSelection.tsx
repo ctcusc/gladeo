@@ -28,6 +28,7 @@ interface Props {
 function SnippetSelectionScreen(props: Props) {
   const [text, setText] = useState('A great video requires at least 3 - 4 clips')
   const [snippetState, setSnippetState] = useState<Array<Snippet>>([])
+  const [numSnippets, setNumSnippets] = useState(0)
   const [nextSnippetIndex, setNextSnippetIndex] = useState<number>(2)
   const {navigate, push} = props.navigation 
 
@@ -42,7 +43,8 @@ function SnippetSelectionScreen(props: Props) {
             numAnswered += 1
           }
         }
-        if(numAnswered != snippetState.length){
+        if(numAnswered != numSnippets){
+          setNumSnippets(numAnswered)
           const initialSnippetState = []
           for(let i = 0; i < data.length; i++){
             if (data[i]['Answered']) {
@@ -62,10 +64,7 @@ function SnippetSelectionScreen(props: Props) {
           setSnippetState(initialSnippetState)  
           setNextSnippetIndex(2)
           setText('A great video requires at least 3 - 4 clips')
-        } else{
-          setSnippetState(snippetState)
-        }
-        console.log(data)
+        } 
       })
       .catch(error => {
         console.log('Error' + error)
@@ -200,7 +199,7 @@ function SnippetSelectionScreen(props: Props) {
               combineVideo()
             }
           }}
-          style={nextSnippetIndex > 3 ? styles.pinkButtonAbled : styles.pinkButton}
+          style={nextSnippetIndex > 4 ? styles.pinkButtonAbled : styles.pinkButton}
         >
           <Text style={styles.buttontext}>
             CREATE VIDEO
