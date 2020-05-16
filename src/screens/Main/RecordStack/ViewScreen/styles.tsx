@@ -102,7 +102,6 @@ const styles = StyleSheet.create({
   },
   videoTop: {
     position: 'absolute',
-    marginTop: '5%',
     flexDirection: 'row',
   },
   saveButton: {
@@ -111,8 +110,7 @@ const styles = StyleSheet.create({
     height: 48,
     justifyContent: 'center',
     alignSelf: 'center',
-    //marginLeft: '50%',
-    bottom: '10%',
+    bottom: '13%',
     borderRadius: 24,
     //right: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.25)
   },

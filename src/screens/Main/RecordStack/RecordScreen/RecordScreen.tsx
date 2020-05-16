@@ -38,7 +38,6 @@ const PendingView = () => (
 )
 
 function RecordScreen(props: Props) {
-  const {navigate} = props.navigation
   const {goBack, pop} = props.navigation
   //const question = props.navigation.state.params.question
   const [hasPermission, setHasPermission] = useState(true)
@@ -48,7 +47,7 @@ function RecordScreen(props: Props) {
   const [video, setVideo] = useState(null)
   const [isPreviewMode, setPreviewMode] = useState(false)
   const [audioCapture, setAudioCapture] = useState(true)
-  const [second, setSecond] = useState(0)
+  const [timerTime, setTimerTime] = useState(0)
   const [topText, setTopText] = useState('Create a 3-4 Minute Video')
   const [playing, setPlaying] = useState(false)
 
@@ -60,12 +59,14 @@ function RecordScreen(props: Props) {
   
     useEffect(() => {
       if(playing == true) {
-        setTopText(second.toString())
+        const seconds = ('0' + ((timerTime) % 60)).slice(-2)
+        const minutes = ('0' + (Math.floor(timerTime / 60) % 60)).slice(-2)
+        setTopText(minutes.toString() + ':' + seconds.toString())
       }
       const timer =
-        setInterval(() => setSecond(second + 1), 1000)
+        setInterval(() => setTimerTime(timerTime + 1), 1000)
       return () => clearInterval(timer)
-    }, [second])
+    }, [timerTime])
 
     useEffect(() => {
       const onChange = result => {
@@ -137,14 +138,14 @@ function RecordScreen(props: Props) {
   async function stopRecord(){
     camera.stopRecording()
     setPlaying(false)
-    setSecond(0)
+    setTimerTime(0)
   }
 
   async function startRecord () {
     if (camera) {
       try {
         setPlaying(true)
-        setSecond(0)
+        setTimerTime(0)
         setIsRecording(true)
         const data = await camera.recordAsync()
 
@@ -178,69 +179,83 @@ function RecordScreen(props: Props) {
   }
 
   if (!isPreviewMode) {
-    return (
-      <RNCamera
-        ref={(ref: RNCamera) => {
-          setCamera(ref)
-        }}
-        style={styles.camera}
-        type={cameraDirection}
-        flashMode={RNCamera.Constants.FlashMode.on}
-        androidCameraPermissionOptions={{
-          title: 'Permission to use camera',
-          message: 'We need your permission to use your camera',
-          buttonPositive: 'Ok',
-          buttonNegative: 'Cancel',
-        }}
-        androidRecordAudioPermissionOptions={{
-          title: 'Permission to use audio recording',
-          message: 'We need your permission to use your audio',
-          buttonPositive: 'Ok',
-          buttonNegative: 'Cancel',
-        }}
-        captureAudio={audioCapture}
-      >
-        <StatusBar hidden/>
-        <View style={styles.uiContainer}>
-          
-          <View style={styles.texts}>
-            <View>
-              <Text style={styles.infoText}>{topText}</Text>
-            </View>
-            <View>
-              <Text style={styles.question}>{question}</Text>
-            </View>
+    if(Dimensions.get('window').width < Dimensions.get('window').height) {
+      return (
+        <View style={styles.container}>
+          <View style={styles.backgroundContainer}>
+            <Image resizeMode='contain' style={styles.backgroundImage} source={require('../../../../../assets/images/backgroundImage.png')}/>
           </View>
-          <View style={styles.controls}>
-            <TouchableOpacity 
-              onPress={() => {
-                pop()                
-              }}
-            >
-              <Image resizeMode='contain' source={require('../../../../../assets/images/back.png')} />
-            </TouchableOpacity>
-          
-            <TouchableOpacity
-              onPress={()=>toogleRecord()}
-              style={styles.recordOutline}
-            >
-              <View style={isRecording ? styles.isRecordingButton : styles.recordButton}>
-              </View>
-            </TouchableOpacity>
-
-            <View style={styles.flipCamera}> 
-              <TouchableOpacity 
-                onPress={() => {
-                  setCameraDirection(cameraDirection === RNCamera.Constants.Type.front ? RNCamera.Constants.Type.back : RNCamera.Constants.Type.front)
-                }}
-              >
-                <Image resizeMode='contain' source={require('../../../../../assets/images/flip_camera.png')} />
-              </TouchableOpacity>
-            </View> 
+          <View style={styles.portraitMode}>
+            <Image style={styles.rotateImage} resizeMode='contain' source={require('../../../../../assets/images/rotate.png')}/>
+            <Text style={styles.rotateText}>Rotate your camera</Text>
           </View>
         </View>
-      </RNCamera>
-    )
+      )
+    } else {
+      return (
+        <RNCamera
+          ref={(ref: RNCamera) => {
+            setCamera(ref)
+          }}
+          style={styles.camera}
+          type={cameraDirection}
+          flashMode={RNCamera.Constants.FlashMode.on}
+          androidCameraPermissionOptions={{
+            title: 'Permission to use camera',
+            message: 'We need your permission to use your camera',
+            buttonPositive: 'Ok',
+            buttonNegative: 'Cancel',
+          }}
+          androidRecordAudioPermissionOptions={{
+            title: 'Permission to use audio recording',
+            message: 'We need your permission to use your audio',
+            buttonPositive: 'Ok',
+            buttonNegative: 'Cancel',
+          }}
+          captureAudio={audioCapture}
+        >
+          <StatusBar hidden/>
+          <View style={styles.uiContainer}>
+            
+            <View style={styles.texts}>
+              <View>
+                <Text style={styles.infoText}>{topText}</Text>
+              </View>
+              <View>
+                <Text style={styles.question}>{question}</Text>
+              </View>
+            </View>
+            <View style={styles.controls}>
+              <TouchableOpacity 
+                onPress={() => {
+                  pop()                
+                }}
+              >
+                <Image resizeMode='contain' source={require('../../../../../assets/images/back.png')} />
+              </TouchableOpacity>
+            
+              <TouchableOpacity
+                onPress={()=>toogleRecord()}
+                style={styles.recordOutline}
+              >
+                <View style={isRecording ? styles.isRecordingButton : styles.recordButton}>
+                </View>
+              </TouchableOpacity>
+
+              <View style={styles.flipCamera}> 
+                <TouchableOpacity 
+                  onPress={() => {
+                    setCameraDirection(cameraDirection === RNCamera.Constants.Type.front ? RNCamera.Constants.Type.back : RNCamera.Constants.Type.front)
+                  }}
+                >
+                  <Image resizeMode='contain' source={require('../../../../../assets/images/flip_camera.png')} />
+                </TouchableOpacity>
+              </View> 
+            </View>
+          </View>
+        </RNCamera>
+      )
+    }
   }
 
   if(isPreviewMode) {
@@ -255,9 +270,7 @@ function RecordScreen(props: Props) {
           shouldPlay={true}
           isLooping={true}
           style={{ width: '100%', height: '100%' }}
-        />
-  
-       
+        />       
         <View style={styles.videoTop}>
           <TouchableOpacity
             onPress={() => {
@@ -267,8 +280,7 @@ function RecordScreen(props: Props) {
                 [
                   {text: 'Delete',
                     onPress: () => {
-                      setTopText('Create a 3-4 Minute Video')
-                      setPreviewMode(false)
+                      pop()
                     }
                   },
                   {text: 'Cancel', style: 'cancel'}
@@ -279,8 +291,6 @@ function RecordScreen(props: Props) {
             <Image resizeMode='contain' source={require('../../../../../assets/images/xmark.png')} style = {{tintColor: 'white'}}/>
           </TouchableOpacity>
         </View>
-
-
           
         <View style={styles.videoBottom}></View>
         <TouchableOpacity
