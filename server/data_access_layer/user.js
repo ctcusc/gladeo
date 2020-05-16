@@ -105,14 +105,14 @@ async function sendPasswordResetEmail(email, fullName) {
   const transporter = nodemailer.createTransport({
     service: 'Gmail',
     auth: {
-      user: 'gladeo.app@gmail.com',
-      pass: 'Abq12Yx34z!8'
+      user: process.env.EMAIL,
+      pass: process.env.PASSWORD
     }
   })
   
   // Message contents
   const info = {
-    from: '"Gladeo" <gladeo.app@gmail.com>',
+    from: '"Gladeo" <' + process.env.EMAIL + '>',
     to: email,
     subject: 'Gladeo Password Reset',
     html: '<p>Hello ' + fullName + ',</p><p>There was a request to change your password.<br>Please enter this' 
