@@ -10,6 +10,8 @@ import {
 import { BASE_PATH } from 'react-native-dotenv'
 import styles from './styles'
 import { NavigationScreenProp, NavigationState } from 'react-navigation'
+import { connect } from 'react-redux'
+
 
 interface Snippet {
   id: number,
@@ -20,40 +22,54 @@ interface Snippet {
 
 interface Props {
   navigation: NavigationScreenProp<NavigationState>,
+  videos: Array<Record<string, any>>,
 }
 
-export default function SnippetSelectionScreen(props: Props) {
+function SnippetSelectionScreen(props: Props) {
   const [text, setText] = useState('A great video requires at least 3 - 4 clips')
   const [snippetState, setSnippetState] = useState<Array<Snippet>>([])
+  const [numSnippets, setNumSnippets] = useState(0)
   const [nextSnippetIndex, setNextSnippetIndex] = useState<number>(2)
+  const {navigate, push} = props.navigation 
+
 
   useEffect(() => {
     fetch(`${BASE_PATH}/api/user/questions`)
       .then(res => res.json())
-      .then(data => {     
-        const initialSnippetState = []
+      .then(data => {
+        let numAnswered = 0
         for(let i = 0; i < data.length; i++){
-          if (data[i]['Answered']) {
-            const item: Snippet = {
-              id: data[i]['ID'], 
-              isSelected: false, 
-              orderInList: 0,
-              text: data[i]['text']
-            }
-            if (i == 0) {
-              item.isSelected = true
-              item.orderInList = 1
-            }
-            initialSnippetState.push(item)
+          if(data[i]['Answered']){
+            numAnswered += 1
           }
         }
-        setSnippetState(initialSnippetState)
-        console.log(data)
+        if(numAnswered != numSnippets){
+          setNumSnippets(numAnswered)
+          const initialSnippetState = []
+          for(let i = 0; i < data.length; i++){
+            if (data[i]['Answered']) {
+              const item: Snippet = {
+                id: data[i]['ID'], 
+                isSelected: false, 
+                orderInList: 0,
+                text: data[i]['text']
+              }
+              if (i == 0) {
+                item.isSelected = true
+                item.orderInList = 1
+              }
+              initialSnippetState.push(item)
+            }
+          }
+          setSnippetState(initialSnippetState)  
+          setNextSnippetIndex(2)
+          setText('A great video requires at least 3 - 4 clips')
+        } 
       })
       .catch(error => {
         console.log('Error' + error)
       })
-  }, [])
+  })
 
   function updateSnippetState(item: Snippet) {
     const modifiedQuestionState = snippetState
@@ -117,6 +133,26 @@ export default function SnippetSelectionScreen(props: Props) {
       }
     }
   }
+
+  async function combineVideo() {
+    // Store choose only the selected Snippets.
+    const selectedVideos = []
+    for (let index = 0; index < snippetState.length; index++) {
+      if (snippetState[index].isSelected) {
+        selectedVideos.push(snippetState[index])
+      }
+    }
+    // Sort the Snippets according to the order the user selected them in.
+    selectedVideos.sort((a, b) => a.orderInList - b.orderInList)
+    // update the question states
+    for(let i = 1; i < snippetState.length; i++){
+      snippetState[i].isSelected = false
+      snippetState[i].orderInList = 0
+      setNextSnippetIndex(2)
+      setText('A great video requires at least 3 - 4 clips')
+    }
+    push('CreatingVideo', {'videosToCombine': selectedVideos})
+  }
   
   return (
     <View style={styles.container}>
@@ -159,9 +195,11 @@ export default function SnippetSelectionScreen(props: Props) {
                   {text: 'Okay', style: 'cancel'}
                 ]
               )
+            } else {
+              combineVideo()
             }
           }}
-          style={nextSnippetIndex > 3 ? styles.pinkButtonAbled : styles.pinkButton}
+          style={nextSnippetIndex > 4 ? styles.pinkButtonAbled : styles.pinkButton}
         >
           <Text style={styles.buttontext}>
             CREATE VIDEO
@@ -182,3 +220,11 @@ SnippetSelectionScreen.navigationOptions = {
   ),
   headerStyle: {height: 140},   
 }
+
+const mapStateToProps = (state: any) => {
+  return {
+    videos: state
+  }
+}
+
+export default connect(mapStateToProps)(SnippetSelectionScreen)
