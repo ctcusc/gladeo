@@ -102,7 +102,7 @@ const styles = StyleSheet.create({
   },
   videoTop: {
     position: 'absolute',
-    marginTop: '5%',
+    marginTop: '1%',
     flexDirection: 'row',
   },
   saveButton: {
@@ -111,8 +111,7 @@ const styles = StyleSheet.create({
     height: 148,
     justifyContent: 'center',
     alignSelf: 'center',
-    //marginLeft: '50%',
-    bottom: '10%',
+    bottom: '13%',
     borderRadius: 24,
     //right: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.25)
   },
@@ -148,7 +147,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: 'white',
   },
  
   saveView: {
@@ -180,6 +179,30 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     marginTop: '5%',
   },
+  backgroundImage: {
+    flex: 1,
+    opacity: 0.7,
+  },
+  backgroundContainer: {
+    position: 'absolute',
+  },
+  portraitMode: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  rotateText: {
+    marginTop: '10%',
+    fontFamily: 'Roboto-Regular',
+    lineHeight: 20,
+    fontSize: 16,
+    alignSelf: 'center',
+  },
+  rotateImage: {
+    alignSelf: 'center',
+    width: 76,
+    height: 76,
+  }
 })
 
 export default styles
