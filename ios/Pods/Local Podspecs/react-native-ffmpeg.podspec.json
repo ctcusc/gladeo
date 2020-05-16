@@ -1,0 +1,226 @@
+{
+  "name": "react-native-ffmpeg",
+  "version": "0.4.4",
+  "summary": "FFmpeg for React Native",
+  "description": "React Native FFmpeg based on mobile-ffmpeg",
+  "homepage": "https://github.com/tanersener/react-native-ffmpeg",
+  "authors": {
+    "Taner Sener": "tanersener@gmail.com"
+  },
+  "license": {
+    "type": "LGPL-3.0"
+  },
+  "platforms": {
+    "ios": "9.3"
+  },
+  "requires_arc": true,
+  "static_framework": true,
+  "source": {
+    "git": "https://github.com/tanersener/react-native-ffmpeg.git",
+    "tag": "v0.4.4"
+  },
+  "source_files": [
+    "ios/RNFFmpegModule.m",
+    "ios/RNFFmpegModule.h"
+  ],
+  "default_subspecs": "https",
+  "dependencies": {
+    "React": [
+
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "min",
+      "source_files": [
+        "ios/RNFFmpegModule.m",
+        "ios/RNFFmpegModule.h"
+      ],
+      "dependencies": {
+        "mobile-ffmpeg-min": [
+          "4.3.1"
+        ]
+      }
+    },
+    {
+      "name": "min-lts",
+      "source_files": [
+        "ios/RNFFmpegModule.m",
+        "ios/RNFFmpegModule.h"
+      ],
+      "dependencies": {
+        "mobile-ffmpeg-min": [
+          "4.3.1.LTS"
+        ]
+      }
+    },
+    {
+      "name": "min-gpl",
+      "source_files": [
+        "ios/RNFFmpegModule.m",
+        "ios/RNFFmpegModule.h"
+      ],
+      "dependencies": {
+        "mobile-ffmpeg-min-gpl": [
+          "4.3.1"
+        ]
+      }
+    },
+    {
+      "name": "min-gpl-lts",
+      "source_files": [
+        "ios/RNFFmpegModule.m",
+        "ios/RNFFmpegModule.h"
+      ],
+      "dependencies": {
+        "mobile-ffmpeg-min-gpl": [
+          "4.3.1.LTS"
+        ]
+      }
+    },
+    {
+      "name": "https",
+      "source_files": [
+        "ios/RNFFmpegModule.m",
+        "ios/RNFFmpegModule.h"
+      ],
+      "dependencies": {
+        "mobile-ffmpeg-https": [
+          "4.3.1"
+        ]
+      }
+    },
+    {
+      "name": "https-lts",
+      "source_files": [
+        "ios/RNFFmpegModule.m",
+        "ios/RNFFmpegModule.h"
+      ],
+      "dependencies": {
+        "mobile-ffmpeg-https": [
+          "4.3.1.LTS"
+        ]
+      }
+    },
+    {
+      "name": "https-gpl",
+      "source_files": [
+        "ios/RNFFmpegModule.m",
+        "ios/RNFFmpegModule.h"
+      ],
+      "dependencies": {
+        "mobile-ffmpeg-https-gpl": [
+          "4.3.1"
+        ]
+      }
+    },
+    {
+      "name": "https-gpl-lts",
+      "source_files": [
+        "ios/RNFFmpegModule.m",
+        "ios/RNFFmpegModule.h"
+      ],
+      "dependencies": {
+        "mobile-ffmpeg-https-gpl": [
+          "4.3.1.LTS"
+        ]
+      }
+    },
+    {
+      "name": "audio",
+      "source_files": [
+        "ios/RNFFmpegModule.m",
+        "ios/RNFFmpegModule.h"
+      ],
+      "dependencies": {
+        "mobile-ffmpeg-audio": [
+          "4.3.1"
+        ]
+      }
+    },
+    {
+      "name": "audio-lts",
+      "source_files": [
+        "ios/RNFFmpegModule.m",
+        "ios/RNFFmpegModule.h"
+      ],
+      "dependencies": {
+        "mobile-ffmpeg-audio": [
+          "4.3.1.LTS"
+        ]
+      }
+    },
+    {
+      "name": "video",
+      "source_files": [
+        "ios/RNFFmpegModule.m",
+        "ios/RNFFmpegModule.h"
+      ],
+      "dependencies": {
+        "mobile-ffmpeg-video": [
+          "4.3.1"
+        ]
+      }
+    },
+    {
+      "name": "video-lts",
+      "source_files": [
+        "ios/RNFFmpegModule.m",
+        "ios/RNFFmpegModule.h"
+      ],
+      "dependencies": {
+        "mobile-ffmpeg-video": [
+          "4.3.1.LTS"
+        ]
+      }
+    },
+    {
+      "name": "full",
+      "source_files": [
+        "ios/RNFFmpegModule.m",
+        "ios/RNFFmpegModule.h"
+      ],
+      "dependencies": {
+        "mobile-ffmpeg-full": [
+          "4.3.1"
+        ]
+      }
+    },
+    {
+      "name": "full-lts",
+      "source_files": [
+        "ios/RNFFmpegModule.m",
+        "ios/RNFFmpegModule.h"
+      ],
+      "dependencies": {
+        "mobile-ffmpeg-full": [
+          "4.3.1.LTS"
+        ]
+      }
+    },
+    {
+      "name": "full-gpl",
+      "source_files": [
+        "ios/RNFFmpegModule.m",
+        "ios/RNFFmpegModule.h"
+      ],
+      "dependencies": {
+        "mobile-ffmpeg-full-gpl": [
+          "4.3.1"
+        ]
+      }
+    },
+    {
+      "name": "full-gpl-lts",
+      "source_files": [
+        "ios/RNFFmpegModule.m",
+        "ios/RNFFmpegModule.h"
+      ],
+      "dependencies": {
+        "mobile-ffmpeg-full-gpl": [
+          "4.3.1.LTS"
+        ]
+      }
+    }
+  ]
+}

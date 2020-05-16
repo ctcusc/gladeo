@@ -1,4 +1,5 @@
 const initialState = {
+  'COMBINED_PLACEHOLDER': {},
   1: {},
   2: {},
   3: {},
@@ -14,6 +15,12 @@ const initialState = {
 }
   
 function rootReducer(state = initialState, action) {
+  if(action.type === 'SAVE_PLACEHOLDER') {
+    return {
+      ...state,
+      ['COMBINED_PLACEHOLDER']: action.payload
+    }
+  }
   if (action.type === 'SAVE_VIDEO') {
 
     const key = action.payload.questionID
