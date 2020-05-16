@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
   flipCamera: {
     flexDirection: 'row',
     justifyContent: 'center',
-    width: 53
+    width: 53,
   },
   whiteButtonOutline: {
     justifyContent: 'center',
@@ -64,12 +64,14 @@ const styles = StyleSheet.create({
     borderColor: '#fff',
   },
   texts: {
+    flex: 0.95,
     paddingHorizontal: 100,
     flexDirection: 'column',
     alignItems: 'center',
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   infoText: {
+    flexDirection: 'column',
     backgroundColor: 'rgba(51,51,51,0.4)',
     color: '#fff',
     paddingVertical: 7,
@@ -78,9 +80,11 @@ const styles = StyleSheet.create({
     fontSize: 16,
     textAlignVertical: 'center',
     textAlign: 'center',
+    marginTop: '5%',
     //left: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.35),
   },
   question: {
+    flexDirection: 'column',
     backgroundColor: 'rgba(51,51,51,0.4)',
     color: '#fff',
     paddingVertical: 7,
@@ -93,18 +97,32 @@ const styles = StyleSheet.create({
     fontFamily: 'Roboto-Regular',
   },
   videoBottom: {
-    flex: 1,
     position: 'absolute',
+    flexDirection: 'row-reverse',
+  },
+  videoTop: {
+    position: 'absolute',
+    marginTop: '1%',
+    flexDirection: 'row',
   },
   saveButton: {
+    backgroundColor: '#E5186E',
+    width: 179,
+    height: 148,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    bottom: '13%',
+    borderRadius: 24,
+    //right: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.25)
+  },
+  exitButton: {
     backgroundColor: '#E5186E',
     width: 79,
     height: 48,
     justifyContent: 'center',
-    left: '30%',
-    top: '1500%',
+    alignSelf: 'center',
     borderRadius: 24,
-    right: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.25)
+    //right: -Dimensions.get('window').width + (Dimensions.get('window').width * 0.25)
   },
   saveText: {
     textAlign: 'center', 
@@ -129,7 +147,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: 'white',
   },
  
   saveView: {
@@ -143,6 +161,47 @@ const styles = StyleSheet.create({
 
   videoPlay: {
     flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-between'
+  },
+  questionFinalText: {
+    bottom: '15%',
+    position: 'absolute',
+    backgroundColor: 'rgba(51,51,51,0.4)',
+    color: '#fff',
+    paddingVertical: 7,
+    paddingHorizontal: 10,
+    borderRadius: 5,
+    fontSize: 16,
+    textAlignVertical: 'center',
+    textAlign: 'center',
+    justifyContent: 'center',
+    alignSelf: 'center',
+    marginTop: '5%',
+  },
+  backgroundImage: {
+    flex: 1,
+    opacity: 0.7,
+  },
+  backgroundContainer: {
+    position: 'absolute',
+  },
+  portraitMode: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
+  rotateText: {
+    marginTop: '10%',
+    fontFamily: 'Roboto-Regular',
+    lineHeight: 20,
+    fontSize: 16,
+    alignSelf: 'center',
+  },
+  rotateImage: {
+    alignSelf: 'center',
+    width: 76,
+    height: 76,
   }
 })
 
