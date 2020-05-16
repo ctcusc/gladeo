@@ -28,6 +28,7 @@ interface Props {
 function SnippetSelectionScreen(props: Props) {
   const [text, setText] = useState('A great video requires at least 3 - 4 clips')
   const [snippetState, setSnippetState] = useState<Array<Snippet>>([])
+  const [numSnippets, setNumSnippets] = useState(0)
   const [nextSnippetIndex, setNextSnippetIndex] = useState<number>(2)
   const {navigate, push} = props.navigation 
 
@@ -35,30 +36,40 @@ function SnippetSelectionScreen(props: Props) {
   useEffect(() => {
     fetch(`${BASE_PATH}/api/user/questions`)
       .then(res => res.json())
-      .then(data => {     
-        const initialSnippetState = []
+      .then(data => {
+        let numAnswered = 0
         for(let i = 0; i < data.length; i++){
-          if (data[i]['Answered']) {
-            const item: Snippet = {
-              id: data[i]['ID'], 
-              isSelected: false, 
-              orderInList: 0,
-              text: data[i]['text']
-            }
-            if (i == 0) {
-              item.isSelected = true
-              item.orderInList = 1
-            }
-            initialSnippetState.push(item)
+          if(data[i]['Answered']){
+            numAnswered += 1
           }
         }
-        setSnippetState(initialSnippetState)
-        console.log(data)
+        if(numAnswered != numSnippets){
+          setNumSnippets(numAnswered)
+          const initialSnippetState = []
+          for(let i = 0; i < data.length; i++){
+            if (data[i]['Answered']) {
+              const item: Snippet = {
+                id: data[i]['ID'], 
+                isSelected: false, 
+                orderInList: 0,
+                text: data[i]['text']
+              }
+              if (i == 0) {
+                item.isSelected = true
+                item.orderInList = 1
+              }
+              initialSnippetState.push(item)
+            }
+          }
+          setSnippetState(initialSnippetState)  
+          setNextSnippetIndex(2)
+          setText('A great video requires at least 3 - 4 clips')
+        } 
       })
       .catch(error => {
         console.log('Error' + error)
       })
-  }, [])
+  })
 
   function updateSnippetState(item: Snippet) {
     const modifiedQuestionState = snippetState
@@ -133,7 +144,13 @@ function SnippetSelectionScreen(props: Props) {
     }
     // Sort the Snippets according to the order the user selected them in.
     selectedVideos.sort((a, b) => a.orderInList - b.orderInList)
-    
+    // update the question states
+    for(let i = 1; i < snippetState.length; i++){
+      snippetState[i].isSelected = false
+      snippetState[i].orderInList = 0
+      setNextSnippetIndex(2)
+      setText('A great video requires at least 3 - 4 clips')
+    }
     push('CreatingVideo', {'videosToCombine': selectedVideos})
   }
   
@@ -182,7 +199,7 @@ function SnippetSelectionScreen(props: Props) {
               combineVideo()
             }
           }}
-          style={nextSnippetIndex > 3 ? styles.pinkButtonAbled : styles.pinkButton}
+          style={nextSnippetIndex > 4 ? styles.pinkButtonAbled : styles.pinkButton}
         >
           <Text style={styles.buttontext}>
             CREATE VIDEO
