@@ -4,6 +4,16 @@ const { getCompany } = require('./company')
 const nodemailer = require('nodemailer')
 const { google } = require('googleapis')
 const { extractContentFromRecords, getAllFromTable } = require('./helpers')
+const fs = require('fs')
+const readline = require('readline')
+const {google} = require('googleapis')
+const youtube = google.youtube('v3')
+const OAuth2 = google.auth.OAuth2
+const SCOPES = [ 'https://www.googleapis.com/auth/youtube.upload',
+  'https://www.googleapis.com/auth/youtube']
+const TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
+process.env.USERPROFILE) + '/.credentials/'
+const TOKEN_PATH = TOKEN_DIR + 'youtube-nodejs-quickstart.json'
 
 async function getUser(userId) {
   const userRecords = base('Users').select({
@@ -114,7 +124,7 @@ async function sendPasswordResetEmail(email, fullName) {
     service: 'Gmail',
     auth: {
       type: 'OAuth2',
-      user: 'gladeo.app@gmail.com', 
+      user: process.env.EMAIL, 
       clientId: CLIENT_ID,
       clientSecret: CLIENT_SECRET,
       refreshToken: REFRESH_TOKEN,
@@ -124,7 +134,7 @@ async function sendPasswordResetEmail(email, fullName) {
 
   // Message contents
   const info = {
-    from: '"Gladeo" <gladeo.app@gmail.com>',
+    from: '"Gladeo" <' + process.env.EMAIL + '>',
     to: email,
     subject: 'Gladeo Password Reset',
     generateTextFromHTML: true,
@@ -175,6 +185,121 @@ async function updateUserPassword(email, password) {
   return true
 }
 
+
+function storeToken(token) {
+  try {
+    fs.mkdirSync(TOKEN_DIR)
+  } catch (err) {
+    if (err.code != 'EEXIST') {
+      throw err
+    }
+  }
+  fs.writeFile(TOKEN_PATH, JSON.stringify(token), (err) => {
+    if (err) throw err
+    console.log('Token stored to ' + TOKEN_PATH)
+  })
+}
+
+function getNewToken(oauth2Client, callback) {
+  const authUrl = oauth2Client.generateAuthUrl({
+    access_type: 'offline',
+    scope: SCOPES
+  })
+  console.log('Authorize this app by visiting this url: ', authUrl)
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout
+  })
+  rl.question('Enter the code from that page here: ', function(code) {
+    rl.close()
+    oauth2Client.getToken(code, function(err, token) {
+      if (err) {
+        console.log('Error while trying to retrieve access token', err)
+        return
+      }
+      oauth2Client.credentials = token
+      storeToken(token)
+      callback(oauth2Client)
+    })
+  })
+}
+
+function authorize(credentials, callback, name, email, URI) {
+  const clientSecret = process.env.CLIENT_SECRET
+  const clientId = credentials.web.client_id
+  const redirectUrl = credentials.web.redirect_uris[0]
+  const oauth2Client = new OAuth2(clientId, clientSecret, redirectUrl)
+  // Check if we have previously stored a token.
+  fs.readFile(TOKEN_PATH, function(err, token) {
+    if (err) {
+      getNewToken(oauth2Client, callback)
+    } else {
+      oauth2Client.credentials = JSON.parse(token)
+      return(callback(oauth2Client, name, email, URI))
+    }
+  })
+}
+
+async function uploadVideo(auth, name, email, URI) {
+  google.options({auth})
+  const fileSize = fs.statSync(URI).size
+  try {
+    const res = await youtube.videos.insert(
+      {
+        part: 'id,snippet,status',
+        notifySubscribers: false,
+        requestBody: {
+          snippet: {
+            title: '[Draft - ready for review] video by ' + name,
+            description: 'Draft video created by ' + name + '\nEmail: ' + email,
+          },
+          status: {
+            privacyStatus: 'private',
+          },
+        },
+        media: {
+          body: fs.createReadStream(URI),
+        },
+      },
+      
+      {
+        // Use the `onUploadProgress` event from Axios to track the
+        // number of bytes uploaded to this point.
+        onUploadProgress: evt => {
+          const progress = (evt.bytesRead / fileSize) * 100
+          readline.clearLine(process.stdout, 0)
+          readline.cursorTo(process.stdout, 0, null)
+          process.stdout.write(`${Math.round(progress)}% complete`)
+        },
+      }
+    )
+   
+    console.log(res.data)
+    return res.data
+
+  }catch(err) {
+    console.log(err)
+  }
+  
+}
+
+
+async function videoAuthorize(name, email, URI) {
+  name = name
+  URI = URI
+  email = email
+  fs.readFile('client_secret.json', function processClientSecrets(err, content) {
+    if (err) {
+      console.log('Error loading client secret file: ' + err)
+      return
+    }
+    // Authorize a client with the loaded credentials, then call the YouTube API.
+    authorize(JSON.parse(content), uploadVideo, name, email, URI)
+  })
+ 
+}
+
+
 module.exports = {
   getUser,
   getUserByEmail,
@@ -184,5 +309,10 @@ module.exports = {
   sendPasswordResetEmail,
   verifyPasswordCode,
   updateUserPassword,
-  updateEmailandPassword
+  updateEmailandPassword,
+  uploadVideo,
+  authorize,
+  getNewToken,
+  storeToken,
+  videoAuthorize
 }

@@ -1,6 +1,6 @@
 const express = require('express')
 const router = express.Router()
-const { updateAnsweredQuestions } = require('../../data_access_layer/user')
+const { updateAnsweredQuestions, videoAuthorize } = require('../../data_access_layer/user')
 const { getQuestion, getAllQuestions } = require('../../data_access_layer/question')
 
 router.get('/', async (req, res) => {
@@ -187,6 +187,21 @@ router.delete('/questions', async (req, res) => {
     }
     return res.status(err.statusCode).send(err)
   }
+})
+
+router.post('/upload', async (req, res) => {
+  const name = req.body['Name']
+  const email = req.body['Email']
+  const URI = req.body['URI']
+  try {
+    return res.status(200).send(videoAuthorize(name, email, URI))
+    
+  }catch(err) {
+    console.log(err)
+    return res.status(err.statusCode).send(err)
+  }
+  
+
 })
 
 module.exports = router
