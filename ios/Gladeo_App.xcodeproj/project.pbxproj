@@ -313,7 +313,11 @@
 				ORGANIZATIONNAME = Facebook;
 				TargetAttributes = {
 					13B07F861A680F5B00A75B9A = {
+<<<<<<< HEAD
+						DevelopmentTeam = TM8FB9R2LH;
+=======
 						DevelopmentTeam = 4NUDH2Z2CM;
+>>>>>>> master
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -536,7 +540,11 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEAD_CODE_STRIPPING = NO;
+<<<<<<< HEAD
+				DEVELOPMENT_TEAM = TM8FB9R2LH;
+=======
 				DEVELOPMENT_TEAM = 4NUDH2Z2CM;
+>>>>>>> master
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Gladeo_App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -545,7 +553,11 @@
 					"-ObjC",
 					"-lc++",
 				);
+<<<<<<< HEAD
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.usc.lynnebai.Gladeo-App";
+=======
 				PRODUCT_BUNDLE_IDENTIFIER = "brennajc.Gladeo-App";
+>>>>>>> master
 				PRODUCT_NAME = Gladeo_App;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
@@ -560,7 +572,11 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+<<<<<<< HEAD
+				DEVELOPMENT_TEAM = TM8FB9R2LH;
+=======
 				DEVELOPMENT_TEAM = 4NUDH2Z2CM;
+>>>>>>> master
 				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = Gladeo_App/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -569,7 +585,11 @@
 					"-ObjC",
 					"-lc++",
 				);
+<<<<<<< HEAD
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.usc.lynnebai.Gladeo-App";
+=======
 				PRODUCT_BUNDLE_IDENTIFIER = "brennajc.Gladeo-App";
+>>>>>>> master
 				PRODUCT_NAME = Gladeo_App;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				VERSIONING_SYSTEM = "apple-generic";
