@@ -39,6 +39,7 @@ const PendingView = () => (
 )
 
 function RecordScreen(props: Props) {
+  const {navigate} = props.navigation
   const {goBack, pop} = props.navigation
   //const question = props.navigation.state.params.question
   const [hasPermission, setHasPermission] = useState(true)
