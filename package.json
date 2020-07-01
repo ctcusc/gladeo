@@ -45,7 +45,7 @@
     "@types/react-native-dotenv": "^0.2.0",
     "@types/react-test-renderer": "^16.9.1",
     "airtable": "^0.8.1",
-    "bcrypt": "^3.0.7",
+    "bcrypt": "^5.0.0",
     "core-js": "^3",
     "core-util-is": "^1.0.2",
     "dotenv": "^8.2.0",
