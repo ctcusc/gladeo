@@ -60,7 +60,7 @@
     "react-native-animated-ellipsis": "^2.0.0",
     "react-native-background-timer": "^2.2.0",
     "react-native-camera": "^3.23.1",
-    "react-native-confirmation-code-field": "^6.0.0",
+    "react-native-confirmation-code-field": "^7.1.0",
     "react-native-convert-ph-asset": "^1.0.3",
     "react-native-dotenv": "^0.2.0",
     "react-native-elements": "^1.2.7",
